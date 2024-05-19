@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Writing_a_Dynamically_Loadable_Object&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:27:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>View source for TUT:Writing a Dynamically Loadable Object - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"TUT:Writing_a_Dynamically_Loadable_Object","wgTitle":"TUT:Writing a Dynamically Loadable Object","wgCurRevisionId":4469,"wgRevisionId":0,"wgArticleId":1753,"wgIsArticle":!1,"wgIsRedirect":!1,"wgAction":"edit","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!0,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"TUT:Writing_a_Dynamically_Loadable_Object","wgRelevantArticleId":1753,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-TUT_Writing_a_Dynamically_Loadable_Object skin-monobook action-edit">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">View source for TUT:Writing a Dynamically Loadable Object</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub">← <a href="http://www.net-snmp.org/wiki/index.php/TUT:Writing_a_Dynamically_Loadable_Object" title="TUT:Writing a Dynamically Loadable Object">TUT:Writing a Dynamically Loadable Object</a></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text"><p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://www.net-snmp.org/wiki/index.php?title=Net-SNMP_Wiki:Users&amp;action=edit&amp;redlink=1" class="new" title="Net-SNMP Wiki:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<hr />
+<p>You can view and copy the source of this page.
+</p><textarea readonly="" accesskey="," id="wpTextbox1" cols="80" rows="25" style="" lang="en" dir="ltr" name="wpTextbox1">This page describes how to build extension for Net-SNMP as &lt;em>shared objects&lt;/em>, binary files that can be loaded by the SNMPd daemon directly and are executed as part of the daemon. This differs from the concept introduced in [[TUT:Writing a MIB Module|Writing a MIB Module]] in that the extension resides in its own binary file and is loaded by the agent &lt;em>at runtime&lt;/em>. This adds the flexibility to add new functionality&amp;nbsp;/ MIBs &lt;em>after&lt;/em> the agent has been compiled, enabling you to extent the daemon provided by a binary package without the need to roll your own modified package.
+
+Yet another possibility is offered by &lt;em>Subagents&lt;/em>, see [[TUT:Writing a Subagent|Writing a Subagent]]: Subagents are separate processes that do not share memory, file descriptors and so on with the daemon and must use &lt;em>interprocess communication&lt;/em> (IPC) to communicate with the daemon.
+
+Writing dynamically loadable objects is interesting because you will have the entire API provided by Net-SNMP at your disposal, for example a caching infrastructure. Shared objects loaded this way usually get their configuration from the same configuration file the core daemon uses, which often is a nice thing. Disadvantages are that a programming mistake in your custom extension may crash the entire daemon and that your code is by design always executed as the same user the core daemon is executed as, i.&amp;nbsp;e. potentially with unnecessary privileges ­— or too little, depending on your setup.
+
+== Prerequisites ==
+
+While not strictly necessary, you'll probably have an easier time building a shared object if you start with an already functioning &lt;em>MIB module&lt;/em> (extension) as described in [[TUT:Writing a MIB Module|Writing a MIB Module]]. This section of the tutorials will assume you have a working extension build directly into the daemon already and tells you how to move that out of the daemon and into a shared object.
+
+For demonstration purposes, we'll refer to some example MIB objects and code: the [http://www.net-snmp.org/tutorial/tutorial-5/toolkit/mib_module/NET-SNMP-TUTORIAL-MIB.txt NET-SNMP-TUTORIAL-MIB] MIB, and the [http://www.net-snmp.org/tutorial/tutorial-5/toolkit/demon/nstAgentSubagentObject.c example MIB module] and it's [http://www.net-snmp.org/tutorial/tutorial-5/toolkit/demon/nstAgentSubagentObject.h header file]. 
+
+&lt;strong>Note:&lt;/strong> The &lt;code>dlmod&lt;/code> code is based on the &lt;code>UCD-DLMOD-MIB&lt;/code>. It resides in the &lt;code>ucdExperimental&lt;/code> name-space, but since nothing has changed since 1999 it's pretty safe to assume this interface is stable. You can find the MIB in &lt;code>mibs/UCD-DLMOD-MIB.txt&lt;/code> in the source-code distribution.
+
+The Net-SNMP package must have been built with dynamically loadable module support for the following to work. You should therefore enable the UCD MIB when configuring the sources:
+
+ $ ./configure --with-mib-modules="ucd_snmp $OTHER_MIBS" $OTHER_OPTIONS
+
+Besides the right MIB, you need of course support for shared objects. This is enabled with the &lt;code>--enable-shared&lt;/code> argument of &lt;code>configure&lt;/code>, but should be automatically enabled if your system supports dynamically loaded objects. You can check for support in your agent but looking at the output of the &lt;code>snmpd&amp;nbsp;-H&lt;/code> command for the "dlmod" token. If its listed, the compiled agent supports it. 
+
+&lt;strong>Note:&lt;/strong> All command line options below assume you have an appropriately setup &lt;code>~/.snmp/snmp.conf&lt;/code> file that allows you to not have to specify a SNMP version number, community name, username, or whatever else in order to talk to your agent. The agent, of course, must have a matching &lt;code>/usr/local/share/snmp/snmpd.conf&lt;/code> file (or equivalent). 
+
+{{TUT:File-Table-Top-and-basics}}
+|-
+| [http://www.net-snmp.org/tutorial/tutorial-5/toolkit/dlmod/nstAgentPluginObject.h nstAgentPluginObject.h] || The MIB module's header file
+|-
+| [http://www.net-snmp.org/tutorial/tutorial-5/toolkit/dlmod/nstAgentPluginObject.c nstAgentPluginObject.c] || The MIB module's C source code
+|}
+
+== Initialization ==
+
+After loading the shared object to memory, the &lt;em>object loader&lt;/em> will look for an initialization function inside the shared object. The name of this function is &lt;code>init_&lt;em>name&lt;/em>&lt;/code>, where "name" is the name of your extension. The name of the example module is "nstAgentPluginObject", so the loader will look for a function with the following prototype:
+
+ void init_nstAgentPluginObject (void);
+
+There's a complementary function, called &lt;code>deinit_&lt;em>name&lt;/em>&lt;/code>, which is called when the module is unloaded, for example when the daemon is shutting down. Unsurprisingly, the prototype of the example deinit-function is:
+
+ void deinit_nstAgentPluginObject (void);
+
+These are the only two functions called by the object loaded. All other functions (and module-global variables) therefore should be declared &lt;code>static&lt;/code>.
+
+It is important to note that nothing prevents the agent from a second "load" of the same shared object. The module isn't actually loaded a second time, but the initialization function is run again. Modules should be able to handle that, for example by checking if they were already initialized when returning without further actions if so. The same applies to the de-initialization functions.
+
+Further when the last unload happens the module is unloaded and so the code disappears. When this happens everything registered with the agent from the module must be unregistered since not doing so is an open invitation to core dumps.
+
+You can check the names of currently loaded modules using the &lt;code>UCD-DLMOD-MIB::dlmodName&lt;/code> OID.
+
+== Configuration ==
+
+As mentioned in the introduction, you can register own configuration options which extend the daemon's configuration. To do so, you need to provide two callback functions which are called when appropriate: One that handles a configuration statement, and one that cleans up when necessary. A short example is given below and registers the &lt;em>foobar&lt;/em> option:
+
+ static const char *global_foobar = NULL;
+ …
+ static void config_handle (const char *key, char *value)
+ {
+   if (strcasecmp ("foobar", key) == 0)
+   {
+     char *tmp = strdup (value);
+     if (tmp != NULL)
+     {
+       free (global_foobar);
+       global_foobar = tmp;
+     }
+   }
+   else if …
+ } /* void config_handle */
+ 
+ static void config_free (void)
+ {
+   free (global_foobar);
+   global_foobar = NULL;
+ }
+ …
+ snmpd_register_config_handler ("foobar",
+     config_handle, config_free,
+     "The foobar option does something incredible!");
+
+Do &lt;strong>not&lt;/strong> just assign the &lt;code>value&lt;/code> pointer to a global variable or dreadful things may happen!
+
+== Writing the module ==
+
+The next steps are basically the same as those steps outlined in [[TUT:Writing a MIB Module|Writing a MIB Module]], i.&amp;nbsp;e. register one or more data sets at some OIDs, for example using the [http://www.net-snmp.org/dev/agent/group__table__dataset.html#ga14 netsnmp_register_table_data_set], see [http://www.net-snmp.org/dev/agent/data__set_8c-example.html the data_set.c example]. Please see [[TUT:Writing a MIB Module|the introductory documentation]].
+
+== Compiling and linking the shared object ==
+
+Building shared objects for Net-SNMP works just like building any other shared object. If you have not done that so far, you should probably read your compilers documentation on the subject. When using the &lt;em>GNU Compiler Collection&lt;/em> (GCC), you will most likely need the &lt;code>-fPIC -shared&lt;/code> flags.
+
+You should use the &lt;code>net-snmp-config&lt;/code> script to determine additional compiler and linker flags. For example:
+
+ $ cc `net-snmp-config --cflags` -fPIC -shared -g -O0 -o nstAgentPluginObject.so nstAgentPluginObject.c `net-snmp-config --libs`
+
+You can find example &lt;em>Makefiles&lt;/em> at &lt;code>agent/mibgroup/examples/Makefile.dlmod&lt;/code> in the source-code distribution and at [http://www.net-snmp.org/tutorial/tutorial-5/toolkit/demoapp/Makefile]. Hopefully this'll get you started.
+
+== Steps to test the shared object via runtime MIB configuration ==
+
+# Start the snmpd and watch the dlmod and nstAgentPluginObject modules interact using the debugging flag (this assumes you already have access control set up properly for your agent): 
+#:% '''snmpd -f -L -DnstAgentPluginObject,dlmod'''
+# In another window, test to make sure that the agent doesn't currently support the nstAgentPluginObject (if you get different results running this command you need to recompile the net-snmp agent without the nstAgentPluginObject mib module compiled in directly): 
+#:% '''snmpget localhost NET-SNMP-TUTORIAL-MIB::nstAgentPluginObject.0'''
+#:nstAgentPluginObject.0 = No Such Object available on this agent at this OID          
+# Then, run snmpset to create a new row in the dlmod table: 
+#:% '''snmpset localhost UCD-DLMOD-MIB::dlmodStatus.1 i create'''
+#:dlmodStatus.1 = create(6)
+# See that the row was created: 
+#:% '''snmptable localhost UCD-DLMOD-MIB::dlmodTable  '''
+#:SNMP table: dlmodTable
+#:
+#:dlmodName dlmodPath dlmodError dlmodStatus
+#:                                   unloaded
+#Then set the properties of the row up to point to our new object and to give it a name: 
+#:% '''snmpset localhost UCD-DLMOD-MIB::dlmodName.1 s "nstAgentPluginObject" UCD-DLMOD-MIB::dlmodPath.1 s "/path/to/nstAgentPluginObject.so"  '''
+#:dlmodName.1 = "nstAgentPluginObject" 
+#:dlmodName.1 = "/path/to/nstAgentPluginObject.so"
+#:
+#:% '''snmptable localhost UCD-DLMOD-MIB::dlmodTable  '''
+#: SNMP table: dlmodTable
+#: 
+#:    dlmodName dlmodPath                 dlmodError   dlmodStatus
+#: nstAgentPluginObject /path/to/nstAgentPluginObject.so                  unloaded
+#Finally, load the shared object into the running agent: 
+#:% '''snmpset localhost UCD-DLMOD-MIB::dlmodStatus.1 i load  '''
+#:dlmodStatus.1 = loaded(1)
+#:
+#:% snmptable localhost UCD-DLMOD-MIB::dlmodTable  
+#:SNMP table: dlmodTable
+#: 
+#:    dlmodName                      dlmodPath dlmodError dlmodStatus
+#: nstAgentPluginObject /path/to/nstAgentPluginObject.so                 loaded
+#If everything above was done correctly, then the following command should work and will access the shared object's data: 
+#:% '''snmpget localhost NET-SNMP-TUTORIAL-MIB::nstAgentPluginObject.0  '''
+#: nstAgentPluginObject.0 = INTEGER: 3
+
+== Loading via the snmpd.conf file ==
+
+A more common method of loading the shared object is to instruct the agent to load the extension at startup in the &lt;code>snmpd.conf&lt;/code> configuration file. This can be achieved using the &lt;code>dlmod&lt;/code> configuration option:
+
+ dlmod nstAgentPluginObject /path/to/nstAgentPluginObject.so
+
+The first argument specifies the shared object's module name, the second argument specifies the full pathname of the shared object file. The module name used here &lt;em>must&lt;/em> match the name of the initialization function, see [[#Initialization]].
+
+All custom configuration options, as described in [[#Configuration]], must &lt;em>succeed&lt;/em> the &lt;code>dlmod&lt;/code> statement.
+
+== See also ==
+
+* [[TUT:Writing a MIB Module]]
+* [[Net-snmp extensions]]&lt;br />List of extensions, some of which are built as dynamically loaded objects.
+
+{{TUT:LIST}}
+</textarea><div class="templatesUsed"><div class="mw-templatesUsedExplanation"><p>Templates used on this page:
+</p></div><ul>
+<li><a href="http://www.net-snmp.org/wiki/index.php/Template:TUT:File-Table-Top" title="Template:TUT:File-Table-Top">Template:TUT:File-Table-Top</a> (<a href="http://www.net-snmp.org/wiki/index.php?title=Template:TUT:File-Table-Top&amp;action=edit" title="Template:TUT:File-Table-Top">view source</a>) </li><li><a href="http://www.net-snmp.org/wiki/index.php/Template:TUT:File-Table-Top-and-basics" title="Template:TUT:File-Table-Top-and-basics">Template:TUT:File-Table-Top-and-basics</a> (<a href="http://www.net-snmp.org/wiki/index.php?title=Template:TUT:File-Table-Top-and-basics&amp;action=edit" title="Template:TUT:File-Table-Top-and-basics">view source</a>) </li><li><a href="http://www.net-snmp.org/wiki/index.php/Template:TUT:LIST" title="Template:TUT:LIST">Template:TUT:LIST</a> (<a href="http://www.net-snmp.org/wiki/index.php?title=Template:TUT:LIST&amp;action=edit" title="Template:TUT:LIST">view source</a>) </li></ul></div><p id="mw-returnto">Return to <a href="http://www.net-snmp.org/wiki/index.php/TUT:Writing_a_Dynamically_Loadable_Object" title="TUT:Writing a Dynamically Loadable Object">TUT:Writing a Dynamically Loadable Object</a>.</p>
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php/TUT:Writing_a_Dynamically_Loadable_Object">http://www.net-snmp.org/wiki/index.php/TUT:Writing_a_Dynamically_Loadable_Object</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/TUT:Writing_a_Dynamically_Loadable_Object" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk"><a href="http://www.net-snmp.org/wiki/index.php/Talk:TUT:Writing_a_Dynamically_Loadable_Object" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource" class="selected"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Writing_a_Dynamically_Loadable_Object&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Writing_a_Dynamically_Loadable_Object&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3AWriting+a+Dynamically+Loadable+Object&amp;returntoquery=action%3Dedit&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3AWriting+a+Dynamically+Loadable+Object&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/TUT:Writing_a_Dynamically_Loadable_Object" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/TUT:Writing_a_Dynamically_Loadable_Object" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Writing_a_Dynamically_Loadable_Object&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.edit.collapsibleFooter","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":124});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Writing_a_Dynamically_Loadable_Object&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:27:28 GMT -->
+</html>

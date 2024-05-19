@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Feature_Marking_and_Selection&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:24:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>View source for Feature Marking and Selection - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Feature_Marking_and_Selection","wgTitle":"Feature Marking and Selection","wgCurRevisionId":4945,"wgRevisionId":0,"wgArticleId":2121,"wgIsArticle":!1,"wgIsRedirect":!1,"wgAction":"edit","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!0,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Feature_Marking_and_Selection","wgRelevantArticleId":2121,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Feature_Marking_and_Selection skin-monobook action-edit">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">View source for Feature Marking and Selection</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub">← <a href="http://www.net-snmp.org/wiki/index.php/Feature_Marking_and_Selection" title="Feature Marking and Selection">Feature Marking and Selection</a></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text"><p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://www.net-snmp.org/wiki/index.php?title=Net-SNMP_Wiki:Users&amp;action=edit&amp;redlink=1" class="new" title="Net-SNMP Wiki:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<hr />
+<p>You can view and copy the source of this page.
+</p><textarea readonly="" accesskey="," id="wpTextbox1" cols="80" rows="25" style="" lang="en" dir="ltr" name="wpTextbox1">{{require|5.7}}
+
+== Background ==
+
+Many components of Net-SNMP are present to support certain features in the code.  But if the code that requires a feature isn't compiled in, the supporting code still is and needlessly adds to the size of the running executable and libraries.
+
+=== Results ===
+
+The current SVN trunk contains code that is marked as described in this document.  The resulting feature hierarchy can be found on the [[Features]] page.
+
+== Design Criteria ==
+
+* By default, everything must still be included.  3rd-party developers may be making use of code even if internal Net-SNMP code isn't.
+* A configure flag (--with-minimalist) to enable minimal code
+** --enable-mini-agent should probably turn it on?
+* Flags to request including and excluding of features
+** --with-features="foo bar"
+** --with-out-features="foo bar"
+
+== Feature Marking and Requiring Macros ==
+
+To start with, include &lt;net-snmp/features.h>
+
+  #include &lt;net-snmp/features.h>
+
+If you're implementing code that is only needed in certain locations, declare the feature name using the ''netsnmp_feature_provide()'' macro:
+
+  netsnmp_feature_provide(foo)
+
+If the feature is dependent on the availability of another feature, use the ''netsnmp_feature_require()'' or ''netsnmp_feature_want()'' macros:
+
+  netsnmp_feature_require(foo)
+  netsnmp_feature_want(bar)
+
+In this case, if ''foo'' is unavailable a hard-error will be triggered.  However, if ''bar'' is unavailable the compilation will continue.
+
+=== Parent/Child Features ===
+
+To mark a child as being a sub-feature of a parent, use the following macro:
+
+  netsnmp_feature_child_of(child,parent)
+
+This will:
+
+# if the child is required:
+#* Will turn on the child
+#* Will not turn on the parent
+# if the parent is required:
+#* Will turn on the child
+#* Will turn on the parent
+
+
+=== Conditionally Requiring and Providing Features ===
+
+The feature macros are checked in the output of cpp processing, so typical #ifdef macros can be used to conditionally include or provide features.
+
+==== Providing a feature only if possible ====
+
+To provide conditional support of a feature depending on the output of configure checks:
+
+  #include &lt;net-snmp/net-snmp-config.h>
+  #include &lt;net-snmp/features.h>
+  
+  #ifdef HAVE_FOO_H
+  netsnmp_feature_provide(netsnmpfoo)
+  #endif
+
+==== Checking whether or not another feature is required ====
+
+Many times there might be a function ''x()'' (usually in another file) which is only needed if someone has requested function ''y()''.  To test for this, use:
+
+  #ifdef NETSNMP_FEATURE_REQUIRE_Y
+  netsnmp_feature_require(x) /* x() is implemented elsewhere, but we need it to implement y() */
+  #endif /* NETSNMP_FEATURE_REQUIRE_Y */
+
+==== Checking whether or not a dependent feature is available ====
+
+Sometimes you may wish to advertise support for a feature only if a subordinate feature is also available:
+
+  #include &lt;net-snmp/net-snmp-config.h>
+  #include &lt;net-snmp/features.h>
+  
+  #ifdef NETSNMP_FEATURE_HAS_BAR
+  netsnmp_feature_provide(foo)
+  #endif /* NETSNMP_FEATURE_HAS_BAR */
+
+== Coding Using Features Support ==
+
+To mark code as removable if a feature is unneeded, surround it with ''#ifndef'' markings:
+
+  #ifndef NETSNMP_FEATURE_REMOVE_FOO
+  
+  /* normal foo code */
+  
+  #else /* !NETSNMP_FEATURE_REMOVE_FOO */
+  
+  netsnmp_feature_unused(foo);
+  
+  #endif /* !NETSNMP_FEATURE_REMOVE_FOO */
+
+A few important notes:
+
+* Always use the #ifndef version of checking.  If the features.h fails to define anything, the feature will be included by default.
+* Always include the define name in comments after ''#else'' and ''#endif'' clauses.  Later "code-removal" scripts will depend upon it.
+* The netsnmp_feature_unused() macro is only needed if there is no code in the file left after the features have been removed.
+
+=== Checking for Feature Support in Code ===
+
+If you're writing code that depends on features but isn't "required" (ie, you used ''netsnmp_feature_want(foo)''), then you can test for its support:
+
+  #include &lt;net-snmp/features.h>
+  
+  #ifdef NETSNMP_FEATURE_HAS_FOO
+  /* include foo-specific coding here */
+  #endif /* NETSNMP_FEATURE_HAS_FOO */
+
+== Behind the Scenes ==
+
+Behind the scenes, this support is implemented using a number of techniques:
+
+# A set of configure flags to enable ''minimalist'' mode and for selecting and removing specific features, as mentioned previously.
+# When --with-minimalist is turned on, it adds an extra step to the compilation process: ''features'' which performs the rest of the steps below:
+# Compile-time ''feature-check'' and ''feature-remove'' scripts that:
+#* feature-check: examines a code file for ''netsnmp_feature_XXX()'' lines and creates ''#define'' statements based on what it finds.
+#** Requires that the code be examined in reverse order (eg, agent/mibgroup/ before agent/helpers/ and both before snmplib/).
+#* feature-remove: examines the results of the feature-check output and creates .h files specific to individual code sections with ''NETSNMP_FEATURE_REMOVE_XXX'' definitions or ''NETSNMP_FEATURE_HAS_XXX'' definitions.
+#** Includes a feature if anything requires or wants it
+#** Removes a feature if nothing requires it
+#** Removes a feature if something wants it, but --with-out-features requested it to be removed
+#** Includes a feature if nothing required or wanted it but --with-features requested it
+# A ''Net-SNMP/features.h'' file that "does the right thing".
+#* During the run of ''feature-check'' it includes the definitions being produced by the checking
+#* During compilation time, it includes the various feature.h files that has the ''NETSNMP_FEATURE_REMOVE_XXX'' and ''NETSNMP_FEATURE_HAS_XXX'' tokens.
+
+== Notes on the end result ==
+
+# '''./configure ; make ; make install''' still works
+# '''./configure --with-minimalist ; make ; make install''' works
+# For developers working on feature specific code, '''make''' run from the top level directory will continue to update the generated feature header files
+#* But... running '''make cleanfeatures''' first is safer if you're heavily modifying provide/require lines
+#* Allows for run-time modifications without re-running configure
+
+== Real World Examples ==
+
+=== TLS/DTLS ===
+
+In the new [[DTLS]] and [[TLS]] code we require a significant amount of certificate code.  Code is needed to manipulate certificate chains, load and unload directories of certificates, etc.  This code is contained in ''snmplib/cert_util.c''.
+
+To only include this code support when needed, ''snmplib/cert_util.c'' has the following code:
+
+  #include &lt;net-snmp/features.h>
+  
+  netsnmp_feature_provide(cert_util)
+  
+  #ifndef NETSNMP_FEATURE_REMOVE_CERT_UTIL
+  /* ... */
+  #endif /* NETSNMP_FEATURE_REMOVE_CERT_UTIL */
+
+And in the ''snmplib/transports/snmpTLSTCPDomain.c'' and ''snmplib/transports/snmpDTLSUDPDomain.c'' file:
+
+  #include &lt;net-snmp/features.h>
+  
+  netsnmp_feature_require(cert_util)
+
+The end result is that if a user is not requiring the [[DTLS]] or [[TLS]] support and they've requested ''--enable-minimalist'' then the entire cert_util.c functionality is not included.  This is actually a very significant chunk of code.
+
+== Finding Unused Code to Mark as a Feature ==
+
+After building with your favorite set of configure options, you can see how many functions exist in the built .o files using this handy perl script:
+
+  perl local/minimalist/find-unused-code -g
+
+Which will produce a list of functions that were compiled but never referenced by another .o file, which indicates they're likely unused.  The -g switch will then grep all of the source code for source files that contain calls to those functions.  This allows you to know which file contains the function that should be marked as a feature, and which other files need to be modified to netsnmp_feature_require() that function/feature.
+</textarea><div class="templatesUsed"><div class="mw-templatesUsedExplanation"><p>Template used on this page:
+</p></div><ul>
+<li><a href="http://www.net-snmp.org/wiki/index.php/Template:Require" title="Template:Require">Template:Require</a> (<a href="http://www.net-snmp.org/wiki/index.php?title=Template:Require&amp;action=edit" title="Template:Require">view source</a>) </li></ul></div><p id="mw-returnto">Return to <a href="http://www.net-snmp.org/wiki/index.php/Feature_Marking_and_Selection" title="Feature Marking and Selection">Feature Marking and Selection</a>.</p>
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php/Feature_Marking_and_Selection">http://www.net-snmp.org/wiki/index.php/Feature_Marking_and_Selection</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/Feature_Marking_and_Selection" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="http://www.net-snmp.org/wiki/index.php?title=Talk:Feature_Marking_and_Selection&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource" class="selected"><a href="http://www.net-snmp.org/wiki/index.php?title=Feature_Marking_and_Selection&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=Feature_Marking_and_Selection&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=Feature+Marking+and+Selection&amp;returntoquery=action%3Dedit&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=Feature+Marking+and+Selection&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/Feature_Marking_and_Selection" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/Feature_Marking_and_Selection" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=Feature_Marking_and_Selection&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.edit.collapsibleFooter","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":172});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Feature_Marking_and_Selection&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:24:16 GMT -->
+</html>

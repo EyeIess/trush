@@ -1,0 +1,310 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/docs/README.Panasonic_AM3X.txt.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:04:43 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../print1.css" />
+  </head>
+  <body background="../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../index.html">About</a><br />
+        
+
+        <a href="../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+
+        <a href="readmefiles.html">Documentation</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="readmefiles.html"
+                  title="README files included with the package">README files</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="FAQ.html" 
+                  title="Frequently Asked Questions">FAQ</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="INSTALL.html" 
+                  title="Intall instructions for *nix systems">INSTALL</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="man/index.html"
+                  title="Man pages for utilities, daemons, api etc">Man pages</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="mibs/index.html"
+                  title="The MIB files distributed with Net-SNMP">MIBS</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../dev/agent/index.html"
+                  title="API documentation">API</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../dev/projects.html">Development</a><br />
+        
+
+        <a href="../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+
+<p class="SectionTitle">
+README.Panasonic_AM3X.txt
+</p>
+
+<pre>
+1. INTRODUCTION 
+
+   Last revision 05/30/2003	
+
+   This document describes the process to build net-snmp-5.0.8 stack for embedded linux 
+   platforms based on the following Matsushita(Panasonic) processors family.
+
+   AM33,AM34
+   MN10300,MN103E0HRA
+  
+   The same procedure can be followed to build the net-snmp stack for other Matsushita 
+   family of processors also.
+
+2. ENVIRONMENT
+   
+   Host Machine      : Linux 7.1 or later ( with nfs server or samba server installed ).
+   Target Machine    : Am33 Based Embedded platform.
+   Cross-compiler    : GNU compiler version 3.1 for AM33/AM34/MN10300/MN103E010HRA
+                       am33_2.0-linux-gnu-gcc
+   Host-Target Setup : Samba mount or NFS mount
+      
+
+2. CONFIGURATION
+   
+   The following configuration flags can be used to create Makefile.You can reaplce
+   some of the configuration flags according to your platform and compiler.
+
+   Perl support was NOT compiled in due to unavailability of perl support for 
+   AM3X platform at this time.
+
+   The parameters passed to configure are as follows...
+   ( you can down load the script configure.am33 script )
+
+   --with-cc=am33_2.0-linux-gnu-gcc 
+   --host=i686-pc-linux-gnu 
+   --target=am33-linux ( Can be removed, if it stops building process )
+   --disable-dlopen 
+   --disable-dlclose 
+   --disable-dlerror 
+   --with-endianness=little 
+   --with-openssl=no 
+   --with-cflags="-g -mam33 -O2 -static" 
+   --oldincludedir=./usr/local 
+   --prefix=./usr/local 
+   --exec-prefix=./usr/local 
+   --with-persistent-directory=./usr/local
+
+   These parameters passed are depending on the capabilities available for the
+   AM33/AM34 development environment at the time of build. These parameter can be 
+   changed depending on the avialable capabilities and desired preferences.
+  
+   You can use the below shell script directly to create Makefiles and other files.
+   This script also insttals all binaries ,libraries in usr directory in the directory 
+   in which this scrip executed.
+
+# configure.am33 
+#--------------------------------------------------------------------------
+./configure --with-cc=am33_2.0-linux-gnu-gcc --host=i686-pc-linux-gnu \
+--disable-dlopen --target=am33-linux --disable-dlclose --disable-dlerror \
+--with-endianness=little --with-openssl=no --with-cflags="-g -mam33 -O2 -static" \
+--oldincludedir=./usr/local --prefix=./usr/local --exec-prefix=./usr/local \
+--with-persistent-directory=./usr/local
+
+make 
+make install
+#--------------------------------------------------------------------------
+
+2. INSTALLATION
+
+   Find a partition with 60 Mb available space which will be mounted on to target machine.
+   Copy or ftp the binary to this location ( copy entire usr directory tree ). 
+   Copy net-snmp configuration files from host machine (.snmp directory) on to target / directory.
+   snmp configuration files can be created on host machine by running sbmpconf command. Make sure 
+   that host is using snmpconf from net-snmp-5.0.8 version.
+        
+   -:ON AM3X target Shell :-
+   Mount the above directory on AM3X platform either using NFS or sambs clients on target machine.
+   
+   If you are running a previous version, stop the daemon
+
+   ps -ef | grep snmp
+
+   will return something like:
+
+   root 17736 1 - Jan 26 ? 0:00 /usr/local/sbin/snmpd
+
+   the PID is 17736, so you need to type
+
+   kill {PID}
+
+   in our example this would be
+
+   kill 17736.
+
+   cd /usr/local/sbin
+   ./snmpd
+   
+2.  TESTING
+
+   You will need to know your SNMP community.  For this example, we will use "public".
+
+   snmpwalk -v 2c -m ALL -c public -t 100 localhost .1.3 > snmpwalk.txt
+   more snmpwalk.txt
+
+   This should return a considerable amount of output.
+  
+3. ISSUES
+   
+   You may not see correct target name in the build summary. Just ignore it.
+
+
+   Please refer net-snmp documentation for more information...
+
+
+Srinivasa Rao Gurusu
+Engineer
+Panasonic Semiconductor Development Center ( PSDC )
+gurusus@research.panasonic.com
+
+</pre>
+
+<br />
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/docs/README.Panasonic_AM3X.txt.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:04:43 GMT -->
+</html>
+
+
+

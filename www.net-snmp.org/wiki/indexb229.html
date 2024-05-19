@@ -1,0 +1,234 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=FAQ:Agent_34&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:20:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>FAQ:Agent 34 - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"FAQ:Agent_34","wgTitle":"FAQ:Agent 34","wgCurRevisionId":3918,"wgRevisionId":3918,"wgArticleId":1664,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"FAQ:Agent_34","wgRelevantArticleId":1664,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load531d.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;printable=1&amp;skin=monobook" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="loadf198.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-FAQ_Agent_34 skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">FAQ:Agent 34</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><h1><span class="mw-headline" id="How_do_I_get_percentage_CPU_utilization_using_ssCpuRawIdle.3F">How do I get percentage CPU utilization using ssCpuRawIdle?</span></h1>
+<p>This one of the <i>"raw counters"</i> mentioned in the previous entry.
+You need to take two readings of this object and look at the
+difference between them.  That difference divided by the total
+number of <i>ticks</i> between the two readings (where one tick is
+probably 0.01 seconds) will give you the percentage utilization
+over that period.
+</p>
+<pre>   <a href="index.php/FAQ_Agent.html" title="FAQ:Agent">FAQ:Agent</a>
+   
+</pre>
+<ol><li> <a href="index.php/FAQ_Agent_01.html" title="FAQ:Agent 01">What MIBs are supported?</a></li>
+<li> <a href="index.php/FAQ_Agent_02.html" title="FAQ:Agent 02">What protocols are supported?</a></li>
+<li> <a href="index.php/FAQ_Agent_03.html" title="FAQ:Agent 03">How do I configure the agent?</a></li>
+<li> <a href="index.php/FAQ_Agent_04.html" title="FAQ:Agent 04">How do I remove a MIB from the agent?</a></li>
+<li> <a href="index.php/FAQ_Agent_05.html" title="FAQ:Agent 05">I've installed a new MIB file.  Why can't I query it?</a></li>
+<li> <a href="index.php/FAQ_Agent_06.html" title="FAQ:Agent 06">How do I add a MIB to the agent?</a></li>
+<li> <a href="index.php/FAQ_Agent_07.html" title="FAQ:Agent 07">What's the difference between 'exec', 'sh', 'extend' and 'pass'?</a></li>
+<li> <a href="index.php/FAQ_Agent_08.html" title="FAQ:Agent 08">What's the difference between AgentX, SMUX and proxied SNMP?</a></li>
+<li> <a href="index.php/FAQ_Agent_09.html" title="FAQ:Agent 09">What is the purpose of 'dlmod'?</a></li>
+<li> <a href="index.php/FAQ_Agent_10.html" title="FAQ:Agent 10">Which extension mechanism should I use?</a></li>
+<li> <a href="index.php/FAQ_Agent_11.html" title="FAQ:Agent 11">Can I use AgentX when running under Windows?</a></li>
+<li> <a href="index.php/FAQ_Agent_12.html" title="FAQ:Agent 12">How can I run AgentX with a different socket address?</a></li>
+<li> <a href="index.php/FAQ_Agent_13.html" title="FAQ:Agent 13">How can I turn off SMUX support?</a></li>
+<li> <a href="index.php/FAQ_Agent_14.html" title="FAQ:Agent 14">How can I combine two copies of the 'mib2' tree from separate subagents?</a></li>
+<li> <a href="index.php/FAQ_Agent_15.html" title="FAQ:Agent 15">What traps are sent by the agent?</a></li>
+<li> <a href="index.php/FAQ_Agent_16.html" title="FAQ:Agent 16">Where are these traps sent to?</a></li>
+<li> <a href="index.php/FAQ_Agent_17.html" title="FAQ:Agent 17">How can I send a particular trap to selected destinations?</a></li>
+<li> <a href="index.php/FAQ_Agent_18.html" title="FAQ:Agent 18">When I run the agent it runs and then quits without staying around. Why?</a></li>
+<li> <a href="index.php/FAQ_Agent_19.html" title="FAQ:Agent 19">After a while the agent stops responding, and starts eating CPU time.  Why?</a></li>
+<li> <a href="index.php/FAQ_Agent_20.html" title="FAQ:Agent 20">How can I stop other people getting at my agent?</a></li>
+<li> <a href="index.php/FAQ_Agent_21.html" title="FAQ:Agent 21">How can I listen on just one particular interface?</a></li>
+<li> <a href="index.php/FAQ_Agent_22.html" title="FAQ:Agent 22">The agent is complaining about 'snmpd.conf'.  Where is this?</a></li>
+<li> <a href="index.php/FAQ_Agent_23.html" title="FAQ:Agent 23">Why does the agent complain about 'no access control information'?</a></li>
+<li> <a href="index.php/FAQ_Agent_24.html" title="FAQ:Agent 24">How do I configure access control?</a></li>
+<li> <a href="index.php/FAQ_Agent_25.html" title="FAQ:Agent 25">How do I configure SNMPv3 users?</a></li>
+<li> <a href="index.php/FAQ_Agent_26.html" title="FAQ:Agent 26">The 'createUser' line disappears when I start the agent.  Why?</a></li>
+<li> <a href="index.php/FAQ_Agent_27.html" title="FAQ:Agent 27">What's the difference between /var/net-snmp and /usr/local/share/snmp?</a></li>
+<li> <a href="index.php/FAQ_Agent_28.html" title="FAQ:Agent 28">My new agent is ignoring the old snmpd.conf file. Why?</a></li>
+<li> <a href="index.php/FAQ_Agent_29.html" title="FAQ:Agent 29">Where should the snmpd.conf file go?</a></li>
+<li> <a href="index.php/FAQ_Agent_30.html" title="FAQ:Agent 30">Why am I getting "Connection refused"?</a></li>
+<li> <a href="index.php/FAQ_Agent_31.html" title="FAQ:Agent 31">Why can't I see values in the UCDavis 'extensible' or 'disk' trees?</a></li>
+<li> <a href="index.php/FAQ_Agent_32.html" title="FAQ:Agent 32">Why can't I see values in the UCDavis 'memory' or 'vmstat' tree?</a></li>
+<li> <a href="index.php/FAQ_Agent_33.html" title="FAQ:Agent 33">What do the CPU statistics mean - is this the load average?</a></li>
+<li> <strong class="selflink">How do I get percentage CPU utilization using ssCpuRawIdle?</strong></li>
+<li> <a href="index.php/FAQ_Agent_35.html" title="FAQ:Agent 35">What about multi-processor systems?</a></li>
+<li> <a href="index.php/FAQ_Agent_36.html" title="FAQ:Agent 36">The speed/type of my network interfaces is wrong - how can I fix it?</a></li>
+<li> <a href="index.php/FAQ_Agent_37.html" title="FAQ:Agent 37">The interface statistics for my subinterfaces are all zero - why?</a></li>
+<li> <a href="index.php/FAQ_Agent_38.html" title="FAQ:Agent 38">Does the agent support the RMON-MIB?</a></li>
+<li> <a href="index.php/FAQ_Agent_39.html" title="FAQ:Agent 39">What does "klread:  bad address" mean?</a></li>
+<li> <a href="index.php/FAQ_Agent_40.html" title="FAQ:Agent 40">What does "nlist err:  wombat not found" (or similar) mean?</a></li>
+<li> <a href="index.php/FAQ_Agent_41.html" title="FAQ:Agent 41">What does "Can't open /dev/kmem" mean?</a></li>
+<li> <a href="index.php/FAQ_Agent_42.html" title="FAQ:Agent 42">The system uptime (sysUpTime) returned is wrong!</a></li>
+<li> <a href="index.php/FAQ_Agent_43.html" title="FAQ:Agent 43">Can the agent run multi-threaded?</a></li>
+<li> <a href="index.php/FAQ_Agent_44.html" title="FAQ:Agent 44">Can I use AgentX (or an embedded SNMP agent) in a threaded application?</a></li></ol>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514185214
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.013 seconds
+Real time usage: 0.025 seconds
+Preprocessor visited node count: 6/1000000
+Preprocessor generated node count: 34/1000000
+Post‐expand include size: 3375/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   10.109      1 - -total
+ 60.46%    6.112      1 - Template:FAQ:Agent_35
+ 36.82%    3.722      1 - Template:FAQ:Agent
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="indexfa92.html?title=FAQ:Agent_34&amp;oldid=3918">http://www.net-snmp.org/wiki/index.php?title=FAQ:Agent_34&amp;oldid=3918</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="index.php/FAQ_Agent_34.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="index.php/Talk_FAQ_Agent_34.html?title=Talk:FAQ:Agent_34&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="indexbbc1.html?title=FAQ:Agent_34&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="index78fa.html?title=FAQ:Agent_34&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="indexbf85.html?title=Special:UserLogin&amp;returnto=FAQ%3AAgent+34&amp;returntoquery=printable%3Dyes&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="index7402.html?title=Special:UserLogin&amp;returnto=FAQ%3AAgent+34&amp;returntoquery=printable%3Dyes" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="index.php/Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="index.php/Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="index.php/Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="index.php/FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="index.php/Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="index.php/Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="index.php/Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="index.php/Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="index.php/Special_WhatLinksHere/FAQ_Agent_34.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="index.php/Special_RecentChangesLinked/FAQ_Agent_34.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="index.php/Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-permalink"><a href="indexfa92.html?title=FAQ:Agent_34&amp;oldid=3918" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="indexf2a3.html?title=FAQ:Agent_34&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 15 June 2009, at 14:08.</li>
+									<li id="privacy"><a href="index.php/Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="index.php/Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="index.php/Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":196});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=FAQ:Agent_34&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:20:01 GMT -->
+</html>

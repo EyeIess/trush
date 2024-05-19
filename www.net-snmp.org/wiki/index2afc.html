@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Mib2c&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:04:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Mib2c - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Mib2c","wgTitle":"Mib2c","wgCurRevisionId":5105,"wgRevisionId":5105,"wgArticleId":1972,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Tools"],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Mib2c","wgRelevantArticleId":1972,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load531d.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;printable=1&amp;skin=monobook" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="loadf198.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Mib2c skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Mib2c</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div align="right" style="float: right; width: 20em; border-color: black; border-style: solid; border-width: 1px; margin-left: 10px;">
+<table style="width: 100%;">
+
+<tr style="font-size: 1.2em;" bgcolor="#ddd">
+<td colspan="2" style="text-align: center;"> Net-SNMP Tool
+</td></tr>
+<tr style="font-size: 1.2em;" bgcolor="#ddd">
+<td colspan="2" style="text-align: center;"> <b>mib2c</b>
+</td></tr>
+<tr>
+<th> <b>Manual:</b>
+</th>
+<th><a rel="nofollow" class="external text" href="http://www.dnssec-tools.org/man/mib2c.html">mib2c</a>
+</th></tr>
+
+
+<tr>
+<th> <b>Code:</b>
+</th>
+<th><a rel="nofollow" class="external text" href="http://net-snmp.git.sourceforge.net/git/gitweb.cgi?p=net-snmp/net-snmp;a=blob_plain;f=local/mib2c;hb=HEAD">local/mib2c</a>
+</th></tr>
+</table>
+</div>
+<p>The <b>mib2c</b> script is badly named.  It really should have been named <b>mib2anything</b>, as it's actually can provide output tailored to anything you might want to change <a href="index.php/MIB.html" title="MIB">MIB</a> data into.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#mib2c_Goals"><span class="tocnumber">1</span> <span class="toctext">mib2c Goals</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Regeneratable_Code"><span class="tocnumber">1.1</span> <span class="toctext">Regeneratable Code</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Development_Process_Using_mib2c"><span class="tocnumber">2</span> <span class="toctext">Development Process Using mib2c</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Example_mib2c_input_file"><span class="tocnumber">3</span> <span class="toctext">Example mib2c input file</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Further_Reading"><span class="tocnumber">4</span> <span class="toctext">Further Reading</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="mib2c_Goals">mib2c Goals</span></h2>
+<p>mib2c was designed to:
+</p>
+<ul><li> Alleviate the task of producing identically similar code for each mib object</li>
+<li> Be a generic MIB processing engine, capable of converting MIBs and MIB structures to any other format.</li>
+<li> Provide an easy-as-possible getting started interface for new coders trying to write new code to support MIBs</li></ul>
+<div class="MediaTransformError" style="width: 685px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<h3><span class="mw-headline" id="Regeneratable_Code">Regeneratable Code</span></h3>
+<p>One second goal besides just generating code once and leaving it to the programmer to fill in the blanks, is to provide a framework for splitting code into two pieces:
+</p>
+<ul><li> code that needs to be maintained by a human implementing the MIB objects</li>
+<li> code that needs only to be written by mib2c itself, and can be regenerated in the future to take advantage of new features produced by mib2c</li></ul>
+<p>Some of the mib2c output will contain both of these types of code, and code that can be <a href="index.php/TUT_mib2c-update.html" title="TUT:mib2c-update">regenerated/updated</a> in the future is marked as such.
+</p>
+<h2><span class="mw-headline" id="Development_Process_Using_mib2c">Development Process Using mib2c</span></h2>
+<p>The typical process for using mib2c follows this pattern:
+</p>
+<ol><li> Write a MIB and objects for it (eg, tables and scalars)</li>
+<li> run mib2c on the MIB objects to generate code, producing:
+<ul><li> code that should be edited to complete the implementation</li>
+<li> code that should not be edited ("regeneratable").</li></ul></li>
+<li> Edit the code to return value MIB data (or accept it when processing SETs)</li></ol>
+<h2><span class="mw-headline" id="Example_mib2c_input_file">Example mib2c input file</span></h2>
+<p>If you put this in <i>file.conf</i>:
+</p>
+<pre> @open -@
+ @foreach $t table@
+     @foreach $c column@
+         $c is a column of type $c.type at $c.objectID
+     @end@
+ @end@
+</pre>
+<p>And then run it on a table, such as the <i>ifTable</i>:
+</p>
+<pre> # mib2c -c file.conf ifTable
+</pre>
+<p>You'll get this output to your screen (the '-' in '@open -'):
+</p>
+<pre> writing to -
+    ifIndex is a column of type ASN_INTEGER at .1.3.6.1.2.1.2.2.1.1
+    ifDescr is a column of type ASN_OCTET_STR at .1.3.6.1.2.1.2.2.1.2
+    ifType is a column of type ASN_INTEGER at .1.3.6.1.2.1.2.2.1.3
+    ifMtu is a column of type ASN_INTEGER at .1.3.6.1.2.1.2.2.1.4
+    ifSpeed is a column of type ASN_GAUGE at .1.3.6.1.2.1.2.2.1.5
+    ifPhysAddress is a column of type ASN_OCTET_STR at .1.3.6.1.2.1.2.2.1.6
+    ifAdminStatus is a column of type ASN_INTEGER at .1.3.6.1.2.1.2.2.1.7
+    ifOperStatus is a column of type ASN_INTEGER at .1.3.6.1.2.1.2.2.1.8
+</pre>
+<h2><span class="mw-headline" id="Further_Reading">Further Reading</span></h2>
+<ul><li> <a href="index.php/TUT_mib2c_config_files.html" title="TUT:mib2c config files">mib2c config files</a></li>
+<li> <a href="index.php/TTUT_mib2c_General_Overview.html?title=TTUT:mib2c_General_Overview&amp;action=edit&amp;redlink=1" class="new" title="TTUT:mib2c General Overview (page does not exist)">mib2c General Overview</a></li>
+<li> <a href="index.php/TUT_mib2c-update.html" title="TUT:mib2c-update">mib2c-update: regeneration</a></li></ul>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514182101
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.030 seconds
+Real time usage: 0.056 seconds
+Preprocessor visited node count: 41/1000000
+Preprocessor generated node count: 177/1000000
+Post‐expand include size: 830/2097152 bytes
+Template argument size: 49/2097152 bytes
+Highest expansion depth: 4/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    7.040      1 - Template:Tool
+100.00%    7.040      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="index47dc.html?title=Mib2c&amp;oldid=5105">http://www.net-snmp.org/wiki/index.php?title=Mib2c&amp;oldid=5105</a>"</div>
+					<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="index.php/Special_Categories.html" title="Special:Categories">Category</a>: <ul><li><a href="index.php/Category_Tools.html" title="Category:Tools">Tools</a></li></ul></div></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="index.php/Mib2c.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="index.php/Talk_Mib2c.html?title=Talk:Mib2c&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="indexd06b.html?title=Mib2c&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="indexbd13.html?title=Mib2c&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="index6f6e.html?title=Special:UserLogin&amp;returnto=Mib2c&amp;returntoquery=printable%3Dyes&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="index2014.html?title=Special:UserLogin&amp;returnto=Mib2c&amp;returntoquery=printable%3Dyes" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="index.php/Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="index.php/Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="index.php/Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="index.php/FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="index.php/Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="index.php/Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="index.php/Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="index.php/Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="index.php/Special_WhatLinksHere/Mib2c.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="index.php/Special_RecentChangesLinked/Mib2c.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="index.php/Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-permalink"><a href="index47dc.html?title=Mib2c&amp;oldid=5105" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="indexd045.html?title=Mib2c&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 30 June 2011, at 23:33.</li>
+									<li id="privacy"><a href="index.php/Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="index.php/Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="index.php/Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":200});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Mib2c&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:04:53 GMT -->
+</html>

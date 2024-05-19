@@ -1,0 +1,349 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-5/toolkit/mib_module/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:45:56 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../../../print1.css" />
+  </head>
+  <body background="../../../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../../../index.html">About</a><br />
+        
+
+        <a href="../../../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../index.html"
+                  title="Net-SNMP v5 tutorial">Version 5.x</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../../tutorial-4/index.html"
+                  title="UCD-SNMP v4 tutorial">Version 4.x</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../../../../docs/readmefiles.html">Documentation</a><br />
+        
+
+        <a href="../../../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../../../../dev/projects.html">Development</a><br />
+        
+
+        <a href="../../../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Net-SNMP Tutorial -- MIB Module</title>
+  </head>
+
+  <body>
+    <h1>Net-SNMP Tutorial -- MIB Module</h1>
+    <h2>Writing a net-snmp MIB Module</h2>
+    <p>
+      Here we discuss how to write a simple mib module, to extend the
+      agent using C code.
+    <p>
+      The 5.0 net-snmp agent is designed to give the mib module writer
+      an easier task when it comes to writing mib code.  To do this,
+      it provides some "helper" modules that you can make use of to
+      suit your specific needs.  The net-snmp agent handles things in
+      "chains" of these helpers, and you can add helpers to your
+      calling chain to do things for you.
+    <h3> MIBs For Dummies and mib2c </h3>
+    <p>
+      Here is tutorial on <a href="../mfd/index-2.html">using mib2c
+	and mib2c.mfd.conf</a> to generate a code template for a table.
+    <h3> A simple scalar attached to a variable </h3>
+    <p>
+      Here is <a
+		 href="../../../../dev/agent/scalar__int_8c-example.html">some
+	example</a> code that describes how to implement a simple,
+      single scalar which is based on a variable.
+    <h3> A simple scalar with the value returned from code </h3>
+    <p>
+      Here is <a
+		 href="../../../../dev/agent/delayed__instance_8c-example.html">some
+	example</a> code that describes how to implement a generic
+      instance (not tied to a variable, like the above example) as
+      well has how to delay answering queries for a bit (in the
+      example, an alarm is set to add a delay to the answer).
+    <h3> A table of data, stored within the agent </h3>
+    <p>
+      Here is a more complex <a
+				href="../../../../dev/agent/data__set_8c-example.html"> example</a>
+      example that implements a table, where the table data is
+      completely contained within the agent.
+    <h3> Sending SNMP notifications (traps and informs) from inside the agent. </h3>
+    <p>
+      Here is an <a href="../../../../dev/agent/notification_8c-example.html">example</a> of how to use the agent's internal notification
+      sending API to send a notification to all of the agent's trap receivers.
+    <h3> The older (and thus backward compatible) ucd-snmp 4.X API </h3>
+    <p>
+      Of course, you can continue to write code using the older API
+      set.  A tutorial on it can be found <a
+      href="../../../tutorial-4/toolkit/mib_module/index.html">here</a>.
+      <hr>
+
+      <h2> The MIB Module API </h2>
+    <p>
+      The new API is documented more completely <a
+      href="../../../../dev/agent/group__handler.html#_details">here</a>.
+      Additionally, see the complete list of (mostly) documented
+      available helpers and other information <a
+      href="../../../../dev/agent/modules.html">here</a>
+      <hr>
+    <h2>Compiling in your new MIB module</h2>
+    <p>
+      There are a few ways to get your new MIB module loaded and
+      accessible via SNMP requests.  We'll discuss all three ways
+      separately.  To make this easy to test the procedures outlined
+      below, we've provided three simple mib modules which implement
+      the three simple scalars in the <a
+      href="NET-SNMP-TUTORIAL-MIB.txt">NET-SNMP-TUTORIAL-MIB</a> MIB.
+      To see how MIBs can be properly used by the tools, please see
+      the <a
+      href="../../../../wiki/index.php/Tutorials.html">mib-options
+      tutorial</a>.
+      <ol>
+      <li>
+	Compile it into the master agent.
+	<p>
+	  Lets assume you're going to compile in a new mib module.
+	  For our example, lets use the
+	  <a href="https://github.com/net-snmp/subagent-example/blob/master/nstAgentModuleObject.c"
+	     >example mib module</a> and it's
+	  <a href="https://github.com/net-snmp/subagent-example/blob/master/nstAgentModuleObject.h"
+	     >header file</a>.  To
+	  do this, you would put the nstAgentModuleObject.h and
+	  nstAgentModuleObject.c files into the net-snmp source code
+	  directory.  You do this by copying them into a
+	  agent/mibgroup/nstAgentModuleObject.h and
+	  agent/mibgroup/nstAgentModuleObject.c file.
+	<p>
+	  Next, you have to configure the package to find them and
+	  compile them into the agent.  To do this, you run the
+	  configure script giving it the extra module names you want
+	  it to load:
+
+	  <pre>
+% <b>./configure --with-mib-modules="nstAgentModuleObject"</b>
+	</pre>
+
+	<p>
+	  If you had multiple modules to include (like a second "XXX"
+	  module, for example), you can separate them with spaces
+	  inside the quotes (e.g.,
+	  --with-mib-modules="nstAgentModuleObject XXX").
+	<p>
+	  Note that nstAgentModuleObject is the prefix and the
+	  configure script will actually look for a
+	  nstAgentModuleObject.h and a nstAgentModuleObject.c file.
+	  You <b>must</b> have a .h file and you can not get it to work
+	  with just a .c file.
+	<p>
+	  Build your new agent with your new code in it by running make:
+	<pre>
+% <b>make</b>
+	</pre>
+	<p>
+	  Finally, install the whole lot by running make install:
+    <pre>
+% <b>make install</b>
+    </pre>
+	<p>
+	  You can test out the functionality by starting the snmpd
+	  agent:
+    <pre>
+% <b>/usr/local/sbin/snmpd</b>
+    </pre>
+	<p>
+	  And then running snmpget and snmpset on the scalar object
+	  [proper authentication information not shown in this command]:
+    <pre>
+% <b>snmpget localhost NET-SNMP-TUTORIAL-MIB::nstAgentModuleObject.0</b>
+NET-SNMP-TUTORIAL-MIB::nstAgentModuleObject.0 = INTEGER: 1
+
+% <b>snmpset localhost NET-SNMP-TUTORIAL-MIB::nstAgentModuleObject.0 = 5</b>
+NET-SNMP-TUTORIAL-MIB::nstAgentModuleObject.0 = INTEGER: 5
+
+% <b>snmpget localhost NET-SNMP-TUTORIAL-MIB::nstAgentModuleObject.0</b>
+NET-SNMP-TUTORIAL-MIB::nstAgentModuleObject.0 = INTEGER: 5
+    </pre>
+
+      <li> You can also compile your code into a "subagent" which then
+      attaches itself to the master agent using the <a
+      href="http://www.scguild.com/agentx/">AgentX
+      subagent protocol</a>.  Our libraries provide support to make
+      this easy to do and this is discussed in greater detail in a <a
+      href="../demon/index.html">later section</a>.
+
+	<br>
+	<br>
+      <li> Finally, you can also compile your code into pluggable
+      shared object and tell the snmpd agent to load it.  This is also
+      discussed in greater detail in a <a
+      href="../dlmod/index.html">later section</a>
+    </ol>
+    <hr>
+    <h2>Set Processing</h2>
+    <p>
+      To process an SNMP-SET, the agent must use a series of calls to
+      the mib module code to ensure that processing of all sets in the
+      incoming packet can be successful.  This gives you or other mib
+      modules the chance to bail out early on in the transaction
+      sequence and thus stop all of the transactions in the set from
+      happening.  This is important for continuity.  However, it makes 
+      set code processing a bit more complex.  Let's examine a simple
+      state diagram that the master agent uses at each step of the
+      way:
+    <p>
+      <center><img src=set-actions.jpg></center>
+    <p>
+      In a perfect operation with no failures, we take the vertical
+      path on the left.  If <b>any</b> of the mib modules being acted
+      upon returns an error of any kind, we will branch to the right
+      to one of the failure states where you must clean up and
+      possibly undo what you did in previous steps.
+    <p>
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Friday, 03-Jul-2020 23:07:48 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-5/toolkit/mib_module/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:45:56 GMT -->
+</html>
+
+
+

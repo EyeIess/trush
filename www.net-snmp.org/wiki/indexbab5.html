@@ -1,0 +1,247 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Command_Line_Calling_Order&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:00:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Command Line Calling Order - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Command_Line_Calling_Order","wgTitle":"Command Line Calling Order","wgCurRevisionId":4167,"wgRevisionId":4167,"wgArticleId":2060,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Command_Line_Calling_Order","wgRelevantArticleId":2060,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load531d.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;printable=1&amp;skin=monobook" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="loadf198.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Command_Line_Calling_Order skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Command Line Calling Order</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>Most of the Net-SNMP command line applications (like <a href="index.php/Snmpget.html" title="Snmpget">snmpget</a>, <a href="index.php/Snmpwalk.html" title="Snmpwalk">snmpwalk</a>, <a href="index.php/Snmpset.html" title="Snmpset">snmpset</a>, ...) have similar internal code.  This page describes the calling structure of these applications.  If you're writing your own applications this should help you understand the process flow of the applications.
+</p><p>Comments are written in // style for simplicity, but obviously this isn't callable code anyway...
+</p><p>Code in <font color="black">black</font> (indented 4 spaces generally) is application code, and code in <font color="green">green</font> is functions called by the library code (indented 8+ spaces generally).
+</p><p><font color="black">
+</p>
+<pre>main()
+   netsnmp_session session, *ss;
+   netsnmp_pdu    *pdu;
+   netsnmp_pdu    *response;
+   netsnmp_variable_list *vars;
+
+   // the only thing you can do before snmp_parse_args is call the netsnmp_ds_set_(bool|int|string) functions
+
+   snmp_parse_args(argv, argc, &amp;session, ...);   // accepts argv, argc, a session to initialize and optional additional arguments
+       <font color="green">snmp_sess_init(session);
+       getopt();                                 // and process
+       init_snmp("snmpapp");                     // change to your app name if something special
+           // ensure we're only called once
+           // set the application name to "snmpapp" (or whatever was passed in).
+           snmp_debug_init();                    // starts debugging output if requested
+           netsnmp_container_init_list();
+           init_callbacks();
+           init_snmp_logging();                  // figures out if we're logging to stdout, stderr, file, syslog, ...
+           snmp_init_statistics();
+           register_mib_handlers();              // registers default mibs, mibdirs, etc .conf handlers
+           register_default_handlers();          // registers all the other common (zillion) snmp.conf tokens
+           init_snmpv3(type);                    // SNMPv3 and security module specific init
+           init_snmp_alarm();
+           init_snmp_enum(type);
+           init_vacm();                          // access control
+
+           read_premib_configs();                // reads in early bootstapping .conf tokens (setting mibs to load, dirs, etc)
+           netsnmp_init_mib();                   // reads in MIBs requested to load either default or special
+
+           read_configs();                       // reads in the rest of the normal configuration tokens              
+
+       // setup special session params
+       // like v3/<a href="index.php/USM.html" title="USM">USM</a> keys
+
+       session-&gt;peername = NEXT_ARGV_AFTER_OPTS
+
+   </font>
+   SOCK_STARTUP;                                 // a win32 specific required macro
+
+   ss = snmp_open(&amp;session);
+       <font color="green">// initialize appropriate transport using peername
+       // adds the session to the internal "list"</font>
+ 
+   pdu = snmp_pdu_create(SNMP_MSG_(GET|SET|GETNEXT|...));
+       <font color="green">// sets up default values in the PDU</font>
+   snmp_add_null_var(pdu, ...);                 // adding in variables you want to get/set
+   snmp_pdu_add_variable(pdu, ...);             // OR: use this one to add complete variables
+
+   status = snmp_sync_response(ss, pdu, &amp;response);  // Note: pdu is "consumed" by this call; don't use it again!
+       <font color="green">snmp_send(ss, pdu);
+       snmp_select_info()                       // figures out which sockets to select on and needed timeout values
+       select();
+       snmp_read(sockets);                      // parses any received packets</font>
+       
+   // results are in the response list, assuming no errors.  See the <a href="index.php/Snmpget.html" title="Snmpget">snmpget</a> code for example error handling
+
+   if (response)
+     snmp_free_pdu(response);
+   snmp_close(ss);
+       <font color="green">// Has security model do clean up
+       // has transport do clean up
+       // frees the session memory</font>
+   SOCK_CLEANUP;
+</pre>
+<p></font>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20240514181743
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.009 seconds
+Real time usage: 0.010 seconds
+Preprocessor visited node count: 9/1000000
+Preprocessor generated node count: 20/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 1/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="index5bb3.html?title=Command_Line_Calling_Order&amp;oldid=4167">http://www.net-snmp.org/wiki/index.php?title=Command_Line_Calling_Order&amp;oldid=4167</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="index.php/Command_Line_Calling_Order.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="index.php/Talk_Command_Line_Calling_Order.html?title=Talk:Command_Line_Calling_Order&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="index7c4e.html?title=Command_Line_Calling_Order&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="index611c.html?title=Command_Line_Calling_Order&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="index2f30.html?title=Special:UserLogin&amp;returnto=Command+Line+Calling+Order&amp;returntoquery=printable%3Dyes&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="index0c17.html?title=Special:UserLogin&amp;returnto=Command+Line+Calling+Order&amp;returntoquery=printable%3Dyes" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="index.php/Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="index.php/Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="index.php/Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="index.php/FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="index.php/Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="index.php/Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="index.php/Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="index.php/Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="index.php/Special_WhatLinksHere/Command_Line_Calling_Order.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="index.php/Special_RecentChangesLinked/Command_Line_Calling_Order.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="index.php/Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-permalink"><a href="index5bb3.html?title=Command_Line_Calling_Order&amp;oldid=4167" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="indexd67a.html?title=Command_Line_Calling_Order&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 18 February 2010, at 00:21.</li>
+									<li id="privacy"><a href="index.php/Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="index.php/Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="index.php/Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":149});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Command_Line_Calling_Order&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:00:13 GMT -->
+</html>

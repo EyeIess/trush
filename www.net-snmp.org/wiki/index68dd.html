@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=MIB_for_Dummies&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:04:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>View source for MIB for Dummies - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"MIB_for_Dummies","wgTitle":"MIB for Dummies","wgCurRevisionId":5279,"wgRevisionId":0,"wgArticleId":2230,"wgIsArticle":!1,"wgIsRedirect":!1,"wgAction":"edit","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!0,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"MIB_for_Dummies","wgRelevantArticleId":2230,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-MIB_for_Dummies skin-monobook action-edit">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">View source for MIB for Dummies</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub">← <a href="http://www.net-snmp.org/wiki/index.php/MIB_for_Dummies" title="MIB for Dummies">MIB for Dummies</a></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text"><p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://www.net-snmp.org/wiki/index.php?title=Net-SNMP_Wiki:Users&amp;action=edit&amp;redlink=1" class="new" title="Net-SNMP Wiki:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<hr />
+<p>You can view and copy the source of this page.
+</p><textarea readonly="" accesskey="," id="wpTextbox1" cols="80" rows="25" style="" lang="en" dir="ltr" name="wpTextbox1">{{MFDTutorial}}
+
+== MIBs For Dummies ==
+'''NOTE: this tutorial is based on the code for release
+5.2. If you generate code from a
+release prior to 5.2 or with 5.3.x, your results may vary.'''
+
+Power users or repeat readers, you may wish to jump to the list in the [[MIB for Dummies#Getting_Started|Getting Started]] node.
+
+=== Introduction ===
+
+One of the questions that comes up on our mailing lists a lot
+is: ''I just ran [[mib2c]] on my
+MIB. What do I do now?''.  This tutorial, and the MIB for
+Dummies code approach, is designed to make your life as easy as
+possible.  In this tutorial we'll walk you through the entire
+process of creating C code starting from only a MIB definition.
+This should answer this question for you, assuming you're
+willing to use the MIB for Dummies approach to coding.
+
+One of the output code styles that mib2c supports is a style
+called ''"MIB for Dummies"''.  This configuration file is
+called ''"{{code|local/mib2c.mfd.conf}}"'' and is what you would pass to the
+-c argument of mib2c to get it to produce the style of code this
+tutorial is going to discuss.  It will generate mib-module code
+which is designed to plug into an agent when developing Net-SNMP
+agent extensions.
+
+One of the primary motivations for writing the MIBs for Dummies
+configuration file was to reduce the amount of SNMP knowledge
+needed to implement a MIB. When using the MFD configuration file
+(mib2c.mfd.conf), mib2c will generate ''template'' code that
+hides much of the SNMP (or Net-SNMP) specific details for
+implementing a module, and allows the rest of the template code
+to use simple C data structures that you are probably more
+familiar with. Most of the template functions are short and
+simple, with a clearly defined purpose.
+
+Another motivation was to separate the method used to locate the
+data for an incoming request to the SNMP agent from the methods
+that manipulate the data. The data lookup for MFD modules uses
+the [[Containers|netsnmp_container]] interface. Data ordering can be
+tricky in SNMP, since the lexicographical ordering required by
+SNMP specification isn't always intuitive, and the index
+specified in the MIB you have to implement might not match the
+order in which your data is currently stored. But the MFD
+configuration file can help you out with this problem too.
+
+
+The templates generated by the MFD configuration file fall into
+several categories:
+
+;data structures: contains the data used to answer a request
+;data lookup: finding the right data for a request
+;data manipulation:  either returning existing values or setting new values.
+
+=== Data Structures ===
+
+There are 4 important data structures used in an MFD module.
+They are the ''user context'', the ''mib context'', 
+the ''data context'' and the the ''row request context''.
+====  User Context ====
+
+The user context is a pointer provided by the user (ie, the programmer: You!) during module
+initialization. It is not used by the MFD code, other than to
+save it for the user. If your module needs access to some
+external data, you can use this pointer instead of a global
+variable.
+
+====  MIB context ====
+
+The MIB context is a generated structure which is used to
+store the MIB indexes for a row.
+
+====  Data Context ====
+
+The data context structure should contain all the data needed to get
+or set a value. The mib2c MFD configuration file will generate a data
+context structure with sufficient storage for all the objects
+defined in the MIB being implemented. (Later in the tutorial, we'll talk
+about using existing structures.)
+
+====  Row Request Context ====
+
+The row request context ties together all the other contexts.
+The table container will have a row request context for each
+row in the table.
+
+
+=== Data Lookup ===
+
+There are lots of different ways to access data. Your data store may be
+a linked list, a text file, a database or an API to some device.
+Instead of trying to deal with all of the possiblities in the template
+code, the ''netsnmp_container'' interface is used.
+
+
+There are currently two different interfaces between the MFD
+template code and the ''netsnmp_container'' used to locate
+data for a request.
+
+====  container-cached ====
+
+The default method, which is generic enough to handle just about any
+situation, is the ''container-cached'' method. This combines
+two features of net-snmp: the [[cache handler]] and [[Containers]]
+(''netsnmp_container''). Quite simply,
+the first time a request is received for a table, a
+''cache_load'' routine is called with a pointer to a
+''netsnmp_container''. That function accesses any
+datastore(s) that contain data, and adds all the rows to
+the container. The container is then used to find the rows
+for the incoming request, and (optionally) kept around
+a configurable number of seconds for future requests. While
+the basic principle is simple, the flexiblity makes this
+method the preferred method for most situations. More details
+on this ''cache helper'' can be found on the
+''[[cache handler]]'' page.
+
+====  Iterator (unsorted-external) ====
+
+The ''unsorted-external'' method is a wrapper around
+the ''netsnmp_continer'' ''container_iterator''.
+This method is also very flexible, with a very simple interface.
+When a request is received for a table, a ''get_next'' routine
+is called repeatedly to loop over every item in the datastore(s).
+The agent will then select the appropriate row for the request.
+Due to the inefficency of this method, it is only recommended
+for small datastores, or when memory contraints are very tight
+and response times are not important.
+
+====  Direct ====
+
+For advanced users, a custom ''netsnmp_container'' can
+be used. This method lets you wrap a ''netsnmp_container''
+around an existing datastore/access method. Be warned, however,
+that the implementation for the container's ''find-next''
+method must handle SNMP's lexicographical ordering rules.
+
+
+=== Data manipulation ===
+
+Once the appropriate data structure is retrieved from the data store,
+the data manipulation routines will be called. For each object defined
+in your mib module, a function will be generated to extract the data
+value from the data structure located during the data lookup phase.
+
+For read-write objects, things get more complicated. SET requests
+are processed in multiple steps, so there are multiple functions
+generated for each object. These include functions for syntax checks,
+value checks, undo setup, value set and undo value set.
+Additionlly, several functions are generated per table, for tasks which
+only need to be performed once, even if multiple objects are set for a
+given index. Two examples are consistency checks and commit changes.
+All of these functions will be discussed in more detail later in the
+tutorial.
+
+
+=== Getting Started ===
+
+There are several example implementations. The process of
+implementing a module using the MFD configuration file can be
+broken down into several steps.  You may wish to refer to this list in the future
+as it is a good high-level todo list for every module you implement.
+
+* '''Generating the template code by running mib2c appropriately'''
+** mib2c -c mib2c.mfd.conf
+* '''Implementing a ''netsnmp_container'' for data access'''
+** edit the ''MYTABLE.h'' file, adding column storage items to the ''MYTABLE_rowreq_ctx_s'' structure
+** edit the ''MYTABLE_data_access.c'' file, filling out the ''MYTABLE_container_load'' function to load all the data into a [[container]] cache.
+*** (create multiple ''rowreq_ctx'' objects and insert them into the ''container'')
+* '''Implementing [[GET]] request functions'''
+** In the ''MYTABLE_data_get.c'' file, fill out each ''COLUMN_get()'' to copy the data from your ''row_req'' cache object to the COLUMN_val_ptr objects. 
+* '''Implementing [[SET]] request functions'''
+
+====  Basic Tables ====
+
+These examples are fairly basic, and should suffice for most simple
+MIB tables and data stores.
+
+* [[MFD:IF-MIB]] Tables
+** [[MFD:ifTable|ifTable]]: A simple table with a single integer index which gets it's data from a text file. (Partial, read-only implementation)
+** [[MFD:ifXTable|ifXtable]]: A simple table with a single integer index which gets it's data from a text file, and caches it. (Partial, read-only implementation)
+
+====  Intermediate Tables ====
+
+These examples are sill fairly basic, but we are starting to add
+a few twists.
+
+* TBD (set support; row creation?)
+
+====  Advanced Tables ====
+
+These examples show how to deal with complicated issues that
+sometimes come up while implementing MIB modules..
+
+* TBD ...
+</textarea><div class="templatesUsed"><div class="mw-templatesUsedExplanation"><p>Templates used on this page:
+</p></div><ul>
+<li><a href="http://www.net-snmp.org/wiki/index.php/Template:Code" title="Template:Code">Template:Code</a> (<a href="http://www.net-snmp.org/wiki/index.php?title=Template:Code&amp;action=edit" title="Template:Code">view source</a>) </li><li><a href="http://www.net-snmp.org/wiki/index.php/Template:MFDTutorial" title="Template:MFDTutorial">Template:MFDTutorial</a> (<a href="http://www.net-snmp.org/wiki/index.php?title=Template:MFDTutorial&amp;action=edit" title="Template:MFDTutorial">view source</a>) </li></ul></div><p id="mw-returnto">Return to <a href="http://www.net-snmp.org/wiki/index.php/MIB_for_Dummies" title="MIB for Dummies">MIB for Dummies</a>.</p>
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php/MIB_for_Dummies">http://www.net-snmp.org/wiki/index.php/MIB_for_Dummies</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/MIB_for_Dummies" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="http://www.net-snmp.org/wiki/index.php?title=Talk:MIB_for_Dummies&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource" class="selected"><a href="http://www.net-snmp.org/wiki/index.php?title=MIB_for_Dummies&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=MIB_for_Dummies&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=MIB+for+Dummies&amp;returntoquery=action%3Dedit&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=MIB+for+Dummies&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/MIB_for_Dummies" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/MIB_for_Dummies" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=MIB_for_Dummies&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.edit.collapsibleFooter","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":169});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=MIB_for_Dummies&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:04:49 GMT -->
+</html>

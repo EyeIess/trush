@@ -1,0 +1,448 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-5/toolkit/asyncapp/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:45:55 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../../../print1.css" />
+  </head>
+  <body background="../../../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../../../index.html">About</a><br />
+        
+
+        <a href="../../../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../index.html"
+                  title="Net-SNMP v5 tutorial">Version 5.x</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../../tutorial-4/index.html"
+                  title="UCD-SNMP v4 tutorial">Version 4.x</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../../../../docs/readmefiles.html">Documentation</a><br />
+        
+
+        <a href="../../../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../../../../dev/projects.html">Development</a><br />
+        
+
+        <a href="../../../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Net-SNMP Tutorial -- Asynchronous Demo Application</title>
+  </head>
+
+  <body>
+    <h1>Net-SNMP Tutorial -- Asynchronous Demo Application</h1>
+    <p>
+      Here we discuss how to write an asynchronous application.  It's only
+      purpose is to retrieve the value of a set of variables from a set of
+      remote hosts.
+    <p>
+      Here are the files discussed in this example so you can download 
+      them:
+      <center>
+      <table border=1>
+	<tr><th>File</th><th>Description</th></tr>
+	<tr><td><a
+	href="../demoapp/Makefile">Makefile</a></td><td>A simple Makefile to
+	build the application</td></tr>
+	<tr><td><a
+	href="asyncapp.c">asyncapp.c</a></td><td>The C source code</td>
+      </table>
+      </center>
+    <p>
+      This discussion assumes that you alread have read the <i>snmpdemoapp</i>
+      tutorial section.
+    <p>
+      The program assumes that you have a set of hosts that you want to
+      interrogate for a set of variables. For simplicitys sake each query
+      just asks for one variable.
+    <p>
+      The program defines two structures, <b>struct host</b> which holds the
+      host specific data, hostname and community to be used, and <b>struct
+      oid</b> which hold to object to be queried for.
+<pre>
+/*
+ * a list of hosts to query
+ */
+struct host {
+  char *name;
+  char *community;
+} hosts[] = {
+  { "test1",            "public" },
+  { "test2",            "public" },
+  { "test3",            "public" },
+  { "test4",            "public" },
+  { NULL }
+};
+
+/*
+ * a list of variables to query for
+ */
+struct oid {
+  char *Name;
+  oid Oid[MAX_OID_LEN];
+  int OidLen;
+} oids[] = {
+  { "system.sysDescr.0" },
+  { "interfaces.ifNumber.1" },
+  { "interfaces.ifNumber.0" },
+  { NULL }
+};
+</pre>
+    <p>
+      As a brush up, we then define the function <b>synchronous</b> that scans
+      the hosts using synchronous calls:
+<pre>
+void synchronous (void)
+{
+  struct host *hp;
+
+  for (hp = hosts; hp->name; hp++) {
+    struct snmp_session ss, *sp;
+    struct oid *op;
+
+    snmp_sess_init(&ss);                        /* initialize session */
+    ss.version = SNMP_VERSION_2c;
+    ss.peername = hp->name;
+    ss.community = hp->community;
+    ss.community_len = strlen(ss.community);
+    snmp_synch_setup(&ss);
+    if (!(sp = snmp_open(&ss))) {
+      snmp_perror("snmp_open");
+      continue;
+    }
+    for (op = oids; op->Name; op++) {
+      struct snmp_pdu *req, *resp;
+      int status;
+      req = snmp_pdu_create(SNMP_MSG_GET);
+      snmp_add_null_var(req, op->Oid, op->OidLen);
+      status = snmp_synch_response(sp, req, &resp);
+      if (!print_result(status, sp, resp)) break;
+      snmp_free_pdu(resp);
+    }
+    snmp_close(sp);
+  }
+}
+</pre>
+    <p>
+      This should contain no surprises, as you already mastered the
+      <i>snmpdemoapp</i> chapter.
+    <p>
+      Now onto the new material. We define a <b>struct session</b>
+      to hold our per host state:
+<pre>
+struct session {
+  struct snmp_session *sess;          /* SNMP session data */ 
+  struct oid *current_oid;            /* How far in our poll are we */
+} sessions[sizeof(hosts)/sizeof(hosts[0])];
+
+int active_hosts;                     /* hosts that we have not completed */
+</pre>
+    <p>
+      We then need a callback function, to be called whenever a response
+      is received:
+<pre>
+int asynch_response(int operation, struct snmp_session *sp, int reqid,
+                    struct snmp_pdu *pdu, void *magic)
+{
+  struct session *host = (struct session *)magic;
+  struct snmp_pdu *req;
+</pre>
+	<p>
+	whenever a response is received, we will print it out, and
+	send the next request out:
+<pre>
+  if (operation == RECEIVED_MESSAGE) {
+    if (print_result(STAT_SUCCESS, host->sess, pdu)) {
+      host->current_oid++;                      /* send next GET (if any) */
+      if (host->current_oid->Name) {
+</pre>
+	there is still more to do ... build the next request
+<pre>
+        req = snmp_pdu_create(SNMP_MSG_GET);
+        snmp_add_null_var(req, host->current_oid->Oid, host->current_oid->OidLen);
+        if (snmp_send(host->sess, req))
+</pre>
+	we are still in business
+<pre>
+          return 1;
+        else {
+</pre>
+	something went wrong. Print out error message, and fall through
+	to decrement active_hosts
+<pre>
+          snmp_perror("snmp_send");
+          snmp_free_pdu(req);
+        }
+      }
+    }
+  }
+  else
+    print_result(STAT_TIMEOUT, host->sess, pdu);
+
+  /* something went wrong (or end of variables)
+   * this host not active any more
+   */
+  active_hosts--;
+  return 1;
+}
+</pre>
+<p>
+	Now the code to fire this up, and keep it running until we are done
+<pre>
+void asynchronous(void)
+{
+  struct session *hs;
+  struct host *hp;
+</pre>
+	First we loop through all the hosts, opening a session for each
+	and sending out the first request:
+<pre>
+  /* startup all hosts */
+  for (hs = sessions, hp = hosts; hp->name; hs++, hp++) {
+    struct snmp_pdu *req;
+    struct snmp_session sess;
+    snmp_sess_init(&sess);                    /* initialize session */
+    sess.version = SNMP_VERSION_2c;
+    sess.peername = hp->name;
+    sess.community = hp->community;
+    sess.community_len = strlen(sess.community);
+</pre>
+The next two lines is where we deviate from the good old sync setup
+<pre>
+    sess.callback = asynch_response;            /* default callback */
+    sess.callback_magic = hs;
+    if (!(hs->sess = snmp_open(&sess))) {
+      snmp_perror("snmp_open");
+      continue;
+    }
+    hs->current_oid = oids;
+    req = snmp_pdu_create(SNMP_MSG_GET);        /* send the first GET */
+    snmp_add_null_var(req, hs->current_oid->Oid, hs->current_oid->OidLen);
+    if (snmp_send(hs->sess, req))
+      active_hosts++;
+    else {
+      snmp_perror("snmp_send");
+      snmp_free_pdu(req);
+    }
+  }
+
+</pre>
+That was the startup code. Now we just wait for things to settle down again.
+All the real work is handled inside the callback function.
+<pre>
+  /* loop while any active hosts */
+  while (active_hosts) {
+    int fds = 0, block = 1;
+    fd_set fdset;
+    struct timeval timeout;
+</pre>
+	snmp_select_info is the function that gets us all we need to be
+	able to call select
+<pre>
+    FD_ZERO(&fdset);
+    snmp_select_info(&fds, &fdset, &timeout, &block);
+    fds = select(fds, &fdset, NULL, NULL, block ? NULL : &timeout);
+</pre>
+	snmp_read will read all sockets with pending data, and process them
+<pre>
+    if (fds) snmp_read(&fdset);
+    else snmp_timeout();
+  }
+</pre>
+	Now active_hosts == 0, and all data have been returned. Close
+	all sessions and finish up.
+<pre>
+  /* cleanup */
+  for (hp = hosts, hs = sessions; hp->name; hs++, hp++) {
+    if (hs->sess) snmp_close(hs->sess);
+  }
+}
+</pre>
+	The main program just demonstrates the two ways to do the job:
+<pre>
+int main (int argc, char **argv)
+{
+  initialize();
+
+  printf("---------- synchronous -----------\n");
+  synchronous();
+
+  printf("---------- asynchronous -----------\n");
+  asynchronous();
+
+  return 0;
+}
+</pre>
+	Thats it. Lets now see it in action:
+<pre>
+% <b>./asyncapp</b>
+---------- synchronous -----------
+23:08:49.429595 test1: Timeout
+23:08:49.609789 test2: system.sysDescr.0 = SunOS test2 5.6 Generic_105181-16 sun4u
+23:08:49.759717 test2: interfaces.ifNumber.1 = No Such Instance currently exists
+23:08:49.899715 test2: interfaces.ifNumber.0 = No Such Object available on this agent
+23:08:50.059725 test3: system.sysDescr.0 = Linux test3 2.2.5-22 #1 Wed Jun 2 09:17:03 EDT 1999 i686
+23:08:50.199715 test3: interfaces.ifNumber.1 = No Such Object available on this agent
+23:08:50.339712 test3: interfaces.ifNumber.0 = No Such Object available on this agent
+23:08:56.429595 test4: Timeout
+---------- asynchronous -----------
+23:08:50.519702 test2: system.sysDescr.0 = SunOS test2 5.6 Generic_105181-16 sun4u
+23:08:50.569680 test3: system.sysDescr.0 = Linux test3 2.2.5-22 #1 Wed Jun 2 09:17:03 EDT 1999 i686
+23:08:50.669682 test2: interfaces.ifNumber.1 = No Such Instance currently exists
+23:08:50.699669 test3: interfaces.ifNumber.1 = No Such Object available on this agent
+23:08:50.809714 test2: interfaces.ifNumber.0 = No Such Object available on this agent
+23:08:50.879675 test3: interfaces.ifNumber.0 = No Such Object available on this agent
+23:08:56.429590 test1: Timeout
+23:08:56.430095 test4: Timeout
+%
+    </pre>
+    <address><a href="mailto:Wes Hardaker <hardaker@users.sourceforge.net>"></a></address>
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-5/toolkit/asyncapp/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:45:55 GMT -->
+</html>
+
+
+

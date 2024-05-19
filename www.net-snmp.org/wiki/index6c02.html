@@ -1,0 +1,258 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Security&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:19:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>View source for TUT:Security - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"TUT:Security","wgTitle":"TUT:Security","wgCurRevisionId":5653,"wgRevisionId":0,"wgArticleId":2085,"wgIsArticle":!1,"wgIsRedirect":!1,"wgAction":"edit","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!0,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"TUT:Security","wgRelevantArticleId":2085,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-TUT_Security skin-monobook action-edit">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">View source for TUT:Security</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub">← <a href="http://www.net-snmp.org/wiki/index.php/TUT:Security" title="TUT:Security">TUT:Security</a></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text"><p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://www.net-snmp.org/wiki/index.php?title=Net-SNMP_Wiki:Users&amp;action=edit&amp;redlink=1" class="new" title="Net-SNMP Wiki:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<hr />
+<p>You can view and copy the source of this page.
+</p><textarea readonly="" accesskey="," id="wpTextbox1" cols="80" rows="25" style="" lang="en" dir="ltr" name="wpTextbox1">== SNMPv1 and SNMPv2c: Insecure!!! ==
+
+SNMP, when it was first developed, contained clear-text-"passwords" called "community strings".  The first two versions of the SNMP protocol (SNMPv1 and SNMPv2c) contained these clear text passwords, as can be seen below in the following screen dump:
+
+ # '''snmpget -d -v 2c -c &lt;font color="red">demopublic&lt;/font> test.net-snmp.org sysContact.0'''
+ 
+ Sending 47 bytes to UDP: [157.185.82.8]:161->[0.0.0.0]:0
+ 0000: 30 2D 02 01  01 04 0A 64  65 6D 6F 70  75 62 6C 69    0-.....&lt;font color="red">demopubli&lt;/font>
+ 0016: 63 A0 1C 02  04 78 8E 32  C9 02 01 00  02 01 00 30    &lt;font color="red">c&lt;/font>....x.2.......0
+ 0032: 0E 30 0C 06  08 2B 06 01  02 01 01 04  00 05 00       .0...+.........
+   
+ 
+ Received 102 byte packet from UDP: [157.185.82.8]:161->[0.0.0.0]:47960
+ 0000: 30 64 02 01  01 04 0A 64  65 6D 6F 70  75 62 6C 69    0d.....&lt;font color="red">demopubli&lt;/font>
+ 0016: 63 A2 53 02  04 78 8E 32  C9 02 01 00  02 01 00 30    &lt;font color="red">c&lt;/font>.S..x.2.......0
+ 0032: 45 30 43 06  08 2B 06 01  02 01 01 04  00 04 37 4E    E0C..+........7N
+ 0048: 65 74 2D 53  4E 4D 50 20  43 6F 64 65  72 73 20 3C    et-SNMP Coders &lt;
+ 0064: 6E 65 74 2D  73 6E 6D 70  2D 63 6F 64  65 72 73 40    net-snmp-coders@
+ 0080: 6C 69 73 74  73 2E 73 6F  75 72 63 65  66 6F 72 67    lists.sourceforg
+ 0096: 65 2E 6E 65  74 3E                                    e.net>
+ 
+ SNMPv2-MIB::sysContact.0 = STRING: Net-SNMP Coders &lt;net-snmp-coders@lists.sourceforge.net>
+
+This was obviously a problem so SNMPv3 was later developed to secure the protocol.
+
+== SNMPv3: Making it secure ==
+
+SNMPv3, documented in RFCS 3410-3419, defines a modular approach to SNMPv3.  This modular approach is important as it is designed to allow the protocol to adapt in the future if other types of security will be needed or preferred.
+
+[[image:snmpv3arch.jpeg|none|thumb|600px|SNMPv3 architecture]]
+
+=== Using Secure SNMP ===
+
+Choices for securing SNMP include, which are described in detail below:
+
+{|border=1 cellspacing=0 style="border-style: solid; border-width: 1px; margin-left: 2em;"
+|-
+| SNMPv1 or SNMPv2c
+| Provides '''NO SECURITY''' at all.  Supported by everything.
+|-
+| SNMPv3 with USM
+| The original SNMPv3 security model.  Supported by most devices.
+|-
+| SNMPv3 with [[TLS]] or [[DTLS]]
+| Tunneling SNMP over TLS and DTLS.  Hopefully supported by most devices soon.
+|-
+| SNMPv3 over [[SSH]]
+| Tunneling SNMP over SSH (not 100% supported in Net-SNMP)
+|-
+| SNMP over [[Kerberos]]
+| Securing SNMP with Kerberos (even less supported)
+|}
+
+=== Ok, but what should I pick? ===
+
+Pick the best one for your situation of course!  Some helpful starting hints though:
+
+* If entirely using Net-SNMP products, or products that support TLS: use [[Using DTLS|SNMPv3 over (D)TLS]]
+* If talking to legacy SNMPv3 devices: use [[TUT:SNMPv3_Options|SNMPv3/USM]]
+* If talking to SNMPv1/SNMPv2c only devices: call the vendor and complain!  Seriously.
+
+== SNMPv3 with USM ==
+
+The original SNMPv3 specifications included a ''User-Based Security Model'' which secured the protocol by allowing administrators to define "users" with various security credentials.  This went a long way toward securing the protocol (although, as Wes Hardaker (the founder of Net-SNMP) [http://pontifications.hardakers.net/computers/limitations-of-snmpv3usm-when-combined-with-engineid-discovery/ documents on a blog entry], there are still some concerns with SNMPv3/USM).  Operators also found that securing SNMPv3/USM required "yet another" password database to maintain which was operationally burdensome.
+
+SNMPv3/USM is fairly widely implemented and most modern "good" devices will support it.
+
+See our [[TUT:SNMPv3 Options|SNMPv3/USM tutorial]] for details on using SNMPv3/USM with the Net-SNMP toolkit.
+
+== Tunneling SNMPv3 ==
+
+The most recent IETF activity regarding SNMP security has been done in the [http://tools.ietf.org/wg/isms/ Integrated Security Model for SNMP (ISMS)] working group.  Rather than create another security system like USM did, it was decided that users would prefer to tunnel SNMP over protocols they already knew and understood.  This was done by creating the following new RFCs:
+
+* [[rfc:5590|RFC5590]] - Transport Subsystem for the Simple Network Management Protocol
+* [[rfc:5591|RFC5591]] - Transport Security Model for the Simple Network Management Protocol (SNMP)
+* [[rfc:5592|RFC5592]] - Secure Shell Transport Model for the Simple Network Management Protocol (SNMP)
+* [[rfc:5608|RFC5608]] - Remote Authentication Dial-In User Service (RADIUS) Usage for Simple Network Management Protocol (SNMP) Transport Models.
+* [[rfc:5953|RFC5953]] - Transport Layer Security (TLS) Transport Model for the Simple Network Management Protocol (SNMP)
+
+These RFCs provide the framework for tunneling SNMPv3 packets over [[SSH]], [[TLS]] and [[DTLS]].  The SSH protocol uses existing SSH authentication and encryption methods (like SSH keys and/or usernames and passwords) to secure it's traffic.  And the TLS and DTLS protocols use X.509 certificates for securing it's traffic.
+
+Net-SNMP 5.6 contains robust support for using SNMP over TLS and DTLS.
+
+See the [[TUT:Using TLS|Using TLS tutorial]] for details on seting up and using SNMP over TLS and DTLS.
+
+Net-SNMP 5.6 also contains minimal support for using SNMP over SSH, but the support is limited because of the lack of available SSH server-side libraries and is implemented through a specialized shell "hack" when attached to a OpenSSH sshd server.
+
+There is information about the performance impacts of using SSH available [http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.109.8294&amp;rep=rep1&amp;type=pdf here] (also available as slides from an IETF presentation [http://www.ietf.org/proceedings/67/slides/isms-3.pdf here]).
+
+== Kerberos SNMPv3 ==
+
+Wes Hardaker and Ken Horstein started work in the IETF to implement a kerberos security model for SNMPv3.  Although Net-SNMP contains a prototype implementation of this, the work was never finished within the IETF nor within the Net-SNMP implementation and is not yet ready for real-world use.
+</textarea><div class="templatesUsed"></div><p id="mw-returnto">Return to <a href="http://www.net-snmp.org/wiki/index.php/TUT:Security" title="TUT:Security">TUT:Security</a>.</p>
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php/TUT:Security">http://www.net-snmp.org/wiki/index.php/TUT:Security</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/TUT:Security" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="http://www.net-snmp.org/wiki/index.php?title=Talk:TUT:Security&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource" class="selected"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Security&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Security&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3ASecurity&amp;returntoquery=action%3Dedit&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3ASecurity&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/TUT:Security" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/TUT:Security" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Security&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.edit.collapsibleFooter","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":145});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Security&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:19:29 GMT -->
+</html>

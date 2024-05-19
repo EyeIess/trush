@@ -1,0 +1,295 @@
+Content-type: text/html
+
+<HTML>
+<!-- Mirrored from www.net-snmp.org/docs/man/snmp_alarm.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:30 GMT -->
+<HEAD><TITLE>Manpage of SNMP_ALARM</TITLE>
+</HEAD><BODY>
+<H1>SNMP_ALARM</H1>
+Section: Net-SNMP (3)<BR>Updated: 07 Mar 2002<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+snmp_alarm_register, snmp_alarm_register_hr, snmp_alarm_unregister - alarm functions
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>#include &lt;<A HREF="file:/usr/include/net-snmp/utilities.h">net-snmp/utilities.h</A>&gt;</B>
+
+<P>
+
+<B>unsigned int</B>
+
+<BR>
+
+<B>snmp_alarm_register(unsigned int </B><I>seconds</I><B>,</B>
+
+<BR>
+
+<B>                    unsigned int </B><I>flags</I><B>,</B>
+
+<BR>
+
+<B>                    SNMPAlarmCallback *</B><I>f_callback</I><B>,</B>
+
+<BR>
+
+<B>                    void *</B><I>clientarg</I><B>);</B>
+
+<P>
+
+<B>unsigned int</B>
+
+<BR>
+
+<B>snmp_alarm_register_hr(struct timeval </B><I>t</I><B>,</B>
+
+<BR>
+
+<B>                       unsigned int </B><I>flags</I><B>,</B>
+
+<BR>
+
+<B>                       SNMPAlarmCallback *</B><I>f_callback</I><B>,</B>
+
+<BR>
+
+<B>                       void *</B><I>clientarg</I><B>);</B>
+
+<P>
+
+<B>void</B>
+
+<BR>
+
+<B>snmp_alarm_unregister(unsigned int </B><I>reg</I><B>);</B>
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<P>
+
+These functions implement support for a generic timer handling
+mechanism for multiple parts of an application to register function
+callbacks to happen at a particular time in the future.
+<A NAME="lbAE">&nbsp;</A>
+<H2>USAGE</H2>
+
+<P>
+
+The usage is fairly simple and straight-forward:  Simply create a
+function you want called back at some point in the future.  The
+function definition should be similar to:
+<DL COMPACT><DT><DD>
+<P>
+
+<B>void my_callback(unsigned int </B><I>reg</I><B>, void *</B><I>clientarg</I><B>);</B>
+
+</DL>
+
+<P>
+
+Then, call
+<B>snmp_alarm_register()</B>
+
+to register your callback to be called
+<I>seconds</I>
+
+from now.  The
+<I>flags</I>
+
+field should either be 
+<I>SA_REPEAT</I>
+
+or
+<I>NULL.</I>
+
+If flags is set with
+<I>SA_REPEAT,</I>
+
+then the registered callback function will be called every
+<I>seconds.</I>
+
+If
+<I>flags</I>
+
+is
+<I>NULL</I>
+
+then the function will only be called once and then removed from the
+alarm system registration.
+<P>
+
+The
+<I>clientarg</I>
+
+parameter in the registration function is used only by
+the client function and is stored and passed back directly to them on
+every call to the system.
+<P>
+
+The 
+<B>snmp_alarm_register()</B>
+
+function returns a unique
+<I>unsigned int</I>
+
+(which is also passed as the first argument of each callback), which
+can then be used to remove the callback from the queue at a later
+point in the future using the
+<B>snmp_alarm_unregister()</B>
+
+function. If the
+<B>snmp_alarm_register()</B>
+
+call fails it returns zero.  In particular, note that it is entirely
+permissible for an alarm function to unregister itself.
+<P>
+
+The
+<B>snmp_alarm_register_hr()</B>
+
+function is identical in operation to the
+<B>snmp_alarm_register()</B>
+
+function, but takes a
+<I>struct timeval</I>
+
+as a first parameter, and schedules the callback after the period
+represented by
+<I>t</I>
+
+(the letters
+<B>hr</B>
+
+stand for &quot;high resolution&quot;).  The operation of this function is
+dependent on the provision of the
+<B><A HREF="setitimer.html">setitimer</A></B>(2)
+
+system call by the operating system.  If this system call is not
+available, the alarm will be scheduled as if
+<B>snmp_alarm_register()</B>
+
+had been called with a first argument equal to the value of the
+<I>tv_sec</I>
+
+member of
+<I>t.</I>
+
+See, however, the notes below.
+<A NAME="lbAF">&nbsp;</A>
+<H2>INITIALIZATION</H2>
+
+The
+<B>init_snmp()</B>
+
+function initialises the snmp_alarm subsystem by calling 
+<B>init_snmp_alarm()</B>
+
+and then 
+<B>init_alarm_post_config()</B>
+
+to set up the first timer to initialise the callback function.  These
+two functions should not be used directly by applications.
+<A NAME="lbAG">&nbsp;</A>
+<H2>NOTES</H2>
+
+The default behaviour of the snmp_alarm subsystem is to request
+<I>SIGALRM</I>
+
+signals from the operating system via the
+<B><A HREF="alarm.html">alarm</A></B>(2)
+
+or
+<B><A HREF="setitimer.html">setitimer</A></B>(2)
+
+system calls.  This has the disadvantage, however, that no other part
+of the application can use the
+<I>SIGLARM</I>
+
+functionality (or, if some other part of the application
+<I>does</I>
+
+use the
+<I>SIGALRM</I>
+
+functionality, the snmp_alarm subsystem will not work correctly).
+<P>
+
+If your application runs a 
+<B><A HREF="select.html">select</A></B>(2)-based
+
+event loop, however, there is no need to use
+<I>SIGALRM</I>
+
+for the snmp_alarm subsystem, leaving it available for other parts of
+the application.  This is done by making the following call:
+<P>
+
+<PRE>
+netsnmp_ds_set_boolean(NETSNMP_DS_LIBRARY_ID, 
+                       NETSNMP_DS_LIB_ALARM_DONT_USE_SIG, 1);
+</PRE>
+
+<P>
+
+before calling
+<B>init_snmp().</B>
+
+Then, 
+<B>snmp_select_info()</B>
+
+takes alarms into account when calculating the timeout value to be
+used for
+<B><A HREF="select.html">select</A></B>(2).
+
+All you need to do is call
+<B>run_alarms()</B>
+
+when
+<B><A HREF="select.html">select</A></B>(2)
+
+times out (return value of zero).  This is the approach taken in the
+agent; see
+<I>snmpd.c.</I>
+
+Furthermore, when using this method, high resolution alarms do not
+depend on the presence of the
+<B><A HREF="setitimer.html">setitimer</A></B>(2)
+
+system call, although overall precision is of course still determined
+by the underlying operating system.  Recommended.
+<A NAME="lbAH">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="snmp_select_info.html">snmp_select_info</A></B>(3), 
+
+<B><A HREF="select.html">select</A></B>(2)
+
+
+
+
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">USAGE</A><DD>
+<DT><A HREF="#lbAF">INITIALIZATION</A><DD>
+<DT><A HREF="#lbAG">NOTES</A><DD>
+<DT><A HREF="#lbAH">SEE ALSO</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 19:05:38 GMT, September 28, 2009
+</BODY>
+
+<!-- Mirrored from www.net-snmp.org/docs/man/snmp_alarm.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:35 GMT -->
+</HTML>

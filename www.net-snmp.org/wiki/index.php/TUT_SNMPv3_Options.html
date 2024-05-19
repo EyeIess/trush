@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/TUT:SNMPv3_Options by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 17:57:56 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>TUT:SNMPv3 Options - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"TUT:SNMPv3_Options","wgTitle":"TUT:SNMPv3 Options","wgCurRevisionId":5684,"wgRevisionId":5684,"wgArticleId":1739,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"TUT:SNMPv3_Options","wgRelevantArticleId":1739,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="../load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="../load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<link rel="shortcut icon" href="../../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="../opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="../api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="../apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-TUT_SNMPv3_Options skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">TUT:SNMPv3 Options</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#SNMPv3_Options"><span class="tocnumber">1</span> <span class="toctext">SNMPv3 Options</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Introduction"><span class="tocnumber">1.1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#SNMPv3_and_Security_Components_.3D"><span class="tocnumber">1.2</span> <span class="toctext">SNMPv3 and Security Components =</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="#User-Based_Security"><span class="tocnumber">1.2.1</span> <span class="toctext">User-Based Security</span></a></li>
+<li class="toclevel-3 tocsection-5"><a href="#TLS_and_DTLS_Based_Security"><span class="tocnumber">1.2.2</span> <span class="toctext">TLS and DTLS Based Security</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="#Authorization:_Who_can_do_what.3F"><span class="tocnumber">1.2.3</span> <span class="toctext">Authorization: Who can do what?</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-7"><a href="#Users"><span class="tocnumber">1.3</span> <span class="toctext">Users</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Examples"><span class="tocnumber">1.4</span> <span class="toctext">Examples</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="#Configuration"><span class="tocnumber">1.4.1</span> <span class="toctext">Configuration</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#Commands"><span class="tocnumber">1.4.2</span> <span class="toctext">Commands</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Tutorial_Sections"><span class="tocnumber">2</span> <span class="toctext">Tutorial Sections</span></a>
+<ul>
+<li class="toclevel-2"><a href="#About_the_SNMP_Protocol"><span class="tocnumber">2.1</span> <span class="toctext">About the SNMP Protocol</span></a></li>
+<li class="toclevel-2"><a href="#Net-SNMP_Command_Line_Applications"><span class="tocnumber">2.2</span> <span class="toctext">Net-SNMP Command Line Applications</span></a></li>
+<li class="toclevel-2"><a href="#Application_Configuration"><span class="tocnumber">2.3</span> <span class="toctext">Application Configuration</span></a></li>
+<li class="toclevel-2"><a href="#Net-SNMP_Daemons"><span class="tocnumber">2.4</span> <span class="toctext">Net-SNMP Daemons</span></a></li>
+<li class="toclevel-2"><a href="#Coding_Tutorials"><span class="tocnumber">2.5</span> <span class="toctext">Coding Tutorials</span></a></li>
+<li class="toclevel-2"><a href="#Debugging_SNMP_Applications_and_Agents"><span class="tocnumber">2.6</span> <span class="toctext">Debugging SNMP Applications and Agents</span></a></li>
+<li class="toclevel-2"><a href="#Operating_System_Specific_Tutorials"><span class="tocnumber">2.7</span> <span class="toctext">Operating System Specific Tutorials</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="SNMPv3_Options">SNMPv3 Options</span></h2>
+<h3><span class="mw-headline" id="Introduction">Introduction</span></h3>
+<p>The 3rd version of the SNMP protocol introduced a whole slew of new security related features that have been missing from the previous versions. In SNMPv1 and SNMPv2c, a simple community string was put in clear text into the packet to authenticate the request. This is obviously highly insecure. (If it's not obvious, then just trust me). 
+</p>
+<h3><span class="mw-headline" id="SNMPv3_and_Security_Components_.3D">SNMPv3 and Security Components =</span></h3>
+<p>SNMPv3 introduces advanced security which splits the authentication and the authorization into two pieces: 
+</p>
+<h4><span class="mw-headline" id="User-Based_Security">User-Based Security</span></h4>
+<p>The USM is the default Security Module for SNMPv3. The U stands for User-based, as it contains a list of users and their attributes. The USM is described by <a href="http://www.rfc-editor.org/rfc/rfc2574.txt" class="extiw" title="rfc:2574">RFC 2574</a>.
+</p>
+<h4><span class="mw-headline" id="TLS_and_DTLS_Based_Security">TLS and DTLS Based Security</span></h4>
+<p>A newer security model is also available called the "Transport Security Model" (TSM), defined in <a href="http://www.rfc-editor.org/rfc/rfc5591.txt" class="extiw" title="rfc:5591">RFC 5591</a> which is designed to work with secure transports like TLS or DTLS and its usage is documented in the <a href="TUT_Using_TLS.html" title="TUT:Using TLS">Using TLS tutorial</a>.
+</p>
+<h4><span class="mw-headline" id="Authorization:_Who_can_do_what.3F">Authorization: Who can do what?</span></h4>
+<p>The VACM is the default Access Control Module and determines which users (and SNMPv1/v2c communities) are allowed to access MIB information.  The V stands for View-based, and allows different levels of access for different sections of the MIB tree. The VACM is described by <a class="external mw-magiclink-rfc" rel="nofollow" href="http://tools.ietf.org/html/rfc2575">RFC 2575</a>. 
+</p><p>This document will discuss how to use the net-snmp tools to get and set data from a remote host.
+</p>
+<h3><span class="mw-headline" id="Users">Users</span></h3>
+<p>A user's profile contains the following data: 
+</p>
+<pre>&#160;% <b>snmptranslate -Tp -IR usmUserTable</b>
+ +--usmUserTable(2)
+    |
+    +--usmUserEntry(1)
+       |
+       +-- ---- String    usmUserEngineID(1)
+       |        Textual Convention: SnmpEngineID
+       |        Size: 5..32
+       +-- ---- String    usmUserName(2)
+       |        Textual Convention: SnmpAdminString
+       |        Size: 1..32
+       +-- -R-- String    usmUserSecurityName(3)
+       |        Textual Convention: SnmpAdminString
+       |        Size: 0..255
+       +-- CR-- ObjID     usmUserCloneFrom(4)
+       |        Textual Convention: RowPointer
+       +-- CR-- ObjID     usmUserAuthProtocol(5)
+       |        Textual Convention: AutonomousType
+       +-- CR-- String    usmUserAuthKeyChange(6)
+       |        Textual Convention: KeyChange
+       +-- CR-- String    usmUserOwnAuthKeyChange(7)
+       |        Textual Convention: KeyChange
+       +-- CR-- ObjID     usmUserPrivProtocol(8)
+       |        Textual Convention: AutonomousType
+       +-- CR-- String    usmUserPrivKeyChange(9)
+       |        Textual Convention: KeyChange
+       +-- CR-- String    usmUserOwnPrivKeyChange(10)
+       |        Textual Convention: KeyChange
+       +-- CR-- String    usmUserPublic(11)
+       |        Size: 0..32
+       +-- CR-- EnumVal   usmUserStorageType(12)
+       |        Textual Convention: StorageType
+       |        Values: other(1), volatile(2), nonVolatile(3), permanent(4), readOnly(5)
+       +-- CR-- EnumVal   usmUserStatus(13)
+                Textual Convention: RowStatus
+                Values: active(1), notInService(2), notReady(3), createAndGo(4), createAndWait(5), destroy(6)
+</pre>
+<p><br />
+Well, that's nice but what does it mean? 
+</p><p>To summarize, most importantly each user has a name (called a <b>securityName</b>) an authentication type (<b>authProtocol</b>) and a privacy type (<b>privProtocol</b>) as well as associated keys for each of these (<b>authKey</b> and <b>privKey</b>). 
+</p><p>Authentication is performed by using a user's <b>authKey</b> to sign the message being sent. The <b>authProtocol</b> can be either <i>MD5</i> or <i>SHA</i> at this time. <b>authKeys</b> (and <b>privKeys</b>) are generated from a passphrase that must be at least 8 characters in length. 
+</p><p>Encryption is performed by using a user's <b>privKey</b> to encrypt the data portion of the message being sent. The <b>privProtocol</b> can be either <i>AES</i> or <i>DES</i>. 
+</p><p>Messages can be sent unauthenticated and unencrypted (noAuthNoPriv), authenticated but unencrypted (authNoPriv), or authenticated and encrypted (authPriv) by setting the <b>securityLevel</b> to use. 
+</p><p>All of this information is passed to commands using the command line arguments described in the table below. Additionally, you can put default values in your ~/.snmp/snmp.conf files using the tokens specified in the 3rd column. 
+</p>
+<table border="1">
+<tr>
+<th>Parameter
+</th>
+<th>Command Line Flag
+</th>
+<th>snmp.conf token
+</th></tr>
+<tr>
+<td> securityName </td>
+<td> -u NAME </td>
+<td> defSecurityName NAME
+</td></tr>
+<tr>
+<td> authProtocol </td>
+<td> -a (MD5|SHA) </td>
+<td> defAuthType (MD5|SHA)
+</td></tr>
+<tr>
+<td> privProtocol </td>
+<td> -x (AES|DES) </td>
+<td> defPrivType DES
+</td></tr>
+<tr>
+<td> authKey </td>
+<td> -A PASSPHRASE </td>
+<td> defAuthPassphrase PASSPHRASE
+</td></tr>
+<tr>
+<td> privKey </td>
+<td> -X PASSPHRASE </td>
+<td> defPrivPassphrase PASSPHRASE
+</td></tr>
+<tr>
+<td> securityLevel </td>
+<td> -l (noAuthNoPriv|authNoPriv|authPriv) </td>
+<td> defSecurityLevel (noAuthNoPriv|authNoPriv|authPriv)
+</td></tr>
+<tr>
+<td> context </td>
+<td> -n CONTEXTNAME </td>
+<td> defContext CONTEXTNAME
+</td></tr></table>
+<h3><span class="mw-headline" id="Examples">Examples</span></h3>
+<h4><span class="mw-headline" id="Configuration">Configuration</span></h4>
+<p>The following examples use the Net-SNMP test agent. If you would like to test against your local machine, you can configure the same SNMPv3 users on your machine.
+</p>
+<ul><li> edit your snmpd.conf and add</li></ul>
+<pre>rouser noAuthUser
+rouser MD5User
+rwuser MD5DESUser
+</pre>
+<ul><li> stop snmpd and edit your persistent snmpd.conf and add</li></ul>
+<pre>createUser NoAuthUser
+createUser MD5User MD5 "The Net-SNMP Demo Password"
+createUser MD5DESUser MD5 "The Net-SNMP Demo Password" DES
+</pre>
+<ul><li> start snmpd again.</li></ul>
+<h4><span class="mw-headline" id="Commands">Commands</span></h4>
+<p>Here is a completely unauthenticated request (which still needs a user name, nonetheless): 
+</p>
+<pre>&#160;% <b>snmpgetnext -v 3 -n "" -u noAuthUser -l noAuthNoPriv test.net-snmp.org sysUpTime</b>
+ system.sysUpTime.0 = Timeticks: (83467131) 9 days, 15:51:11.31
+</pre>
+<p><br />
+Here is an authenticated request: 
+</p>
+<pre>&#160;% <b>snmpgetnext -v 3 -n "" -u MD5User -a MD5 -A "The Net-SNMP Demo Password" -l authNoPriv test.net-snmp.org sysUpTime</b>
+ system.sysUpTime.0 = Timeticks: (83491735) 9 days, 15:55:17.35
+</pre>
+<p><br />
+And finally, here is an authenticated and encrypted request: 
+</p>
+<pre>&#160;% <b>snmpgetnext -v 3 -n "" -u MD5DESUser -a MD5 -A "The Net-SNMP Demo Password" -x DES -X "The Net-SNMP Demo Password" -l authPriv test.net-snmp.org system</b>
+ system.sysUpTime.0 = Timeticks: (83493111) 9 days, 15:55:31.11
+</pre>
+<p>Of course, they don't look much different since they all worked identically. But, the host above allows us to look at it using any level of authentication. Any hosts you set up should be more restricted than that and require at least a level of authNoPriv when you configure the VACM access control. 
+</p><p>Finally, consider a snmp.conf file that looks like this: 
+</p>
+<pre> defContext none
+ defSecurityName MD5User
+ defAuthPassphrase The Net-SNMP Demo Password
+ defVersion 3
+ defAuthType MD5
+ defSecurityLevel authNoPriv
+</pre>
+<p>This sets up the defaults for you so that your snmp commands can boil down to something as simple as: 
+</p>
+<pre>&#160;% <b>snmpgetnext test.net-snmp.org sysUpTime</b>
+ system.sysUpTime.3.0 = Timeticks: (83517052) 9 days, 15:59:30.52
+</pre>
+<p>Or: 
+</p>
+<pre>&#160;% <b>snmpset test.net-snmp.org ucdDemoPublicString.0 s "I changed  something"</b>
+ enterprises.ucdavis.ucdDemoMIB.ucdDemoMIBObjects.ucdDemoPublic.ucdDemoPublicString.2.0 = "I changed something"
+</pre>
+<p>Then: 
+</p>
+<pre>&#160;% <b>snmpget test.net-snmp.org ucdDemoPublicString.0</b>
+ enterprises.ucdavis.ucdDemoMIB.ucdDemoMIBObjects.ucdDemoPublic.ucdDemoPublicString.2.0 = "I changed something"
+</pre>
+<h2><span class="mw-headline" id="Tutorial_Sections">Tutorial Sections</span></h2>
+<h3><span class="mw-headline" id="About_the_SNMP_Protocol">About the SNMP Protocol</span></h3>
+<p>These tutorial links talk about SNMP generically and how the protocol itself works.  They are good introductory reading material and the concepts are important to understand before diving into the later tutorials about Net-SNMP itself.
+</p>
+<ul><li> <a href="TUT_SNMP.html" title="TUT:SNMP"> How SNMP Works</a>: About the protocol itself (GETs, GETNEXTs, etc)</li>
+<li> <a href="TUT_MIBs.html" title="TUT:MIBs"> What data is in SNMP</a>: All about SNMP <i>Management Information Bases</i> (MIBs)</li>
+<li> <a href="TUT_Security.html" title="TUT:Security"> Securing SNMP</a>: How to use the SNMP protocol securely</li></ul>
+<h3><span class="mw-headline" id="Net-SNMP_Command_Line_Applications">Net-SNMP Command Line Applications</span></h3>
+<p>These tutorial pages discuss the command line tools provided in the Net-SNMP suite of tools.  Nearly all the example commands in these tutorials works if you try it yourself, as they're all examples that talk to our online Net-SNMP test agent.  Given them a shot!
+</p>
+<ul><li> <a href="TUT_snmptranslate.html" title="TUT:snmptranslate"> snmptranslate</a>: learning about the MIB tree.</li>
+<li> <a href="TUT_snmpget.html" title="TUT:snmpget"> snmpget</a>: retrieving data from a host.</li>
+<li> <a href="TUT_snmpgetnext.html" title="TUT:snmpgetnext"> snmpgetnext</a>: retrieving unknown indexed data.</li>
+<li> <a href="TUT_snmpwalk.html" title="TUT:snmpwalk"> snmpwalk</a>: retrieving lots of data at once!</li>
+<li> <a href="TUT_snmptable.html" title="TUT:snmptable"> snmptable</a>: displaying a table.</li>
+<li> <a href="TUT_snmpset.html" title="TUT:snmpset"> snmpset</a>: peforming write operations.</li>
+<li> <a href="TUT_snmpbulkget.html" title="TUT:snmpbulkget"> snmpbulkget</a>: communicates with a network entity using SNMP GETBULK request</li>
+<li> <a href="TUT_snmpbulkwalk.html" title="TUT:snmpbulkwalk"> snmpbulkwalk</a>: retrieve a sub-tree of management values using SNMP GETBULK requests.</li>
+<li> <a href="TUT_snmptrap.html" title="TUT:snmptrap"> snmptrap</a>: Sending and receiving traps, and acting upon them. 
+<ul><li> <a href="TUT_snmptrap_SNMPv3.html" title="TUT:snmptrap SNMPv3"> Traps/informs with SNMPv3/USM</a>: Sending and receiving SNMPv3/USM TRAPs and INFORMs</li>
+<li> <a href="TUT_agentxtrap.html" title="TUT:agentxtrap"> Sending Traps/Informs via AgentX</a>: Sending notifications from the command line through snmpd </li></ul></li>
+<li> Common command line options: 
+<ul><li> <a href="TUT_Using_and_loading_MIBS.html" title="TUT:Using and loading MIBS"> Using and loading MIBS</a></li>
+<li> <strong class="selflink"> SNMPv3/USM Options</strong></li>
+<li> <a href="TUT_Using_TLS.html" title="TUT:Using TLS"> Using SNMPv3 over TLS and DTLS</a></li>
+<li> <a href="TUT_Customized_Output_Formats.html" title="TUT:Customized Output Formats"> Customized Output Formats</a></li></ul></li>
+<li> <a href="TUT_mib2c_config_files.html" title="TUT:mib2c config files"> Writing mib2c config files </a></li></ul>
+<h3><span class="mw-headline" id="Application_Configuration">Application Configuration</span></h3>
+<p>All of our applications support configuration to allow you to customize how they behave.
+</p>
+<ul><li> <a href="TUT_Configuring_Net-SNMP_Applications.html" title="TUT:Configuring Net-SNMP Applications"> Configuration files for Net-SNMP applications</a></li></ul>
+<h3><span class="mw-headline" id="Net-SNMP_Daemons">Net-SNMP Daemons</span></h3>
+<p>Net-SNMP comes with two long-running daemons: a SNMP agent (<i><a href="Snmpd.html" title="Snmpd">snmpd</a></i>) for responding to management requests and a notification receiver (<i><a href="Snmptrapd.html" title="Snmptrapd">snmptrapd</a></i>) for receiving SNMP notifications.
+</p>
+<ul><li> SNMP Agent (snmpd) Configuration
+<ul><li> <a href="TUT_snmpd_configuration.html" title="TUT:snmpd configuration">Configuration Basics</a></li>
+<li> <a href="Vacm.html" title="Vacm"> Access Control (VACM)</a></li>
+<li> <a href="Snmpconf.html" title="Snmpconf">snmpconf</a></li></ul></li>
+<li> SNMP Notification Receiver (snmptrapd)
+<ul><li> <a href="TUT_Configuring_snmptrapd.html" title="TUT:Configuring snmptrapd">Configuring snmptrapd</a></li>
+<li> <a href="TUT_Configuring_snmptrapd_to_receive_SNMPv3_notifications.html" title="TUT:Configuring snmptrapd to receive SNMPv3 notifications">Configuring SNMPv3 notifications</a></li>
+<li> <a href="TUT_Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors.html" title="TUT:Configuring snmptrapd to parse MIBS from 3rd party Vendors">Configuring snmptrapd to understand vendor-specific MIBS (Cisco)</a></li></ul></li>
+<li> Agent Monitoring
+<ul><li> <a href="TUT_DisMan_Monitoring.html" title="TUT:DisMan Monitoring">DisMan Monitoring</a></li>
+<li> <a href="TUT_MRTG.html" title="TUT:MRTG">Monitoring with MRTG</a></li></ul></li></ul>
+<h3><span class="mw-headline" id="Coding_Tutorials">Coding Tutorials</span></h3>
+<p>Net-SNMP comes with a highly flexible and extensible API.  The API allows you to create your own commands, add extensions to the agent to support your own <a href="MIB.html" title="MIB">MIBs</a> and perform specialized processing of notifications.
+</p>
+<ul><li> Client / Manager Coding Tutorials
+<ul><li> <a href="TUT_Simple_Application.html" title="TUT:Simple Application">Writing a simple application</a></li>
+<li> <a href="TUT_Simple_Async_Application.html" title="TUT:Simple Async Application">Writing a simple asynchronous application</a></li></ul></li>
+<li> Agent Coding Tutorials
+<ul><li> The <a href="Agent_Architecture.html" title="Agent Architecture">Agent Architecture</a> page might be worth reading before or after the agent coding tutorials, and describes how the <a href="Agent_Helpers.html" title="Agent Helpers">Agent Helpers</a> work under the hood.</li>
+<li> <a href="TUT_Writing_a_MIB_Module.html" title="TUT:Writing a MIB Module"> Writing a mib module</a> to serve information described by an SNMP MIB, and how to compile it into the net-snmp snmpd agent.</li>
+<li> <a href="TUT_Writing_a_Dynamically_Loadable_Object.html" title="TUT:Writing a Dynamically Loadable Object"> Writing a Dynamically Loadable Object</a> that can be loaded into the SNMP agent.</li>
+<li> <a href="TUT_Writing_a_Subagent.html" title="TUT:Writing a Subagent"> Writing a Subagent</a> that can be run to attach to the snmpd master agent.</li>
+<li> <a href="Tut_Extending_snmpd_using_perl.html" title="Tut:Extending snmpd using perl"> Writing a perl plugin to extend the agent</a> using the NetSNMP::agent module.</li>
+<li> <a href="Tut_Extending_snmpd_using_shell_scripts.html" title="Tut:Extending snmpd using shell scripts"> Writing shell scripts to extend the agent</a></li>
+<li> Using mib2c to help write an agent code template for you
+<ul><li> <a href="TUT_mib2c_General_Overview.html" title="TUT:mib2c General Overview"> General mib2c Overview</a></li>
+<li> <a href="TUT_mib2c-update.html" title="TUT:mib2c-update"> Using the mib2c-update script to <i>recode</i> your code</a></li>
+<li> <a rel="nofollow" class="external text" href="../../tutorial/tutorial-5/toolkit/mfd/index.html">mib2c.mfd.conf tutorial</a></li></ul></li></ul></li>
+<li> <a href="TUT_Header_files.html" title="TUT:Header files">Header files and autoconf</a></li></ul>
+<h3><span class="mw-headline" id="Debugging_SNMP_Applications_and_Agents">Debugging SNMP Applications and Agents</span></h3>
+<p>All our tools and applications have extensive debugging output.  These tutorials talk about how the debugging system works and how you can add your own debugging statements to you code:
+</p>
+<ul><li> <a href="Debugging_output.html" title="Debugging output"> Debugging output printed using the -D command line option</a>
+<ul><li> <a href="DEBUGMSG.html" title="DEBUGMSG"> Putting DEBUGMSG tokens in your code</a></li></ul></li>
+<li> <a href="Debugging_packet_traces.html?title=Debugging_packet_traces&amp;action=edit&amp;redlink=1" class="new" title="Debugging packet traces (page does not exist)"> Using -Ddump to display packet breakdowns</a></li>
+<li> <a href="Debugger.html" title="Debugger">Debugging using GDB</a></li></ul>
+<h3><span class="mw-headline" id="Operating_System_Specific_Tutorials">Operating System Specific Tutorials</span></h3>
+<ul><li> Building With Visual Studio 2005 Express
+<ul><li> <a href="Using_the_command_line_and_nmake.html" title="Using the command line and nmake">Using the command line and nmake</a></li></ul></li>
+<li> Building Net-SNMP 64-bit with Visual C++ 2010 Express
+<ul><li> <a href="Using_the_command_line_and_nmake_(VC%2b%2b_2010_Express).html" title="Using the command line and nmake (VC++ 2010 Express)">Using the command line and nmake (VC++ 2010 Express)</a></li></ul></li>
+<li> <a href="Net-Snmp_on_Ubuntu.html" title="Net-Snmp on Ubuntu">Net-Snmp on Ubuntu</a></li>
+<li> <a href="Net-SNMP_and_lm-sensors_on_Ubuntu_10.html" title="Net-SNMP and lm-sensors on Ubuntu 10.04">Net-SNMP and lm-sensors on Ubuntu 10.04</a></li>
+<li> Net-SNMP for windows:
+<ul><li> How to install: <a rel="nofollow" class="external autonumber" href="http://www.netadmintools.com/art487.html">[1]</a></li>
+<li> How to configure: <a rel="nofollow" class="external autonumber" href="http://www.netadmintools.com/art488.html">[2]</a></li></ul></li></ul>
+
+<!-- 
+NewPP limit report
+Cached time: 20230912065449
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.025 seconds
+Real time usage: 0.031 seconds
+Preprocessor visited node count: 93/1000000
+Preprocessor generated node count: 170/1000000
+Post‐expand include size: 5741/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    3.593      1 - Template:TUT:LIST
+100.00%    3.593      1 - -total
+-->
+
+<!-- Saved in parser cache with key n12694_wikidb:pcache:idhash:1739-0!*!0!!en!*!* and timestamp 20230912065449 and revision id 5684
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="../index5238.html?title=TUT:SNMPv3_Options&amp;oldid=5684">http://www.net-snmp.org/wiki/index.php?title=TUT:SNMPv3_Options&amp;oldid=5684</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="TUT_SNMPv3_Options.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="Talk_TUT_SNMPv3_Options.html?title=Talk:TUT:SNMPv3_Options&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="../index8095.html?title=TUT:SNMPv3_Options&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="../index0e34.html?title=TUT:SNMPv3_Options&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="../index13b8.html?title=Special:UserLogin&amp;returnto=TUT%3ASNMPv3+Options&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="../index7d21.html?title=Special:UserLogin&amp;returnto=TUT%3ASNMPv3+Options" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/TUT_SNMPv3_Options.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/TUT_SNMPv3_Options.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="../index1997.html?title=TUT:SNMPv3_Options&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="../index5238.html?title=TUT:SNMPv3_Options&amp;oldid=5684" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="../index4cc0.html?title=TUT:SNMPv3_Options&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 11 March 2013, at 18:23.</li>
+									<li id="privacy"><a href="Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":169});
+} );</script></body><!-- Cached 20230912065449 -->
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/TUT:SNMPv3_Options by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 17:58:02 GMT -->
+</html>

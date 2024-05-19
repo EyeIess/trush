@@ -1,0 +1,326 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-4/agent/CheckList.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:17:02 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../../print1.css" />
+  </head>
+  <body background="../../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../../index.html">About</a><br />
+        
+
+        <a href="../../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../tutorial-5/index.html"
+                  title="Net-SNMP v5 tutorial">Version 5.x</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../index.html"
+                  title="UCD-SNMP v4 tutorial">Version 4.x</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../../../docs/readmefiles.html">Documentation</a><br />
+        
+
+        <a href="../../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../../../dev/projects.html">Development</a><br />
+        
+
+        <a href="../../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+<HTML>
+<HEAD>
+<TITLE>Checklist for adding a MIB module to the UCD-SNMP agent</TITLE>
+</HEAD>
+<BODY>
+<H1>Checklist for adding a MIB module to the UCD-SNMP agent</H1>
+
+We're often asked how to add a MIB implementation module
+(e.g. as produced by <TT>mib2c</TT>) to the agent, and check
+that it's working.
+The following is a step-by-step guide to the process,
+with frequent checks to confirm that things have been
+successful.
+<P>
+Please note that if, at any point, a particular check fails
+to return the results expected you should <B><I>not</I></B>
+proceed with the next stage.  Instead you should try and
+identify what went wrong since the previous (successful)
+check, and fix it.
+<P>
+Note further that the various names (MIB files, modules, objects
+and numeric OIDs) are examples only.  You should replace them with
+the appropriate names for the MIB module you are implementing.
+Such names will be given in <I>italics</I> in the examples.
+
+<H2>Checklist</H2>
+<OL>
+<LI> Remove any old copies of the source tree that you might have,
+     and unpack a new, clean copy from the tarball.
+     <BR>
+     <I>(This isn't strictly necessary, but is a useful step to
+         avoid earlier attempts getting in the way)</I>
+     <P>
+
+<LI> Copy the two files produced by <TT>mib2c</TT> into the
+     directory <TT>agent/mibgroup</TT> in this clean tree:
+     <PRE>
+          $ cd ~/ucd-snmp-4.2.1
+               <I>or wherever the tarball was unpacked to</I>
+          $ cd agent/mibgroup
+          $ cp ~/<I>mymib</I>.[ch] <B>.</B>
+               <I>or wherever the files were generated</I>
+     </PRE>
+
+<LI> Configure the source code to include your new MIB module:
+     <PRE>
+          $ cd ../..
+          $ ./configure --with-mib-modules=<I>mymib</I>
+     </PRE>
+
+			<UL>
+			<LI><B><I>Check 1</I></B><BR>
+			       Does the file <TT>agent/Makefile</TT>
+			       contain a reference to <I>mymib</I>?
+			</UL>
+			<P>
+
+<LI> Compile the suite (<TT>make</TT>) but don't install it yet.
+
+			<P>
+			<UL>
+			<LI><B><I>Check 2</I></B><BR>
+			       Is there now a file
+			       <TT>agent/mibgroup/<I>mymib</I>.o</TT>?
+			</UL>
+			<P>
+
+<LI> Run the newly-compiled agent in a 'testing' mode:
+     <PRE>
+          $ agent/snmpd -f -L -d -p 9999
+     </PRE>
+     <I>(This runs the agent on a temporary port (<TT> -p 9999</TT>)
+         so that it doesn't need special priviledges, or interfere
+         with your 'normal' agent.
+         Incoming and outgoing packets are printed (<TT>-d</TT>),
+         to show what's happening, and the agent is run as a 'non-daemon'
+         command (<TT>-f -L</TT>) so that you can see these messages.
+         Note that this ties up the current shell, so you'll need to
+         run the following checks in a different terminal window.)</I>.
+
+			<P>
+			<UL>
+			<LI><B><I>Check 3a</I></B><BR>
+			       Does the agent respond to requests?
+     <PRE>
+          $ snmpgetnext -p 9999 localhost public system
+	  system.sysDescr.0 = <I>something or other</I>
+     </PRE>
+
+			</UL>
+			<P>
+			<UL>
+			<LI><B><I>Check 3b</I></B><BR>
+			       Does the agent respond to requests
+			       for objects in your new module?
+     <PRE>
+          $ snmpgetnext -p 9999 localhost public <I>.1.3.6.1.4.1.9999</I>
+	  <I>.1.3.6.1.4.1.9999.1.1.0 = something or other</I>
+     </PRE>
+     <I>(Replace this OID with the OID at the top of the subtree that
+         you're implementing in this module.)</I>
+			</UL>
+			<P>
+			<UL>
+			<LI><B><I>Check 3c</I></B><BR>
+			       Can the tools parse the MIB file?
+     <PRE>
+          $ snmpgetnext -OS -p 9999 localhost public <I>MY-MIB::myObject</I>
+	  <I>MY-MIB::myObject.0 = something or other</I>
+     </PRE>
+     <I>(Replace the module name with the name of the MIB module you are
+         implementing, and the object name with the name of one of the
+         objects in this module.)</I>
+			</UL>
+			<P>
+
+<LI> Kill the 'test' agent.  (Ctrl-C should do it).
+
+<LI> Install the agent.  (<TT>make install</TT>).
+
+			<P>
+			<UL>
+			<LI><B><I>Check 4</I></B><BR>
+                               Does the newly installed agent have the
+                               correct (i.e. recent) timestamp?
+     <PRE>
+          $ ls -l <I>/usr/local/sbin/snmpd</I>
+     </PRE>
+     <I>(This is the most likely location for the new agent.  But use
+     whatever was reported as part of the <TT>make install</TT> output).</I>
+			</UL>
+			<P>
+
+<LI> Run the newly-installed agent in a 'testing' mode, as before.
+     <PRE>
+          $ /usr/local/sbin/snmpd -f -L -d -p 9999
+     </PRE>
+			<P>
+			<UL>
+			<LI><B><I>Check 5</I></B><BR>
+                               Repeat Checks 3a, 3b and 3c
+			</UL>
+</OL>
+
+If all this succeeds, your newly installed agent appears to be working
+correctly.  
+It's probably safe to consider running this new agent instead of the one
+that comes with your distribution (if this is what you want to do).
+
+</BODY>
+
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-4/agent/CheckList.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:17:02 GMT -->
+</HTML>
+[an error occurred while processing this directive]
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+</html>
+
+
+

@@ -1,0 +1,318 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:snmpgetnext&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:21:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>View source for TUT:snmpgetnext - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"TUT:snmpgetnext","wgTitle":"TUT:snmpgetnext","wgCurRevisionId":5696,"wgRevisionId":0,"wgArticleId":1732,"wgIsArticle":!1,"wgIsRedirect":!1,"wgAction":"edit","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!0,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"TUT:snmpgetnext","wgRelevantArticleId":1732,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-TUT_snmpgetnext skin-monobook action-edit">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">View source for TUT:snmpgetnext</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub">← <a href="http://www.net-snmp.org/wiki/index.php/TUT:snmpgetnext" title="TUT:snmpgetnext">TUT:snmpgetnext</a></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text"><p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://www.net-snmp.org/wiki/index.php?title=Net-SNMP_Wiki:Users&amp;action=edit&amp;redlink=1" class="new" title="Net-SNMP Wiki:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<hr />
+<p>You can view and copy the source of this page.
+</p><textarea readonly="" accesskey="," id="wpTextbox1" cols="80" rows="25" style="" lang="en" dir="ltr" name="wpTextbox1">The other main SNMP operation for retrieving information is the [[GETNEXT]] request - a "fuzzy-matching" version of GET, and is implemented by the [[snmpgetnext]] tool.
+
+== Basic Example ==
+
+With the &lt;tt>snmpget&lt;/tt> command, the agent returns the value associated with the OID (or OIDs) specified in the original request.  The &lt;tt>snmpgetnext&lt;/tt> command is similar, but the agent returns the value associated with the '''next''' (valid) OID:
+
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org SNMPv2-MIB::sysUpTime.0
+    SNMPv2-MIB::sysContact.0 = Wes Hardaker wjhardaker@ucdavis.edu
+
+    % snmptranslate -On SNMPv2-MIB::sysUpTime.0 SNMPv2-MIB::sysContact.0
+    .1.3.6.1.2.1.1.3.0
+    .1.3.6.1.2.1.1.4.0
+
+
+At first sight, this might seem an odd thing to do, but it is actually extremely useful,
+and GETNEXT is probably more widely used than GET.
+
+Note that most of the contents of the [[TUT:snmpget|snmpget tutorial]] page apply to &lt;tt>snmpgetnext&lt;/tt> as well.  This tutorial will concentrate on the differences that are specific to the GETNEXT operation.
+
+== OID Completion ==
+
+One way to use this request is by providing an incomplete OID - perhaps omitting the instance subidentifier, or giving an "internal" MIB object.  The agent will determine the next complete instance, and return that OID together with the corresponding value:
+
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org sysUpTime
+    SNMPv2-MIB::sysUpTime.0 = Timeticks: (586978184) 67 days, 22:29:41.84&lt;BR>
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org system
+    SNMPv2-MIB::sysDescr.0 = HP-UX net-snmp B.10.20 A 9000/715&lt;BR>
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org .1.3.6
+    SNMPv2-MIB::sysDescr.0 = HP-UX net-snmp B.10.20 A 9000/715
+
+
+This is particularly useful with MIB tables, where it may not be obvious what index values are valid.  By issuing a GETNEXT request with the bare MIB name of one of the columns, the agent will return that entry from the first row of the table:
+
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org tcpConnState
+    TCP-MIB::tcpConnState.0.0.0.0.25.0.0.0.0.0 = INTEGER: 2
+
+It's also possible to provide a partial index, and have the agent complete it:
+
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org tcpConnState.127.0.0.1
+    TCP-MIB::tcpConnState.127.0.0.1.631.0.0.0.0.0 = INTEGER: 2
+
+
+== Walking a MIB ==
+
+Another way of using the GETNEXT operation is to issue a series of such requests, with each one using the OID from the previous result.  This has the effect of "walking" through the MIB:
+
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org sysUpTime.0
+    SNMPv2-MIB::sysContact.0 = Wes Hardaker wjhardaker@ucdavis.edu&lt;BR>
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org sysContact.0
+    SNMPv2-MIB::sysName.0 = net-snmp&lt;BR>
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org sysName.0
+    SNMPv2-MIB::sysLocation.0 = UCDavis
+
+Again, this technique is particularly useful with MIB tables, where it will walk through successive rows of the table:
+
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org sysORDescr
+    SNMPv2-MIB::sysORDescr.1 = STRING: The MIB module for SNMPv2 entities&lt;BR>
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org sysORDescr.1
+    SNMPv2-MIB::sysORDescr.2 = STRING: The MIB module to describe generic objects for network interface sub-layers&lt;BR>
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org sysORDescr.2
+    SNMPv2-MIB::sysORDescr.4 = STRING: The MIB module for managing IP and ICMP implementations
+
+Note that this works even if the indexes are not consecutive.
+However, the GETNEXT operation does not stop at the end of a table column (or even at the end of the whole table).  If you issue a GETNEXT request on the last instance in a table column (or an index value greater than the last row of the table), then the agent will still return the next valid instance - typically the value of the next column from the first row of the table:
+
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org sysORDescr.99
+    SNMPv2-MIB::sysORUpTime.1 = Timeticks: (82) 0:00:00.82
+
+or possibly the first instance from a completely different area of the MIB altogether:
+
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org sysORUpTime.99
+    IF-MIB::ifNumber.0 = INTEGER: 3
+
+It's up to the client application (or person) making the request to recognise when this happens, and not to continue walking the MIB (unless that is explicitly what is required).  The [[TUT:snmpwalk|snmpwalk]] command has been designed to do precisely this task.
+
+
+== Multiple Values ==
+
+Just as with [[TUT:snmpget|snmpget]], it's also possible to run a single GETNEXT request with several OIDs, and it will retrieve the next valid instance for each of these:
+
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org sysUpTime system
+    SNMPv2-MIB::sysUpTime.0 = Timeticks: (586978184) 67 days, 22:29:41.84
+    SNMPv2-MIB::sysDescr.0 = HP-UX net-snmp B.10.20 A 9000/715
+
+Once again, this is particularly useful with columns of a table, as it can be used to walk through the table one row at a time:
+
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org sysORDescr sysORID sysORUpTime
+    SNMPv2-MIB::sysORDescr.1  = STRING: The Mib module for SNMPv2 entities
+    SNMPv2-MIB::sysORID.1     = SNMPv2-MIB::snmpMIB 
+    SNMPv2-MIB::sysORUpTime.1 = Timeticks: (82) 0:00:00.82&lt;BR>
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org sysORDescr.1 sysORID.1 sysORUpTime.1
+    SNMPv2-MIB::sysORDescr.2  = STRING: The MIB module to describe generic objects for network interface sub-layers
+    SNMPv2-MIB::sysORID.2     = IF-MIB::ifMIB
+    SNMPv2-MIB::sysORUpTime.2 = Timeticks: (81) 0:00:00.81
+       ''etc''
+
+This is basically the purpose of the [[TUT:snmptable|snmptable]] command.
+
+One thing to be aware of is that there may potentially be "holes" in the table,
+where a particular column does not have a value in every row.  The GETNEXT request will step over these missing values, and return the value of that column from the next row where it ''does'' exist.  The next iteration would need to adjust to this if the walk is to keep stepping through a row at a time:
+
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org sysORDescr.2 sysORID.2 sysORUpTime.2
+    '''SNMPv2-MIB::sysORDescr.5'''  = STRING: The MIB module for managing UDP implementations
+    SNMPv2-MIB::sysORID.4     = IP-MIB::ip
+    SNMPv2-MIB::sysORUpTime.4 = Timeticks: (83) 0:00:00.83&lt;BR>
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org '''sysORDescr.4''' sysORID.4 sysORUpTime.4
+    SNMPv2-MIB::sysORDescr.5  = STRING: The MIB module for managing UDP implementations
+    SNMPv2-MIB::sysORID.5     = UDP-MIB::udpMIB
+    SNMPv2-MIB::sysORUpTime.5 = Timeticks: (82) 0:00:00.82
+
+This is an artificial example, in that an SNMP agent would be very unlikely to omit this description string. But it serves to illustrate the basic idea.
+
+
+== Failed Requests ==
+
+If a GETNEXT request is given the very last valid instance (or an OID later than this), then the agent needs to indicate that there are no further values to retrieve.  With SNMPv1, this uses the same error as a GET request for a non-existant OID:
+
+    % snmpgetnext -v 1 -c demopublic test.net-snmp.org .2.0.9999
+    Error in packet.
+    Reason: (noSuchName) There is no such variable name in this MIB.
+    Failed object: joint-iso-ccitt.0.9999
+
+SNMPv2c and SNMPv3 appear similar, but use a different exception to indicate this situation:
+
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org .2.0.9999
+    joint-iso-ccitt.0.9999 = No more variables left in this MIB View (It is past the end of the MIB tree)
+
+As with the GET requests, the difference between these versions really becomes apparent when one OID fails in a multi-OID GETNEXT request:
+
+    % snmpgetnext -Cf -v 1 -c demopublic test.net-snmp.org .2.0.9999 system
+    Error in packet.
+    Reason: (noSuchName) There is no such variable name in this MIB.
+    Failed object: joint-iso-ccitt.0.9999&lt;BR>
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org .2.0.9999 system
+    joint-iso-ccitt.0.9999 = No more variables left in this MIB View (It is past the end of the MIB tree)
+    SNMPv2-MIB::sysDescr.0 = HP-UX net-snmp B.10.20 A 9000/715
+
+
+== Unsupported MIB Objects ==
+
+One other thing to be aware of is that it is the ''agent'' which determines what OID should be returned, not the client application.  If the agent does not happen to implement a particular MIB object (or group of objects) that the client knows about, then the agent will return the next OID that it '''does''' implement, even if this is not an entry that was actually required:
+
+    % snmpgetnext -v 2c -c demopublic test.net-snmp.org enterprises.hp
+    UCD-SNMP-MIB::memIndex.0 = INTEGER: 0
+
+The same holds if the agent is configured to only reveal a subset of the full MIB.  Any objects that are outside the authorised view will be skipped, as if they had not been implemented at all.
+
+&lt;hr>
+
+{{TUT:LIST}}
+</textarea><div class="templatesUsed"><div class="mw-templatesUsedExplanation"><p>Template used on this page:
+</p></div><ul>
+<li><a href="http://www.net-snmp.org/wiki/index.php/Template:TUT:LIST" title="Template:TUT:LIST">Template:TUT:LIST</a> (<a href="http://www.net-snmp.org/wiki/index.php?title=Template:TUT:LIST&amp;action=edit" title="Template:TUT:LIST">view source</a>) </li></ul></div><p id="mw-returnto">Return to <a href="http://www.net-snmp.org/wiki/index.php/TUT:snmpgetnext" title="TUT:snmpgetnext">TUT:snmpgetnext</a>.</p>
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php/TUT:snmpgetnext">http://www.net-snmp.org/wiki/index.php/TUT:snmpgetnext</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/TUT:snmpgetnext" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="http://www.net-snmp.org/wiki/index.php?title=Talk:TUT:snmpgetnext&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource" class="selected"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:snmpgetnext&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:snmpgetnext&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3Asnmpgetnext&amp;returntoquery=action%3Dedit&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3Asnmpgetnext&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/TUT:snmpgetnext" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/TUT:snmpgetnext" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:snmpgetnext&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.edit.collapsibleFooter","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":472});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:snmpgetnext&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:21:12 GMT -->
+</html>

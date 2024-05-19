@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Using_and_loading_MIBS&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:22:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>View source for TUT:Using and loading MIBS - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"TUT:Using_and_loading_MIBS","wgTitle":"TUT:Using and loading MIBS","wgCurRevisionId":5907,"wgRevisionId":0,"wgArticleId":1738,"wgIsArticle":!1,"wgIsRedirect":!1,"wgAction":"edit","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!0,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"TUT:Using_and_loading_MIBS","wgRelevantArticleId":1738,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-TUT_Using_and_loading_MIBS skin-monobook action-edit">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">View source for TUT:Using and loading MIBS</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub">← <a href="http://www.net-snmp.org/wiki/index.php/TUT:Using_and_loading_MIBS" title="TUT:Using and loading MIBS">TUT:Using and loading MIBS</a></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text"><p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://www.net-snmp.org/wiki/index.php?title=Net-SNMP_Wiki:Users&amp;action=edit&amp;redlink=1" class="new" title="Net-SNMP Wiki:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<hr />
+<p>You can view and copy the source of this page.
+</p><textarea readonly="" accesskey="," id="wpTextbox1" cols="80" rows="25" style="" lang="en" dir="ltr" name="wpTextbox1">== Using local MIBs ==
+
+The net-snmp tools can translate numeric object identifies
+(OIDs) into textual object identifiers using the MIB description
+files.  The net-snmp toolkit provides a few of the standard
+MIBs, but certainly doesn't contain all the MIBs known to man.
+
+First off, you should know about the paths that the tools load
+MIBs from.  By default, it loads things from the following list
+of directories:
+
+# $HOME/.snmp/mibs
+# /usr/local/share/snmp/mibs
+
+Note that many distributions change the default paths. To find out
+which directories are used on your system, run the following command:
+
+ net-snmp-config --default-mibdirs
+
+(if that doesn't work because your distribution didn't repackage net-snmp-config you can use this instead:)
+
+ snmptranslate -Dinit_mib .1.3 2>&amp;1 |grep MIBDIR
+
+So, lets say you have a MIB called
+[ftp://ftp.cisco.com/pub/mibs/v2/CISCO-RHINO-MIB.my  CISCO-RHINO-MIB]
+that you want parsed (it really exists, and I particularly liked
+the name so I'm using it in the tutorial).  Place the file in
+one of the above two directories.  If you pulled it from another
+file (like an RFC), make sure it doesn't contain anything
+non-MIB related (like the text leading up to it, and the page
+separators).  The very first line in the file should begin with
+something like "CISCO-RHINO-MIB DEFINITIONS ::= BEGIN", and the
+very last line of the file should be "END"
+
+Now, pick a node in the file that you want to translate that
+currently isn't being translated.  From the CISCO-RHINO-MIB, I'll
+pick the &lt;i>ciscoLS1010ChassisFanLed&lt;/i> node.
+
+First, lets verify that our handy snmptranslate command
+(discussed [[TUT:snmptranslate|snmptranslate]]) doesn't
+yet know about this node:
+
+  % '''snmptranslate -IR -On ciscoLS1010ChassisFanLed'''
+  Unknown object identifier: ciscoLS1010ChassisFanLed
+
+Nope, it doesn't.  So, first we need to download the [ftp://ftp.cisco.com/pub/mibs/v2/CISCO-RHINO-MIB.my  CISCO-RHINO-MIB]
+file and place it in a directory that our snmp tools can find it
+in.  So, I'm going to place the file in $HOME/.snmp/mibs.
+
+Now, lets use the ''-m'' flag to snmptranslate to tell it to
+load that mib.  We'll use ''"-m +CISCO-RHINO-MIB"'' to indicate that
+we want the tool to load not only the default set of mibs, but the
+CISCO-RHINO-MIB as well (the leading '+' plus means "also").
+
+  '''% snmptranslate -m +CISCO-RHINO-MIB -IR -On ciscoLS1010ChassisFanLed'''
+  Cannot find module (CISCO-SMI): At line 31 in $HOME/.snmp/mibs/CISCO-RHINO-MIB.my
+  Unlinked OID in CISCO-RHINO-MIB: ciscoLS1010ChassisMIB ::= { workgroup 11 }
+  Cannot adopt OID in CISCO-RHINO-MIB: ciscoAtmSwitchInvalidCellHeader ::= { ciscoAtmSwitchInvalidCellHeaderEntry 2 }
+  ''... rest of output truncated ...&lt;/i>''
+
+Wait a minute...  What the heck is all that stuff?  Errors!  Well,
+the first line is the most important and it's telling us that we're
+missing the CISCO-SMI MIB as well.  So, if we go
+[ftp://ftp.cisco.com/pub/mibs/v2/CISCO-SMI.my  download that MIB file]
+and place it in our $HOME/.snmp/mibs directory as
+well the command should suddenly work:
+
+  % '''snmptranslate -m +CISCO-RHINO-MIB -IR -On ciscoLS1010ChassisFanLed'''
+  .1.3.6.1.4.1.9.5.11.1.1.12
+
+'''Success!'''
+
+One last comment: You can also force loading of a given MIB and
+its node in one fell swoop (and this method is the one most highly
+recommended by Niels Baggesen, one of our primary core
+developers):
+
+  % '''snmptranslate -On CISCO-RHINO-MIB::ciscoLS1010ChassisFanLed'''
+  .1.3.6.1.4.1.9.5.11.1.1.12
+
+So, there you have it.  A complete example for how to get your
+own ''insert-spiffy-mib-here'' loaded into the net-snmp tools.
+
+
+=== Yes, but how do I make it happen all the time? ===
+
+Good question.  And of course, we have multiple options for you.
+We support a number of ways of doing this.
+
+
+* First, you can put the following lines in a snmp.conf file.  This file can be placed in the system-wide configuration location (EG, ''/usr/local/share/snmp.conf'') or in a personal file (EG, $HOME/.snmp/snmp.conf).  The system-wide configuration file location will depend on how Net-SNMP was built on your system.  Run '''net-snmp-config --snmpconfpath''' to display the list of paths.
+
+  mibs +CISCO-RHINO-MIB
+  mibs +SOME-OTHER-SPIFFY-MIB
+
+* You can also use the MIBS environment variable to specify things (example assumes a /bin/sh style shell):
+
+  MIBS=+CISCO-RHINO-MIB:SOME-OTHER-SPIFFY-MIB
+  export MIBS
+
+* For the brave you can load all MIB files in your system-wide location - This can save you time, but may give you errors as shown below.
+
+To snmp.conf:  
+  
+  mibs +ALL
+
+And to run it: 
+  
+  '''% snmpwalk -v2c -c public 192.168.1.100'''
+  Warning: Module MAU-MIB was in /usr/share/snmp/mibs//DOT3-MAU-MIB.txt now is /usr/share/snmp/mibs//RFC2668-MIB.txt
+  Warning: Module DISMAN-EVENT-MIB was in /usr/share/snmp/mibs//EVENT-MIB.txt now is /usr/share/snmp/mibs//DISMAN-EVENT-MIB.txt
+  Warning: Module P-BRIDGE-MIB was in /usr/share/snmp/mibs//P-BRIDGE-MIB.txt now is /usr/share/snmp/mibs//P-BRIDGE.txt
+
+Although, with enabling so many SNMP MIBs at once comes a consequence as seen above.  Pipe the stderr to null for cleaner output.
+
+  '''% snmpwalk -v2c -c public 192.168.1.100 2>/dev/null'''
+  SNMPv2-MIB::sysDescr.0 = STRING: Linux server1 2.4.34-pre2 #170 Fri Sep 15 20:10:21 CEST 2006 mips
+  SNMPv2-MIB::sysObjectID.0 = OID: NET-SNMP-TC::linux
+  DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (706980) 1:57:49.80
+
+==== Ethereal/Wireshark Notes ====
+
+Note to [http://www.wireshark.org/ Wireshark] users (previously known as ''Ethereal''):
+
+You must use one of these methods in this section for Wireshark
+since it won't support the -m and -M options discussed previously.
+
+== See Also ==
+
+Please note the following sections of the FAQ as well:
+* [http://www.net-snmp.org/FAQ.html#How_do_I_add_a_MIB_ How do I add a MIB]
+* [http://www.net-snmp.org/FAQ.html#How_do_I_add_a_MIB_to_the_tools_ How do I add a MIB to the tools?]
+* [http://www.net-snmp.org/FAQ.html#I_m_getting_answers__but_they_re_all_numbers__Why_ I'm getting answers, but they're all numbers. Why?]
+* ... (Read the entire [http://www.net-snmp.org/FAQ.html FAQ] Please!)
+* [[Writing your own MIBs]]
+
+{{TUT:LIST}}
+</textarea><div class="templatesUsed"><div class="mw-templatesUsedExplanation"><p>Template used on this page:
+</p></div><ul>
+<li><a href="http://www.net-snmp.org/wiki/index.php/Template:TUT:LIST" title="Template:TUT:LIST">Template:TUT:LIST</a> (<a href="http://www.net-snmp.org/wiki/index.php?title=Template:TUT:LIST&amp;action=edit" title="Template:TUT:LIST">view source</a>) </li></ul></div><p id="mw-returnto">Return to <a href="http://www.net-snmp.org/wiki/index.php/TUT:Using_and_loading_MIBS" title="TUT:Using and loading MIBS">TUT:Using and loading MIBS</a>.</p>
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php/TUT:Using_and_loading_MIBS">http://www.net-snmp.org/wiki/index.php/TUT:Using_and_loading_MIBS</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/TUT:Using_and_loading_MIBS" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk"><a href="http://www.net-snmp.org/wiki/index.php/Talk:TUT:Using_and_loading_MIBS" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource" class="selected"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Using_and_loading_MIBS&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Using_and_loading_MIBS&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3AUsing+and+loading+MIBS&amp;returntoquery=action%3Dedit&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3AUsing+and+loading+MIBS&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/TUT:Using_and_loading_MIBS" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/TUT:Using_and_loading_MIBS" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Using_and_loading_MIBS&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.edit.collapsibleFooter","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":179});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Using_and_loading_MIBS&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:22:16 GMT -->
+</html>

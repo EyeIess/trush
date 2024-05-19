@@ -1,0 +1,717 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/Tut:Extending_snmpd_using_perl by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:01:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Tut:Extending snmpd using perl - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Tut:Extending_snmpd_using_perl","wgTitle":"Tut:Extending snmpd using perl","wgCurRevisionId":5891,"wgRevisionId":5891,"wgArticleId":1755,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Tut:Extending_snmpd_using_perl","wgRelevantArticleId":1755,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="../load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="../load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<link rel="shortcut icon" href="../../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="../opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://net-snmp.sourceforge.net/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="../apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Tut_Extending_snmpd_using_perl skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Tut:Extending snmpd using perl</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>This tutorial is intended as a brief introduction to the technique of
+embedding perl code within the <i>snmpd</i> agent (similar to how <i>mod_perl</i>
+support allows you to embed perl directly into the apache web server). 
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Embedded_perl"><span class="tocnumber">1</span> <span class="toctext">Embedded perl</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Simple_Example"><span class="tocnumber">1.1</span> <span class="toctext">Simple Example</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Variables"><span class="tocnumber">1.2</span> <span class="toctext">Variables</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Initialisation"><span class="tocnumber">1.3</span> <span class="toctext">Initialisation</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Embedded_Agent_modules"><span class="tocnumber">2</span> <span class="toctext">Embedded Agent modules</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Agent_framework"><span class="tocnumber">2.1</span> <span class="toctext">Agent framework</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#GET_requests"><span class="tocnumber">2.2</span> <span class="toctext">GET requests</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#GETNEXT_requests"><span class="tocnumber">2.3</span> <span class="toctext">GETNEXT requests</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#SET_requests"><span class="tocnumber">2.4</span> <span class="toctext">SET requests</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Scalar_objects"><span class="tocnumber">2.5</span> <span class="toctext">Scalar objects</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Tables"><span class="tocnumber">2.6</span> <span class="toctext">Tables</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Parameters_revisited"><span class="tocnumber">2.7</span> <span class="toctext">Parameters revisited</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#Third_party_examples"><span class="tocnumber">3</span> <span class="toctext">Third party examples</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#OXO_Example"><span class="tocnumber">4</span> <span class="toctext">OXO Example</span></a>
+<ul>
+<li class="toclevel-2 tocsection-15"><a href="#MODE_GET"><span class="tocnumber">4.1</span> <span class="toctext">MODE_GET</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#MODE_GETNEXT"><span class="tocnumber">4.2</span> <span class="toctext">MODE_GETNEXT</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Input_CSV"><span class="tocnumber">4.3</span> <span class="toctext">Input CSV</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#For_example"><span class="tocnumber">4.4</span> <span class="toctext">For example</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#.22Code.22_:_perl_do"><span class="tocnumber">4.5</span> <span class="toctext">"Code"&#160;: perl do</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-20"><a href="#Conclusion"><span class="tocnumber">5</span> <span class="toctext">Conclusion</span></a></li>
+</ul>
+</div>
+
+<h1><span class="mw-headline" id="Embedded_perl">Embedded perl</span></h1>
+<p>In order to use embedded perl within the agent, the package must have
+been configured with this facility enabled:
+</p>
+<pre>   configure  --enable-embedded-perl  .....
+</pre>
+<p>Prior to release 5.4, this must be done explicitly when compiling the
+code.  From 5.4 onwards, this is enabled by default.
+</p><p><b>Note:  If you get the error 'Can't locate ExtUtils/Embed.pm', make sure ExtUtils-Embed is installed.  Fedora users can install the package 'perl-ExtUtils-Embed'.</b>
+</p><p>This mechanism allows you to include perl code within the snmpd.conf file,
+using the basic syntax
+</p>
+<pre>   perl  <i>statements</i>;
+</pre>
+<h2><span class="mw-headline" id="Simple_Example">Simple Example</span></h2>
+<p>The traditional simple example would be the following <code>snmpd.conf</code> fragment
+</p>
+<pre>   perl  print "Hello, world!\n";
+</pre>
+<p>Obviously, this can only server as a very basic example in the context of an SNMP agent.
+</p><p><b>Note:  If you get the error 'embedded perl support failed to initalize', make sure NetSNMP::agent is installed.  Fedora and CentOS users can install the package 'net-snmp-perl'.</b>
+</p><p><i>&lt;tasks&gt;</i>
+[ ] Provide workable simple examples of embedded perl - e.g. control of normal snmpd.conf directives
+&lt;/tasks&gt;
+
+</p><p>The most common form of embedding Perl modules is to include an external Perl module:
+</p>
+<pre>   perl  do  "/path/to/external/file.pl";
+</pre>
+<p>The Perl <code>do</code> function will look for the file using <code>@INC</code> if it is not an absolute path. It will then read and parse the contents of that file, executing the global scope. The global <code>%INC</code> will also be updated. That file therefore doesn't need to be executable.
+</p><p>A much cleaner and more Perl-like solution would be the use of a "real" Perl module:
+</p>
+<pre>   perl  require Foo::Bar; Foo::Bar-&gt;init (file =&gt; "/path/to/somewhere", debug =&gt; 1);
+</pre>
+<p>For more information on the behavior of <code>do</code> and <code>require</code>, see the Perl documentation at:
+</p>
+<pre>$ perldoc -f do
+$ perldoc -f require
+</pre>
+<h2><span class="mw-headline" id="Variables">Variables</span></h2>
+<p>There are a few things to be aware of with regard to the handling of
+variables in embedded perl code.
+</p><p>Firstly, the "do file.pl" mechanism is not the same as invoking a perl
+program from the command line.  It just takes the name of the file to
+run - not a command plus parameters.   So the snmpd.conf fragment
+</p>
+<pre>   perl  do  "file.pl one two";
+</pre>
+<p>won't work as you might expect.
+(It's actually looking for a file called <i>file.pl one two</i>, which
+almost certainly doesn't exist!)
+</p><p>However it is possible to mimic the behaviour of parameters by defining
+variables in the perl statement, and then referring to these variables
+in the external file:
+</p>
+<pre>   perl  $argv1="one";  $argv2="two";  do "file.pl";
+</pre>
+<p><br />
+Secondly, the various <code>perl</code> statements are executed in
+order, so the fragment above could equally be represented as
+</p>
+<pre>   perl  $argv1="one";
+   perl  $argv2="two";
+   perl  do "file.pl";
+</pre>
+<p><i>&lt;tasks&gt;</i>
+[ ] Is this true??
+[ ] Check the variable scoping behaviour
+&lt;/tasks&gt;
+</p><p><br />
+</p><p>But the following doesn't work&#160;:(<br />
+- and will be a problem for the handler subroutine you will read about in a bit.<br />
+If you are using $a in a subroutine, $a = 2 will be for both instances (the second instance has overwritten the $a = 1 with $a = 2).<br />
+</p>
+<pre>
+perl $a=1; $b=1; do "perl.pl" 
+perl $a=2; $b=1; do "perl.pl" 
+</pre>
+<p>So watch out when passing parameters&#160;:)
+</p><p>But the problem goes further ... 
+</p><p>Using $debugging=1?<br />
+But if you have two programs and define $debugging=1 outside of the handler subroutine, then it will affect any other programs that have defined $debugging...<br />
+</p><p>And what if one defines a subroutine, say 'helpfull' in more than one program: which one get's called by the handler subroutine...<br />
+- correct, the wrong one.
+</p>
+<h2><span class="mw-headline" id="Initialisation">Initialisation</span></h2>
+<p>If embedded perl support is enabled, then immediately before executing
+the first <code>perl</code> directive, the agent will execute the code
+in the file <code>/usr/share/snmp/snmp_perl.pl</code>.  By default,
+this contains the following:
+</p>
+<pre>
+##
+## SNMPD perl initialization file.
+##
+
+use NetSNMP::agent;
+$agent = new NetSNMP::agent('dont_init_agent' =&gt; 1,
+                            'dont_init_lib' =&gt; 1);
+</pre>
+<p>The location of this initialisation file can be changed using the
+snmpd.conf token <code>perlInitFile</code>, and embedded perl
+support can be turned off completely using the directive
+</p>
+<pre>   disablePerl  true
+</pre>
+<p>Question: 
+</p>
+<ul><li> one could write everything in snmp_perl.pl, but lets just make our own "do" for the time being.</li>
+<li> why is it there</li></ul>
+<h1><span class="mw-headline" id="Embedded_Agent_modules">Embedded Agent modules</span></h1>
+<p>One of the most important uses of embedded perl is to implement a MIB module
+within the agent, using perl code (rather than a C code module).
+Elements of this are covered in the <a rel="nofollow" class="external autonumber" href="../../tutorial/tutorial-5/toolkit/perl/perl_module.html">[1]</a> tutorial page.
+</p><p>This code can be used as a perl SNMP agent, perl subagent, or sourced directly within a agent containing embedded perl support. To make it work directly within your agent, save
+this file somewhere on your local system, and use the following snmpd.conf fragment:
+</p>
+<pre>   perl do "/path/to/perl_module.pl";
+</pre>
+<p><i>&lt;tasks&gt;</i>
+[ ] Does this work as it stands, or are there any tweaks needed to the code?
+&lt;/tasks&gt;
+</p><p>There is also some documentation on the <code>NetSNMP::agent</code> perl module
+available at <a rel="nofollow" class="external free" href="http://search.cpan.org/dist/NetSNMP-agent/agent.pm">http://search.cpan.org/dist/NetSNMP-agent/agent.pm</a>
+</p>
+<h2><span class="mw-headline" id="Agent_framework">Agent framework</span></h2>
+<p>The basic structure of a perl MIB module implementation is as follows:
+</p>
+<pre>
+use NetSNMP::OID (':all'); 
+use NetSNMP::agent (':all'); 
+use NetSNMP::ASN (':all');
+
+    #
+    # Handler routine to deal with SNMP requests
+    #
+sub myhandler {
+    my  ($handler, $registration_info, $request_info, $requests) = @_;
+
+    for ($request = $requests; $request; $request = $request-&gt;next()) { 
+        #
+        #  Work through the list of varbinds
+        #
+    }
+}
+
+
+{
+    #
+    # Associate the handler with a particular OID tree
+    #
+    my $rootOID = ".1.3.6.1.4.1.8072.999";
+    my $regoid = new NetSNMP::OID($rootOID); 
+    $agent-&gt;register("my_agent_name", $regoid, \&amp;myhandler);
+}
+</pre>
+<p>The reference material mentioned above has more information about what these
+functions do, and how they should handle different types of request.
+</p>
+<h2><span class="mw-headline" id="GET_requests">GET requests</span></h2>
+<p>The type of SNMP request can be retrieved using the
+<code>$request_info-&gt;getMode()</code> call, which can
+be used to distinguish between GET and GETNEXT requests,
+and the various phases of processing a SET request.
+</p><p>The GET request is the simplest case, as the request will have
+specified a particular OID.  All that the perl module has to do
+is to return the value associated with this OID:
+</p>
+<pre>   my $oid = $request-&gt;getOID();
+   if ($request_info-&gt;getMode() == MODE_GET) {
+       if ($oid == new NetSNMP::OID($rootOID . ".1.2.1")) {
+           $request-&gt;setValue(ASN_OCTET_STR, "hello world");
+       }
+   }
+</pre>
+<p><br />
+or indicate the appropriate error if this is not actually a
+valid MIB instance:
+</p><p><i>&lt;tasks&gt;</i>
+[ ] How to report noSuchInstance/Object in a perl module?
+&lt;/tasks&gt;
+</p><p>The tasks of identifying valid OIDs, and providing the appropriate
+value are the main issues facing the perl coder.
+</p>
+<h2><span class="mw-headline" id="GETNEXT_requests">GETNEXT requests</span></h2>
+<p>Processing a GETNEXT request (either individually or as part of
+an <code>snmpwalk</code> command) is basically similar to handling
+a GET request.  But first, the MIB module must examine the OID
+provided, and decide which is the next valid MIB instance:
+</p>
+<pre>   my $oid = $request-&gt;getOID();
+   if ($request_info-&gt;getMode() == <b>MODE_GETNEXT</b>) {
+       if ($oid <b>&lt;</b> new NetSNMP::OID($rootOID . ".1.2.1")) {
+           <b>$nextOID = $rootOID.".1.2.1";</b>
+</pre>
+<p><br />
+and then return this OID, together with the corresponding value:
+</p>
+<pre>           <b>$request-&gt;setOID($nextOID);</b>
+           $request-&gt;setValue(ASN_OCTET_STR, "hello world");
+       }
+   }
+</pre>
+<h2><span class="mw-headline" id="SET_requests">SET requests</span></h2>
+<p><i>&lt;tasks&gt;</i>
+[ ] Describe SET processing
+&lt;/tasks&gt;
+</p>
+<h2><span class="mw-headline" id="Scalar_objects">Scalar objects</span></h2>
+<h2><span class="mw-headline" id="Tables">Tables</span></h2>
+<h2><span class="mw-headline" id="Parameters_revisited">Parameters revisited</span></h2>
+<p>While going through the referance material, you will find:
+</p>
+<pre>
+getRootOID ()
+        Returns a NetSNMP::OID object that describes the registration
+        point that the handler is getting called for (in case you
+        register one handler function with multiple OIDs, which should
+        be rare anyway)
+
+        $root_oid = $request-&gt;getRootOID();
+</pre>
+<p>Hmm, intresting...<br />
+Why not make a hash of values to the perl programs. We presume that a number of perl agents will soon be available with different objectives and need a "standard" way of retrieving parameters from snmpd.conf.<br />
+All the information could be hard coded in the perl agent (or at installation) but it would be nicer if the OID and which configuration file the agent uses could be defined at the least.
+</p>
+<p>
+Example:
+<pre>
+perl  $regat = '.1.3.6.1.4.1.8072.999';      \
+      $root_oid = new NetSNMP::OID($regat);  \
+      $config_file{root_oid} = "/etc/snmpd/snmpagent.conf"; \
+      do "snmpagent.pl";
+</pre>
+<p>And reference $config_file{$root_oid} in the program.
+</p><p>This could be made "the official" way to pass parameters in snmpd.conf<br />
+Some of the work could be in a function library contained in ../share/snmp/snmp_perl.pl ....<br />
+And be called by something like:
+</p>
+<pre>
+setconfig($regat, "/etc/snmpd/snmpagent.conf")
+</pre>
+<p>Giving an entry in snmpd.conf like:
+</p>
+<pre>
+perl $regat = '.1.3.6.1.4.1.8072.999'; \
+     setconfig($regat, "/etc/snmpd/snmpagent.conf"); \
+     do "/etc/snmpd/snmpagent.pl";
+</pre>
+<p>The snmpagent.pl could use a call to getRootID in order to referance the hash $config_file{$request-&gt;getRootID()}
+</p>
+<h1><span class="mw-headline" id="Third_party_examples">Third party examples</span></h1>
+<ul><li> From <a rel="nofollow" class="external free" href="http://vincent.bernat.im/en/blog/2012-extending-netsnmp.html#perl-and-python">http://vincent.bernat.im/en/blog/2012-extending-netsnmp.html#perl-and-python</a>
+<ul><li> ethtool stats AgentX sub-agent <a rel="nofollow" class="external free" href="https://github.com/vincentbernat/extend-netsnmp/blob/master/agentx-perl/ethtool-stats.pl">https://github.com/vincentbernat/extend-netsnmp/blob/master/agentx-perl/ethtool-stats.pl</a></li>
+<li> ethtool pass_persist <a rel="nofollow" class="external free" href="https://github.com/vincentbernat/extend-netsnmp/tree/master/passpersist-perl">https://github.com/vincentbernat/extend-netsnmp/tree/master/passpersist-perl</a></li></ul></li>
+<li> Redis server agent <a rel="nofollow" class="external free" href="https://github.com/masterzen/redis-snmp">https://github.com/masterzen/redis-snmp</a></li>
+<li> POE snmp component <a rel="nofollow" class="external free" href="https://github.com/maddingue/POE-Component-NetSNMP-agent">https://github.com/maddingue/POE-Component-NetSNMP-agent</a></li>
+<li> Haproxy <a rel="nofollow" class="external free" href="http://www.haproxy.org/download/contrib/netsnmp-perl/haproxy.pl">http://www.haproxy.org/download/contrib/netsnmp-perl/haproxy.pl</a></li></ul>
+<h1><span class="mw-headline" id="OXO_Example">OXO Example</span></h1>
+<h2><span class="mw-headline" id="MODE_GET">MODE_GET</span></h2>
+<p>"snmpget" is trivial as the requester knows what it wants and, if the agent has it, the reply is a simple hash lookup.
+</p>
+<h2><span class="mw-headline" id="MODE_GETNEXT">MODE_GETNEXT</span></h2>
+<p>"snmpwalk" is harder.
+</p><p>The request almost knows what it wants, and the agent need's to reply to anything that is in the area for the OID it has registered. 
+</p><p>Take $regat, '.1.3.6.1.4.1.8072.999'. We have a .1 extension that we would like to serve, with values in .1.1 .1.2 etc .2.1 .2.2 etc etc.
+</p><p>The secret is to fill in the blanks in the hash for next OID's where a value has not been assigned.<br />
+So:
+</p>
+<ul><li> In general, if $regat, $regat.1 or $regat.1.1 etc are requested, the agent should supply the next OID that has a value, and it's value.</li>
+<li> Check for OID &lt; $regat.1.1.1, reply with $regat.1.1.1 and it's value.</li>
+<li> For $regat.1.1.&lt;max&gt; $regat.1.2.&lt;max&gt; etc, take a look at the hashs for OID's and pay attention to how $OID_next{$prev_OID} = $this_OID is used in the example.</li></ul>
+<h2><span class="mw-headline" id="Input_CSV">Input CSV</span></h2>
+<p>In order to give the example some "dynamic" data to display, an input "csv" is supplied<br />
+-the format of the input csv is "made for the moment".
+</p><p>For example with $delimT='=' and $delimV=':' (the oidname is only used for documentation/comment).
+</p>
+<pre>
+oidname1=4=value1:value2
+oidname2=4=value3:value4
+</pre>
+<p>Which gives relative to $regat, with $extension = '1':
+</p>
+<pre>
+NET-SNMP-MIB::netSnmp.999.1.1.1 = STRING: "value1"
+NET-SNMP-MIB::netSnmp.999.1.1.2 = STRING: "value2"
+NET-SNMP-MIB::netSnmp.999.1.2.1 = STRING: "value3"
+NET-SNMP-MIB::netSnmp.999.1.2.2 = STRING: "value4"
+</pre>
+<p>By the way:<br />
+The 4 is ASN_OCTET_STR on my system. I would have liked to have written ASN_OCTET_STR as type 
+but my perl programming experience couldn't help me in taking the ASN_OCTET_STR and use it directly in the reply: I would just like to take the type as written and not use a if else test sequence ... (Input please ...:) )
+</p>
+<h2><span class="mw-headline" id="For_example">For example</span></h2>
+<p>Here is a "fun" one: walk passwd
+</p>
+<pre>
+perl print STDERR "Perl extensions:\n"
+perl $debugging = '1';
+perl $verbose = '1';
+perl $regat = '.1.3.6.1.4.1.8072.999'; $extension = '1';  \
+     $mibdata = '/etc/passwd'; $delimT=''; $delimV=':';   \
+     do "/etc/snmp/snmpagent.pl";
+</pre>
+<p>Note that if $delimT="" we assume the input is ASN_OCTET_STR and only parse for values with $delimV
+</p><p>While I still have the following in my clipboard, the following, although nice to look at, doesn't work&#160;:(
+</p>
+<pre>
+perl {
+        $regat = '.1.3.6.1.4.1.8072.999'; $extension = '1';
+        $mibdata = '/etc/passwd'; $delimT=''; $delimV=':';
+        do "/etc/snmp/snmpagent.pl";
+}
+</pre>
+<h2><span class="mw-headline" id=".22Code.22_:_perl_do">"Code"&#160;: perl do</span></h2>
+<p>"snapshot" or see <a rel="nofollow" class="external free" href="http://svn.berlios.de/wsvn/odp/trunk/bin/snmpagent.pl?op=file&amp;rev=0&amp;sc=0">http://svn.berlios.de/wsvn/odp/trunk/bin/snmpagent.pl?op=file&amp;rev=0&amp;sc=0</a>
+</p>
+<pre>
+#!/usr/bin/perl 
+
+########################################
+#
+# 
+# Owen Brotherwood, DK 2007 
+# Based on original perl module example 
+# GNU General Public License V3 
+#
+#
+######################################### 
+
+$program = $0;
+
+if (!defined($regat)) {
+        help('No $regat defined');
+}
+
+sub help {
+        my ($message) = @_;
+        print STDERR '
+ERROR: ' .  $program . ':' . $message . 
+'
+
+Here is some help ...
+
+        This program should be started from snmpd.conf, an example for allowing
+        one to walk /etc/passwd would be when this program is /etc/snmp/snmpagent.pl:
+                perl print STDERR \'Perl extentsions:\' . \n\"
+                perl $debugging = \'1\';
+                perl $verbose = \'1\';
+                perl {$regat = \'.1.3.6.1.4.1.8072.999\'; $extension = \'1\';   \
+                      $mibdata = \'/etc/passwd\'; $delimT=\'\'; $delimV=\':\';  \
+                      do \'/etc/snmp/snmpagent.pl\';}
+
+        Use snmpd -f to see what is going on.
+
+        If $delimT is defined, the first two values are comment(for documentation)
+            and type, for example 4.
+        If $delimT is \'\', ASN_OCTET_STR (4) is presummed.
+
+        So, with $delimV=\':\' and $delimT=\'=\':
+                oidname1=4=value1:value2
+                oidname2=4=value3:value4
+
+        The result of a snmpwalk with $regat = '.1.3.6.1.4.1.8072.999' and $extension = '1' would be:
+                NET-SNMP-MIB::netSnmp.999.1.1.1 = STRING: "value1"
+                NET-SNMP-MIB::netSnmp.999.1.1.2 = STRING: "value2"
+                NET-SNMP-MIB::netSnmp.999.1.2.1 = STRING: "value3"
+                NET-SNMP-MIB::netSnmp.999.1.2.2 = STRING: "value4"
+
+        NB: snmptable requires a MIB to work.
+
+        Owen Brotherwood, DK 2007
+        GNU General Public License V3
+';
+        die($message);
+}
+
+use NetSNMP::OID (':all');
+use NetSNMP::agent (':all');
+use NetSNMP::ASN (':all');
+
+sub my_snmp_handler { 
+            my ($handler, $registration_info, $request_info, $requests) = @_; 
+            my $request; 
+            my&#160;%my_oid = (); 
+        my @mibdata;
+        my $ASN_OCTET_STR = 4;
+# for this example, wasteful read test data in every time ... 
+    	open(MIB,$mibdata); 
+            @mibdata = &lt;MIB&gt;; 
+            close(MIB); 
+# we append .1 to $regat for the area which the test data is available
+    	$base_oid = new NetSNMP::OID($regat . '.' . $extension); 
+# start taking in values 
+        undef($prev_oid); 
+        $jndex = 1; 
+        foreach $line (@mibdata) { 
+# fill the hash pipe 
+                chomp $line; 
+                if ($delimT&#160;!= ''){
+                        ($index_name, $index_type, $index_values) = split(/$delimT/, $line); 
+                }else{
+                        $index_values = $line;
+                        $index_name = 'Unknown';
+                        $index_type = $ASN_OCTET_STR;
+                }
+                my @value = split(/$delimV/, $index_values); 
+                my $index = 1; 
+                foreach $mibit (@value) { 
+                        $this_oid = new NetSNMP::OID($base_oid . '.' . $jndex . '.' . $index); 
+                        $oid_type{$this_oid} = $index_type;
+                        $oid_value{$this_oid} = $mibit; 
+                        $oid_index{$this_oid} = $index; 
+                        $oid_jndex{$this_oid} = $jndex; 
+                        if (defined($prev_oid)){ 
+                                $oid_next{$prev_oid} = $this_oid; 
+                        } 
+                        $prev_oid = $this_oid; 
+                        print STDERR "Loading $this_oid $oid_type{$this_oid}::$oid_value{$this_oid}  \n" if ($verbose); 
+                        $index++; 
+                } 
+                $jndex++; 
+        } 
+        $mjndex = $jndex;
+        $mindex = $index;
+# fill in some blanks
+	for ($jndex = 1; $jndex &lt; $mjndex; $jndex++) {
+                $this_oid = new NetSNMP::OID($base_oid . '.' . $jndex);
+                $next_oid = new NetSNMP::OID($this_oid . '.1');
+                $oid_next{$this_oid} = $next_oid;
+        }
+        for ($request = $requests; $request; $request = $request-&gt;next()) { 
+                $oid = $request-&gt;getOID(); 
+                print STDERR "$program @ $oid " if ($debugging); 
+                if ($request_info-&gt;getMode() == MODE_GET) { 
+# easy to get 
+                        print STDERR " GET " if ($debugging); 
+                        if (exists $oid_value{$oid}) { 
+                                print STDERR "-&gt;$oid_value{$oid}\n" if ($debugging); 
+                                $request-&gt;setValue($oid_type{$oid}, $oid_value{$oid}); 
+                        }else{ 
+                                print STDERR " No value ...\n"; 
+                        } 
+                }elsif ($request_info-&gt;getMode() == MODE_GETNEXT) { 
+# long way to walk 
+                        print STDERR " GETNEXT " if($debugging); 
+                        if (defined($oid_next{$oid})) { 
+                                $next_oid = $oid_next{$oid}; 
+                                $type_oid = $oid_type{$next_oid}; 
+                                $value_oid = $oid_value{$next_oid}; 
+                                $request-&gt;setOID($next_oid); 
+                                $request-&gt;setValue($type_oid, $value_oid); 
+                        }elsif ($oid &lt;= $base_oid) { 
+                                $next_oid = new NetSNMP::OID($base_oid . '.1.1');
+                                $type_oid = $oid_type{$next_oid};
+                                $value_oid = $oid_value{$next_oid};
+                                $request-&gt;setOID($next_oid); 
+                                $request-&gt;setValue($type_oid, $value_oid); 
+                        }else{
+                                print STDERR "Hit by a truck whilst walking ...\n" if ($debugging);
+                        }
+                } 
+        } 
+} 
+
+{
+        if (!$agent) {
+               help('No $agent defined');
+        }
+
+        print STDERR "$0 @ $regat using $mibdata ($delimV) ($delimT)\n";
+
+        my $regoid = new NetSNMP::OID($regat); 
+
+        $agent-&gt;register($program, $regoid, \&amp;my_snmp_handler);
+}
+########################################################################
+
+</pre>
+<p>Well, the example is just an example: reading a big file in every time isn't the best way ...
+</p><p>Funny ideas:
+</p>
+<ul><li> Use set to trigger a read </li>
+<li> The data is already formatted as a hash in a file</li>
+<li> Find another way ...</li></ul>
+<h1><span class="mw-headline" id="Conclusion">Conclusion</span></h1>
+<p>A bit premature, as I'm not really finished yet but ...
+</p><p>Using embeded perl agents from snmpd.conf may not be a good idea: note, I wrote plural of agent<br />
+If one has only one agent in snmpd.conf, there won't be to many side effects as in the @ARG section.
+</p><p>It hasn't been a total waste of time: brushed up some very rusty perl and maybe found out how to snmpwalk correctly which I can allways reuse in "the next step".
+</p><p>The next step for me is get a perl agent up and running that is not started from snmpd.conf and analyze that.<a href="User_Oxo.html" title="User:Oxo">Oxo</a> 13:18, 27 September 2007 (PDT)
+</p><p><br />
+<b>And remember</b>, use the extending of snmpd to allow other snmp programs access to intresting information instead of using, for example, txt files or SQL DB's that are normally used to lock the information in: <a rel="nofollow" class="external free" href="http://openfacts.berlios.de/index-en.phtml?title=odp">http://openfacts.berlios.de/index-en.phtml?title=odp</a>
+</p><p>Good luck!
+</p>
+For a <b>complete implementation</b> of perl subagent see also <a rel="nofollow" class="external text" href="https://github.com/sergevs/net-snmp-subagent-shell">net-snmp-subagent-shell</a> and it's <a rel="nofollow" class="external text" href="https://github.com/sergevs/net-snmp-subagent-shell/wiki">documentation</a></p>
+
+<!-- 
+NewPP limit report
+Cached time: 20171116004811
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.145 seconds
+Real time usage: 0.150 seconds
+Preprocessor visited node count: 187/1000000
+Preprocessor generated node count: 324/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+
+<!-- Saved in parser cache with key n12694_wikidb:pcache:idhash:1755-0!*!0!!en!*!* and timestamp 20171116004811 and revision id 5891
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://net-snmp.sourceforge.net/wiki/index.php?title=Tut:Extending_snmpd_using_perl&amp;oldid=5891">http://net-snmp.sourceforge.net/wiki/index.php?title=Tut:Extending_snmpd_using_perl&amp;oldid=5891</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="Tut_Extending_snmpd_using_perl.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk"><a href="Talk_Tut_Extending_snmpd_using_perl.html" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="../indexfa2a.html?title=Tut:Extending_snmpd_using_perl&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="../indexf57b.html?title=Tut:Extending_snmpd_using_perl&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="../index716b.html?title=Special:UserLogin&amp;returnto=Tut%3AExtending+snmpd+using+perl&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="../index640c.html?title=Special:UserLogin&amp;returnto=Tut%3AExtending+snmpd+using+perl" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Tut_Extending_snmpd_using_perl.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Tut_Extending_snmpd_using_perl.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="../indexe4d4.html?title=Tut:Extending_snmpd_using_perl&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="../index683f.html?title=Tut:Extending_snmpd_using_perl&amp;oldid=5891" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="../indexb53f.html?title=Tut:Extending_snmpd_using_perl&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 14 July 2015, at 17:02.</li>
+									<li id="privacy"><a href="Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":869});
+} );</script></body><!-- Cached 20171116045833 -->
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/Tut:Extending_snmpd_using_perl by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:01:41 GMT -->
+</html>

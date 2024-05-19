@@ -1,0 +1,449 @@
+Content-type: text/html
+
+<HTML>
+<!-- Mirrored from www.net-snmp.org/docs/man/snmptrapd.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 17:54:59 GMT -->
+<HEAD><TITLE>Manpage of SNMPTRAPD</TITLE>
+</HEAD><BODY>
+<H1>SNMPTRAPD</H1>
+Section: Net-SNMP (8)<BR>Updated: 15 Jan 2004<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+snmptrapd - Receive and log SNMP trap messages.
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>snmptrapd</B> [OPTIONS] [LISTENING ADDRESSES]
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>snmptrapd</B>
+
+is an SNMP application that receives and logs SNMP TRAP and INFORM
+messages.
+<P>
+
+Note: the default is to listen on UDP port 162 on all IPv4 interfaces.
+Since 162 is a privileged port,
+<B>snmptrapd</B>
+
+must typically be run as root.
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<DL COMPACT>
+<DT><B>-a</B>
+
+<DD>
+Ignore authenticationFailure traps.
+<DT><B>-A</B>
+
+<DD>
+Append to the log file rather than truncating it.
+<P>
+Note that this needs to come <I>before</I> any -Lf options
+that it should apply to.
+<DT><B>-c</B><I> FILE</I>
+
+<DD>
+Read 
+<I>FILE</I>
+
+as a configuration file.
+<DT><B>-C</B>
+
+<DD>
+Do not read any configuration files except the one optionally specified by the 
+<B>-c </B>
+
+option.
+<DT><B>-d</B>
+
+<DD>
+Dump (in hexadecimal) the sent and received SNMP packets.
+<DT><B>-D</B><I> TOKEN[,...]</I>
+
+<DD>
+Turn on debugging output for the given
+<I>TOKEN</I>(s).
+
+Try
+<I>ALL</I>
+
+for extremely verbose output.
+<DT><B>-f</B>
+
+<DD>
+Do not fork() from the calling shell.
+<DT><B>-F</B><I> FORMAT</I>
+
+<DD>
+When logging to standard output, use the format in the string
+<I>FORMAT</I>.
+
+See the section
+<B>FORMAT SPECIFICATIONS</B>
+
+below for more details.
+<DT><B>-h, --help</B>
+
+<DD>
+Display a brief usage message and then exit.
+<DT><B>-H</B>
+
+<DD>
+Display a list of configuration file directives understood by the
+trap daemon and then exit.
+<DT><B>-I </B><I>[-]INITLIST</I>
+
+<DD>
+Specifies which modules should (or should not) be initialized
+when snmptrapd starts up.  If the comma-separated
+<I>INITLIST</I>
+
+is preceded
+with a '-', it is the list of modules that should <I>not</I> be started.
+Otherwise this is the list of the <I>only</I> modules that should be started.
+<P>
+To get a list of compiled modules, run snmptrapd with the arguments
+<I>-Dmib_init -H</I>
+
+(assuming debugging support has been compiled in).
+<DT><B>-L[efos]</B>
+
+<DD>
+Specify where logging output should be directed (standard error or output,
+to a file or via syslog).  See LOGGING OPTIONS in <I><A HREF="snmpcmd.html">snmpcmd</A>(1)</I> for details.
+<DT><B>-m</B> <I>MIBLIST</I>
+
+<DD>
+Specifies a colon separated list of MIB modules to load for this
+application.  This overrides the environment variable MIBS.
+See <I><A HREF="snmpcmd.html">snmpcmd</A>(1)</I> for details.
+<DT><B>-M</B> <I>DIRLIST</I>
+
+<DD>
+Specifies a colon separated list of directories to search for MIBs.
+This overrides the environment variable MIBDIRS.
+See <I><A HREF="snmpcmd.html">snmpcmd</A>(1)</I> for details.
+<DT><B>-n</B>
+
+<DD>
+Do not attempt to translate source addresses of incoming packets into
+hostnames.
+<DT><B>-p</B><I> FILE</I>
+
+<DD>
+Save the process ID of the trap daemon in
+<I>FILE</I>.
+
+<DT><B>-O</B><I> [abeEfnqQsStTuUvxX]</I>
+
+<DD>
+Specifies how MIB objects and other output should be displayed.
+See the section
+<B>OUTPUT OPTIONS</B>
+
+in the
+<I><A HREF="snmpcmd.html">snmpcmd</A>(1)</I>
+
+manual page for details.
+<DT><B>-t</B>
+
+<DD>
+Do not log traps to syslog.  This disables logging to syslog.  This is
+useful if you want the snmptrapd application to
+<B>only</B>
+
+run traphandle hooks and not to log any traps to any location.
+<DT><B>-v, --version</B>
+
+<DD>
+Print version information for the trap daemon and then exit.
+<DT><B>-x </B><I>ADDRESS</I>
+
+<DD>
+Connect to the AgentX master agent on the specified address,
+rather than the default &quot;/var/agentx/master&quot;.
+See <I><A HREF="snmpd.html">snmpd</A>(8)</I> for details of the format of such addresses.
+<DT><B>--</B><I>name=value</I>
+
+<DD>
+Allows to specify any token (&quot;name&quot;) supported in the
+<I>snmptrapd.conf</I>
+
+file and sets its value to &quot;value&quot;. Overrides the corresponding token in the
+<I>snmptrapd.conf</I>
+
+file. See
+<I><A HREF="snmptrapd.conf.html">snmptrapd.conf</A>(5)</I>
+
+for the full list of tokens.
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>FORMAT SPECIFICATIONS</H2>
+
+<P>
+
+<B>snmptrapd</B>
+
+interprets format strings similarly to
+<I><A HREF="printf.html">printf</A>(3)</I>.
+
+It understands the following formatting sequences:
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT><B>%%</B>
+
+<DD>
+a literal %
+<DT><B>%a</B>
+
+<DD>
+the contents of the agent-addr field of the PDU (v1 TRAPs only)
+<DT><B>%A</B>
+
+<DD>
+the hostname corresponding to the contents of the agent-addr field of
+the PDU, if available, otherwise the contents of the agent-addr field
+of the PDU (v1 TRAPs only).
+<DT><B>%b</B>
+
+<DD>
+PDU source address (Note: this is not necessarily an IPv4
+address)
+<DT><B>%B</B>
+
+<DD>
+PDU source hostname if available, otherwise PDU source address (see
+note above) 
+<DT><B>%h</B>
+
+<DD>
+current hour on the local system
+<DT><B>%H</B>
+
+<DD>
+the hour field from the sysUpTime.0 varbind
+<DT><B>%j</B>
+
+<DD>
+current minute on the local system
+<DT><B>%J</B>
+
+<DD>
+the minute field from the sysUpTime.0 varbind
+<DT><B>%k</B>
+
+<DD>
+current second on the local system
+<DT><B>%K</B>
+
+<DD>
+the seconds field from the sysUpTime.0 varbind
+<DT><B>%l</B>
+
+<DD>
+current day of month on the local system
+<DT><B>%L</B>
+
+<DD>
+the day of month field from the sysUpTime.0 varbind
+<DT><B>%m</B>
+
+<DD>
+current (numeric) month on the local system
+<DT><B>%M</B>
+
+<DD>
+the numeric month field from the sysUpTime.0 varbind
+<DT><B>%N</B>
+
+<DD>
+enterprise string
+<DT><B>%q</B>
+
+<DD>
+trap sub-type (numeric, in decimal)
+<DT><B>%P</B>
+
+<DD>
+security information from the PDU (community name for v1/v2c,
+user and context for v3)
+<DT><B>%t</B>
+
+<DD>
+decimal number of seconds since the operating system epoch (as
+returned by
+<I><A HREF="time.html">time</A>(2)</I>)
+
+<DT><B>%T</B>
+
+<DD>
+the value of the sysUpTime.0 varbind in seconds
+<DT><B>%v</B>
+
+<DD>
+list of variable-bindings from the notification payload.
+These will be separated by a tab, 
+or by a comma and a blank if the alternate form is requested
+See also %V
+<DT><B>%V</B>
+
+<DD>
+specifies the variable-bindings separator. This takes a sequence of
+characters, up to the next % (to embed a % in the string, use \%)
+<DT><B>%w</B>
+
+<DD>
+trap type (numeric, in decimal)
+<DT><B>%W</B>
+
+<DD>
+trap description
+<DT><B>%y</B>
+
+<DD>
+current year on the local system
+<DT><B>%Y</B>
+
+<DD>
+the year field from the sysUpTime.0 varbind
+</DL>
+</DL>
+
+<P>
+
+In addition to these values, an optional field
+width and precision may also be specified , just as in 
+<I><A HREF="printf.html">printf</A>(3)</I>,
+
+and a flag value. The following flags are supported:
+<DL COMPACT><DT><DD>
+<P>
+<DL COMPACT>
+<DT><B>-</B>
+
+<DD>
+left justify
+<DT><B>0</B>
+
+<DD>
+use leading zeros
+<DT><B>#</B>
+
+<DD>
+use alternate form
+</DL>
+</DL>
+
+<P>
+
+The &quot;use alternate form&quot; flag changes the behavior of various format
+string sequences:
+<DL COMPACT>
+<DT><DD>
+Time information will be displayed based on GMT (rather than the local timezone)
+<DT><DD>
+The variable-bindings will be a comma-separated list (rather than a tab-separated one)
+<DT><DD>
+The system uptime will be broken down into a human-meaningful format (rather than being a simple integer)
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H3>Examples:</H3>
+
+<P>
+
+To get a message like &quot;14:03 TRAP3.1 from humpty.ucd.edu&quot; you 
+could use something like this:
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+snmptrapd -P -F &quot;%02.2h:%02.2j TRAP%w.%q from %A\n&quot;
+</PRE>
+
+</DL>
+
+<P>
+
+If you want the same thing but in GMT rather than local time, use
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+snmptrapd -P -F &quot;%#02.2h:%#02.2j TRAP%w.%q from %A\n&quot;
+</PRE>
+
+</DL>
+
+<A NAME="lbAH">&nbsp;</A>
+<H2>LISTENING ADDRESSES</H2>
+
+By default,
+<B>snmptrapd</B>
+
+listens for incoming SNMP TRAP and INFORM packets on UDP port 162 on
+all IPv4 interfaces.  However, it is possible to modify this behaviour
+by specifying one or more listening addresses as arguments to
+<B>snmptrapd</B>.
+
+See the
+<I><A HREF="snmpd.html">snmpd</A>(8)</I>
+
+manual page for more information about the format of listening
+addresses.
+<A NAME="lbAI">&nbsp;</A>
+<H2>NOTIFICATION-LOG-MIB SUPPORT</H2>
+
+As of net-snmp 5.0, the snmptrapd application supports the
+NOTIFICATION-LOG-MIB.  It does this by opening an AgentX subagent
+connection to the master snmpd agent and registering the notification
+log tables.  As long as the snmpd application is started first, it
+will attach itself to it and thus you should be able to view the last
+recorded notifications via the nlmLogTable and nlmLogVariableTable.
+See the snmptrapd.conf file and the &quot;dontRetainLogs&quot; token for turning
+off this support.  See the NOTIFICATION-LOG-MIB for more details about
+the MIB itself.
+<A NAME="lbAJ">&nbsp;</A>
+<H2>EXTENSIBILITY AND CONFIGURATION</H2>
+
+See the
+<I><A HREF="snmptrapd.conf.html">snmptrapd.conf</A>(5)</I>
+
+manual page.
+<A NAME="lbAK">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<A HREF="variables.html">variables</A>(5)
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">FORMAT SPECIFICATIONS</A><DD>
+<DL>
+<DT><A HREF="#lbAG">Examples:</A><DD>
+</DL>
+<DT><A HREF="#lbAH">LISTENING ADDRESSES</A><DD>
+<DT><A HREF="#lbAI">NOTIFICATION-LOG-MIB SUPPORT</A><DD>
+<DT><A HREF="#lbAJ">EXTENSIBILITY AND CONFIGURATION</A><DD>
+<DT><A HREF="#lbAK">SEE ALSO</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 19:05:39 GMT, September 28, 2009
+</BODY>
+
+<!-- Mirrored from www.net-snmp.org/docs/man/snmptrapd.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 17:55:00 GMT -->
+</HTML>

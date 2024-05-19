@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/Vacm by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 17:58:52 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Vacm - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Vacm","wgTitle":"Vacm","wgCurRevisionId":5863,"wgRevisionId":5863,"wgArticleId":1701,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages with broken file links"],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Vacm","wgRelevantArticleId":1701,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="../load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="../load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<link rel="shortcut icon" href="../../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="../opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://net-snmp.sourceforge.net/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="../apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Vacm skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Vacm</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>The View Access Control Model is one of the more complex configuration options that Net-SNMP offers.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#The_Basics"><span class="tocnumber">1</span> <span class="toctext">The Basics</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Check_the_man_page"><span class="tocnumber">1.1</span> <span class="toctext">Check the man page</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#A_Visual_Aid"><span class="tocnumber">1.2</span> <span class="toctext">A Visual Aid</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Living_in_Denial"><span class="tocnumber">2</span> <span class="toctext">Living in Denial</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#SNMPv1_and_SNMPv2_rocommunity.2Frwcommunity"><span class="tocnumber">2.1</span> <span class="toctext">SNMPv1 and SNMPv2 rocommunity/rwcommunity</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#SNMPv3_rouser.2Frwuser"><span class="tocnumber">2.2</span> <span class="toctext">SNMPv3 rouser/rwuser</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Special_Cases_and_Examples"><span class="tocnumber">3</span> <span class="toctext">Special Cases and Examples</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#VACM_Views.2C_or_How_to_restrict_access_to_particular_branches_in_the_tree"><span class="tocnumber">3.1</span> <span class="toctext">VACM Views, or How to restrict access to particular branches in the tree</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#VACM_Masks.2C_or_How_to_restrict_access_to_a_particular_index_.28row.29_in_a_Table"><span class="tocnumber">3.2</span> <span class="toctext">VACM Masks, or How to restrict access to a particular index (row) in a Table</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Using_Contexts"><span class="tocnumber">3.3</span> <span class="toctext">Using Contexts</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="The_Basics">The Basics</span></h2>
+<h3><span class="mw-headline" id="Check_the_man_page">Check the man page</span></h3>
+<p>The <a rel="nofollow" class="external text" href="../../docs/man/snmpd.conf.html#lbAF">Access Control</a> section of the <a rel="nofollow" class="external text" href="../../docs/man/snmpd.conf.html">snmp.conf</a> manual page talks about VACM setup, and has the most current information. Check there first.
+</p>
+<h3><span class="mw-headline" id="A_Visual_Aid">A Visual Aid</span></h3>
+<p>A user-contributed image and text-representation of the relationships can be found on the <a rel="nofollow" class="external text" href="../../tutorial/tutorial-5/demon/vacm/index.html">VACM tutorial</a> page.
+</p><p>We also provide this handy diagram showing how include/exclude functions overlay each other within a "fake" mib tree:
+</p>
+<div class="thumb tnone"><div class="thumbinner" style="width:182px;"><a href="File_Vacm_tree.html" title="File:Vacm tree.jpeg">File:Vacm tree.jpeg</a>  <div class="thumbcaption">Including and Excluding MIB Tree Elements</div></div></div>
+<h2><span class="mw-headline" id="Living_in_Denial">Living in Denial</span></h2>
+<p>In response to the "arrgh, this is too complex for my poor little brain!" types of messages we get about configuring access control, you can avoid it if your needs are simple. So, if you just want to give a user read or write access to the entire MIB tree, you can use the <code>ro</code> and <code>rw</code> configuration options, which specify read-only (ro) or read-write (rw) access.
+</p>
+<h3><span class="mw-headline" id="SNMPv1_and_SNMPv2_rocommunity.2Frwcommunity">SNMPv1 and SNMPv2 rocommunity/rwcommunity</span></h3>
+<p>These directives allow access for community based requests,
+optionally restricted to a particular range of source IP addresses,
+and/or a specific OID. See the <a rel="nofollow" class="external text" href="../../docs/man/snmpd.conf.html#lbAH">snmpd.conf</a> man page for detail, but the general form is:
+</p>
+<pre>      rocommunity COMMUNITY [SOURCE [OID]]
+      rwcommunity COMMUNITY [SOURCE [OID]]
+      rocommunity6 COMMUNITY [SOURCE [OID]]
+      rwcommunity6 COMMUNITY [SOURCE [OID]]
+</pre>
+<p>With version 5.3 and above, this directive can also restrict access
+to a named view, using the syntax
+</p>
+<pre>      rocommunity COMMUNITY SOURCE -V VIEW
+      rwcommunity COMMUNITY SOURCE -V VIEW
+      rocommunity6 COMMUNITY SOURCE -V VIEW
+      rwcommunity6 COMMUNITY SOURCE -V VIEW
+</pre>
+<h3><span class="mw-headline" id="SNMPv3_rouser.2Frwuser">SNMPv3 rouser/rwuser</span></h3>
+<p>These directives allow access for SNMPv3 users, optionally requiring a certain access level and restricting the user to a specific OID. See the <a rel="nofollow" class="external text" href="../../docs/man/snmpd.conf.html#lbAH">snmpd.conf</a> man page for detail, but the general form is:
+</p>
+<pre>rouser USER [noauth|auth|priv [OID]]
+rwuser USER [noauth|auth|priv [OID]]
+</pre>
+<p>With version 5.3 and above, this directive can also restrict access to a named view, using the syntax
+</p>
+<pre>rouser USER noauth|auth|priv -V NAME
+rwuser USER noauth|auth|priv -V NAME
+</pre>
+<h2><span class="mw-headline" id="Special_Cases_and_Examples">Special Cases and Examples</span></h2>
+<p>Here are some examples of more complex configurations, include supporting different views for a SNMPv3 user based on their security level.
+</p>
+<h3><span class="mw-headline" id="VACM_Views.2C_or_How_to_restrict_access_to_particular_branches_in_the_tree">VACM Views, or How to restrict access to particular branches in the tree</span></h3>
+<pre>####
+# First, map the community name (COMMUNITY) into a security name
+# (local and mynetwork, depending on where the request is coming
+# from):
+
+#       sec.name  source          community
+com2sec local     localhost       secret42<font color="red">
+com2sec custom_sec 192.168.1.0/24  public</font>
+
+####
+# Second, map the security names into group names:
+
+#               sec.model  sec.name
+<font color="red">
+group custom_grp v1         custom_sec
+group custom_grp v2c        custom_sec
+
+group incremental usm       myuser      # SNMPv3 username == sec.name
+</font>
+####
+# Third, create a view for us to let the groups have rights to:
+
+#           incl/excl subtree                              mask
+view all    included  .1
+<font color="red">
+view custom_v excluded  .1
+view custom_v included  sysUpTime.0
+view custom_v included  interfaces.ifTable
+
+view mini_view excluded .1 80
+view mini_view included  sysUpTime.0
+
+view if_view excluded .1 80
+view if_view included  sysUpTime.0
+view if_view included  ifTable
+</font>
+
+####
+# Finally, grant the groups access to their views:
+
+#                context sec.model sec.level match  read     write  notif
+access MyRWGroup ""      any       noauth    exact  all      all    none<font color="red">
+access custom_grp ""     any       noauth    exact  cust1_v  none   none
+
+access incremental ""    usm       noauth    exact  mini_view none  none
+access incremental ""    usm       auth      exact  if_view   none  none
+access incremental ""    usm       priv      exact  all_view  none  none
+</font>
+</pre>
+<h3><span class="mw-headline" id="VACM_Masks.2C_or_How_to_restrict_access_to_a_particular_index_.28row.29_in_a_Table">VACM Masks, or How to restrict access to a particular index (row) in a Table</span></h3>
+<p>Using the <code>view</code> directive in <code>snmpd.conf</code>, one can limit users to a single row in a table. To do this, the optional <code>mask</code> parameter is specified. Here is an excerpt from the man page:
+</p>
+<pre>      view NAME TYPE SUBTREE [MASK]
+             The defines the named view. TYPE is either included
+             or  excluded.   MASK is a list of hex octets, sepa-
+             rated by '.' or ':'.  The MASK defaults to "ff"  if
+             not specified.
+
+             The  reason  for the mask is, that it allows you to
+             control access to one row in a table,  in  a  rela-
+             tively  simple  way.  As  an example, as an ISP you
+             might consider giving each customer access  to  his
+             or her own interface:
+
+             view cust1 included interfaces.ifTable.ifEntry.ifIndex.1 ff.a0
+             view cust2 included interfaces.ifTable.ifEntry.ifIndex.2 ff.a0
+
+             (interfaces.ifTable.ifEntry.ifIndex.1 == .1.3.6.1.2.1.2.2.1.1.1,
+             ff.a0 == 11111111.10100000. which nicely covers up and including
+             the row index, but lets the user vary the field of the row)
+</pre>
+<p>Note: The mask seperator character can be "." or ":".
+</p><p>So, to be a little more visual about it:
+</p>
+<pre>.1.3.6.1.2.1.2.2.1.1.1 == interfaces.ifTable.ifEntry.ifIndex.1 
+ 1 1 1 1 1 1 1 1 1 0 1 (00000) == (ff.a0)
+               ^ ^ ^ ^
+               | | | |-- the index
+               | | |---- the column
+               | |------ ifEntry
+               |-------- ifTable
+</pre>
+<p>So each bit in the mask indicates if the corresponding OID must match or not. In the above example, all parts of the OID except the colum must match. So this view allows access to any column of the first row in the ifTable. So, paired with an <code>exclude</code> row for the ifTable, only row 1 would be accessible to the user.
+</p><p>Now, to bring it all together with the other access control directives. Assuming 2 customers, and each is only connected to a specific interface (eg customer 1 is connected to eth0 and customer 2 is connected to eth1):
+</p>
+<pre>####
+# First, map the community name (COMMUNITY) into a security name
+# (local and mynetwork, depending on where the request is coming
+# from):
+
+#       sec.name  source          community
+com2sec local     localhost       secret42
+com2sec <font color="red">cust1_sec</font> 192.168.1.0/24  public
+com2sec <font color="red">cust2_sec</font> 192.168.2.0/24  public
+
+####
+# Second, map the security names into group names:
+
+#               sec.model  sec.name
+group MyRWGroup v1         local
+group MyRWGroup v2c        local
+<font color="red">
+group cust1_grp v1         cust1_sec
+group cust1_grp v2c        cust1_sec
+
+group cust2_grp v1         cust2_sec
+group cust2_grp v2c        cust2_sec
+</font>
+####
+# Third, create a view for us to let the groups have rights to:
+
+#           incl/excl subtree                              mask
+view all    included  .1
+<font color="red">
+view cust1_v excluded  .1
+view cust1_v included  sysUpTime.0
+view cust1_v included  interfaces.ifTable.ifEntry.ifIndex.1 ff.a0
+
+view cust2_v excluded  .1
+view cust2_v included  sysUpTime.0
+view cust2_v included  interfaces.ifTable.ifEntry.ifIndex.2 ff.a0
+</font>
+####
+# Finally, grant the groups access to their views:
+
+#                context sec.model sec.level match  read     write  notif
+access MyRWGroup ""      any       noauth    exact  all      all    none<font color="red">
+access cust1_grp ""      any       noauth    exact  cust1_v  none   none
+access cust2_grp ""      any       noauth    exact  cust2_v  none   none
+</font>
+</pre>
+<p>It is important to note that this works because the customers are on different networks. If all the customers are on the same network, then it is important to note that sniffing network traffic could expose one customer's "community string" to another customer, allowing the second customer to view the first customers interface statistics via SNMP. In this case, you would want to use the encryption capabilities offered by SNMPv3 usm users, instead of SNMPv1 and SNMPv2 community strings.
+</p>
+<h3><span class="mw-headline" id="Using_Contexts">Using Contexts</span></h3>
+<p>SNMPv3 'contexts' can be emulated for SNMPv1 and SNMPv2 communities, as explained on <a href="Snmpd_proxy.html" title="Snmpd proxy">this page for configuring multiple proxies</a>.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20171115074403
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.139 seconds
+Real time usage: 0.177 seconds
+Preprocessor visited node count: 48/1000000
+Preprocessor generated node count: 62/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+
+<!-- Saved in parser cache with key n12694_wikidb:pcache:idhash:1701-0!*!0!!en!5!* and timestamp 20171115074402 and revision id 5863
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://net-snmp.sourceforge.net/wiki/index.php?title=Vacm&amp;oldid=5863">http://net-snmp.sourceforge.net/wiki/index.php?title=Vacm&amp;oldid=5863</a>"</div>
+					<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="Special_Categories.html" title="Special:Categories">Category</a>: <ul><li><a href="Category_Pages_with_broken_file_links.html?title=Category:Pages_with_broken_file_links&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages with broken file links (page does not exist)">Pages with broken file links</a></li></ul></div></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="Vacm.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="Talk_Vacm.html?title=Talk:Vacm&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="../index8acc.html?title=Vacm&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="../index51d6.html?title=Vacm&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="../index14fd.html?title=Special:UserLogin&amp;returnto=Vacm&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="../indexdbab.html?title=Special:UserLogin&amp;returnto=Vacm" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Vacm.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Vacm.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="../index40d9.html?title=Vacm&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="../index9d25.html?title=Vacm&amp;oldid=5863" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="../index888f.html?title=Vacm&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 18 December 2014, at 16:01.</li>
+									<li id="privacy"><a href="Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":1185});
+} );</script></body><!-- Cached 20171116035001 -->
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/Vacm by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 17:58:58 GMT -->
+</html>

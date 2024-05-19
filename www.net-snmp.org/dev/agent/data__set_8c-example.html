@@ -1,0 +1,441 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/dev/agent/data__set_8c-example.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:27:00 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../print1.css" />
+  </head>
+  <body background="../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../index.html">About</a><br />
+        
+
+        <a href="../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+
+        <a href="../../docs/readmefiles.html">Documentation</a><br />
+        
+
+        <a href="../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../projects.html">Development</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../projects.html" 
+                  title="Various Net-SNMP projects underway or in need of an author">Projects</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../schedule.html" 
+                  title="The expected release time line">Release Schedule</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../helpingout.html" 
+                  title="How to help out with Net-SNMP">Helping Out</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../git.html" 
+                  title="Access to the Net-SNMP source code via the
+                  GitHub git repository">Git</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../release-policy.html" 
+                  title="The official release policy">Release Policy</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="index.html" 
+                  title="API documentation">API</a></td></tr>
+      </table>
+    </div>
+        
+
+        <a href="../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+  <div class="navigation" id="top">
+    <div class="tabs">
+      <ul>
+        <li><a href="index-2.html"><span>Main Page</span></a></li>
+
+        <li><a href="pages.html"><span>Related Pages</span></a></li>
+
+        <li><a href="modules.html"><span>Modules</span></a></li>
+
+        <li><a href="annotated.html"><span>Data Structures</span></a></li>
+
+        <li><a href="files.html"><span>Files</span></a></li>
+
+        <li><a href="examples.html"><span>Examples</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="contents">
+    <h1>data_set.c</h1>
+
+    <p>This example creates a table full of information and stores all that information within the agent's memory. The
+    "table_dataset" helper routines take care of handling all aspects of SNMP requests as they come in (yay!).</p>
+
+    <p>The exmaple we are instrumenting is an otherwise-useless table containing the names of IETF working group chairs.
+    Obviously, this data isn't all that useful from a network management point of view but this example only demonstrates how to
+    use and store data. For more useful examples (but more complex), check out the apps/notification_log.c file which implements
+    parts of the NOTIFICATION-LOG-MIB for logging incoming SNMP notifications.</p>
+
+    <p>Much of this code could be automatically generated by running mib2c as follows:</p>
+
+    <ul>
+      <li>mib2c -c mib2c.create-dataset.conf netSnmpIETFWGTable</li>
+    </ul>
+
+    <p>The table is defined roughly as follows:</p>
+    <pre>
+    % snmptranslate -m NET-SNMP-EXAMPLES-MIB -Tp -IR netSnmpIETFWGTable
+    |+--netSnmpIETFWGTable(1)
+    |   |
+    |   +--netSnmpIETFWGEntry(1)
+    |      |  Index: nsIETFWGName
+    |      |
+    |      +-- ---- String    nsIETFWGName(1)
+    |      |        Size: 1..32
+    |      +-- CR-- String    nsIETFWGChair1(2)
+    |      +-- CR-- String    nsIETFWGChair2(3)
+  
+</pre>
+
+    <p>If this <a class="el" href="structmodule.html">module</a> is compiled into an agent, you should be able to issue snmp
+    commands that look something like (valid authentication information not shown in these commands):</p>
+    <pre>
+      % snmpwalk localhost netSnmpIETFWGTable
+      nsIETFWGChair1."snmpv3" = "Russ Mundy"
+      nsIETFWGChair2."snmpv3" = "David Harrington"
+</pre>
+    <pre>
+      % snmpset localhost nsIETFWGChair1.\"sming\" = "David Durham"
+      nsIETFWGChair1."sming" = "David Durham"
+</pre>
+    <pre>
+      % snmpwalk localhost netSnmpIETFWGTable
+      nsIETFWGChair1."sming" = "David Durham"
+      nsIETFWGChair1."snmpv3" = "Russ Mundy"
+      nsIETFWGChair2."snmpv3" = "David Harrington"
+</pre>
+    <pre>
+      In your snmpd.conf file, put the following line:
+      add_row netSnmpIETFWGTable eos "Glenn Waters" "Dale Francisco"
+</pre>
+    <pre>
+      % snmpwalk localhost netSnmpIETFWGTable
+      nsIETFWGChair1.\"eos\" = "Glenn Waters"
+      nsIETFWGChair1.\"snmpv3\" = "Russ Mundy"
+      nsIETFWGChair2.\"eos\" = "Dale Francisco"
+      nsIETFWGChair2.\"snmpv3\" = "David Harrington"
+  
+</pre>
+
+    <div class="fragment">
+      <pre class="fragment">
+<span class="comment">/*</span>
+<span class="comment"> * start be including the appropriate header files </span>
+<span class="comment"> */</span>
+<span class="preprocessor">#include &lt;net-snmp/net-snmp-config.h&gt;</span>
+<span class="preprocessor">#include &lt;net-snmp/net-snmp-includes.h&gt;</span>
+<span class="preprocessor">#include &lt;net-snmp/agent/net-snmp-agent-includes.h&gt;</span>
+
+<span class="comment">/*</span>
+<span class="comment"> * our initialization routine, automatically called by the agent </span>
+<span class="comment"> */</span>
+<span class="comment">/*</span>
+<span class="comment"> * (to get called, the function name must match init_FILENAME() </span>
+<span class="comment"> */</span>
+<span class="keywordtype">void</span>
+init_data_set(<span class="keywordtype">void</span>)
+{
+    <a name="_a0"></a><a class="code" href="structnetsnmp__table__data__set__s.html">netsnmp_table_data_set</a> *table_set;
+    <a name="_a1"></a><a class="code" href="structnetsnmp__table__row__s.html">netsnmp_table_row</a> *row;
+
+    <span class="comment">/*</span>
+<span class="comment">     * the OID we want to register our integer at.  This should be the</span>
+<span class="comment">     * * OID node for the entire table.  In our case this is the</span>
+<span class="comment">     * * netSnmpIETFWGTable oid definition </span>
+<span class="comment">     */</span>
+    oid             my_registration_oid[] =
+        { 1, 3, 6, 1, 4, 1, 8072, 2, 2, 1 };
+
+    <span class="comment">/*</span>
+<span class="comment">     * a debugging statement.  Run the agent with -Dexample_data_set to see</span>
+<span class="comment">     * * the output of this debugging statement. </span>
+<span class="comment">     */</span>
+    DEBUGMSGTL((<span class="stringliteral">"example_data_set"</span>,
+                <span class="stringliteral">"Initalizing example dataset table\n"</span>));
+
+    <span class="comment">/*</span>
+<span class="comment">     * It's going to be the "working group chairs" table, since I'm</span>
+<span class="comment">     * * sitting at an IETF convention while I'm writing this.</span>
+<span class="comment">     * *</span>
+<span class="comment">     * *  column 1 = index = string = WG name</span>
+<span class="comment">     * *  column 2 = string = chair #1</span>
+<span class="comment">     * *  column 3 = string = chair #2  (most WGs have 2 chairs now)</span>
+<span class="comment">     */</span>
+
+    table_set = <a name="a2" id="a2"></a><a class="code" href="group__table__dataset.html#gab523c6783716afd206f0512f93ef6503"
+title="Create a netsnmp_table_data_set structure given a table_data definition.">netsnmp_create_table_data_set</a>(<span class=
+"stringliteral">"netSnmpIETFWGTable"</span>);
+
+    <span class="comment">/*</span>
+<span class="comment">     * allow the creation of new rows via SNMP SETs </span>
+<span class="comment">     */</span>
+    table_set-&gt;<a name="a3" id="a3"></a>allow_creation = 1;
+
+    <span class="comment">/*</span>
+<span class="comment">     * set up what a row "should" look like, starting with the index </span>
+<span class="comment">     */</span>
+    <a name="a4" id="a4"></a><a class="code" href="group__table__dataset.html#gac5453f15d00c7d58881ba43109ca7709" title=
+"adds an index to the table.">netsnmp_table_dataset_add_index</a>(table_set, ASN_OCTET_STR);
+
+    <span class="comment">/*</span>
+<span class="comment">     * define what the columns should look like.  both are octet strings here </span>
+<span class="comment">     */</span>
+    <a name="a5" id="a5"></a><a class="code" href="group__table__dataset.html#ga26ffb5722ae066cfbcfe1f0f37bc072e" title=
+"adds multiple data column definitions to each row.">netsnmp_table_set_multi_add_default_row</a>(table_set,
+                                            <span class="comment">/*</span>
+<span class="comment">                                             * column 2 = OCTET STRING,</span>
+<span class="comment">                                             * writable = 1,</span>
+<span class="comment">                                             * default value = NULL,</span>
+<span class="comment">                                             * default value len = 0 </span>
+<span class="comment">                                             */</span>
+                                            2, ASN_OCTET_STR, 1, NULL, 0,
+                                            <span class="comment">/*</span>
+<span class="comment">                                             * similar </span>
+<span class="comment">                                             */</span>
+                                            3, ASN_OCTET_STR, 1, NULL, 0,
+                                            0 <span class="comment">/* done */</span> );
+
+    <span class="comment">/*</span>
+<span class="comment">     * register the table </span>
+<span class="comment">     */</span>
+    <span class="comment">/*</span>
+<span class="comment">     * if we wanted to handle specific data in a specific way, or note</span>
+<span class="comment">     * * when requests came in we could change the NULL below to a valid</span>
+<span class="comment">     * * handler method in which we could over ride the default</span>
+<span class="comment">     * * behaviour of the table_dataset helper </span>
+<span class="comment">     */</span>
+    <a name="a6" id="a6"></a><a class="code" href="group__table__dataset.html#gac3daf62b5ff07dd03bc5b993e93ab103" title=
+"register a given data_set at a given oid (specified in the netsnmp_handler_registration...">netsnmp_register_table_data_set</a>(netsnmp_create_handler_registration
+                                    (<span class="stringliteral">"netSnmpIETFWGTable"</span>, NULL,
+                                     my_registration_oid,
+                                     OID_LENGTH(my_registration_oid),
+                                     HANDLER_CAN_RWRITE), table_set, NULL);
+
+
+    <span class="comment">/*</span>
+<span class="comment">     * create the a row for the table, and add the data </span>
+<span class="comment">     */</span>
+    row = <a name="a7" id="a7"></a><a class="code" href="group__table__data.html#gafdadce2dee8bc75b2b0dfd8e634e46a3" title=
+"creates and returns a pointer to table data set">netsnmp_create_table_data_row</a>();
+    <span class="comment">/*</span>
+<span class="comment">     * set the index to the IETF WG name "snmpv3" </span>
+<span class="comment">     */</span>
+    netsnmp_table_row_add_index(row, ASN_OCTET_STR, <span class="stringliteral">"snmpv3"</span>,
+                                strlen(<span class="stringliteral">"snmpv3"</span>));
+
+
+    <span class="comment">/*</span>
+<span class="comment">     * set column 2 to be the WG chair name "Russ Mundy" </span>
+<span class="comment">     */</span>
+    <a name="a8" id="a8"></a><a class="code" href="group__table__dataset.html#gaaa497e6eec3b370c5901905696bc78af" title=
+"sets a given column in a row with data given a type, value, and length.">netsnmp_set_row_column</a>(row, 2, ASN_OCTET_STR,
+                           <span class="stringliteral">"Russ Mundy"</span>, strlen(<span class=
+"stringliteral">"Russ Mundy"</span>));
+    <a name="a9" id="a9"></a><a class="code" href="group__table__dataset.html#ga5dce210cd4d59eb8b01478ee5d0dc348" title=
+"marks a given column in a row as writable or not.">netsnmp_mark_row_column_writable</a>(row, 2, 1);        <span class=
+"comment">/* make writable via SETs */</span>
+
+    <span class="comment">/*</span>
+<span class="comment">     * set column 3 to be the WG chair name "David Harrington" </span>
+<span class="comment">     */</span>
+    <a class="code" href="group__table__dataset.html#gaaa497e6eec3b370c5901905696bc78af" title=
+"sets a given column in a row with data given a type, value, and length.">netsnmp_set_row_column</a>(row, 3, ASN_OCTET_STR, <span class="stringliteral">"David Harrington"</span>,
+                           strlen(<span class="stringliteral">"David Harrington"</span>));
+    <a class="code" href="group__table__dataset.html#ga5dce210cd4d59eb8b01478ee5d0dc348" title=
+"marks a given column in a row as writable or not.">netsnmp_mark_row_column_writable</a>(row, 3, 1);        <span class=
+"comment">/* make writable via SETs */</span>
+
+    <span class="comment">/*</span>
+<span class="comment">     * add the row to the table </span>
+<span class="comment">     */</span>
+    <a name="a10" id="a10"></a><a class="code" href="group__table__dataset.html#gacaa808db27144a4f967024bd7c9b6b25" title=
+"adds a new row to a dataset table">netsnmp_table_dataset_add_row</a>(table_set, row);
+
+<span class="preprocessor">#ifdef ADD_MORE_DATA</span>
+    <span class="comment">/*</span>
+<span class="comment">     * add the data, for the second row </span>
+<span class="comment">     */</span>
+    row = <a class="code" href="group__table__data.html#gafdadce2dee8bc75b2b0dfd8e634e46a3" title=
+"creates and returns a pointer to table data set">netsnmp_create_table_data_row</a>();
+    netsnmp_table_row_add_index(row, ASN_OCTET_STR, <span class="stringliteral">"snmpconf"</span>,
+                                strlen(<span class="stringliteral">"snmpconf"</span>));
+    <a class="code" href="group__table__dataset.html#gaaa497e6eec3b370c5901905696bc78af" title=
+"sets a given column in a row with data given a type, value, and length.">netsnmp_set_row_column</a>(row, 2, ASN_OCTET_STR, <span class="stringliteral">"David Partain"</span>,
+                           strlen(<span class="stringliteral">"David Partain"</span>));
+    <a class="code" href="group__table__dataset.html#ga5dce210cd4d59eb8b01478ee5d0dc348" title=
+"marks a given column in a row as writable or not.">netsnmp_mark_row_column_writable</a>(row, 2, 1);        <span class=
+"comment">/* make writable */</span>
+    <a class="code" href="group__table__dataset.html#gaaa497e6eec3b370c5901905696bc78af" title=
+"sets a given column in a row with data given a type, value, and length.">netsnmp_set_row_column</a>(row, 3, ASN_OCTET_STR, <span class="stringliteral">"Jon Saperia"</span>,
+                           strlen(<span class="stringliteral">"Jon Saperia"</span>));
+    <a class="code" href="group__table__dataset.html#ga5dce210cd4d59eb8b01478ee5d0dc348" title=
+"marks a given column in a row as writable or not.">netsnmp_mark_row_column_writable</a>(row, 3, 1);        <span class=
+"comment">/* make writable */</span>
+    <a class="code" href="group__table__dataset.html#gacaa808db27144a4f967024bd7c9b6b25" title=
+"adds a new row to a dataset table">netsnmp_table_dataset_add_row</a>(table_set, row);
+<span class="preprocessor">#endif</span>
+
+    <span class="comment">/*</span>
+<span class="comment">     * Finally, this actually allows the "add_row" token it the</span>
+<span class="comment">     * * snmpd.conf file to add rows to this table.</span>
+<span class="comment">     * * Example snmpd.conf line:</span>
+<span class="comment">     * *   add_row netSnmpIETFWGTable eos "Glenn Waters" "Dale Francisco"</span>
+<span class="comment">     */</span>
+    <a name="a11" id="a11"></a><a class="code" href="group__table__dataset.html#ga0abcc64b2de9687425d8402c0b3377da" title=
+"registers a table_dataset so that the &amp;quot;add_row&amp;quot; snmpd.conf token can be...">netsnmp_register_auto_data_table</a>(table_set, NULL);
+
+    DEBUGMSGTL((<span class="stringliteral">"example_data_set"</span>, <span class=
+"stringliteral">"Done initializing.\n"</span>));
+}
+</pre>
+    </div>
+  </div>
+  <hr size="1" />
+
+  <address style="text-align: right;">
+    <small>Generated on 28 Sep 2009 for net-snmp by  <a href="http://www.doxygen.org/index.html"><img class="footer" src=
+    "doxygen.png" alt="doxygen" /></a> 1.6.1</small>
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/dev/agent/data__set_8c-example.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:27:01 GMT -->
+</html>
+
+
+

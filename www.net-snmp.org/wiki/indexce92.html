@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Snmpd_proxy&oldid=5034 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:00:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Snmpd proxy - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Snmpd_proxy","wgTitle":"Snmpd proxy","wgCurRevisionId":5034,"wgRevisionId":5034,"wgArticleId":1438,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Snmpd_proxy","wgRelevantArticleId":1438,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Snmpd_proxy skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Snmpd proxy</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"><div id="mw-revision-info">Revision as of 15:45, 23 June 2011 by <a href="http://www.net-snmp.org/wiki/index.php?title=User:Rstory&amp;action=edit&amp;redlink=1" class="new mw-userlink" title="User:Rstory (page does not exist)">Rstory</a> <span class="mw-usertoollinks">(<a href="http://www.net-snmp.org/wiki/index.php?title=User_talk:Rstory&amp;action=edit&amp;redlink=1" class="new" title="User talk:Rstory (page does not exist)">Talk</a> | <a href="http://www.net-snmp.org/wiki/index.php/Special:Contributions/Rstory" title="Special:Contributions/Rstory">contribs</a>)</span> <span class="comment">(add section on simple proxy configurations)</span></div><br />
+				<div id="mw-revision-nav">(<a href="http://www.net-snmp.org/wiki/index.php?title=Snmpd_proxy&amp;diff=prev&amp;oldid=5034" title="Snmpd proxy">diff</a>) <a href="http://www.net-snmp.org/wiki/index.php?title=Snmpd_proxy&amp;direction=prev&amp;oldid=5034" title="Snmpd proxy">← Older revision</a> | Latest revision (diff) | Newer revision → (diff)</div></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Simply_proxy_access"><span class="tocnumber">1</span> <span class="toctext">Simply proxy access</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Integrating_a_remote_branch"><span class="tocnumber">1.1</span> <span class="toctext">Integrating a remote branch</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Integrating_an_entire_tree"><span class="tocnumber">1.2</span> <span class="toctext">Integrating an entire tree</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="#Contexts_as_selectors"><span class="tocnumber">1.2.1</span> <span class="toctext">Contexts as selectors</span></a></li>
+<li class="toclevel-3 tocsection-5"><a href="#Remapping_OIDs"><span class="tocnumber">1.2.2</span> <span class="toctext">Remapping OIDs</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#proxy_to_multiple_devices"><span class="tocnumber">2</span> <span class="toctext">proxy to multiple devices</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Setting_up_SNMPv1_.28and_v2c.29_community.2Fcontext_mapping"><span class="tocnumber">2.1</span> <span class="toctext">Setting up SNMPv1 (and v2c) community/context mapping</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Setting_up_the_proxy_configuration"><span class="tocnumber">2.2</span> <span class="toctext">Setting up the proxy configuration</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Testing"><span class="tocnumber">3</span> <span class="toctext">Testing</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Simply_proxy_access">Simply proxy access</span></h2>
+<h3><span class="mw-headline" id="Integrating_a_remote_branch">Integrating a remote branch</span></h3>
+<p>Integrating a branch from a remote device into the Net-SNMP agent is useful if you only care about a subset of objects available from the remote device. One example would be to import a devices enterprise branch:
+</p>
+<pre># proxy enterprise tree (mixed in w/net-snmp agent objects)
+proxy -v 2c -c remote-community myswitch .1.3.6.1.4.1.171
+</pre>
+<p>Now when the enterprise branch is walked, the enterprise objects for myswitch will be included.
+</p>
+<h3><span class="mw-headline" id="Integrating_an_entire_tree">Integrating an entire tree</span></h3>
+<p>If you need objects from the remote device that conflict with objects for the local agent, you have two choices.
+</p>
+<h4><span class="mw-headline" id="Contexts_as_selectors">Contexts as selectors</span></h4>
+<p>You can use SNMPv3 contexts (or SNMPv2 context mapping) to select between the agent and the proxied device.
+</p><p>SNMPv2 context mapping require some configuration setup, so we'll cover that first. We need a v1/v2c community string for the proxied host. We'll assign these to the same 'notConfigUser' defined by default. We use '-Cn &lt;context&gt;' to assign a context to the community:
+</p>
+<pre>com2sec <font color="red">-Cn ctx_myswitch</font> notConfigUser  default       <font color="red">cmty_myswitch</font>
+</pre>
+<p>Now we need a view to allow all objects we want to integrate from the remote device. For simplicity, we'll just import everything:
+</p>
+<pre>view    allview          included        .1
+</pre>
+<p>We need to allow the 'notConfigUser' (a member of 'notConfigGroup') access for these contexts.
+</p>
+<pre>access  notConfigGroup <font color="red">ctx_myswitch</font>            any       noauth    exact  allview none none
+</pre>
+<p>Finally, the proxy configuration:
+</p>
+<pre># proxy whole tree under a context
+proxy -Cn ctx_myswitch -v 2c -c remote-community switch .1.3
+</pre>
+<p>Restart snmpd, and you should get different results based on your community string or SNMPv3 context:
+</p>
+<pre>$ snmpgetnext -v 2c -c public localhost .1.3.6
+RFC1213-MIB::sysDescr.0 = STRING: "Linux snmp.example.com"
+
+$ snmpgetnext -v 2c -c cmty_myswitch localhost .1.3.6
+RFC1213-MIB::sysDescr.0 = STRING: "D-Link DES-3226L Fast Ethernet Switch"
+
+$ snmpgetnext -v 3 -n ctx_myswitch -u MD5DESUser -a MD5 -A "PasswordA" -x DES -X "PasswordX" -l authPriv localhost .1.3.6
+RFC1213-MIB::sysDescr.0 = STRING: "D-Link DES-3226L Fast Ethernet Switch"
+</pre>
+<h4><span class="mw-headline" id="Remapping_OIDs">Remapping OIDs</span></h4>
+<p>A much simple configuration is to simply remap the entire remote tree to unused space in the local tree. Everything Net-SNMP implements is in the .iso.org (.1.3) tree. So you could remap a remote tree to iso.4 (.1.4), and no contexts or special community strings are needed.
+</p><p>The major disadvantage to this is that it completely breaks mapping of OIDs to MIB object names. If you are monitoring specific objects by OIDs, then you might not care.
+</p>
+<pre># proxy whole tree to somewhere else
+proxy -v 2c -c remote_community switch .1.4 .1.3
+</pre>
+<pre>$ snmpgetnext -v 2c -c public localhost .1.3
+RFC1213-MIB::sysDescr.0 = STRING: "Linux snmp.example.com"
+
+$ snmpgetnext -v 2c -c public localhost .1.4
+iso.4.6.1.2.1.1.1.0 = STRING: "D-Link DES-3226L Fast Ethernet Switch"
+</pre>
+<p><br />
+</p>
+<h2><span class="mw-headline" id="proxy_to_multiple_devices">proxy to multiple devices</span></h2>
+<p>If you want to have the same OID tree proxied to muliple devices, (e.g. so the proxy responds as if it were the proxied device), you need to use <b>contexts</b>. Contexts were introduced in SNMPv3, but Net-SNMP had a feature to have a SNMPv1 community string map to a context for proxying. You will need a unique community string per proxied device.
+</p>
+<h3><span class="mw-headline" id="Setting_up_SNMPv1_.28and_v2c.29_community.2Fcontext_mapping">Setting up SNMPv1 (and v2c) community/context mapping</span></h3>
+<p><i>(Skip this section if you are going to be using SNMPv3 to access the proxy agent).</i>
+</p><p>Normal access control looks like this:
+</p>
+<pre>
+# define a simple view 'systemview', which includes everthing under .1.3.6.1
+view    systemview     included      .1.3.6.1
+
+# map 'public' community to the 'notConfigUser'
+com2sec notConfigUser  default       public
+
+# map 'notConfigUser' to 'notConfigGroup'
+group   notConfigGroup v1            notConfigUser
+group   notConfigGroup v2c           notConfigUser
+
+# give 'notConfigGroup' read access to objects in the view 'systemview'
+access  notConfigGroup ""            any       noauth    exact  systemview none none
+</pre>
+<p>For proxy acess to multiple remote hosts, we need a v1/v2c community string for each proxied host. We'll assign these to the same 'notConfigUser' defined above. We also have to use '-Cn &lt;context&gt;' to assign a context to each, which is how the proxy configuration will know which remote host to set requests to.
+</p>
+<pre>com2sec <font color="red">-Cn ctx_remotehost1</font> notConfigUser  default       <font color="red">cmty_remotehost1</font>
+com2sec <font color="red">-Cn ctx_remotehost2</font> notConfigUser  default       <font color="red">cmty_remotehost2</font>
+</pre>
+<p><br />
+Now, we need to allow the 'notConfigUser' (a member of 'notConfigGroup') access for these contexts. Since we used a common prefix for the context name, we just need one access line using prefix matching, instead of two using exact matching:
+</p>
+<pre>access  notConfigGroup <font color="red">ctx_remotehost</font>            any       noauth    <font color="red">prefix</font>  systemview none none
+</pre>
+<h3><span class="mw-headline" id="Setting_up_the_proxy_configuration">Setting up the proxy configuration</span></h3>
+<p>Now, to set up the proxy:
+</p>
+<pre>proxy -Cn ctx_remotehost1  -v 2c -c public  remotehost1  .1.3
+
+# Note: this should be 1 line, without the '\' continuation..
+proxy -Cn ctx_remotehost2  -v 3 -u MD5DESUser -a MD5 -A "PasswordA" \
+      -x DES -X "PasswordX" -l authPriv  remotehost2  .1.3
+</pre>
+<p>Start snmpd (or restart it, if it was already running), and then test your new setup.
+</p>
+<h2><span class="mw-headline" id="Testing">Testing</span></h2>
+<p>Finally, to query via the proxy:
+</p>
+<pre>$ snmpget -v2c -c cmty_remotehost1 proxyhost sysContact.0
+</pre>
+<!-- 
+NewPP limit report
+Cached time: 20240514181722
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.010 seconds
+Real time usage: 0.011 seconds
+Preprocessor visited node count: 52/1000000
+Preprocessor generated node count: 78/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php?title=Snmpd_proxy&amp;oldid=5034">http://www.net-snmp.org/wiki/index.php?title=Snmpd_proxy&amp;oldid=5034</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/Snmpd_proxy" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="http://www.net-snmp.org/wiki/index.php?title=Talk:Snmpd_proxy&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="http://www.net-snmp.org/wiki/index.php?title=Snmpd_proxy&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=Snmpd_proxy&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=Snmpd+proxy&amp;returntoquery=oldid%3D5034&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=Snmpd+proxy&amp;returntoquery=oldid%3D5034" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/Snmpd_proxy" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/Snmpd_proxy" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="http://www.net-snmp.org/wiki/index.php?title=Snmpd_proxy&amp;oldid=5034&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="http://www.net-snmp.org/wiki/index.php?title=Snmpd_proxy&amp;oldid=5034" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=Snmpd_proxy&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 23 June 2011, at 15:45.</li>
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":1133});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Snmpd_proxy&oldid=5034 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:00:09 GMT -->
+</html>

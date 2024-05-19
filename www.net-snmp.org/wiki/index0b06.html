@@ -1,0 +1,404 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Writing_a_MIB_Module&oldid=26036 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:27:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>TUT:Writing a MIB Module - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"TUT:Writing_a_MIB_Module","wgTitle":"TUT:Writing a MIB Module","wgCurRevisionId":26036,"wgRevisionId":26036,"wgArticleId":17559,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"TUT:Writing_a_MIB_Module","wgRelevantArticleId":17559,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-TUT_Writing_a_MIB_Module skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">TUT:Writing a MIB Module</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"><div id="mw-revision-info">Revision as of 05:36, 12 September 2023 by <a href="http://www.net-snmp.org/wiki/index.php/User:Magfr" title="User:Magfr" class="mw-userlink">Magfr</a> <span class="mw-usertoollinks">(<a href="http://www.net-snmp.org/wiki/index.php?title=User_talk:Magfr&amp;action=edit&amp;redlink=1" class="new" title="User talk:Magfr (page does not exist)">Talk</a> | <a href="http://www.net-snmp.org/wiki/index.php/Special:Contributions/Magfr" title="Special:Contributions/Magfr">contribs</a>)</span> <span class="comment">(Created page with &quot;This page is the first in a series to guide you through the creation of custom extensions to the core Net-SNMP daemon, usually called an SNMP &quot;agent&quot;. In this article we will...&quot;)</span></div><br />
+				<div id="mw-revision-nav">(diff) ← Older revision | Latest revision (diff) | Newer revision → (diff)</div></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>This page is the first in a series to guide you through the creation of custom extensions to the core Net-SNMP daemon, usually called an SNMP "agent". In this article we will describe how to build your extension <em>into</em> the daemon. The two following articles will describe how to put your changes into a shared object (see <a href="http://www.net-snmp.org/wiki/index.php/TUT:Writing_a_Dynamically_Loadable_Object" title="TUT:Writing a Dynamically Loadable Object">Writing a Dynamically Loadable Object</a>) and a separate daemon (see <a href="http://www.net-snmp.org/wiki/index.php/TUT:Writing_a_Subagent" title="TUT:Writing a Subagent">Writing a Subagent</a>).
+</p><p>Extensions (or <em>"MIB modules"</em>) usually make use of the API provided by Net-SNMP and are therefore written in C. For instructions on writing extensions in Perl, please read <a href="http://www.net-snmp.org/wiki/index.php/Tut:Extending_snmpd_using_perl" title="Tut:Extending snmpd using perl">Extending SNMPd using Perl</a>.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#The_.22Big_Picture.22"><span class="tocnumber">1</span> <span class="toctext">The "Big Picture"</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Recommended_Reading_List"><span class="tocnumber">2</span> <span class="toctext">Recommended Reading List</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Writing_Your_First_Module"><span class="tocnumber">3</span> <span class="toctext">Writing Your First Module</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#MIBs_For_Dummies_and_mib2c"><span class="tocnumber">3.1</span> <span class="toctext">MIBs For Dummies and mib2c</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#A_simple_scalar_attached_to_a_variable"><span class="tocnumber">3.2</span> <span class="toctext">A simple scalar attached to a variable</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#A_simple_scalar_with_the_value_returned_from_code"><span class="tocnumber">3.3</span> <span class="toctext">A simple scalar with the value returned from code</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#A_table_of_data.2C_stored_within_the_agent"><span class="tocnumber">3.4</span> <span class="toctext">A table of data, stored within the agent</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Sending_SNMP_notifications_.28traps_and_informs.29_from_inside_the_agent."><span class="tocnumber">3.5</span> <span class="toctext">Sending SNMP notifications (traps and informs) from inside the agent.</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#The_older_.28and_thus_most_backward_compatible.29_ucd-snmp_4.X_API"><span class="tocnumber">3.6</span> <span class="toctext">The older (and thus most backward compatible) ucd-snmp 4.X API</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#The_MIB_Module_API"><span class="tocnumber">4</span> <span class="toctext">The MIB Module API</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Compiling_in_your_new_MIB_module"><span class="tocnumber">5</span> <span class="toctext">Compiling in your new MIB module</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#Set_Processing"><span class="tocnumber">6</span> <span class="toctext">Set Processing</span></a></li>
+<li class="toclevel-1"><a href="#Tutorial_Sections"><span class="tocnumber">7</span> <span class="toctext">Tutorial Sections</span></a>
+<ul>
+<li class="toclevel-2"><a href="#About_the_SNMP_Protocol"><span class="tocnumber">7.1</span> <span class="toctext">About the SNMP Protocol</span></a></li>
+<li class="toclevel-2"><a href="#Net-SNMP_Command_Line_Applications"><span class="tocnumber">7.2</span> <span class="toctext">Net-SNMP Command Line Applications</span></a></li>
+<li class="toclevel-2"><a href="#Application_Configuration"><span class="tocnumber">7.3</span> <span class="toctext">Application Configuration</span></a></li>
+<li class="toclevel-2"><a href="#Net-SNMP_Daemons"><span class="tocnumber">7.4</span> <span class="toctext">Net-SNMP Daemons</span></a></li>
+<li class="toclevel-2"><a href="#Coding_Tutorials"><span class="tocnumber">7.5</span> <span class="toctext">Coding Tutorials</span></a></li>
+<li class="toclevel-2"><a href="#Debugging_SNMP_Applications_and_Agents"><span class="tocnumber">7.6</span> <span class="toctext">Debugging SNMP Applications and Agents</span></a></li>
+<li class="toclevel-2"><a href="#Operating_System_Specific_Tutorials"><span class="tocnumber">7.7</span> <span class="toctext">Operating System Specific Tutorials</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="The_.22Big_Picture.22">The "Big Picture"</span></h2>
+<p>The main task of custom extensions is to register a callback function which handles requests for a specific <a href="http://www.net-snmp.org/wiki/index.php/OID" title="OID">OID</a>. Version 5.0 of the Net-SNMP agent tries to make this task as easy as possible by providing so called <em><a href="http://www.net-snmp.org/wiki/index.php/Agent_Helpers" title="Agent Helpers">helper modules</a></em>. Each request is handled in a <em>chain</em> in Net-SNMP, as described in the <a href="http://www.net-snmp.org/wiki/index.php/Agent_Architecture" title="Agent Architecture">Agent Architecture</a>. You can <em>inject</em> helper modules into this chain, so that helper modules are called before control reaches the actual callback function. This can, for example, be used to install a <em>cache</em> in front of the actual data acquisition, which may be costly.
+</p>
+<h2><span class="mw-headline" id="Recommended_Reading_List">Recommended Reading List</span></h2>
+<p>It is most helpful if you have the time to read through some documentation that describes how the Net-SNMP agent architecture works.  Thus, if you're starting from scratch, the suggested reading order for information about the agent is:
+</p>
+<ul><li> The <a href="http://www.net-snmp.org/wiki/index.php/Agent_Architecture" title="Agent Architecture">Agent Architecture</a> describes the internals of the agent, and how the <i>handler</i> system works.</li>
+<li> The <a href="http://www.net-snmp.org/wiki/index.php/Agent_Helpers" title="Agent Helpers">Agent Helpers</a> list describes the available MIB helpers available, which will be used in detail below.</li>
+<li> The rest of the tutorial below where you actually get to play with some code.</li></ul>
+<p>Can you skip some things on this list and jump straight to the real-code below?  Absolutely!  But you'll probably regret it later.
+</p>
+<h2><span class="mw-headline" id="Writing_Your_First_Module">Writing Your First Module</span></h2>
+<p>We will now walk you through the process of developing increasingly more complex <em>MIB objects</em>, beginning with a scalar, then a table, persistent data, notifications, and so on.
+</p>
+<h3><span class="mw-headline" id="MIBs_For_Dummies_and_mib2c">MIBs For Dummies and mib2c</span></h3>
+<p>Writing modules for MIBs is a long and sometimes troublesome process, much like writing a parser. And just like writing a parser, you don't have to do everything by hand: MIBs can already be processed by computers pretty well, so there is no need to start from square one every time. The tool to convert an existing MIB to some C code is called <strong>mib2c</strong> and is part of the Net-SNMP distribution. There is a <a href="http://www.net-snmp.org/wiki/index.php/MIB_for_Dummies" title="MIB for Dummies">MIB for Dummies</a> tutorial on using <a href="http://www.net-snmp.org/wiki/index.php/Mib2c" title="Mib2c">mib2c</a> and <i><a rel="nofollow" class="external text" href="http://net-snmp.git.sourceforge.net/git/gitweb.cgi?p=net-snmp/net-snmp;a=blob_plain;f=local/mib2c.mfd.conf;hb=HEAD">local/mib2c.mfd.conf</a></i> to generate a code template for a table.
+</p>
+<h3><span class="mw-headline" id="A_simple_scalar_attached_to_a_variable">A simple scalar attached to a variable</span></h3>
+<p>The first example, <a rel="nofollow" class="external text" href="http://www.net-snmp.org/dev/agent/scalar__int_8c-example.html">scalar_int.c</a>, only consists of an initialization function, <code>init_scalar_int</code>, which registers the module-global integer <code>example1</code> with the SNMP agent (aka. "daemon"). The prototype and name of the initialization function must follow this schema:
+</p>
+<pre>void init_<em>module_name</em> (void);
+</pre>
+<p>In the example code, the <em>module's</em> name is "scalar_int", hence the name of the initialization function.
+</p><p>Within the initialization function, the API function <a rel="nofollow" class="external text" href="http://www.net-snmp.org/dev/agent/group__instance.html#ga20">netsnmp_register_int_instance</a> is called to actually register the integer at a specified OID. The prototype of that API function is:
+</p>
+<pre>int netsnmp_register_int_instance (const char *name,
+                                   oid        *reg_oid,
+                                   size_t      reg_oid_len,
+                                   int        *it,
+                                   Netsnmp_Node_Handler *subhandler);
+</pre>
+<p>The first argument, <em>name</em>, is a the short description of the object being registered. The second argument is the OID to assign to this object — the length of the OID is stored in the third argument. It is recommended to use the <code>OID_LENGTH</code> macro which will only work with statically allocated OIDs (arrays work, pointers don't).
+</p><p>For the sake of simplicity the default <em>subhandler</em> is used in the example code, therefore <code>NULL</code> is passed as fifth argument. The default handler allows the integer to be read with a <code>GET</code> request as well as set with a <code>SET</code> request.
+</p><p>Simple integer registration functions, including read-only registration and the default handlers, are declared in <code>agent/instance.h</code>.
+</p>
+<h3><span class="mw-headline" id="A_simple_scalar_with_the_value_returned_from_code">A simple scalar with the value returned from code</span></h3>
+<p>Here is <a rel="nofollow" class="external text" href="http://www.net-snmp.org/dev/agent/delayed__instance_8c-example.html">some example code about writing a MIB Module</a> that describes how to implement a generic instance (not tied to a variable, like the above example) as well as how to delay answering queries for a bit (in the example, an alarm is set to add a delay to the answer).
+</p>
+<h3><span class="mw-headline" id="A_table_of_data.2C_stored_within_the_agent">A table of data, stored within the agent</span></h3>
+<p>Here is <a rel="nofollow" class="external text" href="http://www.net-snmp.org/dev/agent/data__set_8c-example.html">a more complex  example</a> that implements a table, where the table data is completely contained within the agent. 
+</p>
+<h3><span class="mw-headline" id="Sending_SNMP_notifications_.28traps_and_informs.29_from_inside_the_agent.">Sending SNMP notifications (traps and informs) from inside the agent.</span></h3>
+<p>Here is <a rel="nofollow" class="external text" href="http://www.net-snmp.org/dev/agent/notification_8c-example.html">an example of how to use the agent's internal notification sending API</a> to send a notification to all of the agent's trap receivers. 
+</p>
+<h3><span class="mw-headline" id="The_older_.28and_thus_most_backward_compatible.29_ucd-snmp_4.X_API">The older (and thus most backward compatible) ucd-snmp 4.X API</span></h3>
+<p>Of course, you can continue to write code using the older API set. A tutorial on it can be found <a rel="nofollow" class="external text" href="http://www.net-snmp.org/tutorial/tutorial-4/toolkit/mib_module/">here</a>.
+</p>
+<h2><span class="mw-headline" id="The_MIB_Module_API">The MIB Module API</span></h2>
+<p>The new API is documented more completely <a rel="nofollow" class="external text" href="http://www.net-snmp.org/dev/agent/group__handler.html">here</a>. Additionally, see the complete list of (mostly) documented available helpers and other information <a rel="nofollow" class="external text" href="http://www.net-snmp.org/tutorial/tutorial-4/toolkit/mib_module/">here</a>.
+</p>
+<h2><span class="mw-headline" id="Compiling_in_your_new_MIB_module">Compiling in your new MIB module</span></h2>
+<p><b>Note: you will need to have previously installed the Net-SNMP Source Package on your system before proceeding.</b>
+</p><p>There are a few ways to get your new MIB module loaded and accessible via SNMP requests. We'll discuss all three ways separately. To make this easy to test the procedures outlined below, we've provided three simple mib modules which implement the three simple scalars in the <a rel="nofollow" class="external text" href="http://www.net-snmp.org/tutorial/tutorial-5/toolkit/mib_module/NET-SNMP-TUTORIAL-MIB.txt">NET-SNMP-TUTORIAL-MIB</a> MIB. To see how MIBs can be properly used by the tools, please see the <a href="http://www.net-snmp.org/wiki/index.php/TUT:Using_and_loading_mibs" title="TUT:Using and loading mibs"> mib-options tutorial</a>. 
+</p>
+<ol><li><dl><dt> Compile it into the master agent. </dt></dl></li></ol>
+<p>Lets assume you're going to compile in a new mib module. For our example, lets use the <a rel="nofollow" class="external text" href="http://www.net-snmp.org/tutorial/tutorial-5/toolkit/mib_module/nstAgentModuleObject.c">example mib module</a> and it's <a rel="nofollow" class="external text" href="http://www.net-snmp.org/tutorial/tutorial-5/toolkit/mib_module/nstAgentModuleObject.h">header file</a>. To do this, you would put the nstAgentModuleObject.h and nstAgentModuleObject.c files into the net-snmp source code directory. You do this by copying them into a agent/mibgroup/nstAgentModuleObject.h and agent/mibgroup/nstAgentModuleObject.c file. 
+</p><p>Next, you have to configure the package to find them and compile them into the agent. To do this, you run the configure script giving it the extra module names you want it to load: 
+</p>
+<pre>&#160;% <b>./configure --with-mib-modules="nstAgentModuleObject"</b>
+       
+</pre>
+<p>If you had multiple modules to include (like a second "XXX" module, for example), you can separate them with spaces inside the quotes (e.g., --with-mib-modules="nstAgentModuleObject XXX"). 
+</p><p>Note that nstAgentModuleObject is the prefix and the configure script will actually look for a nstAgentModuleObject.h and a nstAgentModuleObject.c file. You must have a .h file and you can not get it to work with just a .c file. 
+</p><p>Build your new agent with your new code in it by running make: 
+</p>
+<pre>&#160;% <b>make</b>
+       
+</pre>
+<p>Finally, install the whole lot by running make install: 
+</p>
+<pre>&#160;% <b>make install</b>
+   
+</pre>
+<p>Now that the agent is installed, you need to add some basic configuration (see other tutorials for
+more configuration options). Here we just add a simple read-only and read-write community strings
+(<i>tutget</i> and <i>tutset</i>, respectively) for the tutorial MIB branch:
+</p>
+<pre>&#160;% <b>echo "rocommunity tutget 127.0.0.1 .1.3.6.1.4.1.8072.2.4" &gt;&gt; /usr/local/etc/snmp/snmpd.conf</b>
+&#160;% <b>echo "rwcommunity tutset 127.0.0.1 .1.3.6.1.4.1.8072.2.4" &gt;&gt; /usr/local/etc/snmp/snmpd.conf</b>
+</pre>
+<p>You can test out the functionality by starting the snmpd agent: 
+</p>
+<pre>&#160;% <b>/usr/local/sbin/snmpd -f -L -d</b>
+</pre>
+<p>Incoming and outgoing packets are printed (-d), to show what's happening, and the agent is run as a 'non-daemon' command (-f -L) so that you can see these messages. Note that this ties up the current shell, so you'll need to run the following checks in a different terminal window.    
+</p><p>And then running snmpget and snmpset on the scalar object: 
+</p>
+<pre>&#160;% <b>snmpget -v2c -c tutget localhost NET-SNMP-TUTORIAL-MIB::nstAgentModuleObject.0</b>
+ NET-SNMP-TUTORIAL-MIB::nstAgentModuleObject.0 = INTEGER: 1
+ 
+&#160;% <b>snmpset -v2c -c tutset localhost NET-SNMP-TUTORIAL-MIB::nstAgentModuleObject.0 = 5</b>
+ NET-SNMP-TUTORIAL-MIB::nstAgentModuleObject.0 = INTEGER: 5
+ 
+&#160;% <b>snmpget -v2c -c tutget localhost NET-SNMP-TUTORIAL-MIB::nstAgentModuleObject.0</b>
+ NET-SNMP-TUTORIAL-MIB::nstAgentModuleObject.0 = INTEGER: 5
+   
+</pre>
+<p>You can also compile your code into a "subagent" which then attaches itself to the master agent using <a rel="nofollow" class="external text" href="http://www.scguild.com/agentx/">the AgentX subagent protocol</a>. Our libraries provide support to make this easy to do and this is discussed in greater detail in <a href="http://www.net-snmp.org/wiki/index.php/TUT:Writing_a_Subagent" title="TUT:Writing a Subagent"> a later section</a>. 
+</p><p>Finally, you can also compile your code into pluggable shared object and tell the snmpd agent to load it. This is also discussed in greater detail in <a href="http://www.net-snmp.org/wiki/index.php/TUT:Writing_a_Dynamically_Loadable_Object" title="TUT:Writing a Dynamically Loadable Object"> a later section </a>.
+</p>
+<h2><span class="mw-headline" id="Set_Processing">Set Processing</span></h2>
+<p>To process an SNMP-SET, the agent must use a series of calls to the mib module code to ensure that processing of all sets in the incoming packet can be successful. This gives you or other mib modules the chance to bail out early on in the transaction sequence and thus stop all of the transactions in the set from happening. This is important for continuity. However, it makes set code processing a bit more complex. Let's examine a simple state diagram that the master agent uses at each step of the way: 
+</p>
+<div class="MediaTransformError" style="width: 331px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<p>In a perfect operation with no failures, we take the vertical path on the left. If any of the mib modules being acted upon returns an error of any kind, we will branch to the right to one of the failure states where you must clean up and possibly undo what you did in previous steps.
+</p><p>If you need even finer-grained SET processing with even more states, check out the <a href="http://www.net-snmp.org/wiki/index.php/Baby_steps" title="Baby steps">baby_steps</a> <a href="http://www.net-snmp.org/wiki/index.php/Agent_Helpers" title="Agent Helpers">helper</a> module.
+</p>
+<h2><span class="mw-headline" id="Tutorial_Sections">Tutorial Sections</span></h2>
+<h3><span class="mw-headline" id="About_the_SNMP_Protocol">About the SNMP Protocol</span></h3>
+<p>These tutorial links talk about SNMP generically and how the protocol itself works.  They are good introductory reading material and the concepts are important to understand before diving into the later tutorials about Net-SNMP itself.
+</p>
+<ul><li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:SNMP" title="TUT:SNMP"> How SNMP Works</a>: About the protocol itself (GETs, GETNEXTs, etc)</li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:MIBs" title="TUT:MIBs"> What data is in SNMP</a>: All about SNMP <i>Management Information Bases</i> (MIBs)</li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:Security" title="TUT:Security"> Securing SNMP</a>: How to use the SNMP protocol securely</li></ul>
+<h3><span class="mw-headline" id="Net-SNMP_Command_Line_Applications">Net-SNMP Command Line Applications</span></h3>
+<p>These tutorial pages discuss the command line tools provided in the Net-SNMP suite of tools.  Nearly all the example commands in these tutorials works if you try it yourself, as they're all examples that talk to our online Net-SNMP test agent.  Given them a shot!
+</p>
+<ul><li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:snmptranslate" title="TUT:snmptranslate"> snmptranslate</a>: learning about the MIB tree.</li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:snmpget" title="TUT:snmpget"> snmpget</a>: retrieving data from a host.</li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:snmpgetnext" title="TUT:snmpgetnext"> snmpgetnext</a>: retrieving unknown indexed data.</li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:snmpwalk" title="TUT:snmpwalk"> snmpwalk</a>: retrieving lots of data at once!</li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:snmptable" title="TUT:snmptable"> snmptable</a>: displaying a table.</li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:snmpset" title="TUT:snmpset"> snmpset</a>: peforming write operations.</li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:snmpbulkget" title="TUT:snmpbulkget"> snmpbulkget</a>: communicates with a network entity using SNMP GETBULK request</li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:snmpbulkwalk" title="TUT:snmpbulkwalk"> snmpbulkwalk</a>: retrieve a sub-tree of management values using SNMP GETBULK requests.</li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:snmptrap" title="TUT:snmptrap"> snmptrap</a>: Sending and receiving traps, and acting upon them. 
+<ul><li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:snmptrap_SNMPv3" title="TUT:snmptrap SNMPv3"> Traps/informs with SNMPv3/USM</a>: Sending and receiving SNMPv3/USM TRAPs and INFORMs</li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:agentxtrap" title="TUT:agentxtrap"> Sending Traps/Informs via AgentX</a>: Sending notifications from the command line through snmpd </li></ul></li>
+<li> Common command line options: 
+<ul><li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:Using_and_loading_MIBS" title="TUT:Using and loading MIBS"> Using and loading MIBS</a></li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:SNMPv3_Options" title="TUT:SNMPv3 Options"> SNMPv3/USM Options</a></li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:Using_TLS" title="TUT:Using TLS"> Using SNMPv3 over TLS and DTLS</a></li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:Customized_Output_Formats" title="TUT:Customized Output Formats"> Customized Output Formats</a></li></ul></li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:mib2c_config_files" title="TUT:mib2c config files"> Writing mib2c config files </a></li></ul>
+<h3><span class="mw-headline" id="Application_Configuration">Application Configuration</span></h3>
+<p>All of our applications support configuration to allow you to customize how they behave.
+</p>
+<ul><li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:Configuring_Net-SNMP_Applications" title="TUT:Configuring Net-SNMP Applications"> Configuration files for Net-SNMP applications</a></li></ul>
+<h3><span class="mw-headline" id="Net-SNMP_Daemons">Net-SNMP Daemons</span></h3>
+<p>Net-SNMP comes with two long-running daemons: a SNMP agent (<i><a href="http://www.net-snmp.org/wiki/index.php/Snmpd" title="Snmpd">snmpd</a></i>) for responding to management requests and a notification receiver (<i><a href="http://www.net-snmp.org/wiki/index.php/Snmptrapd" title="Snmptrapd">snmptrapd</a></i>) for receiving SNMP notifications.
+</p>
+<ul><li> SNMP Agent (snmpd) Configuration
+<ul><li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:snmpd_configuration" title="TUT:snmpd configuration">Configuration Basics</a></li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/Vacm" title="Vacm"> Access Control (VACM)</a></li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/Snmpconf" title="Snmpconf">snmpconf</a></li></ul></li>
+<li> SNMP Notification Receiver (snmptrapd)
+<ul><li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:Configuring_snmptrapd" title="TUT:Configuring snmptrapd">Configuring snmptrapd</a></li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:Configuring_snmptrapd_to_receive_SNMPv3_notifications" title="TUT:Configuring snmptrapd to receive SNMPv3 notifications">Configuring SNMPv3 notifications</a></li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors" title="TUT:Configuring snmptrapd to parse MIBS from 3rd party Vendors">Configuring snmptrapd to understand vendor-specific MIBS (Cisco)</a></li></ul></li>
+<li> Agent Monitoring
+<ul><li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:DisMan_Monitoring" title="TUT:DisMan Monitoring">DisMan Monitoring</a></li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:MRTG" title="TUT:MRTG">Monitoring with MRTG</a></li></ul></li></ul>
+<h3><span class="mw-headline" id="Coding_Tutorials">Coding Tutorials</span></h3>
+<p>Net-SNMP comes with a highly flexible and extensible API.  The API allows you to create your own commands, add extensions to the agent to support your own <a href="http://www.net-snmp.org/wiki/index.php/MIB" title="MIB">MIBs</a> and perform specialized processing of notifications.
+</p>
+<ul><li> Client / Manager Coding Tutorials
+<ul><li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:Simple_Application" title="TUT:Simple Application">Writing a simple application</a></li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:Simple_Async_Application" title="TUT:Simple Async Application">Writing a simple asynchronous application</a></li></ul></li>
+<li> Agent Coding Tutorials
+<ul><li> The <a href="http://www.net-snmp.org/wiki/index.php/Agent_Architecture" title="Agent Architecture">Agent Architecture</a> page might be worth reading before or after the agent coding tutorials, and describes how the <a href="http://www.net-snmp.org/wiki/index.php/Agent_Helpers" title="Agent Helpers">Agent Helpers</a> work under the hood.</li>
+<li> <strong class="selflink"> Writing a mib module</strong> to serve information described by an SNMP MIB, and how to compile it into the net-snmp snmpd agent.</li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:Writing_a_Dynamically_Loadable_Object" title="TUT:Writing a Dynamically Loadable Object"> Writing a Dynamically Loadable Object</a> that can be loaded into the SNMP agent.</li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:Writing_a_Subagent" title="TUT:Writing a Subagent"> Writing a Subagent</a> that can be run to attach to the snmpd master agent.</li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/Tut:Extending_snmpd_using_perl" title="Tut:Extending snmpd using perl"> Writing a perl plugin to extend the agent</a> using the NetSNMP::agent module.</li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/Tut:Extending_snmpd_using_shell_scripts" title="Tut:Extending snmpd using shell scripts"> Writing shell scripts to extend the agent</a></li>
+<li> Using mib2c to help write an agent code template for you
+<ul><li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:mib2c_General_Overview" title="TUT:mib2c General Overview"> General mib2c Overview</a></li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:mib2c-update" title="TUT:mib2c-update"> Using the mib2c-update script to <i>recode</i> your code</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.net-snmp.org/tutorial/tutorial-5/toolkit/mfd/">mib2c.mfd.conf tutorial</a></li></ul></li></ul></li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/TUT:Header_files" title="TUT:Header files">Header files and autoconf</a></li></ul>
+<h3><span class="mw-headline" id="Debugging_SNMP_Applications_and_Agents">Debugging SNMP Applications and Agents</span></h3>
+<p>All our tools and applications have extensive debugging output.  These tutorials talk about how the debugging system works and how you can add your own debugging statements to you code:
+</p>
+<ul><li> <a href="http://www.net-snmp.org/wiki/index.php/Debugging_output" title="Debugging output"> Debugging output printed using the -D command line option</a>
+<ul><li> <a href="http://www.net-snmp.org/wiki/index.php/DEBUGMSG" title="DEBUGMSG"> Putting DEBUGMSG tokens in your code</a></li></ul></li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php?title=Debugging_packet_traces&amp;action=edit&amp;redlink=1" class="new" title="Debugging packet traces (page does not exist)"> Using -Ddump to display packet breakdowns</a></li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/Debugger" title="Debugger">Debugging using GDB</a></li></ul>
+<h3><span class="mw-headline" id="Operating_System_Specific_Tutorials">Operating System Specific Tutorials</span></h3>
+<ul><li> Building With Visual Studio 2005 Express
+<ul><li> <a href="http://www.net-snmp.org/wiki/index.php/Using_the_command_line_and_nmake" title="Using the command line and nmake">Using the command line and nmake</a></li></ul></li>
+<li> Building Net-SNMP 64-bit with Visual C++ 2010 Express
+<ul><li> <a href="http://www.net-snmp.org/wiki/index.php/Using_the_command_line_and_nmake_(VC++_2010_Express)" title="Using the command line and nmake (VC++ 2010 Express)">Using the command line and nmake (VC++ 2010 Express)</a></li></ul></li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/Net-Snmp_on_Ubuntu" title="Net-Snmp on Ubuntu">Net-Snmp on Ubuntu</a></li>
+<li> <a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_and_lm-sensors_on_Ubuntu_10.04" title="Net-SNMP and lm-sensors on Ubuntu 10.04">Net-SNMP and lm-sensors on Ubuntu 10.04</a></li>
+<li> Net-SNMP for windows:
+<ul><li> How to install: <a rel="nofollow" class="external autonumber" href="http://www.netadmintools.com/art487.html">[1]</a></li>
+<li> How to configure: <a rel="nofollow" class="external autonumber" href="http://www.netadmintools.com/art488.html">[2]</a></li></ul></li></ul>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514175523
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.029 seconds
+Real time usage: 0.077 seconds
+Preprocessor visited node count: 64/1000000
+Preprocessor generated node count: 106/1000000
+Post‐expand include size: 5878/2097152 bytes
+Template argument size: 40/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    8.006      1 - -total
+ 60.20%    4.820      1 - Template:TUT:LIST
+ 35.36%    2.831      1 - Template:Code
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php?title=TUT:Writing_a_MIB_Module&amp;oldid=26036">http://www.net-snmp.org/wiki/index.php?title=TUT:Writing_a_MIB_Module&amp;oldid=26036</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/TUT:Writing_a_MIB_Module" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk"><a href="http://www.net-snmp.org/wiki/index.php/Talk:TUT:Writing_a_MIB_Module" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Writing_a_MIB_Module&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Writing_a_MIB_Module&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3AWriting+a+MIB+Module&amp;returntoquery=oldid%3D26036&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3AWriting+a+MIB+Module&amp;returntoquery=oldid%3D26036" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/TUT:Writing_a_MIB_Module" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/TUT:Writing_a_MIB_Module" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Writing_a_MIB_Module&amp;oldid=26036&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Writing_a_MIB_Module&amp;oldid=26036" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Writing_a_MIB_Module&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 12 September 2023, at 05:36.</li>
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":226});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Writing_a_MIB_Module&oldid=26036 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:27:17 GMT -->
+</html>

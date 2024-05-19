@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/SSH by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:19:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>SSH - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"SSH","wgTitle":"SSH","wgCurRevisionId":5295,"wgRevisionId":5295,"wgArticleId":2274,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Tutorials"],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"SSH","wgRelevantArticleId":2274,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="../load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="../load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<link rel="shortcut icon" href="../../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="../opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="../api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="../apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-SSH skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">SSH</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="padding-left: 1em; border-width: 2px; border-color: #bb0000; border-style: solid; background-color: #ffcccc; width: 95%; margin-bottom: .5em;">
+<div style="font-size: 1.2em; font-weight: bold; border-width: 0px 0px 4px 0px; border-color: #bb0000; border-style: solid; display: block; padding-bottom: .2em; padding-top: .2em;">Requires Net-SNMP 5.6</div>
+<p>Note: Features discussed on this page require Net-SNMP version <b>5.6</b> or higher.
+</p>
+</div>
+<p>The SSH transport, on the server side, is actually just a UNIX named pipe that
+can be connected to via a sshd subsystem configured in the main SSH server. The
+pipe location (configurable with the <b>sshtosnmpsocket</b> token in
+`/etc/snmp/snmp.conf`) is `/var/net-snmp/sshtosnmp`. Packets should be
+submitted to it via the <b>sshtosnmp</b> application, which also sends the user ID
+as well when starting the connection.  The TSM security model should be used
+when packets should process it.
+</p><p>The <b>sshtosnmp</b> command knows how to connect to this pipe and talk to it. It
+should be configured in the <a rel="nofollow" class="external text" href="http://www.openssh.org/">OpenSSH</a> sshd configuration file (which is
+normally `/etc/ssh/sshd_config`) using the following configuration line:
+</p>
+<pre>   Subsystem snmp /usr/local/bin/sshtosnmp
+</pre>
+<table border="1">
+
+<tr>
+<td> <span style="color:#FFFFFF; background:#FF0000"> Attention: </span>
+</td>
+<td>  There is a fix path  coded to the pipe at `apps/sshtosnmp.c`! Do not change the default <b>sshtosnmpsocket</b> option.
+</td></tr>
+</table>
+<p>The <b>sshtosnmp</b> command will need read/write access to the
+`/var/net-snmp/sshtosnmp` pipe.  Although it should be fairly safe to grant
+access to the average user since it still requires modifications to the ACM
+settings before the user can perform operations, paranoid administrators may
+want to make the `/var/net-snmp` directory accessible only by users in a
+particular group.
+</p><p><br />
+</p>
+<table border="1">
+
+<tr>
+<td><b>Tip</b>:
+</td>
+<td>In the `/etc/snmp/snmp.conf` file use the <b>sshtosnmpsocketperms</b> configure option to set the permissions, owner and group of the created socket.
+</td></tr>
+</table>
+<p>Too you have to check the persistant dir access rights for group and other:
+</p>
+<pre>   sudo chmod g+x,o+x /var/net-snmp
+   sudo chmod g+x,o+x /var/net-snmp/mib_indexes
+</pre>
+<p><br />
+The SNMP USM access control should be granted to the user "foo" using the
+following style of simple `/etc/snmp/snmpd.conf` settings::
+</p>
+<pre>   rouser -s tsm foo authpriv
+</pre>
+<p><b>Note</b> that "authpriv" is acceptable assuming as SSH protects everything
+that way (assuming you have a non-insane setup). snmpd has no notion of how SSH
+has actually protected a packet and thus the snmp agent assumes all packets
+passed through the SSH transport have been protected at the "authpriv" level.
+</p><p><br />
+</p>
+<h2><span class="mw-headline" id="Required_Build_Options">Required Build Options</span></h2>
+<p>You must have added these options when configure was run to make the following work:
+</p>
+<pre>   --with-security-modules=tsm --with-transports=SSH
+</pre>
+<p><br />
+Use ssh-keygen(1) to generate an authentication key.
+</p><p>To be able to SSH login without a password you have to install your public key file with:
+</p>
+<pre>   ssh-copy-id [-i [identity_file]] [user@]machine
+</pre>
+<p><br />
+</p>
+<table border="1">
+
+<tr>
+<td> <b>Tip</b>:
+</td>
+<td> Read <a rel="nofollow" class="external free" href="http://wiki.debian.org/ssh#ssh_without_password">http://wiki.debian.org/ssh#ssh_without_password</a>  <br /> or <a rel="nofollow" class="external free" href="https://help.ubuntu.com/community/SSH/OpenSSH/Keys">https://help.ubuntu.com/community/SSH/OpenSSH/Keys</a> for more info.
+</td></tr>
+</table>
+<h2><span class="mw-headline" id="Usage_example">Usage example</span></h2>
+<p>My current `~/.snmp/snmp.conf` file contains the following SSH transport settings:
+</p>
+<pre>   defSecurityModel tsm
+   defSecurityName  foo
+   defSecurityLevel authPriv
+   #
+   sshusername   foo
+   sshpublickey  /home/foo/.ssh/id_rsa.pub
+   sshprivatekey /home/foo/.ssh/id_rsa
+   #FIXME: do not change! sshtosnmpsocket   /var/net-snmp/sshtosnmp
+   # sshtosnmpsocketperms MODE [OWNER [GROUP]]
+   sshtosnmpsocketperms 664 foo admin
+</pre>
+<p><br />
+I added to `/etc/ssh/sshd_config` the following snmp Subsystem line:
+</p>
+<pre>   # override default of no subsystems
+   Subsystem	snmp	/home/foo/Workspace/c/net-snmp/apps/sshtosnmp
+</pre>
+<p><br />
+To test the new SSH TSM configuration, I start the snmpd with:
+</p>
+<pre>   sudo ./agent/snmpd -mall -Mmibs -f -Le -c /etc/snmp/snmpd.conf --defSecurityModel=tsm -Dssh,tsm,trans ssh:localhost
+</pre>
+<p><br />
+Then I can do a snmp query with:
+</p>
+<pre>   ./apps/snmpstatus -m all -M mibs -r1 -Dssh,tsm,trans ssh:machine:22
+</pre>
+<p><br />
+</p>
+<hr />
+<p>See too <a href="TUT_Using_TLS.html" title="TUT:Using TLS">TUT:Using_TLS</a>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20171115233323
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.076 seconds
+Real time usage: 0.131 seconds
+Preprocessor visited node count: 16/1000000
+Preprocessor generated node count: 46/1000000
+Post‐expand include size: 456/2097152 bytes
+Template argument size: 6/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   20.195      1 - -total
+100.00%   20.195      1 - Template:Require
+-->
+
+<!-- Saved in parser cache with key n12694_wikidb:pcache:idhash:2274-0!*!0!!*!*!* and timestamp 20171115233323 and revision id 5295
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="../indexa0dc.html?title=SSH&amp;oldid=5295">http://www.net-snmp.org/wiki/index.php?title=SSH&amp;oldid=5295</a>"</div>
+					<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="Special_Categories.html" title="Special:Categories">Category</a>: <ul><li><a href="Category_Tutorials.html?title=Category:Tutorials&amp;action=edit&amp;redlink=1" class="new" title="Category:Tutorials (page does not exist)">Tutorials</a></li></ul></div></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="SSH.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="Talk_SSH.html?title=Talk:SSH&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="../indexe8d0.html?title=SSH&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="../indexece9.html?title=SSH&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="../indexb09a.html?title=Special:UserLogin&amp;returnto=SSH&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="../index7cba.html?title=Special:UserLogin&amp;returnto=SSH" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/SSH.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/SSH.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="../index37ab.html?title=SSH&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="../indexa0dc.html?title=SSH&amp;oldid=5295" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="../index91b3.html?title=SSH&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 5 August 2011, at 20:15.</li>
+									<li id="privacy"><a href="Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":1017});
+} );</script></body><!-- Cached 20171116013852 -->
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/SSH by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:19:06 GMT -->
+</html>

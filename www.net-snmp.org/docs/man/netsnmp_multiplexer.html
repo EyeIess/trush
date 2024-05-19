@@ -1,0 +1,123 @@
+Content-type: text/html
+
+<HTML>
+<!-- Mirrored from www.net-snmp.org/docs/man/netsnmp_multiplexer.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:36 GMT -->
+<HEAD><TITLE>Manpage of multiplexer</TITLE>
+</HEAD><BODY>
+<H1>multiplexer</H1>
+Section: net-snmp (3)<BR>Updated: 23 Sep 2009<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+multiplexer - 
+<P>
+
+Splits mode requests into calls to different handlers.  
+<P>
+<A NAME="lbAC">&nbsp;</A>
+<H3>Functions</H3>
+
+<P>
+
+<BR>
+
+<B>netsnmp_mib_handler</B> * <B>netsnmp_get_multiplexer_handler</B> (<B>netsnmp_mib_handler_methods</B> *req)
+
+<BR>
+
+<I>returns a multiplixer handler given a </I><B>netsnmp_mib_handler_methods</B> structure of subhandlers. 
+
+<BR>
+
+int <B>netsnmp_multiplexer_helper_handler</B> (<B>netsnmp_mib_handler</B> *handler, <B>netsnmp_handler_registration</B> *reginfo, <B>netsnmp_agent_request_info</B> *reqinfo, <B>netsnmp_request_info</B> *requests)
+
+<BR>
+
+<I>implements the multiplexer helper </I>
+
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>Detailed Description</H2>
+
+<P>
+
+Splits mode requests into calls to different handlers. 
+<P>
+The multiplexer helper lets you split the calling chain depending on the calling mode (get vs getnext vs set). Useful if you want different routines to handle different aspects of SNMP requests, which is very common for GET vs SET type actions.
+<P>
+
+Functionally:
+<P>
+
+<DL COMPACT>
+<DT>1.<DD>
+GET requests call the get_method
+<DT>2.<DD>
+GETNEXT requests call the getnext_method, or if not present, the get_method.
+<DT>3.<DD>
+GETBULK requests call the getbulk_method, or if not present, the getnext_method, or if even that isn't present the get_method.
+<DT>4.<DD>
+SET requests call the set_method, or if not present return a SNMP_ERR_NOTWRITABLE error. 
+</DL>
+<P>
+
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>Function Documentation</H2>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H3><B>netsnmp_mib_handler</B>* netsnmp_get_multiplexer_handler (<B>netsnmp_mib_handler_methods</B> * req)</H3>
+
+<P>
+
+returns a multiplixer handler given a <B>netsnmp_mib_handler_methods</B> structure of subhandlers. 
+<P>
+
+Definition at line 33 of file multiplexer.c.
+<A NAME="lbAG">&nbsp;</A>
+<H3>int netsnmp_multiplexer_helper_handler (<B>netsnmp_mib_handler</B> * handler, <B>netsnmp_handler_registration</B> * reginfo, <B>netsnmp_agent_request_info</B> * reqinfo, <B>netsnmp_request_info</B> * requests)</H3>
+
+<P>
+
+implements the multiplexer helper 
+<P>
+
+Definition at line 54 of file multiplexer.c.
+<A NAME="lbAH">&nbsp;</A>
+<H2>Author</H2>
+
+<P>
+
+Generated automatically by Doxygen for net-snmp from the source code.
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DL>
+<DT><A HREF="#lbAC">Functions</A><DD>
+</DL>
+<DT><A HREF="#lbAD">Detailed Description</A><DD>
+<DT><A HREF="#lbAE">Function Documentation</A><DD>
+<DL>
+<DT><A HREF="#lbAF"><B>netsnmp_mib_handler</B>* netsnmp_get_multiplexer_handler (<B>netsnmp_mib_handler_methods</B> * req)</A><DD>
+<DT><A HREF="#lbAG">int netsnmp_multiplexer_helper_handler (<B>netsnmp_mib_handler</B> * handler, <B>netsnmp_handler_registration</B> * reginfo, <B>netsnmp_agent_request_info</B> * reqinfo, <B>netsnmp_request_info</B> * requests)</A><DD>
+</DL>
+<DT><A HREF="#lbAH">Author</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 19:05:37 GMT, September 28, 2009
+</BODY>
+
+<!-- Mirrored from www.net-snmp.org/docs/man/netsnmp_multiplexer.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:36 GMT -->
+</HTML>

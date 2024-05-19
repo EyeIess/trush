@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Moving_changes_on_a_Git_branch&oldid=5062 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:28:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Moving changes on a Git branch - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Moving_changes_on_a_Git_branch","wgTitle":"Moving changes on a Git branch","wgCurRevisionId":5062,"wgRevisionId":5062,"wgArticleId":2204,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Git"],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Moving_changes_on_a_Git_branch","wgRelevantArticleId":2204,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Moving_changes_on_a_Git_branch skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Moving changes on a Git branch</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"><div id="mw-revision-info">Revision as of 00:28, 30 June 2011 by <a href="http://www.net-snmp.org/wiki/index.php/User:Wes" title="User:Wes" class="mw-userlink">Wes</a> <span class="mw-usertoollinks">(<a href="http://www.net-snmp.org/wiki/index.php/User_talk:Wes" title="User talk:Wes">Talk</a> | <a href="http://www.net-snmp.org/wiki/index.php/Special:Contributions/Wes" title="Special:Contributions/Wes">contribs</a>)</span> <span class="comment">(<a href="#But_but_but...">→</a>‎<span dir="auto"><span class="autocomment">But but but...</span></span>)</span></div><br />
+				<div id="mw-revision-nav">(<a href="http://www.net-snmp.org/wiki/index.php?title=Moving_changes_on_a_Git_branch&amp;diff=prev&amp;oldid=5062" title="Moving changes on a Git branch">diff</a>) <a href="http://www.net-snmp.org/wiki/index.php?title=Moving_changes_on_a_Git_branch&amp;direction=prev&amp;oldid=5062" title="Moving changes on a Git branch">← Older revision</a> | Latest revision (diff) | Newer revision → (diff)</div></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>This page describes what to do if you are developing changes on a branch and need to move them to a different branch using <a href="http://www.net-snmp.org/wiki/index.php/Git" title="Git">Git</a>
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Scenario"><span class="tocnumber">1</span> <span class="toctext">Scenario</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Starting_Out"><span class="tocnumber">2</span> <span class="toctext">Starting Out</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#First_we_made_a_common_mistake"><span class="tocnumber">3</span> <span class="toctext">First we made a common mistake</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Rebasing_changes_somewhere_else"><span class="tocnumber">4</span> <span class="toctext">Rebasing changes somewhere else</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Now_we_can_.22properly.22_apply_them"><span class="tocnumber">5</span> <span class="toctext">Now we can "properly" apply them</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Deleting_the_unused_branch"><span class="tocnumber">6</span> <span class="toctext">Deleting the unused branch</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Rolling_Upward"><span class="tocnumber">7</span> <span class="toctext">Rolling Upward</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#And_Pushing_the_Whole_Mess_Forward"><span class="tocnumber">8</span> <span class="toctext">And Pushing the Whole Mess Forward</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#But_but_but..."><span class="tocnumber">9</span> <span class="toctext">But but but...</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Exercises_left_to_the_reader"><span class="tocnumber">10</span> <span class="toctext">Exercises left to the reader</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Scenario">Scenario</span></h2>
+<p>Take the following example:  I was working on some changes to the dist/makerelease.xml file and doing this on my local copy of the master branch.  But in the end, these changes actually need to go into all of our active branches.  Which means, if I'm going to follow our <a href="http://www.net-snmp.org/wiki/index.php/Git_Workflow" title="Git Workflow">Git Workflow</a> I need to first commit them to the lowest supported branch first.  But...  that's not where I committed them!  Oh no!
+</p><p>[Never fear]
+</p>
+<h2><span class="mw-headline" id="Starting_Out">Starting Out</span></h2>
+<p>Here's a snapshot from <a href="http://www.net-snmp.org/wiki/index.php?title=Gitk&amp;action=edit&amp;redlink=1" class="new" title="Gitk (page does not exist)">gitk</a> showing the tree where I started.  Note that my master is ahead of the upstream origin/master.  It is important you don't do anything on this page with changes that have been published!  It's important.  So I'll repeat it.  In bold.  <b>It is important you don't do anything on this page with changes that have been published!</b>
+</p>
+<div class="MediaTransformError" style="width: 917px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<h2><span class="mw-headline" id="First_we_made_a_common_mistake">First we made a common mistake</span></h2>
+<p>We didn't do our changes in the right place (V5-4-patches) or, even better, in a new special branch for the new work (maybe "really-cool-new-release-script").  Ehh...  Who cares.  We can do this now by creating the new branch:
+</p>
+<pre> # <b>git checkout -b really-cool-new-release-script</b>
+ Switched to a new branch 'really-cool-new-release-script'
+</pre>
+<p>Results in:
+</p>
+<div class="MediaTransformError" style="width: 921px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<p>Now we need to reset the master to get rid of all the changes to it (yeah, they'll just be merged in again later and this is silly, but...)
+</p>
+<pre> # <b>git checkout master</b>  
+ Switched to branch 'master'
+ Your branch is ahead of 'origin/master' by 7 commits.
+ 
+ # <b>git reset --hard remotes/origin/master</b>
+ HEAD is now at 8e08fc5 Tweak RPM handling to work with library version 4.9
+</pre>
+<p>This results in removing all the changes from the master branch (--hard means 'don't even save them; discard them entirely):
+</p>
+<div class="MediaTransformError" style="width: 916px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<h2><span class="mw-headline" id="Rebasing_changes_somewhere_else">Rebasing changes somewhere else</span></h2>
+<p>Now that we have the changes properly placed into a new branch, we can move the whole branch to rebase it (relocate it) somewhere else.  Like where we want the branch to move to.  We do this with <i>git rebase</i> and the <i>--onto</i> flag:
+</p>
+<pre> # <b>git checkout really-cool-new-release-script</b>
+ Switched to branch 'really-cool-new-release-script'
+ 
+ # <b>git rebase --onto V5-4-patches master really-cool-new-release-script</b>
+ First, rewinding head to replay your work on top of it...
+ Applying: pull the branch info from git
+ Applying: make the branch echo output and svn update converted to git equivalents
+ Applying: remaining command line changes for svn -&gt; git
+ Applying: A script to invoke the correct version of the autoconf tool
+ Applying: use the new run-autoconf script
+ Applying: use git2cl to generate the ChangeLog file; needs much more work.
+ Applying: xml fixes
+</pre>
+<p>Which actually moves all the changes (one at a time) to the V5-4-patches tree (it would have stopped us in the middle if it failed because of a conflict, but it didn't):
+</p>
+<div class="MediaTransformError" style="width: 924px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<h2><span class="mw-headline" id="Now_we_can_.22properly.22_apply_them">Now we can "properly" apply them</span></h2>
+<p>Now that they're hanging off the right branch, we can apply them directly to the branch:
+</p>
+<pre> # <b>git checkout V5-4-patches</b>
+ Switched to branch 'V5-4-patches'
+ 
+ # '<i>git merge --ff really-cool-new-release-script</i>
+ Updating af8b235..df9cf9a
+ Fast-forward
+  dist/makerelease.xml |   76 +++++++++++++++++++++++--------------------------
+  dist/run-autoconf    |   32 +++++++++++++++++++++
+  2 files changed, 68 insertions(+), 40 deletions(-)
+  create mode 100755 dist/run-autoconf
+</pre>
+<div class="MediaTransformError" style="width: 913px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<h2><span class="mw-headline" id="Deleting_the_unused_branch">Deleting the unused branch</span></h2>
+<pre> # <b>git branch -d really-cool-new-release-script</b>
+ Deleted branch really-cool-new-release-script (was df9cf9a).
+</pre>
+<h2><span class="mw-headline" id="Rolling_Upward">Rolling Upward</span></h2>
+<p>Now that we have the changes applied on the right branch, we can apply them to all the active branches using the <a href="http://www.net-snmp.org/wiki/index.php/Git_Branch_Management" title="Git Branch Management"><i>nsrollup</i> shell macro</a>:
+</p>
+<pre> # <b>nsrollup</b>
+ <i>[Long merging output deleted]]</i>
+</pre>
+<p>Resulting in:
+</p>
+<div class="MediaTransformError" style="width: 912px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<h2><span class="mw-headline" id="And_Pushing_the_Whole_Mess_Forward">And Pushing the Whole Mess Forward</span></h2>
+<pre> # '<i>git push --all</i>
+ Counting objects: 50, done.
+ Delta compression using up to 2 threads.
+ Compressing objects: 100% (39/39), done.
+ Writing objects: 100% (39/39), 5.22 KiB, done.
+ Total 39 (delta 29), reused 0 (delta 0)
+ To <a rel="nofollow" class="external free" href="ssh://hardaker@net-snmp.git.sourceforge.net/gitroot/net-snmp/net-snmp">ssh://hardaker@net-snmp.git.sourceforge.net/gitroot/net-snmp/net-snmp</a>
+    af8b235..df9cf9a  V5-4-patches -&gt; V5-4-patches
+    d588ec8..d39194b  V5-5-patches -&gt; V5-5-patches
+    127eec2..64b6c68  V5-6-patches -&gt; V5-6-patches
+    8e08fc5..a308656  master -&gt; master
+</pre>
+<div class="MediaTransformError" style="width: 909px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<h2><span class="mw-headline" id="But_but_but...">But but but...</span></h2>
+<p><i>You made that too complex!  You didn't actually need to create a new branch!!!  You cheater!'</i>
+</p><p>Yeah, I did.  But you learned more this way, like how to move changes to a branch, etc.  And it's conceptually a bit easier than dealing with change sets.
+</p><p><i>And what's with the moving them and then just reapplying them later?</i>
+</p><p>Well, technically it wasn't necessary.  But it showed good practice by applying them where they should go and then merging upward.  Either way, the resulting files were the same.  You're right.
+</p>
+<h2><span class="mw-headline" id="Exercises_left_to_the_reader">Exercises left to the reader</span></h2>
+<ol><li> Do the above without creating a new branch</li>
+<li> Do the above, but with only a subset of the changes, in the middle of course (hint: <i>git cherry-pick</i>)</li></ol>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514191744
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.060 seconds
+Real time usage: 0.089 seconds
+Preprocessor visited node count: 39/1000000
+Preprocessor generated node count: 44/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php?title=Moving_changes_on_a_Git_branch&amp;oldid=5062">http://www.net-snmp.org/wiki/index.php?title=Moving_changes_on_a_Git_branch&amp;oldid=5062</a>"</div>
+					<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://www.net-snmp.org/wiki/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="http://www.net-snmp.org/wiki/index.php/Category:Git" title="Category:Git">Git</a></li></ul></div></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/Moving_changes_on_a_Git_branch" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="http://www.net-snmp.org/wiki/index.php?title=Talk:Moving_changes_on_a_Git_branch&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="http://www.net-snmp.org/wiki/index.php?title=Moving_changes_on_a_Git_branch&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=Moving_changes_on_a_Git_branch&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=Moving+changes+on+a+Git+branch&amp;returntoquery=oldid%3D5062&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=Moving+changes+on+a+Git+branch&amp;returntoquery=oldid%3D5062" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/Moving_changes_on_a_Git_branch" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/Moving_changes_on_a_Git_branch" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="http://www.net-snmp.org/wiki/index.php?title=Moving_changes_on_a_Git_branch&amp;oldid=5062&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="http://www.net-snmp.org/wiki/index.php?title=Moving_changes_on_a_Git_branch&amp;oldid=5062" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=Moving_changes_on_a_Git_branch&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 30 June 2011, at 00:28.</li>
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":240});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Moving_changes_on_a_Git_branch&oldid=5062 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:28:16 GMT -->
+</html>

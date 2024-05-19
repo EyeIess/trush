@@ -1,0 +1,272 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-4/toolkit/mib_module/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:17:03 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../../../print1.css" />
+  </head>
+  <body background="../../../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../../../index.html">About</a><br />
+        
+
+        <a href="../../../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../../tutorial-5/index.html"
+                  title="Net-SNMP v5 tutorial">Version 5.x</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../index.html"
+                  title="UCD-SNMP v4 tutorial">Version 4.x</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../../../../docs/readmefiles.html">Documentation</a><br />
+        
+
+        <a href="../../../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../../../../dev/projects.html">Development</a><br />
+        
+
+        <a href="../../../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+    <p>
+      <b>Note:</b>  Much of this tutorial requires <a
+        href="http://prdownloads.sourceforge.net/net-snmp/ucd-snmp-4.2.6.tar.gz">ucd-snmp-4.2.2 or higher</a>!,
+	so make sure you get it before running the commands found in
+	this tutorial.</b> 
+      <p><b>Note:</b>  A new tutorial for net-snmp 5.0 and above <a
+      href="../../../../tutorial-5/index.html">is available</a> as well.  The commands is
+      the ucd-snmp specific tutorial will not work as expected if you
+      are using net-snmp and not ucd-snmp.
+      <br><br>
+    <hr>
+    <h1>UCD-SNMP Tutorial -- MIB Module</h1>
+    <p>
+      Here we discuss how to write a simple mib module, to extend the
+      agent using C code.
+    <p>
+      Here are the files discussed in this example so you can download
+      them:
+      <center>
+      <table border=1>
+	<tr bgcolor="#d0d0ff"><th>File</th><th>Description</th></tr>
+	<tr bgcolor="#d0d0ff"><td><a
+	href="UCD-SNMP-TUTORIAL-MIB.txt">UCD-SNMP-TUTORIAL-MIB.txt</a></td><td>The MIB we'll be writing
+	code for</td>
+	<tr bgcolor="#d0d0ff"><td><a
+	href="ustScalarSet.h">ustScalarSet.h</a></td><td>The mib module's header file</td>
+	<tr bgcolor="#d0d0ff"><td><a
+	href="ustScalarSet.c">ustScalarSet.c</a></td><td>The mib module's C source code</td>
+      </table>
+      </center>
+    <p>
+      This example builds the C code necessary to implement the <a
+      href="UCD-SNMP-TUTORIAL-MIB.txt">UCD-SNMP-TUTORIAL-MIB</a> MIB.
+      The majority of the code was written using the mib2c program,
+      not discussed here.
+    <p>
+      The API for the mib module code is fully discussed in
+      <a>http://www.csc.liv.ac.uk/~daves/Misc/UCD/guide.html</a> and is
+      <b>highly</b> recommended reading material.
+    <p>
+      The MIB is a simple one (also not discussed extensively here).
+      It contains only two variables: a string, and the time since the
+      string was last modified.  The string can be set using an
+      SNMP-SET, which then updates the archived value and resets the
+      timer.
+    <p>
+      To use it, get the <a
+      href="ftp://ucd-snmp.ucdavis.edu/ucd-snmp.tar.gz">ucd-snmp
+      source code</a> and extract it.  Then download the 
+      <a href="ustScalarSet.h">ustScalarSet.h</a> and
+      <a href="ustScalarSet.c">ustScalarSet.c</a> that make up the
+      code for the mib module.  Place them in the ucd-snmp source
+      directory under the agent/mibgroups sub-directory.  Configure
+      the ucd-snmp package to include them when it is compiled by
+      adding an argument to the configure script:
+    <pre>
+% <b>./configure --with-mib-modules=ustScalarSet</b>
+    </pre>
+    <p>
+      Note that <i>ustScalarSet</i> is the prefix to our .c and .h
+      files.
+    <p>
+      Build your new agent with the tutorial code by running make:
+    <pre>
+% <b>make</b>
+    </pre>
+    <p>
+      Finally, install the whole lot by running make install:
+    <pre>
+% <b>make install</b>
+    </pre>
+    <p>
+      Lets use a horrible (security wise) <a
+      href="snmpd.conf">snmpd.conf</a> file so we're all consistent.
+      Download it and place it in /usr/local/share/snmp/snmpd.conf.
+    <p>
+      Lets talk about the important pieces in these files:
+...
+    <h3>Set Processing</h3>
+    <p>
+      To process an SNMP-SET, the agent must use a series of calls to
+      the mib module code to ensure that processing of all sets in the
+      incoming packet can be successful.  This gives you or other mib
+      modules the chance to bail out early on in the transaction
+      sequence and thus stop all of the transactions in the set from
+      happening.  This is important for continuity.  However, it makes 
+      set code processing a bit more complex.  Let's examine a simple
+      state diagram that the master agent uses at each step of the
+      way:
+    <p>
+      <center><img src=set-actions.jpg></center>
+    <p>
+      In a perfect operation with no failures, we take the vertical
+      path on the left.  If <b>any</b> of the mib modules being acted
+      upon returns an error of any kind, we will branch to the right
+      to one of the failure states where you must clean up and
+      possibly undo what you did in previous steps.
+    <p>
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-4/toolkit/mib_module/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:17:03 GMT -->
+</html>
+
+
+

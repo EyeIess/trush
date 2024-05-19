@@ -1,0 +1,623 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Net-SNMP_and_lm-sensors_on_Ubuntu_10.04&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:28:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Net-SNMP and lm-sensors on Ubuntu 10.04 - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Net-SNMP_and_lm-sensors_on_Ubuntu_10.04","wgTitle":"Net-SNMP and lm-sensors on Ubuntu 10.04","wgCurRevisionId":4786,"wgRevisionId":4786,"wgArticleId":2134,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Net-SNMP_and_lm-sensors_on_Ubuntu_10.04","wgRelevantArticleId":2134,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load531d.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;printable=1&amp;skin=monobook" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="loadf198.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Net-SNMP_and_lm-sensors_on_Ubuntu_10_04 skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Net-SNMP and lm-sensors on Ubuntu 10.04</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Notes"><span class="tocnumber">1</span> <span class="toctext">Notes</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Source_Download"><span class="tocnumber">2</span> <span class="toctext">Source Download</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Configure_lm-sensors"><span class="tocnumber">3</span> <span class="toctext">Configure lm-sensors</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Install_and_Configure_Net-SNMP_Packages"><span class="tocnumber">4</span> <span class="toctext">Install and Configure Net-SNMP Packages</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Install_and_Configure_Net-SNMP_Source"><span class="tocnumber">5</span> <span class="toctext">Install and Configure Net-SNMP Source</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Additional_SNMP_Commands"><span class="tocnumber">6</span> <span class="toctext">Additional SNMP Commands</span></a></li>
+</ul>
+</div>
+
+<h6><span class="mw-headline" id="Notes">Notes</span></h6>
+<p>This is a Wiki tutorial for using Net-SNMP and lm-sensors on Ubuntu 10.04.
+</p>
+<h2><span class="mw-headline" id="Source_Download">Source Download</span></h2>
+<p>You can download the latest sources of Net-SNMP from here:
+</p>
+<pre>  <a rel="nofollow" class="external text" href="../download.html">Net-SNMP Download Page</a>
+</pre>
+<p>You can download the latest sources of lm-sensors from here:
+</p>
+<pre>  <a rel="nofollow" class="external text" href="http://www.lm-sensors.org/wiki/Download">lm-sensors Download Page</a>
+</pre>
+<h2><span class="mw-headline" id="Configure_lm-sensors">Configure lm-sensors</span></h2>
+<p>Ubuntu 10.04 includes lm-sensors 3.1.2 pre-installed. To verify your version of lm-sensors, run:
+</p>
+<pre>
+&gt; sensors -v
+sensors version 3.1.2 with libsensors version 3.1.2
+</pre>
+<p>Lm-sensors needs to be configured using sensors-detect before it can be used. Sensors-detect is an interactive script for detecting hardware sensor chips. Run the following command, and then follow the on-screen instructions:
+</p>
+<pre>
+&gt; sudo sensors-detect
+</pre>
+<p>Reboot your system, or use the following command to load the necessary kernel modules:
+</p>
+<pre>
+&gt; sudo /etc/init.d/module-init-tools start
+</pre>
+<p>To verify that lm-sensors is operating properly, use the sensors command. Example output is shown below.
+</p>
+<pre>
+&gt; sensors
+coretemp-isa-0000
+Adapter: ISA adapter
+Core 0:      +36.0°C  (high = +82.0°C, crit = +100.0°C)  
+
+coretemp-isa-0001
+Adapter: ISA adapter
+Core 3:      +36.0°C  (high = +82.0°C, crit = +100.0°C)  
+
+coretemp-isa-0002
+Adapter: ISA adapter
+Core 1:      +36.0°C  (high = +82.0°C, crit = +100.0°C)  
+
+coretemp-isa-0003
+Adapter: ISA adapter
+Core 2:      +32.0°C  (high = +82.0°C, crit = +100.0°C)  
+
+it8718-isa-0290
+Adapter: ISA adapter
+in0:         +1.34 V  (min =  +0.00 V, max =  +4.08 V)   
+in1:         +1.98 V  (min =  +0.00 V, max =  +4.08 V)   
+in2:         +3.30 V  (min =  +0.00 V, max =  +4.08 V)   
+in3:         +2.93 V  (min =  +0.00 V, max =  +4.08 V)   
+in4:         +0.80 V  (min =  +0.00 V, max =  +4.08 V)   
+in5:         +0.21 V  (min =  +0.14 V, max =  +0.26 V)   
+in6:         +0.10 V  (min =  +0.00 V, max =  +4.08 V)   
+in7:         +3.06 V  (min =  +0.00 V, max =  +4.08 V)   
+Vbat:        +3.23 V
+fan1:          0 RPM  (min =    0 RPM)
+fan2:          0 RPM  (min =    0 RPM)
+fan3:          0 RPM  (min =    0 RPM)
+fan4:       1834 RPM  (min =    0 RPM)
+temp1:       +37.0°C  (low  = +127.0°C, high = +127.0°C)  sensor = thermistor
+temp2:       +27.0°C  (low  = +127.0°C, high = +127.0°C)  sensor = thermal diode
+temp3:        -2.0°C  (low  = +127.0°C, high = +127.0°C)  sensor = thermistor
+cpu0_vid:   +1.219 V
+</pre>
+<h2><span class="mw-headline" id="Install_and_Configure_Net-SNMP_Packages">Install and Configure Net-SNMP Packages</span></h2>
+<p>Ubuntu 10.04 does not have Net-SNMP pre-installed. To install basic Net-SNMP functionality, run the following:
+</p>
+<pre>
+&gt; sudo apt-get install snmp
+&gt; sudo apt-get install snmpd
+</pre>
+<p>Several other SNMP packages are available for Ubuntu. The Ubuntu Software Center (Applications &gt; Ubuntu Software Center) is a good resource for determining which packages are currently installed (search for "snmp").
+</p><p>To test that the SNMP Daemon was successfully installed, run the following:
+</p>
+<pre>
+&gt; snmpwalk -v 2c -c public localhost system
+</pre>
+<p>General system information should be printed to the terminal window. An example is shown below.
+</p>
+<pre>
+SNMPv2-MIB::sysDescr.0 = STRING: Linux ubuntu 2.6.32-29-generic-pae #58-Ubuntu SMP Fri Feb 11 19:15:25 UTC 2011 i686
+SNMPv2-MIB::sysObjectID.0 = OID: NET-SNMP-MIB::netSnmpAgentOIDs.10
+DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (1218) 0:00:12.18
+SNMPv2-MIB::sysContact.0 = STRING: Root &lt;root@localhost&gt; (configure /etc/snmp/snmpd.local.conf)
+SNMPv2-MIB::sysName.0 = STRING: ubuntu
+SNMPv2-MIB::sysLocation.0 = STRING: Unknown (configure /etc/snmp/snmpd.local.conf)
+SNMPv2-MIB::sysORLastChange.0 = Timeticks: (0) 0:00:00.00
+...
+</pre>
+<p>The SNMP Daemon requires additional setup. The snmpconf command is an interactive script for configuring Net-SNMP functionality (it can be used to generate snmp.conf and snmpd.conf). Run the following: 
+</p>
+<pre>
+&gt; sudo snmpconf -i -g basic_setup
+</pre>
+<p>NOTE: If you are unfamiliar Net-SNMP, it might be easier to create a simple snmpd.conf file manually. Using a text editor, create a file named "snmpd.conf". Add the following text:
+</p>
+<pre>
+rocommunity  public
+</pre>
+<p>Copy the new snmpd.conf file to the correct path (In Ubuntu, the default paths for Net-SNMP applications are slightly different):
+</p>
+<pre>
+&gt; sudo mv /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.old
+&gt; sudo cp /usr/share/snmp/snmpd.conf /etc/snmp/snmpd.conf
+</pre>
+<p>Restart the SNMP daemon:
+</p>
+<pre>
+&gt;sudo /etc/init.d/snmpd restart
+ * Restarting network management services:              
+</pre>
+<p>Use snmpwalk to test the lm-sensors MIB. The OID for the lm-sensors MIB is 1.3.6.1.4.1.2021.13.16.
+</p>
+<pre>
+&gt; snmpwalk -v 2c -c public localhost lmSensors
+</pre>
+<pre>
+&gt; snmpwalk -v 2c -c public localhost 1.3.6.1.4.1.2021.13.16
+</pre>
+<p>Example Output:
+</p>
+<pre>
+LM-SENSORS-MIB::lmMiscSensorsIndex.1 = INTEGER: 0
+LM-SENSORS-MIB::lmMiscSensorsIndex.2 = INTEGER: 1
+LM-SENSORS-MIB::lmMiscSensorsIndex.3 = INTEGER: 2
+LM-SENSORS-MIB::lmMiscSensorsIndex.4 = INTEGER: 3
+LM-SENSORS-MIB::lmMiscSensorsIndex.5 = INTEGER: 4
+LM-SENSORS-MIB::lmMiscSensorsIndex.6 = INTEGER: 5
+LM-SENSORS-MIB::lmMiscSensorsIndex.7 = INTEGER: 6
+LM-SENSORS-MIB::lmMiscSensorsIndex.8 = INTEGER: 7
+LM-SENSORS-MIB::lmMiscSensorsIndex.9 = INTEGER: 8
+LM-SENSORS-MIB::lmMiscSensorsIndex.10 = INTEGER: 9
+LM-SENSORS-MIB::lmMiscSensorsIndex.11 = INTEGER: 10
+LM-SENSORS-MIB::lmMiscSensorsIndex.12 = INTEGER: 11
+LM-SENSORS-MIB::lmMiscSensorsIndex.13 = INTEGER: 12
+LM-SENSORS-MIB::lmMiscSensorsIndex.14 = INTEGER: 13
+LM-SENSORS-MIB::lmMiscSensorsIndex.15 = INTEGER: 14
+LM-SENSORS-MIB::lmMiscSensorsIndex.16 = INTEGER: 15
+LM-SENSORS-MIB::lmMiscSensorsIndex.17 = INTEGER: 16
+LM-SENSORS-MIB::lmMiscSensorsIndex.18 = INTEGER: 17
+LM-SENSORS-MIB::lmMiscSensorsIndex.19 = INTEGER: 18
+LM-SENSORS-MIB::lmMiscSensorsIndex.20 = INTEGER: 19
+LM-SENSORS-MIB::lmMiscSensorsDevice.1 = STRING: Core 0
+LM-SENSORS-MIB::lmMiscSensorsDevice.2 = STRING: Core 0
+LM-SENSORS-MIB::lmMiscSensorsDevice.3 = STRING: Core 0
+LM-SENSORS-MIB::lmMiscSensorsDevice.4 = STRING: Core 0
+LM-SENSORS-MIB::lmMiscSensorsDevice.5 = STRING: Core 1
+LM-SENSORS-MIB::lmMiscSensorsDevice.6 = STRING: Core 1
+LM-SENSORS-MIB::lmMiscSensorsDevice.7 = STRING: Core 1
+LM-SENSORS-MIB::lmMiscSensorsDevice.8 = STRING: Core 1
+LM-SENSORS-MIB::lmMiscSensorsDevice.9 = STRING: Core 3
+LM-SENSORS-MIB::lmMiscSensorsDevice.10 = STRING: Core 3
+LM-SENSORS-MIB::lmMiscSensorsDevice.11 = STRING: Core 3
+LM-SENSORS-MIB::lmMiscSensorsDevice.12 = STRING: Core 3
+LM-SENSORS-MIB::lmMiscSensorsDevice.13 = STRING: Core 2
+LM-SENSORS-MIB::lmMiscSensorsDevice.14 = STRING: Core 2
+LM-SENSORS-MIB::lmMiscSensorsDevice.15 = STRING: Core 2
+LM-SENSORS-MIB::lmMiscSensorsDevice.16 = STRING: Core 2
+LM-SENSORS-MIB::lmMiscSensorsDevice.17 = STRING: in0
+LM-SENSORS-MIB::lmMiscSensorsDevice.18 = STRING: in0
+LM-SENSORS-MIB::lmMiscSensorsDevice.19 = STRING: in0
+LM-SENSORS-MIB::lmMiscSensorsDevice.20 = STRING: in0
+LM-SENSORS-MIB::lmMiscSensorsValue.1 = Gauge32: 37000
+LM-SENSORS-MIB::lmMiscSensorsValue.2 = Gauge32: 82000
+LM-SENSORS-MIB::lmMiscSensorsValue.3 = Gauge32: 100000
+LM-SENSORS-MIB::lmMiscSensorsValue.4 = Gauge32: 0
+LM-SENSORS-MIB::lmMiscSensorsValue.5 = Gauge32: 39000
+LM-SENSORS-MIB::lmMiscSensorsValue.6 = Gauge32: 82000
+LM-SENSORS-MIB::lmMiscSensorsValue.7 = Gauge32: 100000
+LM-SENSORS-MIB::lmMiscSensorsValue.8 = Gauge32: 0
+LM-SENSORS-MIB::lmMiscSensorsValue.9 = Gauge32: 36000
+LM-SENSORS-MIB::lmMiscSensorsValue.10 = Gauge32: 82000
+LM-SENSORS-MIB::lmMiscSensorsValue.11 = Gauge32: 100000
+LM-SENSORS-MIB::lmMiscSensorsValue.12 = Gauge32: 0
+LM-SENSORS-MIB::lmMiscSensorsValue.13 = Gauge32: 33000
+LM-SENSORS-MIB::lmMiscSensorsValue.14 = Gauge32: 82000
+LM-SENSORS-MIB::lmMiscSensorsValue.15 = Gauge32: 100000
+LM-SENSORS-MIB::lmMiscSensorsValue.16 = Gauge32: 0
+LM-SENSORS-MIB::lmMiscSensorsValue.17 = Gauge32: 1344
+LM-SENSORS-MIB::lmMiscSensorsValue.18 = Gauge32: 0
+LM-SENSORS-MIB::lmMiscSensorsValue.19 = Gauge32: 4080
+LM-SENSORS-MIB::lmMiscSensorsValue.20 = Gauge32: 0
+</pre>
+<p><b>UPDATE</b>: The Ubuntu 10.04 packages 'snmp' and 'snmpd' include Net-SNMP version 5.4.2.1. According to the lm-sensors installation page, Net-SNMP 5.5 or higher is required. All sensors appear within the "MiscSensors" category.
+</p>
+<h2><span class="mw-headline" id="Install_and_Configure_Net-SNMP_Source">Install and Configure Net-SNMP Source</span></h2>
+<p>An excellent tutorial for installing Net-SNMP (from source) for Ubuntu is located here: <a href="index.php/Net-Snmp_on_Ubuntu.html" title="Net-Snmp on Ubuntu">Net-Snmp on Ubuntu</a>
+</p><p>Specific details needed for lm-sensors are discussed below.
+</p><p>Download the latest Net-SNMP source package (v 5.6.1 was used for this tutorial), and unzip it.
+</p><p>Install the libperl-dev and libsensors4-dev packages for Ubuntu:
+</p>
+<pre>
+&gt;sudo apt-get install libperl-dev
+&gt;sudo apt-get install libsensors4-dev
+</pre>
+<p>Use the following commands to configure and install Net-SNMP:
+</p>
+<pre>
+&gt;cd net-snmp-5.6.1/
+&gt;./configure --with-mib-modules="ucd-snmp/lmsensorsMib" --with-ldflags="-lsensors"
+&gt;make
+&gt;sudo make install
+</pre>
+<p>Results from configure (accepted all defaults):
+</p>
+<pre>
+---------------------------------------------------------
+            Net-SNMP configuration summary:
+---------------------------------------------------------
+
+  SNMP Versions Supported:    1 2c 3
+  Building for:               linux
+  Net-SNMP Version:           5.6.1
+  Network transport support:  Callback Unix Alias TCP UDP IPv4Base SocketBase TCPBase UDPIPv4Base UDPBase
+  SNMPv3 Security Modules:     usm
+  Agent MIB code:             ucd-snmp/lmsensorsMib default_modules =&gt;  hardware/sensors snmpv3mibs mibII ucd_snmp notification notification-log-mib target agent_mibs agentx disman/event disman/schedule utilities host
+  MYSQL Trap Logging:         unavailable
+  Embedded Perl support:      enabled
+  SNMP Perl modules:          building -- embeddable
+  SNMP Python modules:        disabled
+  Crypto support from:        internal
+  Authentication support:     MD5 SHA1
+  Encryption support:         DES AES
+
+---------------------------------------------------------
+</pre>
+<p>Results from make:
+</p>
+<pre>
+...
+make[2]: Leaving directory `/home/admin/net-snmp-5.6.1/perl/TrapReceiver'
+make[1]: Leaving directory `/home/admin/net-snmp-5.6.1/perl'
+</pre>
+<p>Results from make install:
+</p>
+<pre>
+...
+Installing /usr/local/man/man3/SNMP.3
+Appending installation info to /usr/local/lib/perl/5.10.1/perllocal.pod
+make[1]: Leaving directory `/home/admin/net-snmp-5.6.1/perl'
+</pre>
+<p>The following Ubuntu packages need to be removed to avoid conflicts:
+</p>
+<pre>
+&gt;sudo apt-get remove snmp
+&gt;sudo apt-get remove snmpd
+&gt;sudo apt-get remove libsnmp15
+&gt;sudo apt-get remove libsnmp-base
+</pre>
+<p>Configure the new SNMP daemon:
+</p>
+<pre>
+&gt; sudo snmpconf -i -g basic_setup
+</pre>
+<p>Start the SNMP daemon:
+</p>
+<pre>
+&gt; sudo snmpd -f -Le
+NET-SNMP version 5.6.1
+</pre>
+<p>In a new terminal window, run an snmpwalk on the lm-sensors MIB. Example output is provided:
+</p>
+<pre>
+&gt;snmpwalk -v 2c -c public localhost lmSensors
+LM-SENSORS-MIB::lmTempSensorsIndex.1 = INTEGER: 1
+LM-SENSORS-MIB::lmTempSensorsIndex.2 = INTEGER: 2
+LM-SENSORS-MIB::lmTempSensorsIndex.3 = INTEGER: 3
+LM-SENSORS-MIB::lmTempSensorsIndex.4 = INTEGER: 4
+LM-SENSORS-MIB::lmTempSensorsIndex.18 = INTEGER: 18
+LM-SENSORS-MIB::lmTempSensorsIndex.19 = INTEGER: 19
+LM-SENSORS-MIB::lmTempSensorsIndex.20 = INTEGER: 20
+LM-SENSORS-MIB::lmTempSensorsDevice.1 = STRING: Core 0
+LM-SENSORS-MIB::lmTempSensorsDevice.2 = STRING: Core 1
+LM-SENSORS-MIB::lmTempSensorsDevice.3 = STRING: Core 3
+LM-SENSORS-MIB::lmTempSensorsDevice.4 = STRING: Core 2
+LM-SENSORS-MIB::lmTempSensorsDevice.18 = STRING: temp1
+LM-SENSORS-MIB::lmTempSensorsDevice.19 = STRING: temp2
+LM-SENSORS-MIB::lmTempSensorsDevice.20 = STRING: temp3
+LM-SENSORS-MIB::lmTempSensorsValue.1 = Gauge32: 37000
+LM-SENSORS-MIB::lmTempSensorsValue.2 = Gauge32: 38000
+LM-SENSORS-MIB::lmTempSensorsValue.3 = Gauge32: 35000
+LM-SENSORS-MIB::lmTempSensorsValue.4 = Gauge32: 32000
+LM-SENSORS-MIB::lmTempSensorsValue.18 = Gauge32: 37000
+LM-SENSORS-MIB::lmTempSensorsValue.19 = Gauge32: 26000
+LM-SENSORS-MIB::lmTempSensorsValue.20 = Gauge32: 4294965296
+LM-SENSORS-MIB::lmFanSensorsIndex.14 = INTEGER: 14
+LM-SENSORS-MIB::lmFanSensorsIndex.15 = INTEGER: 15
+LM-SENSORS-MIB::lmFanSensorsIndex.16 = INTEGER: 16
+LM-SENSORS-MIB::lmFanSensorsIndex.17 = INTEGER: 17
+LM-SENSORS-MIB::lmFanSensorsDevice.14 = STRING: fan1
+LM-SENSORS-MIB::lmFanSensorsDevice.15 = STRING: fan2
+LM-SENSORS-MIB::lmFanSensorsDevice.16 = STRING: fan3
+LM-SENSORS-MIB::lmFanSensorsDevice.17 = STRING: fan4
+LM-SENSORS-MIB::lmFanSensorsValue.14 = Gauge32: 0
+LM-SENSORS-MIB::lmFanSensorsValue.15 = Gauge32: 0
+LM-SENSORS-MIB::lmFanSensorsValue.16 = Gauge32: 0
+LM-SENSORS-MIB::lmFanSensorsValue.17 = Gauge32: 1834
+LM-SENSORS-MIB::lmVoltSensorsIndex.5 = INTEGER: 5
+LM-SENSORS-MIB::lmVoltSensorsIndex.6 = INTEGER: 6
+LM-SENSORS-MIB::lmVoltSensorsIndex.7 = INTEGER: 7
+LM-SENSORS-MIB::lmVoltSensorsIndex.8 = INTEGER: 8
+LM-SENSORS-MIB::lmVoltSensorsIndex.9 = INTEGER: 9
+LM-SENSORS-MIB::lmVoltSensorsIndex.10 = INTEGER: 10
+LM-SENSORS-MIB::lmVoltSensorsIndex.11 = INTEGER: 11
+LM-SENSORS-MIB::lmVoltSensorsIndex.12 = INTEGER: 12
+LM-SENSORS-MIB::lmVoltSensorsIndex.13 = INTEGER: 13
+LM-SENSORS-MIB::lmVoltSensorsIndex.21 = INTEGER: 21
+LM-SENSORS-MIB::lmVoltSensorsDevice.5 = STRING: in0
+LM-SENSORS-MIB::lmVoltSensorsDevice.6 = STRING: in1
+LM-SENSORS-MIB::lmVoltSensorsDevice.7 = STRING: in2
+LM-SENSORS-MIB::lmVoltSensorsDevice.8 = STRING: in3
+LM-SENSORS-MIB::lmVoltSensorsDevice.9 = STRING: in4
+LM-SENSORS-MIB::lmVoltSensorsDevice.10 = STRING: in5
+LM-SENSORS-MIB::lmVoltSensorsDevice.11 = STRING: in6
+LM-SENSORS-MIB::lmVoltSensorsDevice.12 = STRING: in7
+LM-SENSORS-MIB::lmVoltSensorsDevice.13 = STRING: Vbat
+LM-SENSORS-MIB::lmVoltSensorsDevice.21 = STRING: cpu0_vid
+LM-SENSORS-MIB::lmVoltSensorsValue.5 = Gauge32: 1327
+LM-SENSORS-MIB::lmVoltSensorsValue.6 = Gauge32: 1983
+LM-SENSORS-MIB::lmVoltSensorsValue.7 = Gauge32: 3296
+LM-SENSORS-MIB::lmVoltSensorsValue.8 = Gauge32: 2911
+LM-SENSORS-MIB::lmVoltSensorsValue.9 = Gauge32: 800
+LM-SENSORS-MIB::lmVoltSensorsValue.10 = Gauge32: 208
+LM-SENSORS-MIB::lmVoltSensorsValue.11 = Gauge32: 96
+LM-SENSORS-MIB::lmVoltSensorsValue.12 = Gauge32: 3072
+LM-SENSORS-MIB::lmVoltSensorsValue.13 = Gauge32: 3232
+LM-SENSORS-MIB::lmVoltSensorsValue.21 = Gauge32: 1218
+</pre>
+<h2><span class="mw-headline" id="Additional_SNMP_Commands">Additional SNMP Commands</span></h2>
+<p>Data within the lm-sensors MIB is presented in tables. The snmptable command can be used to show the data in a table format:
+</p>
+<pre>
+&gt;snmptable -v 2c -c public localhost lmTempSensorsTable
+SNMP table: LM-SENSORS-MIB::lmTempSensorsTable
+
+ lmTempSensorsIndex lmTempSensorsDevice lmTempSensorsValue
+                  1              Core 0              37000
+                  2              Core 1              36000
+                  3              Core 3              36000
+                  4              Core 2              37000
+                 18               temp1              38000
+                 19               temp2              27000
+                 20               temp3         4294965296
+</pre>
+<pre>
+&gt;snmptable -v 2c -c public localhost lmFanSensorsTable
+SNMP table: LM-SENSORS-MIB::lmFanSensorsTable
+
+ lmFanSensorsIndex lmFanSensorsDevice lmFanSensorsValue
+                14               fan1                 0
+                15               fan2                 0
+                16               fan3                 0
+                17               fan4              1839
+</pre>
+<pre>
+&gt;snmptable -v 2c -c public localhost lmVoltSensorsTable
+SNMP table: LM-SENSORS-MIB::lmVoltSensorsTable
+
+ lmVoltSensorsIndex lmVoltSensorsDevice lmVoltSensorsValue
+                  5                 in0               1343
+                  6                 in1               1983
+                  7                 in2               3296
+                  8                 in3               2927
+                  9                 in4                800
+                 10                 in5                208
+                 11                 in6                 96
+                 12                 in7               3072
+                 13                Vbat               3232
+                 21            cpu0_vid               1218
+</pre>
+<pre>
+&gt;snmptable -v 2c -c public localhost lmMiscSensorsTable
+LM-SENSORS-MIB::lmMiscSensorsTable: No entries
+</pre>
+<p>The snmptranslate command can be used to draw the lm-sensors MIB tree structure:
+</p>
+<pre>
+&gt;snmptranslate -Tp -IR lmSensors
++--lmSensors(16)
+   |
+   +--lmSensorsMIB(1)
+   |
+   +--lmTempSensorsTable(2)
+   |  |
+   |  +--lmTempSensorsEntry(1)
+   |     |  Index: lmTempSensorsIndex
+   |     |
+   |     +-- -R-- Integer32 lmTempSensorsIndex(1)
+   |     |        Range: 0..65535
+   |     +-- -R-- String    lmTempSensorsDevice(2)
+   |     |        Textual Convention: DisplayString
+   |     |        Size: 0..255
+   |     +-- -R-- Gauge     lmTempSensorsValue(3)
+   |
+   +--lmFanSensorsTable(3)
+   |  |
+   |  +--lmFanSensorsEntry(1)
+   |     |  Index: lmFanSensorsIndex
+   |     |
+   |     +-- -R-- Integer32 lmFanSensorsIndex(1)
+   |     |        Range: 0..65535
+   |     +-- -R-- String    lmFanSensorsDevice(2)
+   |     |        Textual Convention: DisplayString
+   |     |        Size: 0..255
+   |     +-- -R-- Gauge     lmFanSensorsValue(3)
+   |
+   +--lmVoltSensorsTable(4)
+   |  |
+   |  +--lmVoltSensorsEntry(1)
+   |     |  Index: lmVoltSensorsIndex
+   |     |
+   |     +-- -R-- Integer32 lmVoltSensorsIndex(1)
+   |     |        Range: 0..65535
+   |     +-- -R-- String    lmVoltSensorsDevice(2)
+   |     |        Textual Convention: DisplayString
+   |     |        Size: 0..255
+   |     +-- -R-- Gauge     lmVoltSensorsValue(3)
+   |
+   +--lmMiscSensorsTable(5)
+      |
+      +--lmMiscSensorsEntry(1)
+         |  Index: lmMiscSensorsIndex
+         |
+         +-- -R-- Integer32 lmMiscSensorsIndex(1)
+         |        Range: 0..65535
+         +-- -R-- String    lmMiscSensorsDevice(2)
+         |        Textual Convention: DisplayString
+         |        Size: 0..255
+         +-- -R-- Gauge     lmMiscSensorsValue(3)
+</pre>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514175657
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.012 seconds
+Real time usage: 0.015 seconds
+Preprocessor visited node count: 244/1000000
+Preprocessor generated node count: 588/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="index64e5.html?title=Net-SNMP_and_lm-sensors_on_Ubuntu_10.04&amp;oldid=4786">http://www.net-snmp.org/wiki/index.php?title=Net-SNMP_and_lm-sensors_on_Ubuntu_10.04&amp;oldid=4786</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="index.php/Net-SNMP_and_lm-sensors_on_Ubuntu_10.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="index.php/Talk_Net-SNMP_and_lm-sensors_on_Ubuntu_10.html?title=Talk:Net-SNMP_and_lm-sensors_on_Ubuntu_10.04&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="indexa328.html?title=Net-SNMP_and_lm-sensors_on_Ubuntu_10.04&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="indexbb50.html?title=Net-SNMP_and_lm-sensors_on_Ubuntu_10.04&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="index75c8.html?title=Special:UserLogin&amp;returnto=Net-SNMP+and+lm-sensors+on+Ubuntu+10.04&amp;returntoquery=printable%3Dyes&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="index95f8.html?title=Special:UserLogin&amp;returnto=Net-SNMP+and+lm-sensors+on+Ubuntu+10.04&amp;returntoquery=printable%3Dyes" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="index.php/Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="index.php/Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="index.php/Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="index.php/FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="index.php/Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="index.php/Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="index.php/Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="index.php/Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="index.php/Special_WhatLinksHere/Net-SNMP_and_lm-sensors_on_Ubuntu_10.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="index.php/Special_RecentChangesLinked/Net-SNMP_and_lm-sensors_on_Ubuntu_10.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="index.php/Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-permalink"><a href="index64e5.html?title=Net-SNMP_and_lm-sensors_on_Ubuntu_10.04&amp;oldid=4786" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="index90a7.html?title=Net-SNMP_and_lm-sensors_on_Ubuntu_10.04&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 5 March 2011, at 05:58.</li>
+									<li id="privacy"><a href="index.php/Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="index.php/Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="index.php/Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":549});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Net-SNMP_and_lm-sensors_on_Ubuntu_10.04&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:28:32 GMT -->
+</html>

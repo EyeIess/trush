@@ -1,0 +1,512 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-4/toolkit/demoapp/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:17:02 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../../../print1.css" />
+  </head>
+  <body background="../../../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../../../index.html">About</a><br />
+        
+
+        <a href="../../../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../../tutorial-5/index.html"
+                  title="Net-SNMP v5 tutorial">Version 5.x</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../index.html"
+                  title="UCD-SNMP v4 tutorial">Version 4.x</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../../../../docs/readmefiles.html">Documentation</a><br />
+        
+
+        <a href="../../../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../../../../dev/projects.html">Development</a><br />
+        
+
+        <a href="../../../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+    <h1>UCD-SNMP Tutorial -- Demo Application</h1>
+    <p>
+      <b>Note:</b>  Much of this tutorial requires <a
+	href="http://prdownloads.sourceforge.net/net-snmp/ucd-snmp-4.2.6.tar.gz">ucd-snmp-4.2.2 or higher</a>!,
+	so make sure you get it before running the commands found in
+	this tutorial.</b> 
+      <p><b>Note:</b>  A new tutorial for net-snmp 5.0 and above <a
+      href="../../../../tutorial-5/index.html">is available</a> as well.  The commands is
+      the ucd-snmp specific tutorial will not work as expected if you
+      are using net-snmp and not ucd-snmp.
+      <br><br>
+    <hr>
+    <p>
+      Here we discuss how to write a simple application.  It's only
+      purpose is to retrieve the value of a variable from a remote
+      host.
+    <p>
+      Here are the files discussed in this example so you can download 
+      them:
+      <center>
+      <table border=1>
+	<tr bgcolor="#d0d0ff"><th>File</th><th>Description</th></tr>
+	<tr bgcolor="#d0d0ff"><td><a
+	href="Makefile">Makefile</a></td><td>A simple Makefile to
+	build the application</td></tr>
+	<tr bgcolor="#d0d0ff"><td><a
+	href="snmpdemoapp.c">snmpdemoapp.c</a></td><td>The C source code</td>
+      </table>
+      </center>
+    <p>
+      First, we must include some header files.  After you've
+      installed the ucd-snmp toolkit, some easy to use header files
+      have been installed that handle most situations you'll run
+      into.  We start our <i>snmpdemoapp.c</i> file with these:
+<pre>
+#include &lt;ucd-snmp/ucd-snmp-config.h&gt;
+#include &lt;ucd-snmp/ucd-snmp-includes.h&gt;
+#include <string.h>
+</pre>
+    <p>
+      Next, we'll set up some local definitions that you can toggle if
+      you want to use SNMPv3 or SNMPv1.  By default, we're setting up
+      for SNMPv3 here (which is more complex, so make sure you've read
+      about the <a href="../../commands/snmpv3.html"> SNMPv3 Options
+      </a> first.  If you don't want to deal with SNMPv3 for now,
+      turn the #define statement below to #undef.
+<pre>
+/* change the word "undef" to "define" to try the (insecure) SNMPv1 version */
+#define DEMO_USE_SNMP_VERSION_3
+
+#ifdef DEMO_USE_SNMP_VERSION_3
+#include "ucd-snmp/transform_oids.h"
+const char *our_v3_passphrase = "The UCD Demo Password";
+#endif
+</pre>
+    <p>
+      Next, we declare our main() routine and the variables we need:
+<pre>
+main() {
+</pre>
+    <ul>
+      <p>
+	  The first variables we need to declare:
+	<ol>
+	  <li> <b>struct snmp_session</b>: 
+	    A structure that holds information about who we're going
+	    to be talking to.  We need to declare 2 of these, one to
+	    fill with information, and second which is a pointer
+	    returned by the library.
+	  <li> <b>struct snmp_pdu</b>:  
+	    This structure will hold all of the information that we're
+	    going to send to the remote host.  We'll declare a second
+	    for the information they they are going to send back.
+	  <li> <b>oid</b>:
+	    An OID is going to hold the location of the information
+	    which we want to retrieve.  It'll need a size as well.
+	  <li> <b>struct variable_list</b>: 
+	    This will hold the variables that we want to
+	    manipulate via SNMP.
+	</ol>
+    </ul>
+    <pre>
+    struct snmp_session session, *ss;
+    struct snmp_pdu *pdu;
+    struct snmp_pdu *response;
+	    
+    oid anOID[MAX_OID_LEN];
+    size_t anOID_len = MAX_OID_LEN;
+
+    struct variable_list *vars;
+    int status;
+    </pre>
+    <p>
+      Then, the first thing we must do is to inialize the snmp library:
+    <pre>
+    /*
+     * Initialize the SNMP library
+     */
+    init_snmp("snmpapp");
+    </pre>
+    <p>
+      Next, we'll inialize a session that describes who we want to
+      talk to, what version of SNMP we want to use, how to
+      authenticate to it, etc.  A full definition of this session
+      can be found in the ucd-snmp/snmp_api.h header file.
+    <p>
+      We've picked SNMPv3 by default above, which is a bit more complex to
+      understand so make sure you've read 
+    </p>
+    <pre>
+     /*
+     * Initialize a "session" that defines who we're going to talk to
+     */
+    snmp_sess_init( &session );                   /* set up defaults */
+    session.peername = "ucd-snmp.ucdavis.edu";
+
+    /* set up the authentication parameters for talking to the server */
+
+#ifdef DEMO_USE_SNMP_VERSION_3
+
+    /* Use SNMPv3 to talk to the experimental server */
+
+    /* set the SNMP version number */
+    session.version=SNMP_VERSION_3;
+        
+    /* set the SNMPv3 user name */
+    session.securityName = strdup("MD5User");
+    session.securityNameLen = strlen(session.securityName);
+
+    /* set the security level to authenticated, but not encrypted */
+    session.securityLevel = SNMP_SEC_LEVEL_AUTHNOPRIV;
+
+    /* set the authentication method to MD5 */
+    session.securityAuthProto = usmHMACMD5AuthProtocol;
+    session.securityAuthProtoLen = sizeof(usmHMACMD5AuthProtocol)/sizeof(oid);
+    session.securityAuthKeyLen = USM_AUTH_KU_LEN;
+
+    /* set the authentication key to a MD5 hashed version of our
+       passphrase "The UCD Demo Password" (which must be at least 8
+       characters long) */
+    if (generate_Ku(session.securityAuthProto,
+                    session.securityAuthProtoLen,
+                    (u_char *) our_v3_passphrase, strlen(our_v3_passphrase),
+                    session.securityAuthKey,
+                    &session.securityAuthKeyLen) != SNMPERR_SUCCESS) {
+        snmp_perror(argv[0]);
+        snmp_log(LOG_ERR,
+                 "Error generating Ku from authentication pass phrase. \n");
+        exit(1);
+    }
+    
+#else /* we'll use the insecure (but simplier) SNMPv1 */
+
+    /* set the SNMP version number */
+    session.version = SNMP_VERSION_1;
+
+    /* set the SNMPv1 community name used for authentication */
+    session.community = "demopublic";
+    session.community_len = strlen(session.community);
+
+#endif /* SNMPv1 */
+   </pre>
+    <p>
+      After we have established the session, we then need to open it.
+      Opening it returns a pointer to another session that we should
+      use for all our future calls:
+<pre>
+    /* windows32 specific initialization (is a noop on unix) */
+    SOCK_STARTUP;
+
+    /*
+     * Open the session
+     */
+    ss = snmp_open(&session);                     /* establish the session */
+</pre>
+
+    <p>
+      If the session failed to open properly, print an error message
+      and exit:
+<pre>
+    if (!ss) {
+        snmp_perror("ack");
+        snmp_log(LOG_ERR, "something horrible happened!!!\n");
+        exit(2);
+    }
+</pre>
+    <p>
+      Next we create the PDU the we are going to send to the remote
+      host when we request information.  In this case, we're going to
+      create a SNMP-GET pdu, which is what the <a
+      href="../../commands/snmpget.html">snmpget</a> program uses, for 
+      instance.  It retrieves a value for each oid that you initalize
+      it with.
+    <pre>
+    /*
+     * Create the PDU for the data for our request.
+     *   1) We're going to GET the system.sysDescr.0 node.
+     */
+    pdu = snmp_pdu_create(SNMP_MSG_GET);
+    </pre>
+    <p>
+      So, let's fill it with our requested oid.  Let's get the
+      <i>system.sysDescr.0</i> variable for this example.
+      There are numerious ways you could create the oid in question.
+      You could put in the numerical unsigned integer values yourself
+      into the <i>anOID</i> array we created above, or you could use
+      one of the following function calls to do it.  We recommend the
+      first one (get_node), as it is the most powerful and accepts
+      more types of OIDs.
+
+    <pre>
+    read_objid(".1.3.6.1.2.1.1.1.0", anOID, &anOID_len);
+
+#if OTHER_METHODS
+    get_node("sysDescr.0", anOID, &anOID_len);
+    read_objid("system.sysDescr.0", anOID, &anOID_len);
+#endif
+    </pre>
+
+    <p>
+      So we add this oid, with a NULL value to the PDU using the
+      following statement: (all oids should be paired with a NULL
+      value for outgoing requests for information.  For an SNMP-SET
+      pdu, we'd put in the value we wanted to set the oid to).
+    <pre>
+    snmp_add_null_var(pdu, anOID, anOID_len);
+    </pre>
+    <p>
+      Finally, we can send out the request using the session pointer
+      and the pdu and we get back a status and the response, which is
+      stored in the newly malloced <i>response</i> pdu pointer.
+    <pre>
+    /*
+     * Send the Request out.
+     */
+    status = snmp_synch_response(ss, pdu, &response);
+    </pre>
+    <p>
+      Now we can examine the information, assuming our request was
+      fulfilled properly.  If not, we'll print the error that caused
+      the problem:
+    <pre>
+    /*
+     * Process the response.
+     */
+    if (status == STAT_SUCCESS && response->errstat == SNMP_ERR_NOERROR) {
+      /*
+       * SUCCESS: Print the result variables
+       */
+    </pre>
+    <ul>
+	<p>
+	  Lets print the pdu's variable to the terminal using the
+	  print_variable routine:
+	<pre>
+      for(vars = response->variables; vars; vars = vars->next_variable)
+        print_variable(vars->name, vars->name_length, vars);
+	</pre>
+	<p>
+	  Then, for kicks, lets get the information and manipulate it
+	  ourselves (checking to make sure its the type we're
+	  expecting (a string) first):
+	<p>
+	<pre>
+      /* manipuate the information ourselves */
+      for(vars = response->variables; vars; vars = vars->next_variable) {
+        int count=1;
+        if (vars->type == ASN_OCTET_STR) {
+	  char *sp = (char *)malloc(1 + vars->val_len);
+	  memcpy(sp, vars->val.string, vars->val_len);
+	  sp[vars->val_len] = '\0';
+          printf("value #%d is a string: %s\n", count++, sp);
+	  free(sp);
+	}
+        else
+          printf("value #%d is NOT a string! Ack!\n", count++);
+      }
+	</pre>
+	<p>
+	  Finally, print a description of the error in case there was
+	  one:
+	<pre>
+    } else {
+      /*
+       * FAILURE: print what went wrong!
+       */
+
+      if (status == STAT_SUCCESS)
+        fprintf(stderr, "Error in packet\nReason: %s\n",
+                snmp_errstring(response->errstat));
+      else
+        snmp_sess_perror("snmpget", ss);
+
+    }
+	</pre>
+    </ul>
+    <p>
+      Last, but not least, free the response, as it is now our job to
+      do so.  Exit cleanly by calling snmp_close() as well:
+    <pre>
+    /*
+     * Clean up:
+     *  1) free the response.
+     *  2) close the session.
+     */
+    if (response)
+      snmp_free_pdu(response);
+    snmp_close(ss);
+
+    /* windows32 specific cleanup (is a noop on unix) */
+    SOCK_CLEANUP;
+
+} /* main() */
+    </pre>
+    <p>
+      Ok, we're done.  lets compile it (using the Makefile distributed 
+      above):
+      <pre>
+% <b>make snmpdemoapp</b>
+cc -I/usr/local/include -g   -c snmpdemoapp.c -o snmpdemoapp.o
+cc -o snmpdemoapp snmpdemoapp.o -lsnmp
+    </pre>
+    <p>
+      And then, run it, which produces the results we were expecting:
+    <pre>
+% <b>./snmpdemoapp</b>
+system.sysDescr.0 = HP-UX ucd-snmp B.10.20 A 9000/715
+value #1 is a string: HP-UX ucd-snmp B.10.20 A 9000/715
+    </pre>
+    <p>
+      Homework:
+    <ol>
+      <li>
+	Change the program to use an SNMP_MSG_GETNEXT PDU instead.
+      <li>
+	Change the program to request more variables (like system.sysUpTime.0 
+	and/or system.sysLocation.0).
+    </ol>
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-4/toolkit/demoapp/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:17:03 GMT -->
+</html>
+
+
+

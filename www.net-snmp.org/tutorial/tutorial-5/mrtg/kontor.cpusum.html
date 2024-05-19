@@ -1,0 +1,347 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-5/mrtg/kontor.cpusum.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:45:50 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../../print1.css" />
+  </head>
+  <body background="../../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../../index.html">About</a><br />
+        
+
+        <a href="../../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../index.html"
+                  title="Net-SNMP v5 tutorial">Version 5.x</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../tutorial-4/index.html"
+                  title="UCD-SNMP v4 tutorial">Version 4.x</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../../../docs/readmefiles.html">Documentation</a><br />
+        
+
+        <a href="../../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../../../dev/projects.html">Development</a><br />
+        
+
+        <a href="../../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+<!-- Begin Head -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>CPU LOAD</TITLE>
+<META HTTP-EQUIV="Refresh" CONTENT="300">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="Mon, 04 Dec 2000 18:50:09 GMT">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<!-- maxin d 82 -->
+<!-- maxout d 82 -->
+<!-- avin d 14 -->
+<!-- avout d 14 -->
+<!-- cuin d 41 -->
+<!-- cuout d 41 -->
+<!-- maxin w 37 -->
+<!-- maxout w 37 -->
+<!-- avin w 10 -->
+<!-- avout w 10 -->
+<!-- cuin w 17 -->
+<!-- cuout w 17 -->
+<!-- maxin m 19 -->
+<!-- maxout m 19 -->
+<!-- avin m 9 -->
+<!-- avout m 9 -->
+<!-- cuin m 12 -->
+<!-- cuout m 12 -->
+<!-- maxin y 9 -->
+<!-- maxout y 9 -->
+<!-- avin y 7 -->
+<!-- avout y 7 -->
+<!-- cuin y 9 -->
+<!-- cuout y 9 -->
+
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+<H1>Active CPU Load %</H1><BR>
+<HR>
+The statistics were last updated <B>Monday, 4 December 2000 at 19:45</B>,<BR>
+at which time <B>'kontor.home'</B> had been up for <B>11:45:31</B>.
+<!-- End Head -->
+<!-- Begin `Daily' Graph (5 Minute -->
+<HR>
+<B>`Daily' Graph (5 Minute Average)</B><BR>
+<IMG VSPACE=10 WIDTH=480 HEIGHT=135 ALIGN=TOP 
+     SRC="kontor.cpusum-day.png" ALT="day">
+ <TABLE CELLPADDING=0 CELLSPACING=0>
+<TR>
+  <TD ALIGN=right><SMALL>Max <FONT COLOR="#00cc00">&nbsp;Active</FONT></SMALL></TD>
+  <TD ALIGN=right><SMALL>82.0 %
+   </SMALL></TD>
+  <TD WIDTH=5></TD>
+  <TD ALIGN=right><SMALL>Average <FONT COLOR="#00cc00">&nbsp;Active</FONT></SMALL></TD>
+  <TD ALIGN=right><SMALL>14.0 %
+  </SMALL></TD>
+  <TD WIDTH=5></TD>
+  <TD ALIGN=right><SMALL>Current <FONT COLOR="#00cc00">&nbsp;Active</FONT></SMALL></TD>
+  <TD ALIGN=right><SMALL>41.0 %
+  </SMALL></TD>
+ </TR>
+
+</TABLE>
+<!-- End `Daily' Graph (5 Minute -->
+
+<!-- Begin `Weekly' Graph (30 Minute -->
+<HR>
+<B>`Weekly' Graph (30 Minute Average)</B><BR>
+<IMG VSPACE=10 WIDTH=480 HEIGHT=135 ALIGN=TOP 
+     SRC="kontor.cpusum-week.png" ALT="week">
+ <TABLE CELLPADDING=0 CELLSPACING=0>
+<TR>
+  <TD ALIGN=right><SMALL>Max <FONT COLOR="#00cc00">&nbsp;Active</FONT></SMALL></TD>
+  <TD ALIGN=right><SMALL>37.0 %
+   </SMALL></TD>
+  <TD WIDTH=5></TD>
+  <TD ALIGN=right><SMALL>Average <FONT COLOR="#00cc00">&nbsp;Active</FONT></SMALL></TD>
+  <TD ALIGN=right><SMALL>10.0 %
+  </SMALL></TD>
+  <TD WIDTH=5></TD>
+  <TD ALIGN=right><SMALL>Current <FONT COLOR="#00cc00">&nbsp;Active</FONT></SMALL></TD>
+  <TD ALIGN=right><SMALL>17.0 %
+  </SMALL></TD>
+ </TR>
+
+</TABLE>
+<!-- End `Weekly' Graph (30 Minute -->
+
+<!-- Begin `Monthly' Graph (2 Hour -->
+<HR>
+<B>`Monthly' Graph (2 Hour Average)</B><BR>
+<IMG VSPACE=10 WIDTH=480 HEIGHT=135 ALIGN=TOP 
+     SRC="kontor.cpusum-month.png" ALT="month">
+ <TABLE CELLPADDING=0 CELLSPACING=0>
+<TR>
+  <TD ALIGN=right><SMALL>Max <FONT COLOR="#00cc00">&nbsp;Active</FONT></SMALL></TD>
+  <TD ALIGN=right><SMALL>19.0 %
+   </SMALL></TD>
+  <TD WIDTH=5></TD>
+  <TD ALIGN=right><SMALL>Average <FONT COLOR="#00cc00">&nbsp;Active</FONT></SMALL></TD>
+  <TD ALIGN=right><SMALL>9.0 %
+  </SMALL></TD>
+  <TD WIDTH=5></TD>
+  <TD ALIGN=right><SMALL>Current <FONT COLOR="#00cc00">&nbsp;Active</FONT></SMALL></TD>
+  <TD ALIGN=right><SMALL>12.0 %
+  </SMALL></TD>
+ </TR>
+
+</TABLE>
+<!-- End `Monthly' Graph (2 Hour -->
+
+<!-- Begin `Yearly' Graph (1 Day -->
+<HR>
+<B>`Yearly' Graph (1 Day Average)</B><BR>
+<IMG VSPACE=10 WIDTH=480 HEIGHT=135 ALIGN=TOP 
+     SRC="kontor.cpusum-year.png" ALT="year">
+ <TABLE CELLPADDING=0 CELLSPACING=0>
+<TR>
+  <TD ALIGN=right><SMALL>Max <FONT COLOR="#00cc00">&nbsp;Active</FONT></SMALL></TD>
+  <TD ALIGN=right><SMALL>9.0 %
+   </SMALL></TD>
+  <TD WIDTH=5></TD>
+  <TD ALIGN=right><SMALL>Average <FONT COLOR="#00cc00">&nbsp;Active</FONT></SMALL></TD>
+  <TD ALIGN=right><SMALL>7.0 %
+  </SMALL></TD>
+  <TD WIDTH=5></TD>
+  <TD ALIGN=right><SMALL>Current <FONT COLOR="#00cc00">&nbsp;Active</FONT></SMALL></TD>
+  <TD ALIGN=right><SMALL>9.0 %
+  </SMALL></TD>
+ </TR>
+
+</TABLE>
+<!-- End `Yearly' Graph (1 Day -->
+
+<!-- Begin Legend -->
+  <HR><BR>
+  <TABLE WIDTH=500 BORDER=0 CELLPADDING=4 CELLSPACING=0>
+   <TR><TD ALIGN=RIGHT><FONT SIZE=-1 COLOR="#00cc00">
+      <B>GREEN ###</B></FONT></TD>
+      <TD><FONT SIZE=-1>Active CPU in % (Load)</FONT></TD></TR> </TABLE><BR><HR><BR>
+<!-- End Legend -->
+<!-- Begin MRTG Block -->
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+  <TR>
+    <TD WIDTH=63><A
+    HREF="http://ee-staff.ethz.ch/~oetiker/webtools/mrtg/mrtg.html"><IMG
+    BORDER=0 SRC="mrtg-l.png" WIDTH=63 HEIGHT=25 ALT="MRTG"></A></TD>
+    <TD WIDTH=25><A
+    HREF="http://ee-staff.ethz.ch/~oetiker/webtools/mrtg/mrtg.html"><IMG
+    BORDER=0 SRC="mrtg-m.png" WIDTH=25 HEIGHT=25 ALT=""></A></TD>
+    <TD WIDTH=388><A
+    HREF="http://ee-staff.ethz.ch/~oetiker/webtools/mrtg/mrtg.html"><IMG
+    BORDER=0 SRC="mrtg-r.png" WIDTH=388 HEIGHT=25
+    ALT="Multi Router Traffic Grapher"></A></TD>
+  </TR>
+</TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+  <TR VALIGN=top>
+  <TD WIDTH=88 ALIGN=RIGHT><FONT FACE="Arial,Helvetica" SIZE=2>
+version 2.9.4</FONT></TD>
+  <TD WIDTH=388 ALIGN=RIGHT><FONT FACE="Arial,Helvetica" SIZE=2>
+  <A HREF="http://ee-staff.ethz.ch/~oetiker/">Tobias Oetiker</A>
+  <A HREF="mailto:oetiker@ee.ethz.ch">&lt;oetiker@ee.ethz.ch&gt;</A> 
+and  &nbsp;
+  <A HREF="http://www.bungi.com/">Dave&nbsp;Rand</A>&nbsp;
+  <A HREF="mailto:dlr@bungi.com">&lt;dlr@bungi.com&gt;</A></FONT>
+  </TD>
+</TR>
+</TABLE>
+<!-- End MRTG Block -->
+</BODY>
+
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-5/mrtg/kontor.cpusum.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:45:52 GMT -->
+</HTML>
+
+[an error occurred while processing this directive]
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+</html>
+
+
+

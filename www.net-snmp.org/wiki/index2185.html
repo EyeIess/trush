@@ -1,0 +1,347 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Git_Branch_Management&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:28:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Git Branch Management - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Git_Branch_Management","wgTitle":"Git Branch Management","wgCurRevisionId":5208,"wgRevisionId":5208,"wgArticleId":2196,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Git"],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Git_Branch_Management","wgRelevantArticleId":2196,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load531d.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;printable=1&amp;skin=monobook" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="loadf198.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Git_Branch_Management skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Git Branch Management</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>Net-SNMP has a number of scripts or shell functions which help manage a git-repo.  Specifically, we have a bunch of tools that help test <a href="index.php/Patches.html?title=Patches&amp;action=edit&amp;redlink=1" class="new" title="Patches (page does not exist)">patches</a>, apply patches and perform upward merges based on our <a href="index.php/Git_Workflow.html" title="Git Workflow">Git Workflow</a>.  It augments the more day-to-day <a href="index.php/Git_For_Developers.html" title="Git For Developers">Git For Developers</a> with detailed project-management issues.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Getting_Started"><span class="tocnumber">1</span> <span class="toctext">Getting Started</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Patch_Management"><span class="tocnumber">2</span> <span class="toctext">Patch Management</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#nspatchtry"><span class="tocnumber">2.1</span> <span class="toctext">nspatchtry</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#nspatchapply"><span class="tocnumber">2.2</span> <span class="toctext">nspatchapply</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Git_Repository_Management"><span class="tocnumber">3</span> <span class="toctext">Git Repository Management</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#nsrollup"><span class="tocnumber">3.1</span> <span class="toctext">nsrollup</span></a>
+<ul>
+<li class="toclevel-3 tocsection-7"><a href="#Stopping_Merging_During_Release-Candidates"><span class="tocnumber">3.1.1</span> <span class="toctext">Stopping Merging During Release-Candidates</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-8"><a href="#Checking_the_pretty_results_tree"><span class="tocnumber">3.2</span> <span class="toctext">Checking the pretty results tree</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Building_and_Testing"><span class="tocnumber">4</span> <span class="toctext">Building and Testing</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Getting_Started">Getting Started</span></h2>
+<p>The bash aliases require that you source the local/gittools/shell-functions in order to get started:
+</p>
+<pre> # <b>. ./<a rel="nofollow" class="external text" href="http://net-snmp.git.sourceforge.net/git/gitweb.cgi?p=net-snmp/net-snmp;a=blob_plain;f=local/gittools/shell-functions;hb=HEAD">local/gittools/shell-functions</a></b>
+</pre>
+<p>Once this is done, the rest of the commands on this page will work.
+</p>
+<h2><span class="mw-headline" id="Patch_Management">Patch Management</span></h2>
+<p>Our <a href="index.php/Git_Workflow.html" title="Git Workflow">Git Workflow</a> states that patches should be applied to the lowest branch possible.  IE, if you have a bug fix for nearly every version it should be applied to the lowest current supported version branch.  EG, V5-4-patches.  But which branch will it apply against cleanly??  How do I do this quickly?  We have an answer for you:
+</p><p><i>Note: all these routines require a clean source tree to start, and will warn you if you have modified files in the tree</i>
+</p>
+<h3><span class="mw-headline" id="nspatchtry">nspatchtry</span></h3>
+<p>The <b>nspatchtest</b> command can be used to apply a patch to each (currently supported) branch in the tree to see which it will successfully apply to.  This is much faster than figuring this out by hand.  It takes <i>patch</i> arguments to apply the patch with.  The -i switch is required to specify where the patch file is located.
+</p>
+<pre> # <b>nspatchtry -p 1 -i /tmp/thepatch</b>
+&#160;::: Net-SNMP: checking out and applying patch in V5-4-patches
+ Switched to branch 'V5-4-patches'
+ Your branch is ahead of 'origin/V5-4-patches' by 5 commits.
+&#160;::: Net-SNMP: Appling patch
+ patching file net-snmp/README.snmpv3
+&#160;::: Net-SNMP: Patch succeeded on V5-4-patches
+&#160;::: Net-SNMP: cleaning source tree
+&#160;::: Net-SNMP: checking out and applying patch in V5-5-patches
+ Switched to branch 'V5-5-patches'
+ Your branch is ahead of 'origin/V5-5-patches' by 12824 commits.
+&#160;::: Net-SNMP: Appling patch
+ patching file net-snmp/README.snmpv3
+&#160;::: Net-SNMP: Patch succeeded on V5-5-patches
+&#160;::: Net-SNMP: cleaning source tree
+&#160;::: Net-SNMP: checking out and applying patch in V5-6-patches
+ Switched to branch 'V5-6-patches'
+ Your branch is ahead of 'origin/V5-6-patches' by 25983 commits.
+&#160;::: Net-SNMP: Appling patch
+ patching file net-snmp/README.snmpv3
+&#160;::: Net-SNMP: Patch succeeded on V5-6-patches
+&#160;::: Net-SNMP: cleaning source tree
+&#160;::: Net-SNMP: checking out and applying patch in master
+ Switched to branch 'master'
+ Your branch is ahead of 'origin/master' by 14786 commits.
+&#160;::: Net-SNMP: Appling patch
+ patching file net-snmp/README.snmpv3
+&#160;::: Net-SNMP: Patch succeeded on master
+&#160;::: Net-SNMP: cleaning source tree
+ 
+ Patch application results:
+   Success:  V5-4-patches V5-5-patches V5-6-patches master
+      Fail: 
+</pre>
+<p>Note the important ending: my patch succeeded against all those
+branches.
+</p>
+<h3><span class="mw-headline" id="nspatchapply">nspatchapply</span></h3>
+<p>Now that we know where the patch should be applied, actually applying
+it is very simple.  Simply call the <i>nspatchapply</i> script, which:
+</p>
+<ol><li> checks out the earliest branch that worked with <i>nspatchtry</i></li>
+<li> applies the patch</li>
+<li> runs <i>git diff</i> so you can make sure it looks ok</li>
+<li> asks you if it looks ok and if so:</li>
+<li> runs <i>git commit</i> on the results, with any arguments you pass it, to commit the results.</li></ol>
+<pre> # <b>nspatchapply -m "applying the wonderful patch.  Isn't it pretty?"</b>
+&#160;::: Net-SNMP: Checking out V5-4-patches
+ Switched to branch 'V5-4-patches'
+ Your branch is ahead of 'origin/V5-4-patches' by 5 commits.
+&#160;::: Net-SNMP: applying the patch -p 1 -i /tmp/thepatch
+ patching file net-snmp/README.snmpv3
+ diff --git a/net-snmp/README.snmpv3 b/net-snmp/README.snmpv3
+ index 263c955..8294035 100644
+ --- a/net-snmp/README.snmpv3
+ +++ b/net-snmp/README.snmpv3
+ @@ -1,4 +1,4 @@
+ -README.snmpv3
+ +README.snmpv3foo
+  -------------
+  How to setup SNMPv3, a very brief document for Dave to elaborate and
+  do a better job on since I suck at writing documentation and he
+ 
+ commit the results to V5-4-patches? [y/n] <b>y</b>
+ [V5-4-patches 102bde5] applying the wonderful patch.  Isn't it pretty?
+  1 files changed, 1 insertions(+), 1 deletions(-)
+</pre>
+<p>Done!  Wasn't that easy?
+</p><p>If you already have changes on one branch and need to move them, you might read the <a href="index.php/Moving_changes_on_a_Git_branch.html" title="Moving changes on a Git branch">Moving changes on a Git branch</a> web page for moving already committed changes.
+</p>
+<h2><span class="mw-headline" id="Git_Repository_Management">Git Repository Management</span></h2>
+<p>Once you have bug-fix patches sprinkled about the various trees, how in the world do you get them all up into the trunk where you want to do your new spiffy feature development in a bug-free environment?
+</p>
+<h3><span class="mw-headline" id="nsrollup">nsrollup</span></h3>
+<p>The <b>nsrollup</b> bash function performs the following tasks on a clean tree:
+</p>
+<ol><li> performs a <i>git fetch --all</i> to ensure your branches are up to date</li>
+<li> checks out each branch</li>
+<li> rebases any existing work on top of the newer remote branch</li>
+<li> merges the direct previous version into it (eg, it'll roll V5-4-patches into V5-5-patches)</li>
+<li> lets you know about conflicts that you need to resolve</li></ol>
+<pre> # nsrollup
+&#160;::: Net-SNMP: Pulling all upstream branches
+ Fetching origin
+ Already up-to-date.
+&#160;::: Net-SNMP: checking out V5-5-patches
+ Switched to branch 'V5-5-patches'
+ Your branch is ahead of 'origin/V5-5-patches' by 12824 commits.
+&#160;::: Net-SNMP: merging V5-4-patches into V5-5-patches
+ Merge made by recursive.
+  net-snmp/README.snmpv3 |    2 +-
+  net-snmp/README.tru64  |    4 ++++
+  2 files changed, 5 insertions(+), 1 deletions(-)
+&#160;::: Net-SNMP: checking out V5-6-patches
+ Switched to branch 'V5-6-patches'
+ Your branch is ahead of 'origin/V5-6-patches' by 25983 commits.
+&#160;::: Net-SNMP: merging V5-5-patches into V5-6-patches
+ Auto-merging net-snmp/README.snmpv3
+ Auto-merging net-snmp/README.tru64
+ Merge made by recursive.
+  dist/release           |    2 +-
+  net-snmp/README.snmpv3 |    2 +-
+  net-snmp/README.tru64  |    2 ++
+  3 files changed, 4 insertions(+), 2 deletions(-)
+&#160;::: Net-SNMP: checking out master
+ Switched to branch 'master'
+ Your branch is ahead of 'origin/master' by 14786 commits.
+&#160;::: Net-SNMP: merging V5-6-patches into master
+ Merge made by recursive.
+  dist/release           |    2 +-
+  net-snmp/README.snmpv3 |    2 +-
+  net-snmp/README.tru64  |    2 ++
+  3 files changed, 4 insertions(+), 2 deletions(-)
+</pre>
+<pre> -------------------------------
+ Updated the following branches:
+    V5-5-patches V5-6-patches master
+</pre>
+<h4><span class="mw-headline" id="Stopping_Merging_During_Release-Candidates">Stopping Merging During Release-Candidates</span></h4>
+<p>Our development policy says that during the release candidate series, all patches must be voted on in the -coders list.  Thus, it's not appropriate for these to be automatically rolled upward, as that's the job of the release engineer for that release to do.  Thus, if a <i>dist/release</i> file exists and it contains a branch name followed by a magical 'rc' keyword, this branch will be excluded from the merging.  EG:
+</p>
+<pre> V5-6-patches rc
+</pre>
+<p>Will cause it to be ignored for merging.  Changes in V5-6-patches will still be rolled into V5-7-patches, though (which will often include changes to the <i>dist/release</i> file itself; but that's ok.  It can list multiple releases if need be).
+</p>
+<h3><span class="mw-headline" id="Checking_the_pretty_results_tree">Checking the pretty results tree</span></h3>
+<p>The <a href="index.php/Gitk.html?title=Gitk&amp;action=edit&amp;redlink=1" class="new" title="Gitk (page does not exist)">gitk</a> tool is highly useful (with the --all switch) for showing the resulting prettiness that you just created.  For example, in the above examples it produced a bunch of merges that are shown graphically as follows:
+</p>
+<div class="MediaTransformError" style="width: 458px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<h2><span class="mw-headline" id="Building_and_Testing">Building and Testing</span></h2>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514191726
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.067 seconds
+Real time usage: 1.071 seconds
+Preprocessor visited node count: 42/1000000
+Preprocessor generated node count: 68/1000000
+Post‐expand include size: 157/2097152 bytes
+Template argument size: 60/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    3.998      1 - Template:Code
+100.00%    3.998      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="index906f.html?title=Git_Branch_Management&amp;oldid=5208">http://www.net-snmp.org/wiki/index.php?title=Git_Branch_Management&amp;oldid=5208</a>"</div>
+					<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="index.php/Special_Categories.html" title="Special:Categories">Category</a>: <ul><li><a href="index.php/Category_Git.html" title="Category:Git">Git</a></li></ul></div></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="index.php/Git_Branch_Management.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="index.php/Talk_Git_Branch_Management.html?title=Talk:Git_Branch_Management&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="indexbe5c.html?title=Git_Branch_Management&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="index8bd5.html?title=Git_Branch_Management&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="index09d2.html?title=Special:UserLogin&amp;returnto=Git+Branch+Management&amp;returntoquery=printable%3Dyes&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="indexab0d-3.html?title=Special:UserLogin&amp;returnto=Git+Branch+Management&amp;returntoquery=printable%3Dyes" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="index.php/Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="index.php/Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="index.php/Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="index.php/FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="index.php/Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="index.php/Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="index.php/Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="index.php/Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="index.php/Special_WhatLinksHere/Git_Branch_Management.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="index.php/Special_RecentChangesLinked/Git_Branch_Management.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="index.php/Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-permalink"><a href="index906f.html?title=Git_Branch_Management&amp;oldid=5208" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="indexf6bc-2.html?title=Git_Branch_Management&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 15 July 2011, at 17:42.</li>
+									<li id="privacy"><a href="index.php/Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="index.php/Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="index.php/Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":1272});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Git_Branch_Management&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:28:14 GMT -->
+</html>

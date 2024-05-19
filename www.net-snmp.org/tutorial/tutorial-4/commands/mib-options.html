@@ -1,0 +1,296 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-4/commands/mib-options.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:16:52 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../../print1.css" />
+  </head>
+  <body background="../../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../../index.html">About</a><br />
+        
+
+        <a href="../../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../tutorial-5/index.html"
+                  title="Net-SNMP v5 tutorial">Version 5.x</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../index.html"
+                  title="UCD-SNMP v4 tutorial">Version 4.x</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../../../docs/readmefiles.html">Documentation</a><br />
+        
+
+        <a href="../../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../../../dev/projects.html">Development</a><br />
+        
+
+        <a href="../../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+    <h1>UCD-SNMP Tutorial -- Using local MIBs</h1>
+    <p>
+      <b>Note:</b>  Much of this tutorial requires <a
+	href="http://prdownloads.sourceforge.net/net-snmp/ucd-snmp-4.2.6.tar.gz">ucd-snmp-4.2.2 or higher</a>!,
+	so make sure you get it before running the commands found in
+	this tutorial.</b> 
+      <p><b>Note:</b>  A new tutorial for net-snmp 5.0 and above <a
+      href="../../../tutorial-5/index.html">is available</a> as well.  The commands is
+      the ucd-snmp specific tutorial will not work as expected if you
+      are using net-snmp and not ucd-snmp.
+      <br><br>
+    <hr>
+
+    <p>
+      The ucd-snmp tools can translate numeric object identifies
+      (OIDs) into textual object identifiers using the MIB description
+      files.  The ucd-snmp toolkit provides a few of the standard
+      MIBs, but certainly doesn't contain all the MIBs known to man.
+
+    <p>
+      First off, you should know about the paths that the tools load
+      MIBs from.  By default, it loads things from the following list
+      of directories:
+
+    <ol>
+      <li> $HOME/.snmp/mibs
+      <li> /usr/local/share/snmp/mibs
+    </ol>
+
+    <p>
+      So, lets say you have a MIB called <a
+      href="ftp://ftp.cisco.com/pub/mibs/v2/CISCO-RHINO-MIB.my">CISCO-RHINO-MIB</a>
+      that you want parsed (it really exists, and I particularly liked
+      the name so I'm using it in the tutorial).  Place the file in
+      one of the above two directories.  If you pulled it from another
+      file (like an RFC), make sure it doesn't contain anything
+      non-MIB related (like the text leading up to it, and the page
+      separators).  The very first line in the file should begin with
+      something like "CISCO-RHINO-MIB DEFINITIONS ::= BEGIN"
+
+    <p>
+      No, pick a node in the file that you want to translate that
+      currently isn't being translated.  From the CISCO-RHINO-MIB, I'll
+      pick the <i>ciscoLS1010ChassisFanLed</i> node.
+
+    <p>First, lets verify that our handy snmptranslate command
+      (discussed <a href="snmptranslate.html">earlier</a>) doesn't
+      yet know about this node:
+
+<pre>
+<ul>
+% <b>snmptranslate -IR ciscoLS1010ChassisFanLed</b>
+Unknown object identifier: ciscoLS1010ChassisFanLed
+</ul>
+</pre>
+
+    <p>Nope, it doesn't.  So, first we need to download the <a
+      href="ftp://ftp.cisco.com/pub/mibs/v2/CISCO-RHINO-MIB.my">CISCO-RHINO-MIB.my</a>
+      file and place it in a directory that our snmp tools can find it
+      in.  So, I'm going to place the file in $HOME/.snmp/mibs.
+
+    <p>Now, lets use the <i>-m</i> flag to snmptranslate to tell it to
+    load that mib.  We'll use "-m +CISCO-RHINO-MIB" to indicate that
+    we want the tool to load not only the default set of mibs, but the
+    CISCO-RHINO-MIB as well (the leading '+' plus means "also").
+
+    <pre>
+    <ul>
+<b>snmptranslate -m +CISCO-RHINO-MIB -IR ciscoLS1010ChassisFanLed</b>
+Cannot find module (CISCO-SMI): At line 31 in $HOME/.snmp/mibs/CISCO-RHINO-MIB.my
+Unlinked OID in CISCO-RHINO-MIB: ciscoLS1010ChassisMIB ::= { workgroup 11 }
+Cannot adopt OID in CISCO-RHINO-MIB: ciscoAtmSwitchInvalidCellHeader ::= { ciscoAtmSwitchInvalidCellHeaderEntry 2 }
+<i>... rest of output truncated ...</i>
+    </ul>
+  </pre>
+
+    <p>
+    Wait a minute...  What the heck is all that stuff?  Errors!  Well,
+    the first line is the most important and it's telling us that we're
+    missing the CISCO-SMI MIB as well.  So, if we go <a
+    href="ftp://ftp.cisco.com/pub/mibs/v2/CISCO-SMI.my">download that
+    MIB file</a> and place it in our $HOME/.snmp/mibs directory as
+    well the command should suddenly work:
+
+    <pre>
+    <ul>
+<b>snmptranslate -m +CISCO-RHINO-MIB -IR ciscoLS1010ChassisFanLed</b>
+.1.3.6.1.4.1.9.5.11.1.1.12
+    </ul>
+  </pre>
+
+
+    <p>
+      <b>Success!</b>
+
+
+    <p>One last comment: You can also force loading of a given MIB and
+    its node in one fell swoop (and this method is the one most highly
+    recommended by Niels Baggesen, one of our primary core
+    developers):
+
+    <pre>
+    <ul>
+<b>snmptranslate CISCO-RHINO-MIB::ciscoLS1010ChassisFanLed</b>
+.1.3.6.1.4.1.9.5.11.1.1.12
+    </ul>
+  </pre>
+
+    <p>So, there you have it.  A complete example for how to get your
+    own <i>insert-spiffy-mib-here</i> loaded into the net-snmp tools.
+
+    <p>Please note the following sections of the FAQ as well:
+    <ul>
+      <li><a
+      href="../../../FAQ.html#How_do_I_add_a_MIB_">How
+      do I add a MIB</a>
+      <li><a
+      href="../../../FAQ.html#How_do_I_add_a_MIB_to_the_tools_">How do I add a MIB to the tools?</a>
+    <li><a href="../../../FAQ.html#I_m_getting_answers__but_they_re_all_numbers__Why_">I'm getting answers, but they're all numbers. Why?</a>
+    <li>... (Read the entire <a
+    href="../../../FAQ.html">FAQ</a> Please!)
+    </ul>
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-4/commands/mib-options.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:16:53 GMT -->
+</html>
+
+
+

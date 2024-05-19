@@ -1,0 +1,248 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Writing_your_own_MIBs&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:59:59 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Writing your own MIBs - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Writing_your_own_MIBs","wgTitle":"Writing your own MIBs","wgCurRevisionId":5756,"wgRevisionId":5756,"wgArticleId":2396,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["MIBs"],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Writing_your_own_MIBs","wgRelevantArticleId":2396,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load531d.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;printable=1&amp;skin=monobook" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="loadf198.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Writing_your_own_MIBs skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Writing your own MIBs</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="margin-left: 10px; float: right; width: 30%; border: 2px solid black; background-color: #eee; padding: 2px;"><div style="font-size: 1.2em; background-color: #ccf; width: 100%; text-align: center; border-width: 0px 0px 2px 0px; border-color: #aad; border-style: solid;">Good Answer</div><p>This is a <a href="index.php/Category_GoodAnswer.html" title="Category:GoodAnswer">Good Answer</a> article.  It was likely created as a response to a question on a Net-SNMP <a href="index.php/Mailing_Lists.html" title="Mailing Lists">Mailing List</a> and written up here for others to see.  It likely covers material not yet in the <a href="index.php/FAQ.html" title="FAQ">FAQ</a> or in the <a href="index.php/Tutorials.html" title="Tutorials">Tutorial</a> but may someday be moved there</p><div align="center"><a href="index.php/Good_Answers.html" title="Good Answers" class="mw-redirect">Find More Good Answers</a></div></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Question"><span class="tocnumber">1</span> <span class="toctext">Question</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Answer"><span class="tocnumber">2</span> <span class="toctext">Answer</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#What_does_a_MIB_look_like.3F"><span class="tocnumber">2.1</span> <span class="toctext">What does a MIB look like?</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#What_goes_into_a_MIB.3F"><span class="tocnumber">2.2</span> <span class="toctext">What goes into a MIB?</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Getting_your_own_enterprise_OID"><span class="tocnumber">2.3</span> <span class="toctext">Getting your own enterprise OID</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Writing_the_MIB"><span class="tocnumber">2.4</span> <span class="toctext">Writing the MIB</span></a>
+<ul>
+<li class="toclevel-3 tocsection-7"><a href="#Validating_your_MIB"><span class="tocnumber">2.4.1</span> <span class="toctext">Validating your MIB</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#External_References"><span class="tocnumber">2.4.2</span> <span class="toctext">External References</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-9"><a href="#Implementing_a_MIB_in_Net-SNMP"><span class="tocnumber">2.5</span> <span class="toctext">Implementing a MIB in Net-SNMP</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Question">Question</span></h2>
+<p>I need to write my own MIB What do I need to know?  (Note: This answer is about writing a MIB, which defines objects and their syntax. It is not about implementing a MIB for the Net-SNMP agent, which is covered elsewhere.)
+</p>
+<h2><span class="mw-headline" id="Answer">Answer</span></h2>
+<h3><span class="mw-headline" id="What_does_a_MIB_look_like.3F">What does a MIB look like?</span></h3>
+<p>If you aren't familiar with MIBs, take a look at the <a rel="nofollow" class="external text" href="http://net-snmp.sourceforge.net/docs/mibs/NET-SNMP-EXAMPLES-MIB.txt">Net-SNMP examples MIB</a>. It is an example of a simple MIB you can read to get a feel for what a basic MIB looks like. It contains scalars, a table and some notification objects.
+</p>
+<h3><span class="mw-headline" id="What_goes_into_a_MIB.3F">What goes into a MIB?</span></h3>
+<p>The most important thing you'll need for your own MIB is the list of objects you need to represent in the MIB. Once you have this list, you can organize them. SNMP MIBs have a tree structure, and the root of the tree and a good number of standard objects are defined by the IETF. You'll need a place in the tree to insert your MIB.
+</p>
+<h3><span class="mw-headline" id="Getting_your_own_enterprise_OID">Getting your own enterprise OID</span></h3>
+<p>If you are going to define a MIB that you are going to share with the world, you need a place in the tree that wont conflict with any other  MIBs written by others. The enterprises branch of the tree is specifically for organizations (and individuals) to define their own objects. You can apply for your own enterprise OID on the <a rel="nofollow" class="external text" href="http://pen.iana.org/pen/PenApplication.page">IANA Pen Application</a> page.
+</p><p>If you are defining a MIB that will only be used internally, you could also insert your MIB in the experimental tree. Just be aware that confusion can ensue if management applications try to load multiple MIBs which contain overlapping OIDs.
+</p>
+<h3><span class="mw-headline" id="Writing_the_MIB">Writing the MIB</span></h3>
+<p>One simple way to start is to take an existing MIB and modify it for your own use. For example, use the Net-SNMP examples mib, and start by moving it to your own branch. Here is an example that moves it into the netSnmpPlaypen, which is a branch we've defined for private testing purposes. <i>No "public" management objects should ever be defined within this tree. It is provided for private experimentation, prior to transferring a MIB structure to another part of the overall OID tree.</i>
+</p>
+<pre>
+xyzSnmpExamples MODULE-IDENTITY
+    LAST-UPDATED "201312190000Z"
+    ORGANIZATION "www.example.com"
+    CONTACT-INFO    
+	 "postal:   John Doe
+                    123 Main Street
+                    Anytown, CA 00000
+
+          email:    xyz-mib@example.com"
+    DESCRIPTION
+	"Example MIB objects for agent module example implementations"
+    DESCRIPTION
+	"First draft"
+   &#160;::= { netSnmpPlaypen 42 }  -- or "enterprises XXXX" where XXXX with your assigned enterprise OID
+</pre>
+<p>Now you can change the names and definitions of the object and experiment.
+</p>
+<h4><span class="mw-headline" id="Validating_your_MIB">Validating your MIB</span></h4>
+<p>Once you have a MIB, you should run it through a MIB syntax checker to make sure it can be compiled. We recommend using <a rel="nofollow" class="external text" href="http://www.ibr.cs.tu-bs.de/projects/libsmi/smilint.html">smilint</a> from <a rel="nofollow" class="external text" href="http://www.ibr.cs.tu-bs.de/projects/libsmi/">libsmi</a>. Check their pages for usage information.
+</p><p><br />
+</p>
+<h4><span class="mw-headline" id="External_References">External References</span></h4>
+<p>The syntax for a MIB and the process of actually writing a MIB are too complex to cover in a basic wiki page, so at this point we're going to hand you off to some resources that cover the topic in much more depth.
+</p>
+<ul><li> Buy <a rel="nofollow" class="external text" href="http://www.amazon.com/Understanding-SNMP-MIBs-David-Perkins/dp/0134377087">Understanding SNMP MIBs</a>, by Dave Perkins
+<ul><li> If you are on a budget, there is a <a rel="nofollow" class="external text" href="http://www.dsc.ufcg.edu.br/~jacques/cursos/gr/recursos/outros/perkins.pdf">free PDF</a> of the precursor to this book, which only covers SNMP version 1. It will help you understand the basic concepts, but we strongly recommend you get the book, which covers SNMP version 2.</li></ul></li>
+<li> Buy <a rel="nofollow" class="external text" href="http://www.amazon.com/SNMP-MIB-Handbook-Larry-Walsh/dp/0981492207">SNMP MIB Handbook</a> by Larry Walsh</li></ul>
+<h3><span class="mw-headline" id="Implementing_a_MIB_in_Net-SNMP">Implementing a MIB in Net-SNMP</span></h3>
+<p>Once you have a MIB written, there are several resources in the wiki for implementing the MIB with Net-SNMP.
+</p>
+<ul><li> <a href="index.php/TUT_Writing_a_MIB_Module.html" title="TUT:Writing a MIB Module">TUT:Writing_a_MIB_Module</a></li></ul>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514181612
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.013 seconds
+Real time usage: 0.019 seconds
+Preprocessor visited node count: 50/1000000
+Preprocessor generated node count: 76/1000000
+Post‐expand include size: 680/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    3.006      1 - Template:GoodAnswer
+100.00%    3.006      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="index5f37.html?title=Writing_your_own_MIBs&amp;oldid=5756">http://www.net-snmp.org/wiki/index.php?title=Writing_your_own_MIBs&amp;oldid=5756</a>"</div>
+					<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="index.php/Special_Categories.html" title="Special:Categories">Category</a>: <ul><li><a href="index.php/Category_MIBs.html" title="Category:MIBs">MIBs</a></li></ul></div></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="index.php/Writing_your_own_MIBs.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="index.php/Talk_Writing_your_own_MIBs.html?title=Talk:Writing_your_own_MIBs&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="indexd32f.html?title=Writing_your_own_MIBs&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="indexda1f.html?title=Writing_your_own_MIBs&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="index4456.html?title=Special:UserLogin&amp;returnto=Writing+your+own+MIBs&amp;returntoquery=printable%3Dyes&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="index52ff.html?title=Special:UserLogin&amp;returnto=Writing+your+own+MIBs&amp;returntoquery=printable%3Dyes" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="index.php/Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="index.php/Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="index.php/Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="index.php/FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="index.php/Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="index.php/Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="index.php/Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="index.php/Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="index.php/Special_WhatLinksHere/Writing_your_own_MIBs.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="index.php/Special_RecentChangesLinked/Writing_your_own_MIBs.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="index.php/Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-permalink"><a href="index5f37.html?title=Writing_your_own_MIBs&amp;oldid=5756" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="indexf4a2.html?title=Writing_your_own_MIBs&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 19 December 2013, at 17:09.</li>
+									<li id="privacy"><a href="index.php/Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="index.php/Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="index.php/Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":173});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Writing_your_own_MIBs&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:00:00 GMT -->
+</html>

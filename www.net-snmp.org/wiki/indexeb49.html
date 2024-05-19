@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Testing&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:24:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Testing - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Testing","wgTitle":"Testing","wgCurRevisionId":4955,"wgRevisionId":4955,"wgArticleId":2117,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Testing","wgRelevantArticleId":2117,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load531d.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;printable=1&amp;skin=monobook" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="loadf198.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Testing skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Testing</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>Net-SNMP comes with a testing suite that is simple to use, and fairly simple to write new tests for.  The instructions below describe both how to the suite and how to write new tests for it.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Using_the_Test_System"><span class="tocnumber">1</span> <span class="toctext">Using the Test System</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Notes_for_version_5.5_and_below"><span class="tocnumber">1.1</span> <span class="toctext">Notes for version 5.5 and below</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Notes_for_version_5.6_and_above"><span class="tocnumber">1.2</span> <span class="toctext">Notes for version 5.6 and above</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="#Running_a_particular_test"><span class="tocnumber">1.2.1</span> <span class="toctext">Running a particular test</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Available_Test_Groups"><span class="tocnumber">2</span> <span class="toctext">Available Test Groups</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Architecture_of_the_Testing_System"><span class="tocnumber">3</span> <span class="toctext">Architecture of the Testing System</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#RUNFULLTESTS"><span class="tocnumber">3.1</span> <span class="toctext">RUNFULLTESTS</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#build_and_run_components"><span class="tocnumber">3.1.1</span> <span class="toctext">_build and _run components</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Existing_Test_Styles"><span class="tocnumber">4</span> <span class="toctext">Existing Test Styles</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#simple"><span class="tocnumber">4.1</span> <span class="toctext">simple</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#clib"><span class="tocnumber">4.2</span> <span class="toctext">clib</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#agentlib"><span class="tocnumber">4.3</span> <span class="toctext">agentlib</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#capp"><span class="tocnumber">4.4</span> <span class="toctext">capp</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-14"><a href="#Developer_Notes"><span class="tocnumber">5</span> <span class="toctext">Developer Notes</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Using_the_Test_System">Using the Test System</span></h2>
+<p>The simplest way to run the tests is to simply:
+</p>
+<pre># cd testing
+# make test
+</pre>
+<p>And watch the output. If you built outside of the source tree, then you need to set the <code>builddir</code> environment variable to the path to your build directory.
+</p>
+<h3><span class="mw-headline" id="Notes_for_version_5.5_and_below">Notes for version 5.5 and below</span></h3>
+<p><b>make test</b> really just invokes the "RUNTESTS" script.  See the <i>RUNTESTS -h</i> output for help
+</p><p>Everything below this point applies primarily to version 5.6 and above.  Although the "simple" tests described below still work and thus it's still possible to write new tests using that format for version prior to 5.6.
+</p><p>Everything below is really talking about the newer test suite in 5.6+.
+</p>
+<h3><span class="mw-headline" id="Notes_for_version_5.6_and_above">Notes for version 5.6 and above</span></h3>
+<div style="padding-left: 1em; border-width: 2px; border-color: #bb0000; border-style: solid; background-color: #ffcccc; width: 95%; margin-bottom: .5em;">
+<div style="font-size: 1.2em; font-weight: bold; border-width: 0px 0px 4px 0px; border-color: #bb0000; border-style: solid; display: block; padding-bottom: .2em; padding-top: .2em;">Requires Net-SNMP 5.6</div>
+<p>Note: Features discussed on this page require Net-SNMP version <b>5.6</b> or higher.
+</p>
+</div>
+<p>In version 5.6 the testing suite was rewritten to provide:
+</p>
+<ul><li> Logical grouping of tests</li>
+<li> The ability to generate compiled tests</li>
+<li> To make use of the <a href="http://c2.com/cgi/wiki?PerlTap" class="extiw" title="wiki:PerlTap">wiki:PerlTap</a> (TAP)</li></ul>
+<p><b>make test</b> is still the simple way to run the default set of tests.  This should work on every platform, although platforms with newer versions of <a href="index.php/Perl.html?title=Perl&amp;action=edit&amp;redlink=1" class="new" title="Perl (page does not exist)">perl</a> will get increased levels of support.  Platforms without perl at all can't take advantage of the TAP collection process and the output will thus be very verbose.
+</p><p><b>make test</b> will still run the <i>default</i> set of tests for you, now using the <i>RUNFULLTESTS</i> script.  However, there are more tests available that can be run in addition to the complete set.  The test <i>groups</i> are located in individual directories in the <i>testing/fulltests</i> directory.  The one exception is the <i>support</i> directory which merely contains supporting files for the other directories.
+</p>
+<h4><span class="mw-headline" id="Running_a_particular_test">Running a particular test</span></h4>
+<p>To run a particular group use:
+</p>
+<pre> # <b>cd testing</b>
+ # <b>./RUNFULLTESTS -g <i>groupname</i></b>
+</pre>
+<p>Where <i>groupname</i> is the directory name you wish to execute the tests from.  For example:
+</p>
+<pre> # <b>./RUNFULLTESTS -g unit-tests</b>
+</pre>
+<p>will run the unit-tests for the libraries.
+</p><p>To run a particular test, use RUNTESTS:
+</p>
+<pre> # <b>./RUNFULLTESTS -r 002</b>
+</pre>
+<p>Note that this is a regexp and will match and test in the group with 002 in the filename (and may match and run multiple tests).  Obliviously, other more powerful regexps can be used too.  Use the -g switch too if you need to run a particular test in a non-default test group.
+</p>
+<h2><span class="mw-headline" id="Available_Test_Groups">Available Test Groups</span></h2>
+<p>The following list describes the test groups available in the latest version of Net-SNMP.  These will only be available from 5.6 onward, and as Net-SNMP development continues some may only be available in the more recent versions:
+</p>
+<table cellpadding="1" cellspacing="0" border="1" style="margin-left: 2em;">
+
+<tr bgcolor="#ddd">
+<th> Test Group
+</th>
+<th> Description
+</th></tr>
+<tr>
+<td> all
+</td>
+<td> A special keyword to run every available test group
+</td></tr>
+<tr>
+<td> default
+</td>
+<td> The default list of tests to run.  This group is expected to work even with older versions of perl.  The other groups frequently require Newer versions of perl (5.8+).
+</td></tr>
+<tr>
+<td> unit-tests
+</td>
+<td> Runs basic unit tests for the libraries.  These tests generally involve compiling a simple c-application that execercises various aspects of the Net-SNMP C Libraries.
+</td></tr>
+<tr>
+<td> transports
+</td>
+<td> Tests each available transport type for its ability to send and receive data.  Simple SNMP messages are sent from a client to an agent and back using each available transport type.  Will likely require a properly setup network (eg, a working IPv6 interface if you compiled in IPv6 support).
+</td></tr>
+<tr>
+<td> tls
+</td>
+<td> Extensive tests of the TLS and DTLS transports to ensure they're functioning and all the features are working
+</td></tr>
+<tr>
+<td> perl
+</td>
+<td> Simple tests of the perl module and it's ability to send and receive data
+</td></tr>
+</table>
+<h2><span class="mw-headline" id="Architecture_of_the_Testing_System">Architecture of the Testing System</span></h2>
+<p>The Net-SNMP testing infrastructure is divided into parts:
+</p>
+<ul><li> The RUNFULLTESTS program, which is a harness for knowing how to execute individual tests and groups of tests.</li>
+<li> Directories of tests that form <i>groups</i></li>
+<li> Individual tests that are written in the form of a particular <i>test style</i></li>
+<li> Supporting files that know how to build and run particular <i>test style</i>s.</li></ul>
+<h3><span class="mw-headline" id="RUNFULLTESTS">RUNFULLTESTS</span></h3>
+<p>Internally to RUNFULLTESTS it:
+</p>
+<ol><li> examines the list of arguments for which test groups should be run</li>
+<li> optionally filters that list further because of regexps passed on the command line via the -r switch</li>
+<li> for each test:
+<ol><li> determines the <i>test style</i> of the test</li>
+<li> looks for a supporting <i>_build</i> rule and executes it (if found) with the name of the test file.  It also records the last line of the output as the new test file to pass to the _run routine.</li>
+<li> looks for a supporting <i>_run</i> rule and executes it with the name of the test to run and collects it output as TAP output</li>
+<li> If no <i>_run</i> system was found, it executes the file itself and collects the output as TAP output (ie, it must a stand alone script)</li></ol></li>
+<li> Displays a summary of the results from all the tests</li></ol>
+<h4><span class="mw-headline" id="build_and_run_components">_build and _run components</span></h4>
+<p>Test <i>style types</i> are found by examine the file name of the test itself.  The style type is always the last suffix to the file following the last <i>_</i> (underscore) character.  For example the test <i>fulltests/default/T001snmpv1get_simple</i> has a style type of <i>simple</i>.  Suffixes beyond the style are also allowed, eg "_simple.c" is a valid ending, as used in the <i>fulltests/unit-tests/T001defaultstore_clib.c</i> test.
+</p><p>Thus, <i>RUNFULLTESTS</i> will look in the <i>fulltests/default</i> directory for a <i>simple_build</i> and <i>simple_run</i> script.  If not found there, it will also look in the <i>fulltests/support</i> directory as well.  If either or both are found, they're executed according to the above steps.
+</p>
+<h2><span class="mw-headline" id="Existing_Test_Styles">Existing Test Styles</span></h2>
+<h3><span class="mw-headline" id="simple">simple</span></h3>
+<p>The oldest style was written during the period where SNMPv3 support was added to the Net-SNMP project, back near UCD-SNMP version 4.0.  This style has proven to be very useful and easy to use (but hard for the developers to maintain the internal support for it).
+</p><p><i>simple</i> tests are written in sh or bash and have a few mandatory components and special macros to use.  See the <i>fulltests/default/T001snmpv1get_simple</i> for a fairly simple example.
+</p>
+<h3><span class="mw-headline" id="clib">clib</span></h3>
+<p><i>clib</i> tests are designed to execute parts of the Net-SNMP <a href="index.php/Libnetsnmp.html?title=Libnetsnmp&amp;action=edit&amp;redlink=1" class="new" title="Libnetsnmp (page does not exist)">libnetsnmp</a> library, which is the true base of all the Net-SNMP software components.  The file should be a simple <a href="index.php/C.html?title=C&amp;action=edit&amp;redlink=1" class="new" title="C (page does not exist)">C</a> file with no wrapping function.  There are a number of useful C macros that can be used to test and report errors (defined in include/net-snmp/library/testing.h):
+</p>
+<ul><li> PLAN: If you know the number of tests you're going to run, call PLAN near the top to list the number.  This helps the output be prettier.</li></ul>
+<pre> PLAN(20);
+</pre>
+<ul><li> OKF: checks that a condititon is true and includes a test description</li></ul>
+<pre> OKF(myFunc() == 1, "myFunc() should always return 1.);
+</pre>
+<ul><li> OKF: checks a condition with a formated description string:</li></ul>
+<pre> int result = myFunc();
+ OKF(result == 1, ("myFunc() should always return 1.  It returned&#160;%d", result));
+</pre>
+<p>Example file: fulltests/unit-tests/T001defaultstore_clib.c
+</p>
+<h3><span class="mw-headline" id="agentlib">agentlib</span></h3>
+<p>This <i>style</i> is nearly identical to the <i>clib</i> style, but also links the resulting executable against the libnetsnmpagent library for testing functions in it.
+</p><p>Example file: fulltests/unit-tests/T006snmp_handler_registration_cagentlib.c
+</p>
+<h3><span class="mw-headline" id="capp">capp</span></h3>
+<p>A C-app file must a complete self contained <a href="index.php/C.html?title=C&amp;action=edit&amp;redlink=1" class="new" title="C (page does not exist)">C</a> file.  It's compiled and linked with the <a href="index.php/Libnetsnmp.html?title=Libnetsnmp&amp;action=edit&amp;redlink=1" class="new" title="Libnetsnmp (page does not exist)">libnetsnmp</a> library and executed and should produce TAP output (if you include the net-snmp/library/testing.h file you can use the above macros).
+</p><p>Example file: fulltests/snmpv3/T050etimetest_capp.c
+</p>
+<h2><span class="mw-headline" id="Developer_Notes">Developer Notes</span></h2>
+<p>See notes on the <a href="index.php/Test_Scripts.html" title="Test Scripts">Test_Scripts</a> page.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20240514190814
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.016 seconds
+Real time usage: 0.023 seconds
+Preprocessor visited node count: 64/1000000
+Preprocessor generated node count: 92/1000000
+Post‐expand include size: 456/2097152 bytes
+Template argument size: 6/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    3.355      1 - Template:Require
+100.00%    3.355      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="indexccff.html?title=Testing&amp;oldid=4955">http://www.net-snmp.org/wiki/index.php?title=Testing&amp;oldid=4955</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="index.php/Testing.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="index.php/Talk_Testing.html?title=Talk:Testing&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="indexb1ec.html?title=Testing&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="index45ac.html?title=Testing&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="index9fb7-2.html?title=Special:UserLogin&amp;returnto=Testing&amp;returntoquery=printable%3Dyes&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="indexabcd.html?title=Special:UserLogin&amp;returnto=Testing&amp;returntoquery=printable%3Dyes" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="index.php/Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="index.php/Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="index.php/Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="index.php/FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="index.php/Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="index.php/Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="index.php/Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="index.php/Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="index.php/Special_WhatLinksHere/Testing.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="index.php/Special_RecentChangesLinked/Testing.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="index.php/Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-permalink"><a href="indexccff.html?title=Testing&amp;oldid=4955" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="indexd51a.html?title=Testing&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 17 May 2011, at 13:59.</li>
+									<li id="privacy"><a href="index.php/Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="index.php/Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="index.php/Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":170});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Testing&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:24:02 GMT -->
+</html>

@@ -1,0 +1,297 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/dev/agent/scalar__int_8c-example.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:26:57 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../print1.css" />
+  </head>
+  <body background="../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../index.html">About</a><br />
+        
+
+        <a href="../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+
+        <a href="../../docs/readmefiles.html">Documentation</a><br />
+        
+
+        <a href="../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../projects.html">Development</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../projects.html" 
+                  title="Various Net-SNMP projects underway or in need of an author">Projects</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../schedule.html" 
+                  title="The expected release time line">Release Schedule</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../helpingout.html" 
+                  title="How to help out with Net-SNMP">Helping Out</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../git.html" 
+                  title="Access to the Net-SNMP source code via the
+                  GitHub git repository">Git</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../release-policy.html" 
+                  title="The official release policy">Release Policy</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="index.html" 
+                  title="API documentation">API</a></td></tr>
+      </table>
+    </div>
+        
+
+        <a href="../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+  <div class="navigation" id="top">
+    <div class="tabs">
+      <ul>
+        <li><a href="index-2.html"><span>Main Page</span></a></li>
+
+        <li><a href="pages.html"><span>Related Pages</span></a></li>
+
+        <li><a href="modules.html"><span>Modules</span></a></li>
+
+        <li><a href="annotated.html"><span>Data Structures</span></a></li>
+
+        <li><a href="files.html"><span>Files</span></a></li>
+
+        <li><a href="examples.html"><span>Examples</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="contents">
+    <h1>scalar_int.c</h1>
+
+    <p>This example creates some scalar registrations that allows some simple variables to be accessed via SNMP. In a more
+    realistic example, it is likely that these variables would also be manipulated in other ways outside of SNMP gets/sets.</p>
+
+    <p>If this <a class="el" href="structmodule.html">module</a> is compiled into an agent, you should be able to issue snmp
+    commands that look something like (authentication information not shown in these commands):</p>
+
+    <ul>
+      <li>snmpget localhost netSnmpExampleInteger.0</li>
+
+      <li>netSnmpExampleScalars = 42</li>
+    </ul>
+
+    <ul>
+      <li>snmpset localhost netSnmpExampleInteger.0 = 1234</li>
+
+      <li>netSnmpExampleScalars = 1234</li>
+    </ul>
+
+    <ul>
+      <li>snmpget localhost netSnmpExampleInteger.0</li>
+
+      <li>netSnmpExampleScalars = 1234</li>
+    </ul>
+
+    <div class="fragment">
+      <pre class="fragment">
+<span class="comment">/*</span>
+<span class="comment"> * start be including the appropriate header files </span>
+<span class="comment"> */</span>
+<span class="preprocessor">#include &lt;net-snmp/net-snmp-config.h&gt;</span>
+<span class="preprocessor">#include &lt;net-snmp/net-snmp-includes.h&gt;</span>
+<span class="preprocessor">#include &lt;net-snmp/agent/net-snmp-agent-includes.h&gt;</span>
+
+<span class="comment">/*</span>
+<span class="comment"> * Then, we declare the variables we want to be accessed </span>
+<span class="comment"> */</span>
+<span class="keyword">static</span> <span class="keywordtype">int</span>      example1 = 42;  <span class=
+"comment">/* default value */</span>
+
+<span class="comment">/*</span>
+<span class="comment"> * our initialization routine, automatically called by the agent </span>
+<span class="comment"> * (to get called, the function name must match init_FILENAME())</span>
+<span class="comment"> */</span>
+<span class="keywordtype">void</span>
+init_scalar_int(<span class="keywordtype">void</span>)
+{
+    <span class="comment">/*</span>
+<span class="comment">     * the OID we want to register our integer at.  This should be a</span>
+<span class="comment">     * fully qualified instance.  In our case, it's a scalar at:</span>
+<span class="comment">     * NET-SNMP-EXAMPLES-MIB::netSnmpExampleInteger.0 (note the</span>
+<span class="comment">     * trailing 0 which is required for any instantiation of any</span>
+<span class="comment">     * scalar object) </span>
+<span class="comment">     */</span>
+    oid             my_registration_oid[] =
+        { 1, 3, 6, 1, 4, 1, 8072, 2, 1, 1, 0 };
+
+    <span class="comment">/*</span>
+<span class="comment">     * a debugging statement.  Run the agent with -Dexample_scalar_int to see</span>
+<span class="comment">     * the output of this debugging statement. </span>
+<span class="comment">     */</span>
+    DEBUGMSGTL((<span class="stringliteral">"example_scalar_int"</span>,
+                <span class="stringliteral">"Initalizing example scalar int.  Default value = %d\n"</span>,
+                example1));
+
+    <span class="comment">/*</span>
+<span class="comment">     * the line below registers our "example1" variable above as</span>
+<span class="comment">     * accessible and makes it writable.  A read only version of the</span>
+<span class="comment">     * same registration would merely call</span>
+<span class="comment">     * register_read_only_int_instance() instead.</span>
+<span class="comment">     * </span>
+<span class="comment">     * If we wanted a callback when the value was retrieved or set</span>
+<span class="comment">     * (even though the details of doing this are handled for you),</span>
+<span class="comment">     * you could change the NULL pointer below to a valid handler</span>
+<span class="comment">     * function. </span>
+<span class="comment">     */</span>
+    <a name="a0" id="a0"></a><a class="code" href="group__instance.html#gab313e887c35f371b15428781e3a1a129" title=
+"This function registers an int helper handler to a specified OID.">netsnmp_register_int_instance</a>(<span class=
+"stringliteral">"my example int variable"</span>,
+                                  my_registration_oid,
+                                  OID_LENGTH(my_registration_oid),
+                                  &amp;example1, NULL);
+
+    DEBUGMSGTL((<span class="stringliteral">"example_scalar_int"</span>,
+                <span class="stringliteral">"Done initalizing example scalar int\n"</span>));
+}
+</pre>
+    </div>
+  </div>
+  <hr size="1" />
+
+  <address style="text-align: right;">
+    <small>Generated on 28 Sep 2009 for net-snmp by  <a href="http://www.doxygen.org/index.html"><img class="footer" src=
+    "doxygen.png" alt="doxygen" /></a> 1.6.1</small>
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/dev/agent/scalar__int_8c-example.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:26:57 GMT -->
+</html>
+
+
+

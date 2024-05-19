@@ -1,0 +1,389 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-5/toolkit/mfd/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:45:57 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../../../print1.css" />
+  </head>
+  <body background="../../../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../../../index.html">About</a><br />
+        
+
+        <a href="../../../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../index.html"
+                  title="Net-SNMP v5 tutorial">Version 5.x</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../../tutorial-4/index.html"
+                  title="UCD-SNMP v4 tutorial">Version 4.x</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../../../../docs/readmefiles.html">Documentation</a><br />
+        
+
+        <a href="../../../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../../../../dev/projects.html">Development</a><br />
+        
+
+        <a href="../../../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+    <!-- ========================================================= -->
+    <h1>MIBs For Dummies</h1>
+    <p><em>NOTE: this tutorial is based on the code for release
+        5.2. If you generate code from a
+        release prior to 5.2 or with 5.3.x, your results may vary.</em>
+    </p>
+    <p><b>Table of contents</b></p>
+    <ul>
+      <li><a href="#intro">Introduction</a>
+      <li><a href="#struct">Data Structures</a>
+      <li><a href="#lookup">Data Lookup</a>
+      <li><a href="#manip">Data Manipulation</a>
+      <li><a href="#start">Getting Started</a>
+    </ul>
+    <hr width=80%>
+    <a name="intro"><h2>1.0 Introduction</h2></a>
+    <p>
+      One of the questions that comes up on our mailing lists a lot
+      is: <i>I just ran <a href="../../../../docs/man/mib2c.html">mib2c</a> on my
+      MIB. What do I do now?</i>.  This tutorial, and the MIB for
+      Dummies code approach, is designed to make your life as easy as
+      possible.  In this tutorial we'll walk you through the entire
+      process of creating C code starting from only a MIB definition.
+      This should answer this question for you, assuming you're
+      willing to use the MIB for Dummies approach to coding.
+    </p><p>
+      One of the output code styles that mib2c supports is a style
+      called <i>"MIB for Dummies"</i>.  This configuration file is
+      called <i>"mib2c.mfd.conf"</i> and is what you would pass to the
+      -c argument of mib2c to get it to produce the style of code this
+      tutorial is going to discuss.  It will generate mib-module code
+      which is designed to plug into an agent when developing Net-SNMP
+      agent extensions.
+    </p><p>
+      One of the primary motivations for writing the MIBs for Dummies
+      configuration file was to reduce the amount of SNMP knowledge
+      needed to implement a MIB. When using the MFD configuration file
+      (mib2c.mfd.conf), mib2c will generate <i>template</i> code that
+      hides much of the SNMP (or Net-SNMP) specific details for
+      implementing a module, and allows the rest of the template code
+      to use simple C data structures that you are probably more
+      familiar with. Most of the template functions are short and
+      simple, with a clearly defined purpose.
+    </p><p>
+      Another motivation was to separate the method used to locate the
+      data for an incoming request to the SNMP agent from the methods
+      that manipulate the data. The data lookup for MFD modules uses
+      the <var>netsnmp_container</var> interface. Data ordering can be
+      tricky in SNMP, since the lexicographical ordering required by
+      SNMP specification isn't always intuitive, and the index
+      specified in the MIB you have to implement might not match the
+      order in which your data is currently stored. But the MFD
+      configuration file can help you out with this problem too.
+    </p>
+    <p>
+      The templates generated by the MFD configuration file fall into
+      several categories: data structures, data lookup and data
+      manipulation. Data structures contain the data used to answer
+      a request. Data lookup is finding
+      the right data for a request. Data manipulation is either
+      returning existing values or setting new values.
+    </p>
+    <hr width=80%>
+    <a name="struct"><h2>2.0 Data Structures</h2></a>
+    <p>
+      There are 4 important data structures used in an MFD module.
+      They are the <var>user context</var>, the <var>mib context</var>, 
+      the <var>data context</var> and the the <var>row request context</var>.
+    <h3>2.1 User Context</h3>
+    <p>
+      The user context is a pointer provided by user during module
+      initialization. It is not used by the MFD code, other than to
+      save it for the user. If your module needs access to some
+      external data, you can use this pointer instead of a global
+      variable.
+    </p>
+    <h3>2.2 MIB context</h3>
+    <p>
+      The MIB context is a generated structure which is used to
+      store the MIB indexes for a row.
+    </p>
+    <h3>2.3 Data Context</h3>
+    <p>
+      The data context structure should contain all the data needed to get
+      or set a value. The MFD configuration file will generate a data
+      context structure with sufficient storage for all the objects
+      defined in the MIB being implemented. (Later in the tutorial, we'll talk
+      about using existing structures.)
+    </p>
+    <h3>2.4 Row Request Context</h3>
+    <p>
+      The row request context ties together all the other contexts.
+      The table container will have a row request context for each
+      row in the table.
+    </p>
+    <hr width=60%>
+    <a name="lookup"><h2>3.0 Data Lookup</h2></a>
+    <p>
+      There are lots of different ways to access data. Your data store may be
+      a linked list, a text file, a database or an API to some device.
+      Instead of trying to deal with all of the possiblities in the template
+      code, the <var>netsnmp_container</var> interface is used.
+    </p>
+    <p>
+      There are currently two different interfaces between the MFD
+      template code and the <var>netsnmp_container</var> used to locate
+      data for a request.
+    <p>
+    <h3>3.1 container-cached</h3>
+    <p>
+      The default method, which is generic enough to handle just about any
+      situation, is the <var>container-cached</var> method. The combines
+      two feature of net-snmp: the <var>cache helper</var> and the
+      <var>netsnmp_container</var>. Quite simply,
+      the first time a request is received for a table, a
+      <var>cache_load</var> routine is called with a pointer to a
+      <var>netsnmp_container</var>. That function accesses any
+      datastore(s) that contain data, and adds all the rows to
+      the container. The container is then used to find the rows
+      for the incoming request, and (optionally) kept around
+      a configurable number of seconds for future requests. While
+      the basic principle is simple, the flexiblity makes this
+      method the preferred method for most situations. More details
+      on this <var>cache helper</var> can be found on the
+      <var><a href="../../../../dev/agent/group__cache__handler.html">cache
+          handler</a></var> page.
+    </p>
+    <h3>3.2 Iterator (unsorted-external)</h3>
+    <p>
+      The <var>unsorted-external</var> method is a wrapper around
+      the <var>netsnmp_continer</var> <var>container_iterator</var>.
+      This method is also very flexible, with a very simple interface.
+      When a request is received for a table, a <var>get_next</var> routine
+      is called repeatedly to loop over every item in the datastore(s).
+      The agent will then select the appropriate row for the request.
+      Due to the inefficency of this method, it is only recommended
+      for small datastores, or when memory contraints are very tight
+      and response times are not important.
+    </p>
+    <h3>3.3 Direct</h3>
+    <p>
+      For advanced users, a custom <var>netsnmp_container</var> can
+      be used. This method lets you wrap a <var>netsnmp_container</var>
+      around an existing datastore/access method. Be warned, however,
+      that the implementation for the container's <var>find-next</var>
+      method must handle SNMP's lexicographical ordering rules.
+    </p>
+    <hr width=60%>
+    <a name="manip"><h2>4.0 Data manipulation</h2></a>
+    <p>
+      Once the appropriate data structure is retrieved from the data store,
+      the data manipulation routines will be called. For each object defined
+      in your mib module, a function will be generated to extract the data
+      value from the data structure located during the data lookup phase.
+    </p><p>
+      For read-write objects, things get more complicated. SET requests
+      are processed in multiple steps, so there are multiple functions
+      generated for each object. These include functions for syntax checks,
+      value checks, undo setup, value set and undo value set.
+      Additionlly, several functions are generated per table, for tasks which
+      only need to be performed once, even if multiple objects are set for a
+      given index. Two examples are consistency checks and commit changes.
+      All of these functions will be discussed in more detail later in the
+      tutorial.
+    </p>
+    <hr width=60%>
+    <a name="start"><h2>5.0 Getting Started</h2></a>
+    <p>
+      There are several example implementations. The process of
+      implementing a module using the MFD configuration file can be
+      broken down into several steps.
+    </p>
+    <ul>
+      <li>Generating the template code by running mib2c appropriately
+      <li>Implementing a <var>netsnmp_container</var> for data access
+      <li>Implementing <b>GET</b> request functions
+      <li>Implementing <b>SET</b> request functions
+    </ul>
+    </p>
+    <h3>5.1 Basic Tables</h3>
+    <p>
+      These examples are fairly basic, and should suffice for most simple
+      MIB tables and data stores.
+    </p>
+    <ul>
+      <li><a href="if-mib/index.html">IF-MIB Tables</a>
+        <ul>
+          <li><a href="if-mib/ifTable/index.html">ifTable</a>: A simple
+            table with a single integer index which gets it's data from
+            a text file. (Partial, read-only implementation)
+          <li><!--a href="if-mib/ifXTable/index.html"-->ifXTable<!--/a-->: A simple
+            table with a single integer index which gets it's data from
+            a text file, and caches it. (Partial, read-only implementation)
+        </ul>
+    </ul>
+    <h3>5.2 Intermediate Tables</h3>
+    <p>
+      These examples are sill fairly basic, but we are starting to add
+      a few twists.
+    </p>
+    <ul>
+      <li>TBD (set support; row creation?)
+    </ul>
+    <h3>5.3 Advanced Tables</h3>
+    <p>
+      These examples show how to deal with complicated issues that
+      sometimes come up while implementing MIB modules..
+    </p>
+    <ul>
+      <li>TBD ...
+    </ul>
+    <!-- ========================================================= -->
+    <hr>
+    rstory at freesnmp dot com<br>
+Version $Revision$
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-5/toolkit/mfd/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:45:58 GMT -->
+</html>
+
+
+

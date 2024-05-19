@@ -1,0 +1,219 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=FAQ:Coding_19&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:20:58 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>FAQ:Coding 19 - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"FAQ:Coding_19","wgTitle":"FAQ:Coding 19","wgCurRevisionId":2117,"wgRevisionId":2117,"wgArticleId":1694,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"FAQ:Coding_19","wgRelevantArticleId":1694,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load531d.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;printable=1&amp;skin=monobook" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="loadf198.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-FAQ_Coding_19 skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">FAQ:Coding 19</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><h1><span class="mw-headline" id="How_can_I_get_the_agent_to_send_an_SNMPv3_trap_.28or_inform.29.3F">How can I get the agent to send an SNMPv3 trap (or inform)?</span></h1>
+<p>It doesn't matter which API call you use to specify the
+trap - <code>'send_easy_trap()', 'send_v2trap()'</code> or one of the other
+calls mentioned above.  Generating an SNMPv3 notification
+(rather than a community-based one) is controlled by the
+<code>snmpd.conf</code> file.
+</p><p>To send an SNMPv3 trap, this file should contain a
+<code>'snmpsess'</code> directive, specifying the version, security
+level, user name and passphrases (if applicable), as
+well as the destination address.  This is basically
+the same as the command line required for sending the
+trap manually, using <code>'snmptrap'</code>.
+</p><p>Note that (unlike <code>'snmptrap'</code>) this directive does <b>not</b>
+read default settings from an <code>'snmp.conf'</code> file, so these
+must be specified explicitly in the <code>'snmpsess'</code> line.
+</p>
+<pre>   <a href="index.php/FAQ_Coding.html" title="FAQ:Coding">FAQ:Coding</a>
+   
+</pre>
+<ol><li> <a href="index.php/FAQ_Coding_01.html" title="FAQ:Coding 01">How do I write C code to integrate with the agent?</a></li>
+<li> <a href="index.php/FAQ_Coding_02.html" title="FAQ:Coding 02">How does the agent fetch the value of a MIB variable from the system?</a></li>
+<li> <a href="index.php/FAQ_Coding_03.html" title="FAQ:Coding 03">Mib2c complains about a missing "mib reference" - what does this mean?</a></li>
+<li> <a href="index.php/FAQ_Coding_04.html" title="FAQ:Coding 04">Mib2c complains about not having a "valid OID" - what does this mean?</a></li>
+<li> <a href="index.php/FAQ_Coding_05.html" title="FAQ:Coding 05">Why doesn't mib2c like the MIB file I'm giving it?</a></li>
+<li> <a href="index.php/FAQ_Coding_06.html" title="FAQ:Coding 06">Mib2c ignores my MIB and generates a pair of 'mib-2' code files.  Why?</a></li>
+<li> <a href="index.php/FAQ_Coding_07.html" title="FAQ:Coding 07">What's the difference between the various mib2c configuration files?</a></li>
+<li> <a href="index.php/FAQ_Coding_08.html" title="FAQ:Coding 08">Which mib2c configuration file should I use?</a></li>
+<li> <a href="index.php/FAQ_Coding_09.html" title="FAQ:Coding 09">How can I have mib2c generate code for both scalars and tables?</a></li>
+<li> <a href="index.php/FAQ_Coding_10.html" title="FAQ:Coding 10">Are there any examples, or documentation for generating MIB modules?</a></li>
+<li> <a href="index.php/FAQ_Coding_11.html" title="FAQ:Coding 11">Where should I put the files produced by 'mib2c'?</a></li>
+<li> <a href="index.php/FAQ_Coding_12.html" title="FAQ:Coding 12">Why doesn't my new MIB module report anything?</a></li>
+<li> <a href="index.php/FAQ_Coding_13.html" title="FAQ:Coding 13">Why does the iterator call my get_{first,next} routines so often?</a></li>
+<li> <a href="index.php/FAQ_Coding_14.html" title="FAQ:Coding 14">How can I get the agent to generate a trap (or inform)?</a></li>
+<li> <a href="index.php/FAQ_Coding_15.html" title="FAQ:Coding 15">How can I get an AgentX sub-agent to generate a trap (or inform)?</a></li>
+<li> <a href="index.php/FAQ_Coding_16.html" title="FAQ:Coding 16">How can I get the agent to send an SNMPv1 (or SNMPv2c) trap?</a></li>
+<li> <a href="index.php/FAQ_Coding_17.html" title="FAQ:Coding 17">How can I get the agent to include varbinds with an SNMPv1 trap?</a></li>
+<li> <a href="index.php/FAQ_Coding_18.html" title="FAQ:Coding 18">How can I get the agent to send an SNMPv1 enterprise-specific trap?</a></li>
+<li> <strong class="selflink">How can I get the agent to send an SNMPv3 trap (or inform)?</strong></li>
+<li> <a href="index.php/FAQ_Coding_20.html" title="FAQ:Coding 20">Why does calling 'send_v2trap' generate an SNMPv1 trap (or vice versa)?</a></li>
+<li> <a href="index.php/FAQ_Coding_21.html" title="FAQ:Coding 21">How can I register a MIB module in a different (SNMPv3) context?</a></li></ol>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514185636
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.008 seconds
+Real time usage: 0.014 seconds
+Preprocessor visited node count: 6/1000000
+Preprocessor generated node count: 34/1000000
+Post‐expand include size: 2539/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    5.602      1 - -total
+ 51.71%    2.897      1 - Template:FAQ:Coding_22
+ 45.61%    2.555      1 - Template:FAQ:Coding
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="index6e9a.html?title=FAQ:Coding_19&amp;oldid=2117">http://www.net-snmp.org/wiki/index.php?title=FAQ:Coding_19&amp;oldid=2117</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="index.php/FAQ_Coding_19.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="index.php/Talk_FAQ_Coding_19.html?title=Talk:FAQ:Coding_19&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="index7aef.html?title=FAQ:Coding_19&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="indexff26.html?title=FAQ:Coding_19&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="indexa3a4.html?title=Special:UserLogin&amp;returnto=FAQ%3ACoding+19&amp;returntoquery=printable%3Dyes&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="index762d.html?title=Special:UserLogin&amp;returnto=FAQ%3ACoding+19&amp;returntoquery=printable%3Dyes" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="index.php/Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="index.php/Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="index.php/Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="index.php/FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="index.php/Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="index.php/Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="index.php/Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="index.php/Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="index.php/Special_WhatLinksHere/FAQ_Coding_19.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="index.php/Special_RecentChangesLinked/FAQ_Coding_19.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="index.php/Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-permalink"><a href="index6e9a.html?title=FAQ:Coding_19&amp;oldid=2117" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="index73bc.html?title=FAQ:Coding_19&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 29 December 2006, at 14:24.</li>
+									<li id="privacy"><a href="index.php/Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="index.php/Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="index.php/Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":152});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=FAQ:Coding_19&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:20:59 GMT -->
+</html>

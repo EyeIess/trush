@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=MFD:ifTable:Get_Data&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:21:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>MFD:ifTable:Get Data - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"MFD:ifTable:Get_Data","wgTitle":"MFD:ifTable:Get Data","wgCurRevisionId":5162,"wgRevisionId":5162,"wgArticleId":2240,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"MFD:ifTable:Get_Data","wgRelevantArticleId":2240,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load531d.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;printable=1&amp;skin=monobook" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="loadf198.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-MFD_ifTable_Get_Data skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">MFD:ifTable:Get Data</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div align="right" style="float: right; width: 20em; border-color: black; border-style: solid; border-width: 1px; margin-left: 10px;">
+<table style="width: 100%;">
+
+<tr style="font-size: 1.2em;" bgcolor="#ddd">
+<td colspan="2" style="text-align: center;"> MFD Tutorial
+</td></tr>
+<tr style="text-align: left;">
+<td>
+<ul><li> <a href="index.php/MIB_for_Dummies.html" title="MIB for Dummies">MIB for Dummies</a></li>
+<li> <a href="index.php/MFD_IF-MIB.html" title="MFD:IF-MIB">MFD:IF-MIB</a></li>
+<li> <a href="index.php/MFD_ifTable.html" title="MFD:ifTable">MFD:ifTable</a>
+<ul><li> <a href="index.php/MFD_ifTable_mib2c.html" title="MFD:ifTable:mib2c">MFD:ifTable:mib2c‎</a></li>
+<li> <a href="index.php/MFD_ifTable_Data_Structures.html" title="MFD:ifTable:Data Structures">MFD:ifTable:Data Structures</a></li>
+<li> <a href="index.php/MFD_ifTable_Data_Access.html" title="MFD:ifTable:Data Access">MFD:ifTable:Data Access</a></li>
+<li> <strong class="selflink">MFD:ifTable:Get Data</strong></li>
+<li> <a href="index.php/MFD_ifTable_Testing.html" title="MFD:ifTable:Testing">MFD:ifTable:Testing</a></li></ul></li>
+<li> <a href="index.php/MFD_ifXTable.html" title="MFD:ifXTable">MFD:ifXTable</a>
+<ul><li> <a href="index.php/MFD_ifXTable_mib2c.html" title="MFD:ifXTable:mib2c">MFD:ifXTable:mib2c‎</a></li>
+<li> <a href="index.php/MFD_ifXTable_Data_Structures.html" title="MFD:ifXTable:Data Structures">MFD:ifXTable:Data Structures</a></li>
+<li> <a href="index.php/MFD_ifXTable_Data_Access.html" title="MFD:ifXTable:Data Access">MFD:ifXTable:Data Access</a></li>
+<li> <a href="index.php/MFD_ifXTable_Get_Data.html" title="MFD:ifXTable:Get Data">MFD:ifXTable:Get Data</a></li>
+<li> <a href="index.php/MFD_ifXTable_Testing_Gets.html?title=MFD:ifXTable:Testing_Gets&amp;action=edit&amp;redlink=1" class="new" title="MFD:ifXTable:Testing Gets (page does not exist)">MFD:ifXTable:Testing Gets</a></li>
+<li> <a href="index.php/MFD_ifXTable_Set_Data.html?title=MFD:ifXTable:Set_Data&amp;action=edit&amp;redlink=1" class="new" title="MFD:ifXTable:Set Data (page does not exist)">MFD:ifXTable:Set Data</a></li>
+<li> <a href="index.php/MFD_ifXTable_Testing_Sets.html?title=MFD:ifXTable:Testing_Sets&amp;action=edit&amp;redlink=1" class="new" title="MFD:ifXTable:Testing Sets (page does not exist)">MFD:ifXTable:Testing Sets</a></li></ul></li></ul>
+</td></tr></table>
+</div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#MFD_:_ifTable_data_GET"><span class="tocnumber">1</span> <span class="toctext">MFD&#160;: ifTable data GET</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Implementing_the_get_routines"><span class="tocnumber">1.1</span> <span class="toctext">Implementing the get routines</span></a>
+<ul>
+<li class="toclevel-3 tocsection-3"><a href="#ifType_mapping"><span class="tocnumber">1.1.1</span> <span class="toctext">ifType mapping</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-4"><a href="#Unimplemented_columns"><span class="tocnumber">1.2</span> <span class="toctext">Unimplemented columns</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#Skipping_ifMtu"><span class="tocnumber">1.2.1</span> <span class="toctext">Skipping ifMtu</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="MFD_:_ifTable_data_GET">MFD&#160;: ifTable data GET</span></h2>
+<p>Once the correct table context has been found, the individual node
+get routines will be called. These are generated in the file
+<i>ifTable_data_get.c</i>. 
+</p><p>Because we used the <i>data context</i> that is generated by
+default, we populated the data in the data structure during
+the data access phase and our MIB only has simple data types, 
+the code which was generated for the get routines does not need
+much modification.
+</p><p><br />
+</p>
+<h3><span class="mw-headline" id="Implementing_the_get_routines">Implementing the get routines</span></h3>
+<p>There is, however, a case where the data format specified by the
+MIB does not match the data format we got from our datastore. The
+<i>ifType</i> enumerations need to be mapped from the
+Linux specific ARPHDR values. Here again, we haven't tried to
+provide a complete implementation, but enought to give you the
+an overview.
+</p>
+<h4><span class="mw-headline" id="ifType_mapping">ifType mapping</span></h4>
+<p>The PhysAddr ioctl call provides us with an ARPHRD type for
+an interface. This type must be mapped to one of the valid
+IANAifType enumerated values. The file <i>ifTable_enums.h</i>
+contains macro definitions for all the allow values. It also
+contains a list of the same macros prefixed with 'INTERNAL_'. For
+the case where there is a one to one mapping between a MIB type
+and the implementation's type, this provides a way to map
+without having to update the code.
+</p><p>Unfortunately, the ifType isn't one of those cases. Only a
+small subset of the possible values are available in our
+implementation, and often there are several ARPHDR types that
+map to a single IANAifType. The first step is to whittle down
+the internal list to the ones with a direct mapping that we are
+going to support.
+</p>
+<table><tr><td></td><td bgcolor="CCCCCC">
+<pre>/*
+* TODO:
+* value mapping (see notes at top of file)
+*/<font color="blue">
+#define INTERNAL_IANAIFTYPE_ETHERNETCSMACD  ARPHRD_ETHER
+#define INTERNAL_IANAIFTYPE_FDDI  ARPHRD_FDDI
+#define INTERNAL_IANAIFTYPE_PPP  ARPHRD_PPP
+#define INTERNAL_IANAIFTYPE_SOFTWARELOOPBACK  ARPHRD_LOOPBACK
+#define INTERNAL_IANAIFTYPE_SLIP  ARPHRD_SLIP
+#define INTERNAL_IANAIFTYPE_ARCNET  ARPHRD_ARCNET
+#ifdef ARPHRD_ATM
+#define INTERNAL_IANAIFTYPE_ATM  ARPHRD_ATM
+#endif
+#define INTERNAL_IANAIFTYPE_LOCALTALK  ARPHRD_LOCALTLK
+#ifdef ARPHRD_HIPPI
+#define INTERNAL_IANAIFTYPE_HIPPI  ARPHRD_HIPPI
+#endif
+#define INTERNAL_IANAIFTYPE_TUNNEL  ARPHRD_TUNNEL</font>
+</pre>
+</td></tr></table>
+<p>Then we update the implementation to remove all the extras,
+and use a default of 'other' for any unknown types.
+</p>
+<table><tr><td></td><td bgcolor="CCCCCC">
+<pre>int
+ifType_map(u_long * mib_ifType_val_ptr, u_long raw_ifType_val)
+{
+netsnmp_assert(NULL&#160;!= mib_ifType_val_ptr);
+
+DEBUGMSGTL(("verbose:ifType_map", "called\n"));
+
+/*
+* TODO:
+* value mapping
+*/
+/** TODO: update INTERNAL_* macros defined in the header */
+switch (raw_ifType_val) {
+case INTERNAL_IANAIFTYPE_ETHERNETCSMACD:
+(*mib_ifType_val_ptr) = IANAIFTYPE_ETHERNETCSMACD;
+break;
+case INTERNAL_IANAIFTYPE_TUNNEL:<font color="blue">
+case ARPHRD_TUNNEL6:
+#ifdef ARPHRD_IPGRE
+case ARPHRD_IPGRE:
+#endif
+case ARPHRD_SIT:</font>
+(*mib_ifType_val_ptr) = IANAIFTYPE_TUNNEL;
+break;          /* tunnel */<font color="blue">
+case ARPHRD_CSLIP:
+case ARPHRD_SLIP6:
+case ARPHRD_CSLIP6:</font>
+case INTERNAL_IANAIFTYPE_SLIP:
+(*mib_ifType_val_ptr) = IANAIFTYPE_SLIP;
+break;          /* slip */
+case INTERNAL_IANAIFTYPE_PPP:
+(*mib_ifType_val_ptr) = IANAIFTYPE_PPP;
+break;          /* ppp */
+case INTERNAL_IANAIFTYPE_SOFTWARELOOPBACK:
+(*mib_ifType_val_ptr) = IANAIFTYPE_SOFTWARELOOPBACK;
+break;          /* softwareLoopback */
+case INTERNAL_IANAIFTYPE_FDDI:
+(*mib_ifType_val_ptr) = IANAIFTYPE_FDDI;
+break;
+case INTERNAL_IANAIFTYPE_ARCNET:
+(*mib_ifType_val_ptr) = IANAIFTYPE_ARCNET;
+break;
+case INTERNAL_IANAIFTYPE_LOCALTALK:
+(*mib_ifType_val_ptr) = IANAIFTYPE_LOCALTALK;
+break;<font color="blue">
+#ifdef INTERNAL_IANAIFTYPE_HIPPI</font>
+case INTERNAL_IANAIFTYPE_HIPPI:
+(*mib_ifType_val_ptr) = IANAIFTYPE_HIPPI;
+break;<font color="blue">
+#endif
+#ifdef INTERNAL_IANAIFTYPE_ATM</font>
+case INTERNAL_IANAIFTYPE_ATM:
+(*mib_ifType_val_ptr) = IANAIFTYPE_ATM;
+break;<font color="blue">
+#endif
+/*
+* XXX: more if_arp.h:ARPHDR_xxx to IANAifType mappings... 
+*/
+
+default:
+snmp_log(LOG_ERR, "couldn't map value&#160;%d for ifType\n",
+raw_ifType_val);
+(*mib_ifType_val_ptr) = IANAIFTYPE_OTHER;</font>
+}
+
+return MFD_SUCCESS;
+}
+</pre>
+</td></tr></table>
+<h3><span class="mw-headline" id="Unimplemented_columns">Unimplemented columns</span></h3>
+<p>As mentioned before, we are leaving some colums unimplemented.
+There are several reasons a column might be left unimplemnted.
+The data may not be available, or a particular column might not
+make sense for an implementation.
+</p><p>We omitted some columns from the valid columns structure, because
+we don't want to provide data for those columns, ever. If you have
+columns that might have data, depending on the row, then those
+columns should be in the valid columns structure. When the column
+get routine is called for a row which had not data for the column,
+simply return <i>MFD_SKIP</i> from the object's
+get routine, and the agent will move on to the next object.
+</p><p>You should also consult your MIB to see if, for a particular column
+for which you don't have data, a special value is specified which
+should be returned when the data isn't available. For example,
+the ifPhysAddress object states:
+<i>For interfaces which do not have such an address (e.g., a serial</i>
+line), this object should contain an octet string of zero length.
+</p>
+<h4><span class="mw-headline" id="Skipping_ifMtu">Skipping ifMtu</span></h4>
+<p>Even though we've eliminated some columns from the valid columns, here
+is a simple example if skipping a column:
+</p>
+<table><tr><td></td><td bgcolor="CCCCCC">
+<pre>int
+ifMtu_get(ifTable_rowreq_ctx * rowreq_ctx, long *ifMtu_ptr)
+{
+/** we should have a non-NULL pointer */
+netsnmp_assert(NULL&#160;!= ifMtu_ptr);
+
+netsnmp_assert(NULL&#160;!= rowreq_ctx);
+
+/*
+* TODO:
+* set (* ifMtu_ptr ) from rowreq_ctx-&gt;data.
+*/
+/*
+* TODO:
+* update, replace or delete, if needed.
+*/<font color="blue">
+if (rowreq_ctx-&gt;data.ifMtu == 0)
+return MFD_SKIP;
+</font>
+(*ifMtu_ptr) = rowreq_ctx-&gt;data.ifMtu;
+
+return MFD_SUCCESS;
+}
+</pre>
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514185807
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.016 seconds
+Real time usage: 0.020 seconds
+Preprocessor visited node count: 33/1000000
+Preprocessor generated node count: 56/1000000
+Post‐expand include size: 770/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    3.398      1 - Template:MFDTutorial
+100.00%    3.398      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="index8bae.html?title=MFD:ifTable:Get_Data&amp;oldid=5162">http://www.net-snmp.org/wiki/index.php?title=MFD:ifTable:Get_Data&amp;oldid=5162</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="index.php/MFD_ifTable_Get_Data.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="index.php/Talk_MFD_ifTable_Get_Data.html?title=Talk:MFD:ifTable:Get_Data&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="indexc468.html?title=MFD:ifTable:Get_Data&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="index9b8a.html?title=MFD:ifTable:Get_Data&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="index00a1.html?title=Special:UserLogin&amp;returnto=MFD%3AifTable%3AGet+Data&amp;returntoquery=printable%3Dyes&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="index88f8.html?title=Special:UserLogin&amp;returnto=MFD%3AifTable%3AGet+Data&amp;returntoquery=printable%3Dyes" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="index.php/Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="index.php/Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="index.php/Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="index.php/FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="index.php/Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="index.php/Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="index.php/Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="index.php/Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="index.php/Special_WhatLinksHere/MFD_ifTable_Get_Data.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="index.php/Special_RecentChangesLinked/MFD_ifTable_Get_Data.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="index.php/Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-permalink"><a href="index8bae.html?title=MFD:ifTable:Get_Data&amp;oldid=5162" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="indexcd04.html?title=MFD:ifTable:Get_Data&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 13 July 2011, at 17:42.</li>
+									<li id="privacy"><a href="index.php/Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="index.php/Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="index.php/Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":149});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=MFD:ifTable:Get_Data&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:21:11 GMT -->
+</html>

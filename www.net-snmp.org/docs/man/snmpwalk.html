@@ -1,0 +1,189 @@
+Content-type: text/html
+
+<HTML>
+<!-- Mirrored from www.net-snmp.org/docs/man/snmpwalk.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 17:54:43 GMT -->
+<HEAD><TITLE>Manpage of SNMPWALK</TITLE>
+</HEAD><BODY>
+<H1>SNMPWALK</H1>
+Section: Net-SNMP (1)<BR>Updated: 08 Feb 2002<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+snmpwalk - retrieve a subtree of management values using SNMP GETNEXT requests
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>snmpwalk</B>
+
+[APPLICATION OPTIONS] [COMMON OPTIONS] [OID]
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>snmpwalk</B>
+
+is an SNMP application that uses SNMP GETNEXT requests to query a
+network entity for a tree of information.
+<P>
+
+An object identifier (OID) may be given on the command line.  This OID
+specifies which portion of the object identifier space will be
+searched using GETNEXT requests.  All variables in the subtree
+below the given OID are queried and their values presented to the user.
+Each variable name is given in the format specified in
+<I><A HREF="variables.html">variables</A>(5)</I>.
+
+<P>
+
+If no OID argument is present,
+<B>snmpwalk</B>
+
+will search the subtree rooted at SNMPv2-SMI::mib-2
+(including any MIB object values from other MIB modules,
+that are defined as lying within this subtree).
+If the network entity has an error processing the request packet, an
+error packet will be returned and a message will be shown, helping to
+pinpoint why the request was malformed.
+<P>
+
+If the tree search causes attempts to search beyond the end of the
+MIB, the message &quot;End of MIB&quot; will be displayed.
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<DL COMPACT>
+<DT><B>-Cc</B>
+
+<DD>
+Do not check whether the returned OIDs are increasing.  Some agents
+(LaserJets are an example) return OIDs out of order, but can
+complete the walk anyway.  Other agents return OIDs that are out of
+order and can cause
+<B>snmpwalk</B>
+
+to loop indefinitely.  By default,
+<B>snmpwalk</B>
+
+tries to detect this behavior and warns you when it hits an agent
+acting illegally.  Use
+<B>-Cc</B>
+
+to turn off this check.
+<DT><B>-CE {OID}</B>
+
+<DD>
+End the walk at the specified OID, rather than a simple subtree.
+This can be used to walk a partial subtree, selected columns of
+a table, or even two or more tables within a single command.
+<DT><B>-Ci</B>
+
+<DD>
+Include the given OID in the search range.  Normally
+<B>snmpwalk</B>
+
+uses GETNEXT requests starting with the OID you specified and returns
+all results in the MIB subtree rooted at that OID.  Sometimes, you may
+wish to include the OID specified on the command line in the printed
+results if it is a valid OID in the tree itself.  This option lets you
+do this explicitly.
+<DT><B>-CI</B>
+
+<DD>
+In fact, the given OID will be retrieved automatically if the main
+subtree walk returns no useable values.  This allows a walk of a
+single instance to behave as generally expected, and return the
+specified instance value.
+This option turns off this final GET request, so a walk of a
+single instance will return nothing.
+<DT><B>-Cp</B>
+
+<DD>
+Upon completion of the walk, print the number of variables found.
+<DT><B>-Ct</B>
+
+<DD>
+Upon completion of the walk, print the total wall-clock time it took
+to collect the data (in seconds).  Note that the timer is started just
+before the beginning of the data request series and stopped just after
+it finishes.  Most importantly, this means that it does not include
+snmp library initialization, shutdown, argument processing, and any
+other overhead.
+</DL>
+<P>
+
+In addition to these options,
+<B>snmpwalk</B>
+
+takes the common options described in the 
+<I><A HREF="snmpcmd.html">snmpcmd</A>(1)</I>
+
+manual page.
+<A NAME="lbAF">&nbsp;</A>
+<H2>EXAMPLES</H2>
+
+The command:
+<P>
+
+snmpwalk -Os -c public -v 1 zeus system
+<P>
+
+will retrieve all of the variables under system:
+<P>
+
+sysDescr.0 = STRING: &quot;SunOS zeus.net.cmu.edu 4.1.3_U1 1 sun4m&quot;
+<BR>
+
+sysObjectID.0 = OID: enterprises.hp.nm.hpsystem.10.1.1
+<BR>
+
+sysUpTime.0 = Timeticks: (155274552) 17 days, 23:19:05
+<BR>
+
+sysContact.0 = STRING: &quot;&quot;
+<BR>
+
+sysName.0 = STRING: &quot;zeus.net.cmu.edu&quot;
+<BR>
+
+sysLocation.0 = STRING: &quot;&quot;
+<BR>
+
+sysServices.0 = INTEGER: 72
+<BR>
+
+(plus the contents of the sysORTable).
+<P>
+The command:
+<P>
+
+snmpwalk -Os -c public -v 1 -CE sysORTable zeus system
+<P>
+
+will retrieve the scalar values, but omit the sysORTable.
+<A NAME="lbAG">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<A HREF="variables.html">variables</A>(5).
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">EXAMPLES</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 19:05:39 GMT, September 28, 2009
+</BODY>
+
+<!-- Mirrored from www.net-snmp.org/docs/man/snmpwalk.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 17:54:43 GMT -->
+</HTML>

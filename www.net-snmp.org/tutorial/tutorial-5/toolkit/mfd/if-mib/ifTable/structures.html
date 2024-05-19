@@ -1,0 +1,425 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-5/toolkit/mfd/if-mib/ifTable/structures.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:05:19 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../../../../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../../../../../print1.css" />
+  </head>
+  <body background="../../../../../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../../../../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../../../../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../../../../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../../../../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../../../../../index.html">About</a><br />
+        
+
+        <a href="../../../../../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../../../../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../../../index.html"
+                  title="Net-SNMP v5 tutorial">Version 5.x</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../../../../tutorial-4/index.html"
+                  title="UCD-SNMP v4 tutorial">Version 4.x</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../../../../../../docs/readmefiles.html">Documentation</a><br />
+        
+
+        <a href="../../../../../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../../../../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../../../../../../dev/projects.html">Development</a><br />
+        
+
+        <a href="../../../../../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../../../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>MFD: Data  Structures</title>
+  </head>
+
+  <body bgcolor="#ffffff">
+    <!-- ========================================================= -->
+    <h1>MFD Data Structures</h1>
+    <p>There are a few basic data structures that the MFD template code uses
+      extensively.
+    </p>
+    <!-- ========================================================= -->
+    <h2>Registration Pointer</h2>
+    <p>The first structure is the <var>registration pointer</var>. This
+      pointer is supplied by the implementor in the module's initialization
+      routine. It is never used by the MFD code, but is passed as a parameter
+      to virtually every generated function. It is for the convenience of the
+      implementor. By default it will be a <var>netsnmp_data_list</var>
+      pointer.
+    </p>
+    <!-- ========================================================= -->
+    <h2>Data Context</h2>
+    <p>The next structure is the <var>data context</var>. This structure
+      should contain all the data for a particular row. By default, mib2c
+      will generate this data structure, and it will contain storage
+      for each column in the table. Running mib2c on the
+      ifTable table results in this data context structure:
+    </p><table><tr>
+          <td width=20></td>
+          <td bgcolor=CCCCCC><pre>
+    /*
+     * data context
+     */
+    /*
+     * This structure contains storage for all the columns defined in the
+     * ifTable.
+     */
+    typedef struct ifTable_data_s {
+
+        /*
+         * ifDescr(2)/DisplayString/ASN_OCTET_STR/char(char)//L/A/w/e/R/d/H
+         */
+        char            ifDescr[255];
+        size_t          ifDescr_len;    /* # of char elements, not bytes */
+
+        /*
+         * ifType(3)/IANAifType/ASN_INTEGER/long(u_long)//l/A/w/E/r/d/h
+         */
+        u_long          ifType;
+
+        /*
+         * ifMtu(4)/INTEGER32/ASN_INTEGER/long(long)//l/A/w/e/r/d/h
+         */
+        long            ifMtu;
+
+        /*
+         * ifSpeed(5)/GAUGE/ASN_GAUGE/u_long(u_long)//l/A/w/e/r/d/h
+         */
+        u_long          ifSpeed;
+
+        /*
+         * ifPhysAddress(6)/PhysAddress/ASN_OCTET_STR/char(char)//L/A/w/e/r/d/H
+         */
+        char            ifPhysAddress[65535];
+        size_t          ifPhysAddress_len;      /* # of char elements, not bytes */
+
+        /*
+         * ifAdminStatus(7)/INTEGER/ASN_INTEGER/long(u_long)//l/A/W/E/r/d/h
+         */
+        u_long          ifAdminStatus;
+
+        /*
+         * ifOperStatus(8)/INTEGER/ASN_INTEGER/long(u_long)//l/A/w/E/r/d/h
+         */
+        u_long          ifOperStatus;
+
+        /*
+         * ifLastChange(9)/TICKS/ASN_TIMETICKS/u_long(u_long)//l/A/w/e/r/d/h
+         */
+        u_long          ifLastChange;
+
+        /*
+         * ifInOctets(10)/COUNTER/ASN_COUNTER/u_long(u_long)//l/A/w/e/r/d/h
+         */
+        u_long          ifInOctets;
+
+        /*
+         * ifInUcastPkts(11)/COUNTER/ASN_COUNTER/u_long(u_long)//l/A/w/e/r/d/h
+         */
+        u_long          ifInUcastPkts;
+
+        /*
+         * ifInNUcastPkts(12)/COUNTER/ASN_COUNTER/u_long(u_long)//l/A/w/e/r/d/h
+         */
+        u_long          ifInNUcastPkts;
+
+        /*
+         * ifInDiscards(13)/COUNTER/ASN_COUNTER/u_long(u_long)//l/A/w/e/r/d/h
+         */
+        u_long          ifInDiscards;
+
+        /*
+         * ifInErrors(14)/COUNTER/ASN_COUNTER/u_long(u_long)//l/A/w/e/r/d/h
+         */
+        u_long          ifInErrors;
+
+        /*
+         * ifInUnknownProtos(15)/COUNTER/ASN_COUNTER/u_long(u_long)//l/A/w/e/r/d/h
+         */
+        u_long          ifInUnknownProtos;
+
+        /*
+         * ifOutOctets(16)/COUNTER/ASN_COUNTER/u_long(u_long)//l/A/w/e/r/d/h
+         */
+        u_long          ifOutOctets;
+
+        /*
+         * ifOutUcastPkts(17)/COUNTER/ASN_COUNTER/u_long(u_long)//l/A/w/e/r/d/h
+         */
+        u_long          ifOutUcastPkts;
+
+        /*
+         * ifOutNUcastPkts(18)/COUNTER/ASN_COUNTER/u_long(u_long)//l/A/w/e/r/d/h
+         */
+        u_long          ifOutNUcastPkts;
+
+        /*
+         * ifOutDiscards(19)/COUNTER/ASN_COUNTER/u_long(u_long)//l/A/w/e/r/d/h
+         */
+        u_long          ifOutDiscards;
+
+        /*
+         * ifOutErrors(20)/COUNTER/ASN_COUNTER/u_long(u_long)//l/A/w/e/r/d/h
+         */
+        u_long          ifOutErrors;
+
+        /*
+         * ifOutQLen(21)/GAUGE/ASN_GAUGE/u_long(u_long)//l/A/w/e/r/d/h
+         */
+        u_long          ifOutQLen;
+
+        /*
+         * ifSpecific(22)/OBJECTID/ASN_OBJECT_ID/oid(oid)//L/A/w/e/r/d/h
+         */
+        oid             ifSpecific[128];
+        size_t          ifSpecific_len; /* # of oid elements, not bytes */
+
+    } ifTable_data;
+</pre></td>
+        </tr>
+      </table>
+    <p>If you have an existing data structure that contains all the data for
+      your table, you can use that instead (we'll cover that in a later
+      tutorial).
+    </p>
+    <!-- ========================================================= -->
+    <h2>MIB Index</h2>
+    <p>When a MIB table is defined, it has an INDEX clause that defines how
+      the data in the table is ordered when queried. mib2c generates a
+      <var>MIB index</var> structure with sufficent storage to represent
+      the index for a table row. Running mib2c on the
+      ifTable table results in this MIB index structure:
+    </p><table><tr>
+          <td width=20></td>
+          <td bgcolor=CCCCCC><pre>
+    /*
+     * This structure is used to represent the index for a table.
+     */
+    typedef struct ifTable_mib_index_s {
+
+        /*
+         * ifIndex(1)/InterfaceIndex/ASN_INTEGER/long(long)//l/A/w/e/R/d/H
+         */
+        long            ifIndex;
+
+
+    } ifTable_mib_index;
+</pre></td>
+        </tr>
+      </table>
+    <p>
+    </p>
+    <!-- ========================================================= -->
+    <h2>Row Request Context</h2>
+    <p>The next structure is the <var>row context</var>. This structure is
+      used during the processing of a SNMP request. It is contains all the
+      previous structures, and a few additional items.
+      Running mib2c on the ifTable table results in
+      this row request context structure:
+    </p><table><tr>
+          <td width=20></td>
+          <td bgcolor=CCCCCC><pre>
+    /*
+     *********************************************************************
+     * Row request context
+     * When your functions are called, you will be passed a
+     * ifTable_rowreq_ctx pointer.
+     */
+    typedef struct ifTable_rowreq_ctx_s {
+
+    /** this must be first for container compare to work */
+        netsnmp_index   oid_idx;
+        oid             oid_tmp[MAX_OID_LEN];   /* xxx-rks: shrink this */
+
+        ifTable_mib_index tbl_idx;
+
+        ifTable_data    data;
+        ifTable_undo_data *undo;
+        unsigned int    set_flags;
+
+    /** implementor's context pointer provided during registration */
+        ifTable_registration_ptr ifTable_reg;
+
+        /*
+         * TODO:
+         * add any other useful data
+         *       (e.g. flags for when a column has been set)
+         */
+
+        /*
+         * storage for future expansion
+         */
+        netsnmp_data_list *ifTable_data_list;
+
+    } ifTable_rowreq_ctx;
+</pre></td>
+        </tr>
+      </table>
+    <p>The registration pointer (<var>ifTable_reg</var> in this
+      example), mib index (<var>tbl_idx</var>) and data context
+      (<var>data</var>) were discussed above. The oid varaibles
+      <var>oid_idx</var> and <var>oid_tmp</var> are used internally,
+      and will likely go away in the future. The data_list
+      is a generic way of dynamically storing one or more pointers, using
+      a string as the storage and retrieval key. It is not currently used
+      internally, but may be in the future. For the implementor, it is
+      a convienent way of storing additional data for a row request, without
+      having to modify the row request structure itself.
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- ========================================================= -->
+    <font size=+1>
+      <a href="data_access.html">Next: data access</a> |
+      <a href="mib2c.html">Back: running mib2c</a> |
+      <a href="../index.html">Up: IF-MIB Tutorials</a>
+    </font>
+    <hr>
+    rstory at freesnmp dot com<br>
+Version $Revision$
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../../../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../../../../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-5/toolkit/mfd/if-mib/ifTable/structures.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:05:19 GMT -->
+</html>
+
+
+

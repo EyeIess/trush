@@ -1,0 +1,1198 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/Features by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:24:02 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Features - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Features","wgTitle":"Features","wgCurRevisionId":4739,"wgRevisionId":4739,"wgArticleId":2133,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Features","wgRelevantArticleId":2133,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="../load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="../load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<link rel="shortcut icon" href="../../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="../opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="../api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="../apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Features skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Features</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p><b>The contents of this page is auto-generated from local/minimalist/feature-makedocs; do not edit by hand (changes will be lost)</b>
+</p><p>Details of the feature marking system and how it is used can be found at <a href="Feature_Marking_and_Selection.html" title="Feature Marking and Selection">Feature Marking and Selection</a>
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#libnetsnmp"><span class="tocnumber">1</span> <span class="toctext">libnetsnmp</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#callbacks_all"><span class="tocnumber">1.1</span> <span class="toctext">callbacks_all</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#check_varbind_all"><span class="tocnumber">1.2</span> <span class="toctext">check_varbind_all</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#container_all"><span class="tocnumber">1.3</span> <span class="toctext">container_all</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#data_list_all"><span class="tocnumber">1.4</span> <span class="toctext">data_list_all</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#default_store_all"><span class="tocnumber">1.5</span> <span class="toctext">default_store_all</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#fd_event_manager"><span class="tocnumber">1.6</span> <span class="toctext">fd_event_manager</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#file_utils_all"><span class="tocnumber">1.7</span> <span class="toctext">file_utils_all</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#logging_all"><span class="tocnumber">1.8</span> <span class="toctext">logging_all</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#mib_strings_all"><span class="tocnumber">1.9</span> <span class="toctext">mib_strings_all</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#oid_stash_all"><span class="tocnumber">1.10</span> <span class="toctext">oid_stash_all</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#read_config_all"><span class="tocnumber">1.11</span> <span class="toctext">read_config_all</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#snmp_api"><span class="tocnumber">1.12</span> <span class="toctext">snmp_api</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#snmp_client_all"><span class="tocnumber">1.13</span> <span class="toctext">snmp_client_all</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#snmp_enum_all"><span class="tocnumber">1.14</span> <span class="toctext">snmp_enum_all</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#snmp_tc_all"><span class="tocnumber">1.15</span> <span class="toctext">snmp_tc_all</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#statistics"><span class="tocnumber">1.16</span> <span class="toctext">statistics</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#system_all"><span class="tocnumber">1.17</span> <span class="toctext">system_all</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#text_utils"><span class="tocnumber">1.18</span> <span class="toctext">text_utils</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#tools_all"><span class="tocnumber">1.19</span> <span class="toctext">tools_all</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#transport_all"><span class="tocnumber">1.20</span> <span class="toctext">transport_all</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#ucd_compatibility"><span class="tocnumber">1.21</span> <span class="toctext">ucd_compatibility</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="#usm_all"><span class="tocnumber">1.22</span> <span class="toctext">usm_all</span></a></li>
+<li class="toclevel-2 tocsection-24"><a href="#usm_support"><span class="tocnumber">1.23</span> <span class="toctext">usm_support</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-25"><a href="#libnetsnmpagent"><span class="tocnumber">2</span> <span class="toctext">libnetsnmpagent</span></a>
+<ul>
+<li class="toclevel-2 tocsection-26"><a href="#agent_debugging_utilities"><span class="tocnumber">2.1</span> <span class="toctext">agent_debugging_utilities</span></a></li>
+<li class="toclevel-2 tocsection-27"><a href="#agent_handler"><span class="tocnumber">2.2</span> <span class="toctext">agent_handler</span></a></li>
+<li class="toclevel-2 tocsection-28"><a href="#agent_index_all"><span class="tocnumber">2.3</span> <span class="toctext">agent_index_all</span></a></li>
+<li class="toclevel-2 tocsection-29"><a href="#agent_read_config_all"><span class="tocnumber">2.4</span> <span class="toctext">agent_read_config_all</span></a></li>
+<li class="toclevel-2 tocsection-30"><a href="#agent_registry_all"><span class="tocnumber">2.5</span> <span class="toctext">agent_registry_all</span></a></li>
+<li class="toclevel-2 tocsection-31"><a href="#agent_trap_all"><span class="tocnumber">2.6</span> <span class="toctext">agent_trap_all</span></a></li>
+<li class="toclevel-2 tocsection-32"><a href="#mib_helpers"><span class="tocnumber">2.7</span> <span class="toctext">mib_helpers</span></a></li>
+<li class="toclevel-2 tocsection-33"><a href="#snmp_agent"><span class="tocnumber">2.8</span> <span class="toctext">snmp_agent</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-34"><a href="#libnetsnmpmibs"><span class="tocnumber">3</span> <span class="toctext">libnetsnmpmibs</span></a>
+<ul>
+<li class="toclevel-2 tocsection-35"><a href="#disman_debugging"><span class="tocnumber">3.1</span> <span class="toctext">disman_debugging</span></a></li>
+<li class="toclevel-2 tocsection-36"><a href="#get_routes"><span class="tocnumber">3.2</span> <span class="toctext">get_routes</span></a></li>
+<li class="toclevel-2 tocsection-37"><a href="#hardware_cpu"><span class="tocnumber">3.3</span> <span class="toctext">hardware_cpu</span></a></li>
+<li class="toclevel-2 tocsection-38"><a href="#header_complex_all"><span class="tocnumber">3.4</span> <span class="toctext">header_complex_all</span></a></li>
+<li class="toclevel-2 tocsection-39"><a href="#iftable_external_access"><span class="tocnumber">3.5</span> <span class="toctext">iftable_external_access</span></a></li>
+<li class="toclevel-2 tocsection-40"><a href="#ifxtable_external_access"><span class="tocnumber">3.6</span> <span class="toctext">ifxtable_external_access</span></a></li>
+<li class="toclevel-2 tocsection-41"><a href="#inetcidrroutetable_external_access"><span class="tocnumber">3.7</span> <span class="toctext">inetcidrroutetable_external_access</span></a></li>
+<li class="toclevel-2 tocsection-42"><a href="#inetnettomediatable_external_access"><span class="tocnumber">3.8</span> <span class="toctext">inetnettomediatable_external_access</span></a></li>
+<li class="toclevel-2 tocsection-43"><a href="#ipaddress_common"><span class="tocnumber">3.9</span> <span class="toctext">ipaddress_common</span></a></li>
+<li class="toclevel-2 tocsection-44"><a href="#ipaddresstable_external_access"><span class="tocnumber">3.10</span> <span class="toctext">ipaddresstable_external_access</span></a></li>
+<li class="toclevel-2 tocsection-45"><a href="#ipcidrroutetable_external_access"><span class="tocnumber">3.11</span> <span class="toctext">ipcidrroutetable_external_access</span></a></li>
+<li class="toclevel-2 tocsection-46"><a href="#ipifstatstable_external_access"><span class="tocnumber">3.12</span> <span class="toctext">ipifstatstable_external_access</span></a></li>
+<li class="toclevel-2 tocsection-47"><a href="#ipsystemstatstable_external_access"><span class="tocnumber">3.13</span> <span class="toctext">ipsystemstatstable_external_access</span></a></li>
+<li class="toclevel-2 tocsection-48"><a href="#ipv6scopezoneindextable_external_access"><span class="tocnumber">3.14</span> <span class="toctext">ipv6scopezoneindextable_external_access</span></a></li>
+<li class="toclevel-2 tocsection-49"><a href="#iquery_all"><span class="tocnumber">3.15</span> <span class="toctext">iquery_all</span></a></li>
+<li class="toclevel-2 tocsection-50"><a href="#linux_ip6_stat_all"><span class="tocnumber">3.16</span> <span class="toctext">linux_ip6_stat_all</span></a></li>
+<li class="toclevel-2 tocsection-51"><a href="#snmpengine_all"><span class="tocnumber">3.17</span> <span class="toctext">snmpengine_all</span></a></li>
+<li class="toclevel-2 tocsection-52"><a href="#snmpnotifyfiltertable_external_access"><span class="tocnumber">3.18</span> <span class="toctext">snmpnotifyfiltertable_external_access</span></a></li>
+<li class="toclevel-2 tocsection-53"><a href="#software_installed"><span class="tocnumber">3.19</span> <span class="toctext">software_installed</span></a></li>
+<li class="toclevel-2 tocsection-54"><a href="#software_running"><span class="tocnumber">3.20</span> <span class="toctext">software_running</span></a></li>
+<li class="toclevel-2 tocsection-55"><a href="#tcpconnectiontable_external_access"><span class="tocnumber">3.21</span> <span class="toctext">tcpconnectiontable_external_access</span></a></li>
+<li class="toclevel-2 tocsection-56"><a href="#tcplistenertable_external_access"><span class="tocnumber">3.22</span> <span class="toctext">tcplistenertable_external_access</span></a></li>
+<li class="toclevel-2 tocsection-57"><a href="#tcptable_all"><span class="tocnumber">3.23</span> <span class="toctext">tcptable_all</span></a></li>
+<li class="toclevel-2 tocsection-58"><a href="#udp_endpoint_all"><span class="tocnumber">3.24</span> <span class="toctext">udp_endpoint_all</span></a></li>
+<li class="toclevel-2 tocsection-59"><a href="#udp_endpoint_common"><span class="tocnumber">3.25</span> <span class="toctext">udp_endpoint_common</span></a></li>
+<li class="toclevel-2 tocsection-60"><a href="#udpendpointtable_external_access"><span class="tocnumber">3.26</span> <span class="toctext">udpendpointtable_external_access</span></a></li>
+<li class="toclevel-2 tocsection-61"><a href="#usmuser_all"><span class="tocnumber">3.27</span> <span class="toctext">usmuser_all</span></a></li>
+<li class="toclevel-2 tocsection-62"><a href="#util_funcs"><span class="tocnumber">3.28</span> <span class="toctext">util_funcs</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-63"><a href="#netsnmp_unused"><span class="tocnumber">4</span> <span class="toctext">netsnmp_unused</span></a>
+<ul>
+<li class="toclevel-2 tocsection-64"><a href="#addrcache_age"><span class="tocnumber">4.1</span> <span class="toctext">addrcache_age</span></a></li>
+<li class="toclevel-2 tocsection-65"><a href="#agent_remove_list_data"><span class="tocnumber">4.2</span> <span class="toctext">agent_remove_list_data</span></a></li>
+<li class="toclevel-2 tocsection-66"><a href="#agentx_unregister_config_handler"><span class="tocnumber">4.3</span> <span class="toctext">agentx_unregister_config_handler</span></a></li>
+<li class="toclevel-2 tocsection-67"><a href="#calculate_time_diff"><span class="tocnumber">4.4</span> <span class="toctext">calculate_time_diff</span></a></li>
+<li class="toclevel-2 tocsection-68"><a href="#count_indexes"><span class="tocnumber">4.5</span> <span class="toctext">count_indexes</span></a></li>
+<li class="toclevel-2 tocsection-69"><a href="#count_varbinds_of_type"><span class="tocnumber">4.6</span> <span class="toctext">count_varbinds_of_type</span></a></li>
+<li class="toclevel-2 tocsection-70"><a href="#find_varind_of_type"><span class="tocnumber">4.7</span> <span class="toctext">find_varind_of_type</span></a></li>
+<li class="toclevel-2 tocsection-71"><a href="#get_enginetime_alarm"><span class="tocnumber">4.8</span> <span class="toctext">get_enginetime_alarm</span></a></li>
+<li class="toclevel-2 tocsection-72"><a href="#get_session_for_oid"><span class="tocnumber">4.9</span> <span class="toctext">get_session_for_oid</span></a></li>
+<li class="toclevel-2 tocsection-73"><a href="#hardware_memory"><span class="tocnumber">4.10</span> <span class="toctext">hardware_memory</span></a></li>
+<li class="toclevel-2 tocsection-74"><a href="#ifxtable_shutdown_interface"><span class="tocnumber">4.11</span> <span class="toctext">ifxtable_shutdown_interface</span></a></li>
+<li class="toclevel-2 tocsection-75"><a href="#logging_enable_calllog"><span class="tocnumber">4.12</span> <span class="toctext">logging_enable_calllog</span></a></li>
+<li class="toclevel-2 tocsection-76"><a href="#logging_enable_loghandler"><span class="tocnumber">4.13</span> <span class="toctext">logging_enable_loghandler</span></a></li>
+<li class="toclevel-2 tocsection-77"><a href="#netsnmp_baby_steps_handler_init"><span class="tocnumber">4.14</span> <span class="toctext">netsnmp_baby_steps_handler_init</span></a></li>
+<li class="toclevel-2 tocsection-78"><a href="#netsnmp_cache_handler_register"><span class="tocnumber">4.15</span> <span class="toctext">netsnmp_cache_handler_register</span></a></li>
+<li class="toclevel-2 tocsection-79"><a href="#netsnmp_call_next_handler_one_request"><span class="tocnumber">4.16</span> <span class="toctext">netsnmp_call_next_handler_one_request</span></a></li>
+<li class="toclevel-2 tocsection-80"><a href="#netsnmp_dateandtime_set_buf_from_vars"><span class="tocnumber">4.17</span> <span class="toctext">netsnmp_dateandtime_set_buf_from_vars</span></a></li>
+<li class="toclevel-2 tocsection-81"><a href="#netsnmp_extract_cache_info"><span class="tocnumber">4.18</span> <span class="toctext">netsnmp_extract_cache_info</span></a></li>
+<li class="toclevel-2 tocsection-82"><a href="#netsnmp_is_cache_valid"><span class="tocnumber">4.19</span> <span class="toctext">netsnmp_is_cache_valid</span></a></li>
+<li class="toclevel-2 tocsection-83"><a href="#netsnmp_register_cache_handler"><span class="tocnumber">4.20</span> <span class="toctext">netsnmp_register_cache_handler</span></a></li>
+<li class="toclevel-2 tocsection-84"><a href="#netsnmp_subtree_compare"><span class="tocnumber">4.21</span> <span class="toctext">netsnmp_subtree_compare</span></a></li>
+<li class="toclevel-2 tocsection-85"><a href="#parse_add_module_replacement"><span class="tocnumber">4.22</span> <span class="toctext">parse_add_module_replacement</span></a></li>
+<li class="toclevel-2 tocsection-86"><a href="#parse_find_node2"><span class="tocnumber">4.23</span> <span class="toctext">parse_find_node2</span></a></li>
+<li class="toclevel-2 tocsection-87"><a href="#parse_get_error_count"><span class="tocnumber">4.24</span> <span class="toctext">parse_get_error_count</span></a></li>
+<li class="toclevel-2 tocsection-88"><a href="#parse_get_token"><span class="tocnumber">4.25</span> <span class="toctext">parse_get_token</span></a></li>
+<li class="toclevel-2 tocsection-89"><a href="#read_config_register_app_prenetsnmp_mib_handler"><span class="tocnumber">4.26</span> <span class="toctext">read_config_register_app_prenetsnmp_mib_handler</span></a></li>
+<li class="toclevel-2 tocsection-90"><a href="#read_config_register_const_config_handler"><span class="tocnumber">4.27</span> <span class="toctext">read_config_register_const_config_handler</span></a></li>
+<li class="toclevel-2 tocsection-91"><a href="#register_read_only_int_instance"><span class="tocnumber">4.28</span> <span class="toctext">register_read_only_int_instance</span></a></li>
+<li class="toclevel-2 tocsection-92"><a href="#release_index"><span class="tocnumber">4.29</span> <span class="toctext">release_index</span></a></li>
+<li class="toclevel-2 tocsection-93"><a href="#scapi_get_proper_priv_length"><span class="tocnumber">4.30</span> <span class="toctext">scapi_get_proper_priv_length</span></a></li>
+<li class="toclevel-2 tocsection-94"><a href="#sched_nextrowtime"><span class="tocnumber">4.31</span> <span class="toctext">sched_nextrowtime</span></a></li>
+<li class="toclevel-2 tocsection-95"><a href="#send_trap_pdu"><span class="tocnumber">4.32</span> <span class="toctext">send_trap_pdu</span></a></li>
+<li class="toclevel-2 tocsection-96"><a href="#send_v3trap"><span class="tocnumber">4.33</span> <span class="toctext">send_v3trap</span></a></li>
+<li class="toclevel-2 tocsection-97"><a href="#set_all_requests_error"><span class="tocnumber">4.34</span> <span class="toctext">set_all_requests_error</span></a></li>
+<li class="toclevel-2 tocsection-98"><a href="#snmp_open_ex"><span class="tocnumber">4.35</span> <span class="toctext">snmp_open_ex</span></a></li>
+<li class="toclevel-2 tocsection-99"><a href="#swrun_max_processes"><span class="tocnumber">4.36</span> <span class="toctext">swrun_max_processes</span></a></li>
+<li class="toclevel-2 tocsection-100"><a href="#tdomain_unregister"><span class="tocnumber">4.37</span> <span class="toctext">tdomain_unregister</span></a></li>
+<li class="toclevel-2 tocsection-101"><a href="#text_token_container_from_file"><span class="tocnumber">4.38</span> <span class="toctext">text_token_container_from_file</span></a></li>
+<li class="toclevel-2 tocsection-102"><a href="#timeval_tticks"><span class="tocnumber">4.39</span> <span class="toctext">timeval_tticks</span></a></li>
+<li class="toclevel-2 tocsection-103"><a href="#u64copy"><span class="tocnumber">4.40</span> <span class="toctext">u64copy</span></a></li>
+<li class="toclevel-2 tocsection-104"><a href="#uatime_ready"><span class="tocnumber">4.41</span> <span class="toctext">uatime_ready</span></a></li>
+<li class="toclevel-2 tocsection-105"><a href="#unregister_indexes"><span class="tocnumber">4.42</span> <span class="toctext">unregister_indexes</span></a></li>
+<li class="toclevel-2 tocsection-106"><a href="#unregister_sec_mod"><span class="tocnumber">4.43</span> <span class="toctext">unregister_sec_mod</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h1><span class="mw-headline" id="libnetsnmp">libnetsnmp</span></h1>
+<h2><span class="mw-headline" id="callbacks_all">callbacks_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/callback.c?view=markup">snmplib/callback.c</a></li>
+<li> Children:
+<ul><li> callback_count
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/callback.c?view=markup">snmplib/callback.c</a></li></ul></li>
+<li> callback_list
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/callback.c?view=markup">snmplib/callback.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="check_varbind_all">check_varbind_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/check_varbind.c?view=markup">snmplib/check_varbind.c</a></li>
+<li> Children:
+<ul><li> check_vb_oid
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/check_varbind.c?view=markup">snmplib/check_varbind.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteTriggerTable.c?view=markup">agent/mibgroup/disman/event/mteTriggerTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteTriggerDeltaTable.c?view=markup">agent/mibgroup/disman/event/mteTriggerDeltaTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteEventSetTable.c?view=markup">agent/mibgroup/disman/event/mteEventSetTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteEventNotificationTable.c?view=markup">agent/mibgroup/disman/event/mteEventNotificationTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteObjectsTable.c?view=markup">agent/mibgroup/disman/event/mteObjectsTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/schedule/schedTable.c?view=markup">agent/mibgroup/disman/schedule/schedTable.c</a></li></ul></li>
+<li> check_vb_range
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/check_varbind.c?view=markup">snmplib/check_varbind.c</a></li></ul></li>
+<li> check_vb_rowstatus_with_storagetype
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/check_varbind.c?view=markup">snmplib/check_varbind.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/data_access/ipaddress_linux.c?view=markup">agent/mibgroup/ip-mib/data_access/ipaddress_linux.c</a></li></ul></li>
+<li> check_vb_size_range
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/check_varbind.c?view=markup">snmplib/check_varbind.c</a></li></ul></li>
+<li> check_vb_storagetype
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/check_varbind.c?view=markup">snmplib/check_varbind.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agent/nsVacmAccessTable.c?view=markup">agent/mibgroup/agent/nsVacmAccessTable.c</a></li></ul></li>
+<li> check_vb_type_and_max_size
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/check_varbind.c?view=markup">snmplib/check_varbind.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/check_varbind.c?view=markup">snmplib/check_varbind.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agent/nsVacmAccessTable.c?view=markup">agent/mibgroup/agent/nsVacmAccessTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteTriggerTable.c?view=markup">agent/mibgroup/disman/event/mteTriggerTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteTriggerExistenceTable.c?view=markup">agent/mibgroup/disman/event/mteTriggerExistenceTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteTriggerBooleanTable.c?view=markup">agent/mibgroup/disman/event/mteTriggerBooleanTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteTriggerThresholdTable.c?view=markup">agent/mibgroup/disman/event/mteTriggerThresholdTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteEventTable.c?view=markup">agent/mibgroup/disman/event/mteEventTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteEventSetTable.c?view=markup">agent/mibgroup/disman/event/mteEventSetTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteEventNotificationTable.c?view=markup">agent/mibgroup/disman/event/mteEventNotificationTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/schedule/schedTable.c?view=markup">agent/mibgroup/disman/schedule/schedTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c?view=markup">agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifXTable/ifXTable_interface.c?view=markup">agent/mibgroup/if-mib/ifXTable/ifXTable_interface.c</a></li></ul></li>
+<li> check_vb_uint
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/check_varbind.c?view=markup">snmplib/check_varbind.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/schedule/schedTable.c?view=markup">agent/mibgroup/disman/schedule/schedTable.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="container_all">container_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container.c?view=markup">snmplib/container.c</a></li>
+<li> Children:
+<ul><li> container_compare
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container.c?view=markup">snmplib/container.c</a></li>
+<li> Children:
+<ul><li> container_compare_int32
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container.c?view=markup">snmplib/container.c</a></li></ul></li>
+<li> container_compare_long
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container.c?view=markup">snmplib/container.c</a></li></ul></li>
+<li> container_compare_mem
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container.c?view=markup">snmplib/container.c</a></li></ul></li>
+<li> container_compare_uint32
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container.c?view=markup">snmplib/container.c</a></li></ul></li>
+<li> container_compare_ulong
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container.c?view=markup">snmplib/container.c</a></li></ul></li>
+<li> container_ncompare_cstring
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container.c?view=markup">snmplib/container.c</a></li></ul></li></ul></li></ul></li>
+<li> container_factories
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container.c?view=markup">snmplib/container.c</a></li>
+<li> Children:
+<ul><li> container_find_factory
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container.c?view=markup">snmplib/container.c</a></li></ul></li></ul></li></ul></li>
+<li> container_types
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container.c?view=markup">snmplib/container.c</a></li>
+<li> Children:
+<ul><li> container_directory
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/dir_utils.c?view=markup">snmplib/dir_utils.c</a></li></ul></li>
+<li> container_fifo
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container_list_ssll.c?view=markup">snmplib/container_list_ssll.c</a></li></ul></li>
+<li> container_iterator
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container_iterator.c?view=markup">snmplib/container_iterator.c</a></li></ul></li>
+<li> container_lifo
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container_list_ssll.c?view=markup">snmplib/container_list_ssll.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_data_access.c?view=markup">agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_data_access.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_data_access.c?view=markup">agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_data_access.c</a></li></ul></li>
+<li> container_linked_list
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container_list_ssll.c?view=markup">snmplib/container_list_ssll.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifTable/ifTable_data_access.c?view=markup">agent/mibgroup/if-mib/ifTable/ifTable_data_access.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container_list_ssll.c?view=markup">snmplib/container_list_ssll.c</a></li></ul></li>
+<li> container_null
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/container_null.c?view=markup">snmplib/container_null.c</a></li></ul></li></ul></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="data_list_all">data_list_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/data_list.c?view=markup">snmplib/data_list.c</a></li>
+<li> Children:
+<ul><li> data_list_add_data
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/data_list.c?view=markup">snmplib/data_list.c</a></li></ul></li>
+<li> data_list_get_list_node
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/data_list.c?view=markup">snmplib/data_list.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="default_store_all">default_store_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/default_store.c?view=markup">snmplib/default_store.c</a></li>
+<li> Children:
+<ul><li> default_store_void
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/default_store.c?view=markup">snmplib/default_store.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="fd_event_manager">fd_event_manager</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/fd_event_manager.c?view=markup">snmplib/fd_event_manager.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/data_access/interface_linux.c?view=markup">agent/mibgroup/if-mib/data_access/interface_linux.c</a></li></ul>
+<h2><span class="mw-headline" id="file_utils_all">file_utils_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/file_utils.c?view=markup">snmplib/file_utils.c</a></li>
+<li> Children:
+<ul><li> file_close
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/file_utils.c?view=markup">snmplib/file_utils.c</a></li></ul></li>
+<li> file_utils
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/file_utils.c?view=markup">snmplib/file_utils.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/text_utils.c?view=markup">snmplib/text_utils.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="logging_all">logging_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_logging.c?view=markup">snmplib/snmp_logging.c</a></li>
+<li> wanted in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_logging.c?view=markup">snmplib/snmp_logging.c</a></li>
+<li> Children:
+<ul><li> logging_external
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_logging.c?view=markup">snmplib/snmp_logging.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agent/nsLogging.c?view=markup">agent/mibgroup/agent/nsLogging.c</a></li></ul></li>
+<li> logging_file
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_logging.c?view=markup">snmplib/snmp_logging.c</a></li>
+<li> wanted in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/snmpd.c?view=markup">agent/snmpd.c</a></li></ul></li>
+<li> logging_stdio
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_logging.c?view=markup">snmplib/snmp_logging.c</a></li>
+<li> wanted in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/snmpd.c?view=markup">agent/snmpd.c</a></li></ul></li>
+<li> logging_syslog
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_logging.c?view=markup">snmplib/snmp_logging.c</a></li>
+<li> wanted in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/snmpd.c?view=markup">agent/snmpd.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="mib_strings_all">mib_strings_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/mib.c?view=markup">snmplib/mib.c</a></li>
+<li> Children:
+<ul><li> mib_snprint
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/mib.c?view=markup">snmplib/mib.c</a></li></ul></li>
+<li> mib_snprint_description
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/mib.c?view=markup">snmplib/mib.c</a></li></ul></li>
+<li> mib_snprint_variable
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/mib.c?view=markup">snmplib/mib.c</a></li></ul></li>
+<li> mib_string_conversions
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/mib.c?view=markup">snmplib/mib.c</a></li></ul></li>
+<li> print_mib
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/mib.c?view=markup">snmplib/mib.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="oid_stash_all">oid_stash_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/oid_stash.c?view=markup">snmplib/oid_stash.c</a></li>
+<li> Children:
+<ul><li> oid_stash
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/oid_stash.c?view=markup">snmplib/oid_stash.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table.c?view=markup">agent/helpers/table.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_dataset.c?view=markup">agent/helpers/table_dataset.c</a></li></ul></li>
+<li> oid_stash_add_data
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/oid_stash.c?view=markup">snmplib/oid_stash.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_dataset.c?view=markup">agent/helpers/table_dataset.c</a></li></ul></li>
+<li> oid_stash_get_data
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/oid_stash.c?view=markup">snmplib/oid_stash.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_dataset.c?view=markup">agent/helpers/table_dataset.c</a></li></ul></li>
+<li> oid_stash_iterate
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/oid_stash.c?view=markup">snmplib/oid_stash.c</a></li></ul></li>
+<li> oid_stash_no_free
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/oid_stash.c?view=markup">snmplib/oid_stash.c</a></li></ul></li>
+<li> oid_stash_store_all
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/oid_stash.c?view=markup">snmplib/oid_stash.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="read_config_all">read_config_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/read_config.c?view=markup">snmplib/read_config.c</a></li>
+<li> Children:
+<ul><li> unregister_app_config_handler
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/read_config.c?view=markup">snmplib/read_config.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_read_config.c?view=markup">agent/agent_read_config.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="snmp_api">snmp_api</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_api.c?view=markup">snmplib/snmp_api.c</a></li>
+<li> Children:
+<ul><li> oid_is_subtree
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_api.c?view=markup">snmplib/snmp_api.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="snmp_client_all">snmp_client_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_client.c?view=markup">snmplib/snmp_client.c</a></li>
+<li> Children:
+<ul><li> query_set_default_session
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_client.c?view=markup">snmplib/snmp_client.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/utilities/iquery.c?view=markup">agent/mibgroup/utilities/iquery.c</a></li></ul></li>
+<li> snmp_reset_var_types
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_client.c?view=markup">snmplib/snmp_client.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/apps/agentxtrap.c?view=markup">apps/agentxtrap.c</a></li></ul></li>
+<li> snmp_split_pdu
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_client.c?view=markup">snmplib/snmp_client.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/apps/agentxtrap.c?view=markup">apps/agentxtrap.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="snmp_enum_all">snmp_enum_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_enum.c?view=markup">snmplib/snmp_enum.c</a></li>
+<li> Children:
+<ul><li> se_find_free_value_in_slist
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_enum.c?view=markup">snmplib/snmp_enum.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/host/hr_filesys.c?view=markup">agent/mibgroup/host/hr_filesys.c</a></li></ul></li>
+<li> snmp_enum_clear
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_enum.c?view=markup">snmplib/snmp_enum.c</a></li></ul></li>
+<li> snmp_enum_store_list
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_enum.c?view=markup">snmplib/snmp_enum.c</a></li></ul></li>
+<li> snmp_enum_store_slist
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_enum.c?view=markup">snmplib/snmp_enum.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="snmp_tc_all">snmp_tc_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp-tc.c?view=markup">snmplib/snmp-tc.c</a></li>
+<li> Children:
+<ul><li> check_rowstatus_with_storagetype_transition
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp-tc.c?view=markup">snmplib/snmp-tc.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/check_varbind.c?view=markup">snmplib/check_varbind.c</a></li></ul></li>
+<li> check_storage_transition
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp-tc.c?view=markup">snmplib/snmp-tc.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable.c?view=markup">agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable.c?view=markup">agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable.c</a></li></ul></li>
+<li> ctime_to_timet
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp-tc.c?view=markup">snmplib/snmp-tc.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/host/hr_filesys.c?view=markup">agent/mibgroup/host/hr_filesys.c</a></li></ul></li>
+<li> date_n_time
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp-tc.c?view=markup">snmplib/snmp-tc.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/notification-log-mib/notification_log.c?view=markup">agent/mibgroup/notification-log-mib/notification_log.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/schedule/schedTable.c?view=markup">agent/mibgroup/disman/schedule/schedTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/host/hr_filesys.c?view=markup">agent/mibgroup/host/hr_filesys.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/host/hr_system.c?view=markup">agent/mibgroup/host/hr_system.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/host/data_access/swinst_rpm.c?view=markup">agent/mibgroup/host/data_access/swinst_rpm.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="statistics">statistics</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_api.c?view=markup">snmplib/snmp_api.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/snmp_get_statistic.c?view=markup">agent/helpers/snmp_get_statistic.c</a></li></ul>
+<h2><span class="mw-headline" id="system_all">system_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/system.c?view=markup">snmplib/system.c</a></li>
+<li> Children:
+<ul><li> calculate_sectime_diff
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/system.c?view=markup">snmplib/system.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agentx/master_admin.c?view=markup">agent/mibgroup/agentx/master_admin.c</a></li></ul></li>
+<li> user_information
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/system.c?view=markup">snmplib/system.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agentx/agentx_config.c?view=markup">agent/mibgroup/agentx/agentx_config.c</a></li>
+<li> Children:
+<ul><li> str_to_gid
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/system.c?view=markup">snmplib/system.c</a></li></ul></li>
+<li> str_to_uid
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/system.c?view=markup">snmplib/system.c</a></li></ul></li></ul></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="text_utils">text_utils</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/text_utils.c?view=markup">snmplib/text_utils.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/text_utils.c?view=markup">snmplib/text_utils.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/udp-mib/data_access/udp_endpoint_linux.c?view=markup">agent/mibgroup/udp-mib/data_access/udp_endpoint_linux.c</a></li></ul>
+<h2><span class="mw-headline" id="tools_all">tools_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/tools.c?view=markup">snmplib/tools.c</a></li>
+<li> Children:
+<ul><li> memory_wrappers
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/tools.c?view=markup">snmplib/tools.c</a></li></ul></li>
+<li> valgrind
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/tools.c?view=markup">snmplib/tools.c</a></li>
+<li> Children:
+<ul><li> netsnmp_check_definedness
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/tools.c?view=markup">snmplib/tools.c</a></li></ul></li></ul></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="transport_all">transport_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_transport.c?view=markup">snmplib/snmp_transport.c</a></li>
+<li> Children:
+<ul><li> tdomain_support
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_transport.c?view=markup">snmplib/snmp_transport.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/target/target.c?view=markup">agent/mibgroup/target/target.c</a></li></ul></li>
+<li> tdomain_transport_oid
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_transport.c?view=markup">snmplib/snmp_transport.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/target/target.c?view=markup">agent/mibgroup/target/target.c</a></li></ul></li>
+<li> transport_unix_socket_all
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/transports/snmpUnixDomain.c?view=markup">snmplib/transports/snmpUnixDomain.c</a></li>
+<li> Children:
+<ul><li> unix_socket_paths
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/transports/snmpUnixDomain.c?view=markup">snmplib/transports/snmpUnixDomain.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agentx/master.c?view=markup">agent/mibgroup/agentx/master.c</a></li></ul></li></ul></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="ucd_compatibility">ucd_compatibility</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/ucd_compat.c?view=markup">snmplib/ucd_compat.c</a></li></ul>
+<h2><span class="mw-headline" id="usm_all">usm_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmpusm.c?view=markup">snmplib/snmpusm.c</a></li>
+<li> Children:
+<ul><li> usm_support
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/lcd_time.c?view=markup">snmplib/lcd_time.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/keytools.c?view=markup">snmplib/keytools.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/scapi.c?view=markup">snmplib/scapi.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmpusm.c?view=markup">snmplib/snmpusm.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmpusm.c?view=markup">snmplib/snmpusm.c</a></li>
+<li> Children:
+<ul><li> usm_keytools
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/keytools.c?view=markup">snmplib/keytools.c</a></li></ul></li>
+<li> usm_lcd_time
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/lcd_time.c?view=markup">snmplib/lcd_time.c</a></li></ul></li>
+<li> usm_scapi
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/scapi.c?view=markup">snmplib/scapi.c</a></li></ul></li></ul></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="usm_support">usm_support</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/lcd_time.c?view=markup">snmplib/lcd_time.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/keytools.c?view=markup">snmplib/keytools.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/scapi.c?view=markup">snmplib/scapi.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmpusm.c?view=markup">snmplib/snmpusm.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmpusm.c?view=markup">snmplib/snmpusm.c</a></li>
+<li> Children:
+<ul><li> usm_keytools
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/keytools.c?view=markup">snmplib/keytools.c</a></li></ul></li>
+<li> usm_lcd_time
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/lcd_time.c?view=markup">snmplib/lcd_time.c</a></li></ul></li>
+<li> usm_scapi
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/scapi.c?view=markup">snmplib/scapi.c</a></li></ul></li></ul></li></ul>
+<h1><span class="mw-headline" id="libnetsnmpagent">libnetsnmpagent</span></h1>
+<h2><span class="mw-headline" id="agent_debugging_utilities">agent_debugging_utilities</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/snmp_agent.c?view=markup">agent/snmp_agent.c</a></li>
+<li> Children:
+<ul><li> dump_sess_list
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/snmp_agent.c?view=markup">agent/snmp_agent.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="agent_handler">agent_handler</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_handler.c?view=markup">agent/agent_handler.c</a></li>
+<li> Children:
+<ul><li> handler_mark_requests_as_delegated
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_handler.c?view=markup">agent/agent_handler.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ucd-snmp/proxy.c?view=markup">agent/mibgroup/ucd-snmp/proxy.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agentx/master.c?view=markup">agent/mibgroup/agentx/master.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="agent_index_all">agent_index_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_index.c?view=markup">agent/agent_index.c</a></li>
+<li> Children:
+<ul><li> remove_index
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_index.c?view=markup">agent/agent_index.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agentx/master_admin.c?view=markup">agent/mibgroup/agentx/master_admin.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="agent_read_config_all">agent_read_config_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_read_config.c?view=markup">agent/agent_read_config.c</a></li>
+<li> Children:
+<ul><li> snmpd_unregister_config_handler
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_read_config.c?view=markup">agent/agent_read_config.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ucd-snmp/dlmod.c?view=markup">agent/mibgroup/ucd-snmp/dlmod.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="agent_registry_all">agent_registry_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_registry.c?view=markup">agent/agent_registry.c</a></li>
+<li> Children:
+<ul><li> unregister_mib_table_row
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_registry.c?view=markup">agent/agent_registry.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agentx/master_admin.c?view=markup">agent/mibgroup/agentx/master_admin.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="agent_trap_all">agent_trap_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_trap.c?view=markup">agent/agent_trap.c</a></li>
+<li> Children:
+<ul><li> remove_trap_session
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_trap.c?view=markup">agent/agent_trap.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agentx/subagent.c?view=markup">agent/mibgroup/agentx/subagent.c</a></li></ul></li>
+<li> trap_vars_with_context
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_trap.c?view=markup">agent/agent_trap.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agentx/master_admin.c?view=markup">agent/mibgroup/agentx/master_admin.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="mib_helpers">mib_helpers</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/all_helpers.c?view=markup">agent/helpers/all_helpers.c</a></li>
+<li> Children:
+<ul><li> baby_steps
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/baby_steps.c?view=markup">agent/helpers/baby_steps.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/baby_steps.c?view=markup">agent/helpers/baby_steps.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c?view=markup">agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipSystemStatsTable/ipSystemStatsTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipSystemStatsTable/ipSystemStatsTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipIfStatsTable/ipIfStatsTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipIfStatsTable/ipIfStatsTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c?view=markup">agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifTable/ifTable_interface.c?view=markup">agent/mibgroup/if-mib/ifTable/ifTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifXTable/ifXTable_interface.c?view=markup">agent/mibgroup/if-mib/ifXTable/ifXTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipAddressPrefixTable/ipAddressPrefixTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipAddressPrefixTable/ipAddressPrefixTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/tcp-mib/tcpConnectionTable/tcpConnectionTable_interface.c?view=markup">agent/mibgroup/tcp-mib/tcpConnectionTable/tcpConnectionTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/tcp-mib/tcpListenerTable/tcpListenerTable_interface.c?view=markup">agent/mibgroup/tcp-mib/tcpListenerTable/tcpListenerTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/udp-mib/udpEndpointTable/udpEndpointTable_interface.c?view=markup">agent/mibgroup/udp-mib/udpEndpointTable/udpEndpointTable_interface.c</a></li></ul></li>
+<li> cache_handler
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/cache_handler.c?view=markup">agent/helpers/cache_handler.c</a></li>
+<li> Children:
+<ul><li> cache_find_by_oid
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/cache_handler.c?view=markup">agent/helpers/cache_handler.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifXTable/ifXTable_interface.c?view=markup">agent/mibgroup/if-mib/ifXTable/ifXTable_interface.c</a></li></ul></li>
+<li> cache_get_head
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/cache_handler.c?view=markup">agent/helpers/cache_handler.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agent/nsCache.c?view=markup">agent/mibgroup/agent/nsCache.c</a></li></ul></li></ul></li></ul></li>
+<li> helper_statistics
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/snmp_get_statistic.c?view=markup">agent/helpers/snmp_get_statistic.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/snmp_get_statistic.c?view=markup">agent/helpers/snmp_get_statistic.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmpv3/snmpMPDStats_5_5.c?view=markup">agent/mibgroup/snmpv3/snmpMPDStats_5_5.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmpv3/usmStats_5_5.c?view=markup">agent/mibgroup/snmpv3/usmStats_5_5.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/mibII/snmp_mib_5_5.c?view=markup">agent/mibgroup/mibII/snmp_mib_5_5.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/target/target_counters_5_5.c?view=markup">agent/mibgroup/target/target_counters_5_5.c</a></li></ul></li>
+<li> instance
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li>
+<li> Children:
+<ul><li> long_instance
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li></ul></li>
+<li> read_only_counter32_instance
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li></ul></li>
+<li> read_only_int_instance
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li></ul></li>
+<li> read_only_int_instance_context
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li></ul></li>
+<li> read_only_long_instance
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li></ul></li>
+<li> read_only_uint_instance
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li></ul></li>
+<li> read_only_ulong_instance
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li></ul></li>
+<li> register_int_instance
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li></ul></li>
+<li> register_int_instance_context
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li></ul></li>
+<li> register_long_instance_context
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li></ul></li>
+<li> register_num_file_instance
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ip_scalars.c?view=markup">agent/mibgroup/ip-mib/ip_scalars.c</a></li></ul></li>
+<li> register_read_only_counter32_instance_context
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/notification-log-mib/notification_log.c?view=markup">agent/mibgroup/notification-log-mib/notification_log.c</a></li></ul></li>
+<li> register_read_only_int_instance_context
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li></ul></li>
+<li> register_read_only_long_instance_context
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li></ul></li>
+<li> register_read_only_ulong_instance_context
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li></ul></li>
+<li> register_ulong_instance_context
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/notification-log-mib/notification_log.c?view=markup">agent/mibgroup/notification-log-mib/notification_log.c</a></li></ul></li>
+<li> uint_instance
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li></ul></li>
+<li> ulong_instance
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li></ul></li></ul></li></ul></li>
+<li> mode_end_call
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/mode_end_call.c?view=markup">agent/helpers/mode_end_call.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/mode_end_call.c?view=markup">agent/helpers/mode_end_call.c</a></li></ul></li>
+<li> row_merge_all
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/row_merge.c?view=markup">agent/helpers/row_merge.c</a></li>
+<li> Children:
+<ul><li> register_row_merge
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/row_merge.c?view=markup">agent/helpers/row_merge.c</a></li></ul></li>
+<li> row_merge
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/row_merge.c?view=markup">agent/helpers/row_merge.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/row_merge.c?view=markup">agent/helpers/row_merge.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c?view=markup">agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipSystemStatsTable/ipSystemStatsTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipSystemStatsTable/ipSystemStatsTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipIfStatsTable/ipIfStatsTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipIfStatsTable/ipIfStatsTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c?view=markup">agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifTable/ifTable_interface.c?view=markup">agent/mibgroup/if-mib/ifTable/ifTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifXTable/ifXTable_interface.c?view=markup">agent/mibgroup/if-mib/ifXTable/ifXTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipAddressPrefixTable/ipAddressPrefixTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipAddressPrefixTable/ipAddressPrefixTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/tcp-mib/tcpConnectionTable/tcpConnectionTable_interface.c?view=markup">agent/mibgroup/tcp-mib/tcpConnectionTable/tcpConnectionTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/tcp-mib/tcpListenerTable/tcpListenerTable_interface.c?view=markup">agent/mibgroup/tcp-mib/tcpListenerTable/tcpListenerTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/udp-mib/udpEndpointTable/udpEndpointTable_interface.c?view=markup">agent/mibgroup/udp-mib/udpEndpointTable/udpEndpointTable_interface.c</a></li></ul></li></ul></li></ul></li>
+<li> stash_cache
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/stash_cache.c?view=markup">agent/helpers/stash_cache.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/stash_cache.c?view=markup">agent/helpers/stash_cache.c</a></li></ul></li>
+<li> stash_to_next
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/stash_to_next.c?view=markup">agent/helpers/stash_to_next.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/stash_to_next.c?view=markup">agent/helpers/stash_to_next.c</a></li></ul></li>
+<li> table_all
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table.c?view=markup">agent/helpers/table.c</a></li>
+<li> Children:
+<ul><li> registration_owns_table_info
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table.c?view=markup">agent/helpers/table.c</a></li></ul></li>
+<li> table_build_result
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table.c?view=markup">agent/helpers/table.c</a></li></ul></li>
+<li> table_get_or_create_row_stash
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table.c?view=markup">agent/helpers/table.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_dataset.c?view=markup">agent/helpers/table_dataset.c</a></li></ul></li>
+<li> table_sparse
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table.c?view=markup">agent/helpers/table.c</a></li></ul></li></ul></li></ul></li>
+<li> table_array_all
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_array.c?view=markup">agent/helpers/table_array.c</a></li>
+<li> Children:
+<ul><li> table_array_check_row_status
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_array.c?view=markup">agent/helpers/table_array.c</a></li></ul></li>
+<li> table_array_extract_array_context
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_array.c?view=markup">agent/helpers/table_array.c</a></li></ul></li>
+<li> table_array_find_table_array_handler
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_array.c?view=markup">agent/helpers/table_array.c</a></li></ul></li>
+<li> table_array_register
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_array.c?view=markup">agent/helpers/table_array.c</a></li></ul></li></ul></li></ul></li>
+<li> table_container_all
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_container.c?view=markup">agent/helpers/table_container.c</a></li>
+<li> Children:
+<ul><li> table_container
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_container.c?view=markup">agent/helpers/table_container.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_container.c?view=markup">agent/helpers/table_container.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/mibII/sysORTable.c?view=markup">agent/mibgroup/mibII/sysORTable.c</a></li></ul></li>
+<li> table_container_extract
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_container.c?view=markup">agent/helpers/table_container.c</a></li></ul></li>
+<li> table_container_management
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_container.c?view=markup">agent/helpers/table_container.c</a></li></ul></li>
+<li> table_container_replace_row
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_container.c?view=markup">agent/helpers/table_container.c</a></li></ul></li>
+<li> table_container_row_insert
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_container.c?view=markup">agent/helpers/table_container.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c?view=markup">agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c?view=markup">agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_tdata.c?view=markup">agent/helpers/table_tdata.c</a></li></ul></li>
+<li> table_container_row_remove
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_container.c?view=markup">agent/helpers/table_container.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_tdata.c?view=markup">agent/helpers/table_tdata.c</a></li></ul></li></ul></li></ul></li>
+<li> table_data_all
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_data.c?view=markup">agent/helpers/table_data.c</a></li>
+<li> Children:
+<ul><li> extract_table_row_data
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_data.c?view=markup">agent/helpers/table_data.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agent/extend.c?view=markup">agent/mibgroup/agent/extend.c</a></li></ul></li>
+<li> insert_table_row
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_data.c?view=markup">agent/helpers/table_data.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agent/extend.c?view=markup">agent/mibgroup/agent/extend.c</a></li></ul></li>
+<li> register_read_only_table_data
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_data.c?view=markup">agent/helpers/table_data.c</a></li></ul></li>
+<li> table_data
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_data.c?view=markup">agent/helpers/table_data.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_dataset.c?view=markup">agent/helpers/table_dataset.c</a></li></ul></li>
+<li> table_data_delete_table
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_data.c?view=markup">agent/helpers/table_data.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agent/extend.c?view=markup">agent/mibgroup/agent/extend.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_dataset.c?view=markup">agent/helpers/table_dataset.c</a></li></ul></li>
+<li> table_data_extras
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_data.c?view=markup">agent/helpers/table_data.c</a></li>
+<li> Children:
+<ul><li> table_data_copy_row
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_data.c?view=markup">agent/helpers/table_data.c</a></li></ul></li>
+<li> table_data_create_row
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_data.c?view=markup">agent/helpers/table_data.c</a></li></ul></li>
+<li> table_data_create_table
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_data.c?view=markup">agent/helpers/table_data.c</a></li></ul></li>
+<li> table_data_remove_delete_row
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_data.c?view=markup">agent/helpers/table_data.c</a></li></ul></li>
+<li> table_data_row_count
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_data.c?view=markup">agent/helpers/table_data.c</a></li></ul></li>
+<li> table_data_row_operations
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_data.c?view=markup">agent/helpers/table_data.c</a></li></ul></li>
+<li> table_data_unregister
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_data.c?view=markup">agent/helpers/table_data.c</a></li></ul></li></ul></li></ul></li></ul></li></ul></li>
+<li> table_dataset_all
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_dataset.c?view=markup">agent/helpers/table_dataset.c</a></li>
+<li> Children:
+<ul><li> delete_table_data_set
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_dataset.c?view=markup">agent/helpers/table_dataset.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/notification-log-mib/notification_log.c?view=markup">agent/mibgroup/notification-log-mib/notification_log.c</a></li></ul></li>
+<li> table_data_set_column
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_dataset.c?view=markup">agent/helpers/table_dataset.c</a></li></ul></li>
+<li> table_dataset
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_dataset.c?view=markup">agent/helpers/table_dataset.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/notification-log-mib/notification_log.c?view=markup">agent/mibgroup/notification-log-mib/notification_log.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agent/nsTransactionTable.c?view=markup">agent/mibgroup/agent/nsTransactionTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agent/nsModuleTable.c?view=markup">agent/mibgroup/agent/nsModuleTable.c</a></li></ul></li>
+<li> table_dataset_get_newrow
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_dataset.c?view=markup">agent/helpers/table_dataset.c</a></li></ul></li>
+<li> table_dataset_remove_row
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_dataset.c?view=markup">agent/helpers/table_dataset.c</a></li></ul></li>
+<li> table_set_add_indexes
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_dataset.c?view=markup">agent/helpers/table_dataset.c</a></li></ul></li></ul></li></ul></li>
+<li> table_iterator_all
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_iterator.c?view=markup">agent/helpers/table_iterator.c</a></li>
+<li> Children:
+<ul><li> table_iterator_create_table
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_iterator.c?view=markup">agent/helpers/table_iterator.c</a></li></ul></li>
+<li> table_iterator_insert_context
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_iterator.c?view=markup">agent/helpers/table_iterator.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agent/nsLogging.c?view=markup">agent/mibgroup/agent/nsLogging.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agent/nsVacmAccessTable.c?view=markup">agent/mibgroup/agent/nsVacmAccessTable.c</a></li></ul></li>
+<li> table_iterator_row_count
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_iterator.c?view=markup">agent/helpers/table_iterator.c</a></li></ul></li>
+<li> table_iterator_row_first
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_iterator.c?view=markup">agent/helpers/table_iterator.c</a></li></ul></li></ul></li></ul></li>
+<li> table_row_all
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_row.c?view=markup">agent/helpers/table_row.c</a></li>
+<li> Children:
+<ul><li> table_row_extract
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_row.c?view=markup">agent/helpers/table_row.c</a></li></ul></li></ul></li></ul></li>
+<li> table_tdata_all
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_tdata.c?view=markup">agent/helpers/table_tdata.c</a></li>
+<li> Children:
+<ul><li> table_tdata
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_tdata.c?view=markup">agent/helpers/table_tdata.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_tdata.c?view=markup">agent/helpers/table_tdata.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteTriggerTable.c?view=markup">agent/mibgroup/disman/event/mteTriggerTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteTriggerDeltaTable.c?view=markup">agent/mibgroup/disman/event/mteTriggerDeltaTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteTriggerExistenceTable.c?view=markup">agent/mibgroup/disman/event/mteTriggerExistenceTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteTriggerBooleanTable.c?view=markup">agent/mibgroup/disman/event/mteTriggerBooleanTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteTriggerThresholdTable.c?view=markup">agent/mibgroup/disman/event/mteTriggerThresholdTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteEventTable.c?view=markup">agent/mibgroup/disman/event/mteEventTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteEventSetTable.c?view=markup">agent/mibgroup/disman/event/mteEventSetTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteEventNotificationTable.c?view=markup">agent/mibgroup/disman/event/mteEventNotificationTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteObjectsTable.c?view=markup">agent/mibgroup/disman/event/mteObjectsTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/schedule/schedTable.c?view=markup">agent/mibgroup/disman/schedule/schedTable.c</a></li></ul></li>
+<li> tdata_clone_row
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_tdata.c?view=markup">agent/helpers/table_tdata.c</a></li></ul></li>
+<li> tdata_compare_idx
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_tdata.c?view=markup">agent/helpers/table_tdata.c</a></li></ul></li>
+<li> tdata_copy_row
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_tdata.c?view=markup">agent/helpers/table_tdata.c</a></li></ul></li>
+<li> tdata_extract_container
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_tdata.c?view=markup">agent/helpers/table_tdata.c</a></li></ul></li>
+<li> tdata_replace_row
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_tdata.c?view=markup">agent/helpers/table_tdata.c</a></li></ul></li>
+<li> tdata_row_count
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_tdata.c?view=markup">agent/helpers/table_tdata.c</a></li></ul></li>
+<li> tdata_unregister
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/table_tdata.c?view=markup">agent/helpers/table_tdata.c</a></li></ul></li></ul></li></ul></li>
+<li> watcher_all
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/watcher.c?view=markup">agent/helpers/watcher.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/watcher.c?view=markup">agent/helpers/watcher.c</a></li>
+<li> Children:
+<ul><li> read_only_counter32_scalar
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/watcher.c?view=markup">agent/helpers/watcher.c</a></li></ul></li>
+<li> watcher_create_info6
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/watcher.c?view=markup">agent/helpers/watcher.c</a></li></ul></li>
+<li> watcher_int_scalar
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/watcher.c?view=markup">agent/helpers/watcher.c</a></li></ul></li>
+<li> watcher_long_scalar
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/watcher.c?view=markup">agent/helpers/watcher.c</a></li></ul></li>
+<li> watcher_read_only_int_scalar
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/watcher.c?view=markup">agent/helpers/watcher.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/mibII/system_mib.c?view=markup">agent/mibgroup/mibII/system_mib.c</a></li></ul></li>
+<li> watcher_read_only_long_scalar
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/watcher.c?view=markup">agent/helpers/watcher.c</a></li></ul></li>
+<li> watcher_read_only_ulong_scalar
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/watcher.c?view=markup">agent/helpers/watcher.c</a></li></ul></li>
+<li> watcher_register_timestamp
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/watcher.c?view=markup">agent/helpers/watcher.c</a></li></ul></li>
+<li> watcher_spinlock
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/watcher.c?view=markup">agent/helpers/watcher.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/mibII/setSerialNo.c?view=markup">agent/mibgroup/mibII/setSerialNo.c</a></li></ul></li>
+<li> watcher_ulong_scalar
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/watcher.c?view=markup">agent/helpers/watcher.c</a></li></ul></li></ul></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="snmp_agent">snmp_agent</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/snmp_agent.c?view=markup">agent/snmp_agent.c</a></li>
+<li> Children:
+<ul><li> allocate_globalcacheid
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/snmp_agent.c?view=markup">agent/snmp_agent.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agentx/master_admin.c?view=markup">agent/mibgroup/agentx/master_admin.c</a></li></ul></li>
+<li> check_all_requests_error
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/snmp_agent.c?view=markup">agent/snmp_agent.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c?view=markup">agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipSystemStatsTable/ipSystemStatsTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipSystemStatsTable/ipSystemStatsTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipIfStatsTable/ipIfStatsTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipIfStatsTable/ipIfStatsTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c?view=markup">agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifTable/ifTable_interface.c?view=markup">agent/mibgroup/if-mib/ifTable/ifTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifXTable/ifXTable_interface.c?view=markup">agent/mibgroup/if-mib/ifXTable/ifXTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipAddressPrefixTable/ipAddressPrefixTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipAddressPrefixTable/ipAddressPrefixTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/tcp-mib/tcpConnectionTable/tcpConnectionTable_interface.c?view=markup">agent/mibgroup/tcp-mib/tcpConnectionTable/tcpConnectionTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/tcp-mib/tcpListenerTable/tcpListenerTable_interface.c?view=markup">agent/mibgroup/tcp-mib/tcpListenerTable/tcpListenerTable_interface.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/udp-mib/udpEndpointTable/udpEndpointTable_interface.c?view=markup">agent/mibgroup/udp-mib/udpEndpointTable/udpEndpointTable_interface.c</a></li></ul></li>
+<li> check_requests_error
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/snmp_agent.c?view=markup">agent/snmp_agent.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/baby_steps.c?view=markup">agent/helpers/baby_steps.c</a></li></ul></li>
+<li> free_agent_snmp_session_by_session
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/snmp_agent.c?view=markup">agent/snmp_agent.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agentx/master.c?view=markup">agent/mibgroup/agentx/master.c</a></li></ul></li>
+<li> request_set_error_idx
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/snmp_agent.c?view=markup">agent/snmp_agent.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ucd-snmp/proxy.c?view=markup">agent/mibgroup/ucd-snmp/proxy.c</a></li></ul></li>
+<li> set_agent_uptime
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/snmp_agent.c?view=markup">agent/snmp_agent.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agentx/client.c?view=markup">agent/mibgroup/agentx/client.c</a></li></ul></li></ul></li></ul>
+<h1><span class="mw-headline" id="libnetsnmpmibs">libnetsnmpmibs</span></h1>
+<h2><span class="mw-headline" id="disman_debugging">disman_debugging</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteTrigger.c?view=markup">agent/mibgroup/disman/event/mteTrigger.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteEvent.c?view=markup">agent/mibgroup/disman/event/mteEvent.c</a></li></ul>
+<h2><span class="mw-headline" id="get_routes">get_routes</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/mibII/var_route.c?view=markup">agent/mibgroup/mibII/var_route.c</a></li></ul>
+<h2><span class="mw-headline" id="hardware_cpu">hardware_cpu</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/hardware/cpu/cpu.c?view=markup">agent/mibgroup/hardware/cpu/cpu.c</a></li>
+<li> Children:
+<ul><li> hardware_cpu_copy_stats
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/hardware/cpu/cpu.c?view=markup">agent/mibgroup/hardware/cpu/cpu.c</a></li></ul></li>
+<li> hardware_cpu_get_byname
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/hardware/cpu/cpu.c?view=markup">agent/mibgroup/hardware/cpu/cpu.c</a></li></ul></li>
+<li> hardware_cpu_get_cache
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/hardware/cpu/cpu.c?view=markup">agent/mibgroup/hardware/cpu/cpu.c</a></li></ul></li>
+<li> hardware_cpu_load
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/hardware/cpu/cpu.c?view=markup">agent/mibgroup/hardware/cpu/cpu.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="header_complex_all">header_complex_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/header_complex.c?view=markup">agent/mibgroup/header_complex.c</a></li>
+<li> Children:
+<ul><li> header_complex_free_all
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/header_complex.c?view=markup">agent/mibgroup/header_complex.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="iftable_external_access">iftable_external_access</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifTable/ifTable_interface.c?view=markup">agent/mibgroup/if-mib/ifTable/ifTable_interface.c</a></li>
+<li> Children:
+<ul><li> iftable_container_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifTable/ifTable_interface.c?view=markup">agent/mibgroup/if-mib/ifTable/ifTable_interface.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifXTable/ifXTable.c?view=markup">agent/mibgroup/if-mib/ifXTable/ifXTable.c</a></li></ul></li>
+<li> iftable_container_size
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifTable/ifTable_interface.c?view=markup">agent/mibgroup/if-mib/ifTable/ifTable_interface.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifXTable/ifXTable.c?view=markup">agent/mibgroup/if-mib/ifXTable/ifXTable.c</a></li></ul></li>
+<li> iftable_registration_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifTable/ifTable_interface.c?view=markup">agent/mibgroup/if-mib/ifTable/ifTable_interface.c</a></li></ul></li>
+<li> iftable_registration_set
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifTable/ifTable_interface.c?view=markup">agent/mibgroup/if-mib/ifTable/ifTable_interface.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="ifxtable_external_access">ifxtable_external_access</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifXTable/ifXTable_interface.c?view=markup">agent/mibgroup/if-mib/ifXTable/ifXTable_interface.c</a></li>
+<li> Children:
+<ul><li> ifxtable_container_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifTable/ifTable_interface.c?view=markup">agent/mibgroup/if-mib/ifTable/ifTable_interface.c</a></li></ul></li>
+<li> ifxtable_container_size
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifTable/ifTable_interface.c?view=markup">agent/mibgroup/if-mib/ifTable/ifTable_interface.c</a></li></ul></li>
+<li> ifxtable_registration_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifTable/ifTable_interface.c?view=markup">agent/mibgroup/if-mib/ifTable/ifTable_interface.c</a></li></ul></li>
+<li> ifxtable_registration_set
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifTable/ifTable_interface.c?view=markup">agent/mibgroup/if-mib/ifTable/ifTable_interface.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="inetcidrroutetable_external_access">inetcidrroutetable_external_access</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c</a></li>
+<li> Children:
+<ul><li> inetcidrroutetable_container_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable.c?view=markup">agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable.c</a></li></ul></li>
+<li> inetcidrroutetable_container_size
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable.c?view=markup">agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable.c</a></li></ul></li>
+<li> inetcidrroutetable_registration_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c</a></li></ul></li>
+<li> inetcidrroutetable_registration_set
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/inetCidrRouteTable/inetCidrRouteTable_interface.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="inetnettomediatable_external_access">inetnettomediatable_external_access</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c?view=markup">agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c</a></li>
+<li> Children:
+<ul><li> inetnettomediatable_container_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c?view=markup">agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c</a></li></ul></li>
+<li> inetnettomediatable_container_size
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c?view=markup">agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c</a></li></ul></li>
+<li> inetnettomediatable_registration_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c?view=markup">agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c</a></li></ul></li>
+<li> inetnettomediatable_registration_set
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c?view=markup">agent/mibgroup/ip-mib/inetNetToMediaTable/inetNetToMediaTable_interface.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="ipaddress_common">ipaddress_common</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/data_access/ipaddress_common.c?view=markup">agent/mibgroup/ip-mib/data_access/ipaddress_common.c</a></li>
+<li> Children:
+<ul><li> ipaddress_common_copy_utilities
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/data_access/ipaddress_common.c?view=markup">agent/mibgroup/ip-mib/data_access/ipaddress_common.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipAddressPrefixTable/ipAddressPrefixTable_data_access.c?view=markup">agent/mibgroup/ip-mib/ipAddressPrefixTable/ipAddressPrefixTable_data_access.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="ipaddresstable_external_access">ipaddresstable_external_access</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c</a></li>
+<li> Children:
+<ul><li> ipaddresstable_container_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipAddressPrefixTable/ipAddressPrefixTable_data_access.c?view=markup">agent/mibgroup/ip-mib/ipAddressPrefixTable/ipAddressPrefixTable_data_access.c</a></li></ul></li>
+<li> ipaddresstable_container_size
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c</a></li></ul></li>
+<li> ipaddresstable_registration_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c</a></li></ul></li>
+<li> ipaddresstable_registration_set
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipAddressTable/ipAddressTable_interface.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="ipcidrroutetable_external_access">ipcidrroutetable_external_access</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c</a></li>
+<li> Children:
+<ul><li> ipcidrroutetable_container_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c</a></li></ul></li>
+<li> ipcidrroutetable_container_size
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c</a></li></ul></li>
+<li> ipcidrroutetable_registration_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c</a></li></ul></li>
+<li> ipcidrroutetable_registration_set
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c?view=markup">agent/mibgroup/ip-forward-mib/ipCidrRouteTable/ipCidrRouteTable_interface.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="ipifstatstable_external_access">ipifstatstable_external_access</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipIfStatsTable/ipIfStatsTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipIfStatsTable/ipIfStatsTable_interface.c</a></li>
+<li> Children:
+<ul><li> ipifstatstable_container_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipIfStatsTable/ipIfStatsTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipIfStatsTable/ipIfStatsTable_interface.c</a></li></ul></li>
+<li> ipifstatstable_container_size
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipIfStatsTable/ipIfStatsTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipIfStatsTable/ipIfStatsTable_interface.c</a></li></ul></li>
+<li> ipifstatstable_registration_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipIfStatsTable/ipIfStatsTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipIfStatsTable/ipIfStatsTable_interface.c</a></li></ul></li>
+<li> ipifstatstable_registration_set
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipIfStatsTable/ipIfStatsTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipIfStatsTable/ipIfStatsTable_interface.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="ipsystemstatstable_external_access">ipsystemstatstable_external_access</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipSystemStatsTable/ipSystemStatsTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipSystemStatsTable/ipSystemStatsTable_interface.c</a></li>
+<li> Children:
+<ul><li> ipsystemstatstable_container_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipSystemStatsTable/ipSystemStatsTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipSystemStatsTable/ipSystemStatsTable_interface.c</a></li></ul></li>
+<li> ipsystemstatstable_container_size
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipSystemStatsTable/ipSystemStatsTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipSystemStatsTable/ipSystemStatsTable_interface.c</a></li></ul></li>
+<li> ipsystemstatstable_registration_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipSystemStatsTable/ipSystemStatsTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipSystemStatsTable/ipSystemStatsTable_interface.c</a></li></ul></li>
+<li> ipsystemstatstable_registration_set
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipSystemStatsTable/ipSystemStatsTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipSystemStatsTable/ipSystemStatsTable_interface.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="ipv6scopezoneindextable_external_access">ipv6scopezoneindextable_external_access</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c</a></li>
+<li> Children:
+<ul><li> ipv6scopezoneindextable_container_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c</a></li></ul></li>
+<li> ipv6scopezoneindextable_container_size
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c</a></li></ul></li>
+<li> ipv6scopezoneindextable_registration_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c</a></li></ul></li>
+<li> ipv6scopezoneindextable_registration_set
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c?view=markup">agent/mibgroup/ip-mib/ipv6ScopeZoneIndexTable/ipv6ScopeZoneIndexTable_interface.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="iquery_all">iquery_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/utilities/iquery.c?view=markup">agent/mibgroup/utilities/iquery.c</a></li>
+<li> Children:
+<ul><li> iquery
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/utilities/iquery.c?view=markup">agent/mibgroup/utilities/iquery.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteTriggerTable.c?view=markup">agent/mibgroup/disman/event/mteTriggerTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteTriggerConf.c?view=markup">agent/mibgroup/disman/event/mteTriggerConf.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteEventTable.c?view=markup">agent/mibgroup/disman/event/mteEventTable.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/event/mteEventConf.c?view=markup">agent/mibgroup/disman/event/mteEventConf.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/schedule/schedCore.c?view=markup">agent/mibgroup/disman/schedule/schedCore.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/schedule/schedConf.c?view=markup">agent/mibgroup/disman/schedule/schedConf.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/schedule/schedTable.c?view=markup">agent/mibgroup/disman/schedule/schedTable.c</a></li></ul></li>
+<li> iquery_community_session
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/utilities/iquery.c?view=markup">agent/mibgroup/utilities/iquery.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="linux_ip6_stat_all">linux_ip6_stat_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/mibII/kernel_linux.c?view=markup">agent/mibgroup/mibII/kernel_linux.c</a></li>
+<li> Children:
+<ul><li> linux_read_ip6_stat
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/mibII/kernel_linux.c?view=markup">agent/mibgroup/mibII/kernel_linux.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="snmpengine_all">snmpengine_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmpv3/snmpEngine.c?view=markup">agent/mibgroup/snmpv3/snmpEngine.c</a></li>
+<li> Children:
+<ul><li> register_snmpengine_scalars_context
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmpv3/snmpEngine.c?view=markup">agent/mibgroup/snmpv3/snmpEngine.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/apps/snmptrapd.c?view=markup">apps/snmptrapd.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="snmpnotifyfiltertable_external_access">snmpnotifyfiltertable_external_access</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c?view=markup">agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c</a></li>
+<li> Children:
+<ul><li> snmpnotifyfiltertable_container_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c?view=markup">agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_data_access.c?view=markup">agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_data_access.c</a></li></ul></li>
+<li> snmpnotifyfiltertable_container_size
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c?view=markup">agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c</a></li></ul></li>
+<li> snmpnotifyfiltertable_registration_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c?view=markup">agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c</a></li></ul></li>
+<li> snmpnotifyfiltertable_registration_set
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c?view=markup">agent/mibgroup/snmp-notification-mib/snmpNotifyFilterTable/snmpNotifyFilterTable_interface.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="software_installed">software_installed</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/host/data_access/swinst.c?view=markup">agent/mibgroup/host/data_access/swinst.c</a></li></ul>
+<h2><span class="mw-headline" id="software_running">software_running</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/host/data_access/swrun.c?view=markup">agent/mibgroup/host/data_access/swrun.c</a></li>
+<li> Children:
+<ul><li> swrun_max_processes
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/host/data_access/swinst.c?view=markup">agent/mibgroup/host/data_access/swinst.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/host/data_access/swrun.c?view=markup">agent/mibgroup/host/data_access/swrun.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="tcpconnectiontable_external_access">tcpconnectiontable_external_access</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/tcp-mib/tcpConnectionTable/tcpConnectionTable_interface.c?view=markup">agent/mibgroup/tcp-mib/tcpConnectionTable/tcpConnectionTable_interface.c</a></li>
+<li> Children:
+<ul><li> tcpconnectiontable_container_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/tcp-mib/tcpConnectionTable/tcpConnectionTable_interface.c?view=markup">agent/mibgroup/tcp-mib/tcpConnectionTable/tcpConnectionTable_interface.c</a></li></ul></li>
+<li> tcpconnectiontable_container_size
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/tcp-mib/tcpConnectionTable/tcpConnectionTable_interface.c?view=markup">agent/mibgroup/tcp-mib/tcpConnectionTable/tcpConnectionTable_interface.c</a></li></ul></li>
+<li> tcpconnectiontable_registration_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/tcp-mib/tcpConnectionTable/tcpConnectionTable_interface.c?view=markup">agent/mibgroup/tcp-mib/tcpConnectionTable/tcpConnectionTable_interface.c</a></li></ul></li>
+<li> tcpconnectiontable_registration_set
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/tcp-mib/tcpConnectionTable/tcpConnectionTable_interface.c?view=markup">agent/mibgroup/tcp-mib/tcpConnectionTable/tcpConnectionTable_interface.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="tcplistenertable_external_access">tcplistenertable_external_access</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/tcp-mib/tcpListenerTable/tcpListenerTable_interface.c?view=markup">agent/mibgroup/tcp-mib/tcpListenerTable/tcpListenerTable_interface.c</a></li>
+<li> Children:
+<ul><li> tcplistenertable_container_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/tcp-mib/tcpListenerTable/tcpListenerTable_interface.c?view=markup">agent/mibgroup/tcp-mib/tcpListenerTable/tcpListenerTable_interface.c</a></li></ul></li>
+<li> tcplistenertable_container_size
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/tcp-mib/tcpListenerTable/tcpListenerTable_interface.c?view=markup">agent/mibgroup/tcp-mib/tcpListenerTable/tcpListenerTable_interface.c</a></li></ul></li>
+<li> tcplistenertable_registration_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/tcp-mib/tcpListenerTable/tcpListenerTable_interface.c?view=markup">agent/mibgroup/tcp-mib/tcpListenerTable/tcpListenerTable_interface.c</a></li></ul></li>
+<li> tcplistenertable_registration_set
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/tcp-mib/tcpListenerTable/tcpListenerTable_interface.c?view=markup">agent/mibgroup/tcp-mib/tcpListenerTable/tcpListenerTable_interface.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="tcptable_all">tcptable_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/mibII/tcpTable.c?view=markup">agent/mibgroup/mibII/tcpTable.c</a></li>
+<li> Children:
+<ul><li> tcp_count_connections
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/mibII/tcpTable.c?view=markup">agent/mibgroup/mibII/tcpTable.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="udp_endpoint_all">udp_endpoint_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/udp-mib/data_access/udp_endpoint_linux.c?view=markup">agent/mibgroup/udp-mib/data_access/udp_endpoint_linux.c</a></li>
+<li> Children:
+<ul><li> udp_endpoint_writable
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/udp-mib/data_access/udp_endpoint_linux.c?view=markup">agent/mibgroup/udp-mib/data_access/udp_endpoint_linux.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="udp_endpoint_common">udp_endpoint_common</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/udp-mib/data_access/udp_endpoint_common.c?view=markup">agent/mibgroup/udp-mib/data_access/udp_endpoint_common.c</a></li>
+<li> Children:
+<ul><li> udp_endpoint_entry_create
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/udp-mib/data_access/udp_endpoint_common.c?view=markup">agent/mibgroup/udp-mib/data_access/udp_endpoint_common.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="udpendpointtable_external_access">udpendpointtable_external_access</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/udp-mib/udpEndpointTable/udpEndpointTable_interface.c?view=markup">agent/mibgroup/udp-mib/udpEndpointTable/udpEndpointTable_interface.c</a></li>
+<li> Children:
+<ul><li> udpendpointtable_container_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/udp-mib/udpEndpointTable/udpEndpointTable_interface.c?view=markup">agent/mibgroup/udp-mib/udpEndpointTable/udpEndpointTable_interface.c</a></li></ul></li>
+<li> udpendpointtable_container_size
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/udp-mib/udpEndpointTable/udpEndpointTable_interface.c?view=markup">agent/mibgroup/udp-mib/udpEndpointTable/udpEndpointTable_interface.c</a></li></ul></li>
+<li> udpendpointtable_registration_get
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/udp-mib/udpEndpointTable/udpEndpointTable_interface.c?view=markup">agent/mibgroup/udp-mib/udpEndpointTable/udpEndpointTable_interface.c</a></li></ul></li>
+<li> udpendpointtable_registration_set
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/udp-mib/udpEndpointTable/udpEndpointTable_interface.c?view=markup">agent/mibgroup/udp-mib/udpEndpointTable/udpEndpointTable_interface.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="usmuser_all">usmuser_all</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmpv3/usmUser.c?view=markup">agent/mibgroup/snmpv3/usmUser.c</a></li>
+<li> Children:
+<ul><li> init_register_usmuser_context
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/snmpv3/usmUser.c?view=markup">agent/mibgroup/snmpv3/usmUser.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/apps/snmptrapd.c?view=markup">apps/snmptrapd.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="util_funcs">util_funcs</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/util_funcs.c?view=markup">agent/mibgroup/util_funcs.c</a></li>
+<li> Children:
+<ul><li> clear_cache
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/util_funcs.c?view=markup">agent/mibgroup/util_funcs.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ucd-snmp/versioninfo.c?view=markup">agent/mibgroup/ucd-snmp/versioninfo.c</a></li></ul></li>
+<li> find_field
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/util_funcs.c?view=markup">agent/mibgroup/util_funcs.c</a></li></ul></li>
+<li> get_exten_instance
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/util_funcs.c?view=markup">agent/mibgroup/util_funcs.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ucd-snmp/pass.c?view=markup">agent/mibgroup/ucd-snmp/pass.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ucd-snmp/pass_persist.c?view=markup">agent/mibgroup/ucd-snmp/pass_persist.c</a></li></ul></li>
+<li> internal_mib_table
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/util_funcs.c?view=markup">agent/mibgroup/util_funcs.c</a></li></ul></li>
+<li> parse_miboid
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/util_funcs.c?view=markup">agent/mibgroup/util_funcs.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ucd-snmp/pass.c?view=markup">agent/mibgroup/ucd-snmp/pass.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ucd-snmp/pass_persist.c?view=markup">agent/mibgroup/ucd-snmp/pass_persist.c</a></li></ul></li>
+<li> prefix_info_all
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/util_funcs.c?view=markup">agent/mibgroup/util_funcs.c</a></li>
+<li> Children:
+<ul><li> prefix_info
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/util_funcs.c?view=markup">agent/mibgroup/util_funcs.c</a></li>
+<li> required in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/data_access/interface_linux.c?view=markup">agent/mibgroup/if-mib/data_access/interface_linux.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/ip-mib/data_access/ipaddress_linux.c?view=markup">agent/mibgroup/ip-mib/data_access/ipaddress_linux.c</a></li></ul></li>
+<li> update_prefix_info
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/util_funcs.c?view=markup">agent/mibgroup/util_funcs.c</a></li></ul></li></ul></li></ul></li>
+<li> shell_command
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/util_funcs.c?view=markup">agent/mibgroup/util_funcs.c</a></li></ul></li>
+<li> string_append_int
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/util_funcs.c?view=markup">agent/mibgroup/util_funcs.c</a></li></ul></li></ul></li></ul>
+<h1><span class="mw-headline" id="netsnmp_unused">netsnmp_unused</span></h1>
+<h2><span class="mw-headline" id="addrcache_age">addrcache_age</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/snmp_agent.c?view=markup">agent/snmp_agent.c</a></li></ul>
+<h2><span class="mw-headline" id="agent_remove_list_data">agent_remove_list_data</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/snmp_agent.c?view=markup">agent/snmp_agent.c</a></li></ul>
+<h2><span class="mw-headline" id="agentx_unregister_config_handler">agentx_unregister_config_handler</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/agentx/agentx_config.c?view=markup">agent/mibgroup/agentx/agentx_config.c</a></li></ul>
+<h2><span class="mw-headline" id="calculate_time_diff">calculate_time_diff</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/system.c?view=markup">snmplib/system.c</a></li></ul>
+<h2><span class="mw-headline" id="count_indexes">count_indexes</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_index.c?view=markup">agent/agent_index.c</a></li></ul>
+<h2><span class="mw-headline" id="count_varbinds_of_type">count_varbinds_of_type</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_client.c?view=markup">snmplib/snmp_client.c</a></li></ul>
+<h2><span class="mw-headline" id="find_varind_of_type">find_varind_of_type</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_client.c?view=markup">snmplib/snmp_client.c</a></li></ul>
+<h2><span class="mw-headline" id="get_enginetime_alarm">get_enginetime_alarm</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmpv3.c?view=markup">snmplib/snmpv3.c</a></li></ul>
+<h2><span class="mw-headline" id="get_session_for_oid">get_session_for_oid</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_registry.c?view=markup">agent/agent_registry.c</a></li></ul>
+<h2><span class="mw-headline" id="hardware_memory">hardware_memory</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/hardware/memory/hw_mem.c?view=markup">agent/mibgroup/hardware/memory/hw_mem.c</a></li>
+<li> Children:
+<ul><li> memory_get_cache
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/hardware/memory/hw_mem.c?view=markup">agent/mibgroup/hardware/memory/hw_mem.c</a></li></ul></li></ul></li></ul>
+<h2><span class="mw-headline" id="ifxtable_shutdown_interface">ifxtable_shutdown_interface</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/if-mib/ifTable/ifTable_interface.c?view=markup">agent/mibgroup/if-mib/ifTable/ifTable_interface.c</a></li></ul>
+<h2><span class="mw-headline" id="logging_enable_calllog">logging_enable_calllog</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_logging.c?view=markup">snmplib/snmp_logging.c</a></li></ul>
+<h2><span class="mw-headline" id="logging_enable_loghandler">logging_enable_loghandler</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_logging.c?view=markup">snmplib/snmp_logging.c</a></li></ul>
+<h2><span class="mw-headline" id="netsnmp_baby_steps_handler_init">netsnmp_baby_steps_handler_init</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/baby_steps.c?view=markup">agent/helpers/baby_steps.c</a></li></ul>
+<h2><span class="mw-headline" id="netsnmp_cache_handler_register">netsnmp_cache_handler_register</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/cache_handler.c?view=markup">agent/helpers/cache_handler.c</a></li></ul>
+<h2><span class="mw-headline" id="netsnmp_call_next_handler_one_request">netsnmp_call_next_handler_one_request</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_handler.c?view=markup">agent/agent_handler.c</a></li></ul>
+<h2><span class="mw-headline" id="netsnmp_dateandtime_set_buf_from_vars">netsnmp_dateandtime_set_buf_from_vars</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp-tc.c?view=markup">snmplib/snmp-tc.c</a></li></ul>
+<h2><span class="mw-headline" id="netsnmp_extract_cache_info">netsnmp_extract_cache_info</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/cache_handler.c?view=markup">agent/helpers/cache_handler.c</a></li></ul>
+<h2><span class="mw-headline" id="netsnmp_is_cache_valid">netsnmp_is_cache_valid</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/cache_handler.c?view=markup">agent/helpers/cache_handler.c</a></li></ul>
+<h2><span class="mw-headline" id="netsnmp_register_cache_handler">netsnmp_register_cache_handler</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/cache_handler.c?view=markup">agent/helpers/cache_handler.c</a></li></ul>
+<h2><span class="mw-headline" id="netsnmp_subtree_compare">netsnmp_subtree_compare</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_registry.c?view=markup">agent/agent_registry.c</a></li></ul>
+<h2><span class="mw-headline" id="parse_add_module_replacement">parse_add_module_replacement</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/parse.c?view=markup">snmplib/parse.c</a></li></ul>
+<h2><span class="mw-headline" id="parse_find_node2">parse_find_node2</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/parse.c?view=markup">snmplib/parse.c</a></li></ul>
+<h2><span class="mw-headline" id="parse_get_error_count">parse_get_error_count</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/parse.c?view=markup">snmplib/parse.c</a></li></ul>
+<h2><span class="mw-headline" id="parse_get_token">parse_get_token</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/parse.c?view=markup">snmplib/parse.c</a></li></ul>
+<h2><span class="mw-headline" id="read_config_register_app_prenetsnmp_mib_handler">read_config_register_app_prenetsnmp_mib_handler</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/read_config.c?view=markup">snmplib/read_config.c</a></li></ul>
+<h2><span class="mw-headline" id="read_config_register_const_config_handler">read_config_register_const_config_handler</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/read_config.c?view=markup">snmplib/read_config.c</a></li></ul>
+<h2><span class="mw-headline" id="register_read_only_int_instance">register_read_only_int_instance</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/helpers/instance.c?view=markup">agent/helpers/instance.c</a></li></ul>
+<h2><span class="mw-headline" id="release_index">release_index</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_index.c?view=markup">agent/agent_index.c</a></li></ul>
+<h2><span class="mw-headline" id="scapi_get_proper_priv_length">scapi_get_proper_priv_length</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/scapi.c?view=markup">snmplib/scapi.c</a></li></ul>
+<h2><span class="mw-headline" id="sched_nextrowtime">sched_nextrowtime</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/disman/schedule/schedCore.c?view=markup">agent/mibgroup/disman/schedule/schedCore.c</a></li></ul>
+<h2><span class="mw-headline" id="send_trap_pdu">send_trap_pdu</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_trap.c?view=markup">agent/agent_trap.c</a></li></ul>
+<h2><span class="mw-headline" id="send_v3trap">send_v3trap</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_trap.c?view=markup">agent/agent_trap.c</a></li></ul>
+<h2><span class="mw-headline" id="set_all_requests_error">set_all_requests_error</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/snmp_agent.c?view=markup">agent/snmp_agent.c</a></li></ul>
+<h2><span class="mw-headline" id="snmp_open_ex">snmp_open_ex</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_api.c?view=markup">snmplib/snmp_api.c</a></li></ul>
+<h2><span class="mw-headline" id="swrun_max_processes">swrun_max_processes</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/host/data_access/swinst.c?view=markup">agent/mibgroup/host/data_access/swinst.c</a>, <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/mibgroup/host/data_access/swrun.c?view=markup">agent/mibgroup/host/data_access/swrun.c</a></li></ul>
+<h2><span class="mw-headline" id="tdomain_unregister">tdomain_unregister</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_transport.c?view=markup">snmplib/snmp_transport.c</a></li></ul>
+<h2><span class="mw-headline" id="text_token_container_from_file">text_token_container_from_file</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/text_utils.c?view=markup">snmplib/text_utils.c</a></li></ul>
+<h2><span class="mw-headline" id="timeval_tticks">timeval_tticks</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/tools.c?view=markup">snmplib/tools.c</a></li></ul>
+<h2><span class="mw-headline" id="u64copy">u64copy</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/int64.c?view=markup">snmplib/int64.c</a></li></ul>
+<h2><span class="mw-headline" id="uatime_ready">uatime_ready</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/tools.c?view=markup">snmplib/tools.c</a></li></ul>
+<h2><span class="mw-headline" id="unregister_indexes">unregister_indexes</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/agent/agent_index.c?view=markup">agent/agent_index.c</a></li></ul>
+<h2><span class="mw-headline" id="unregister_sec_mod">unregister_sec_mod</span></h2>
+<ul><li> provided in file: <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmp_secmod.c?view=markup">snmplib/snmp_secmod.c</a></li></ul>
+
+<!-- 
+NewPP limit report
+Cached time: 20171116001611
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 2.143 seconds
+Real time usage: 2.238 seconds
+Preprocessor visited node count: 423/1000000
+Preprocessor generated node count: 428/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+
+<!-- Saved in parser cache with key n12694_wikidb:pcache:idhash:2133-0!*!0!!en!*!* and timestamp 20171116001608 and revision id 4739
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="../index70d8.html?title=Features&amp;oldid=4739">http://www.net-snmp.org/wiki/index.php?title=Features&amp;oldid=4739</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="Features.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="Talk_Features.html?title=Talk:Features&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="../index44aa.html?title=Features&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="../indexb360-2.html?title=Features&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="../index5db6.html?title=Special:UserLogin&amp;returnto=Features&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="../index9dbf.html?title=Special:UserLogin&amp;returnto=Features" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Features.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Features.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="../index5c8c.html?title=Features&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="../index70d8.html?title=Features&amp;oldid=4739" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="../indexbc09.html?title=Features&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 4 March 2011, at 19:19.</li>
+									<li id="privacy"><a href="Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":13900});
+} );</script></body><!-- Cached 20171116090550 -->
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/Features by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:24:16 GMT -->
+</html>

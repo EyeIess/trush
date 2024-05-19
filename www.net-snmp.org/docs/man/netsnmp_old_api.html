@@ -1,0 +1,144 @@
+Content-type: text/html
+
+<HTML>
+<!-- Mirrored from www.net-snmp.org/docs/man/netsnmp_old_api.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:36 GMT -->
+<HEAD><TITLE>Manpage of old_api</TITLE>
+</HEAD><BODY>
+<H1>old_api</H1>
+Section: net-snmp (3)<BR>Updated: 23 Sep 2009<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+old_api - 
+<P>
+
+Calls mib <B>module</B> code written in the old style of code.  
+<P>
+<A NAME="lbAC">&nbsp;</A>
+<H3>Functions</H3>
+
+<P>
+
+<BR>
+
+<B>netsnmp_mib_handler</B> * <B>get_old_api_handler</B> (void)
+
+<BR>
+
+<I>returns a old_api handler that should be the final calling handler. </I>
+
+<BR>
+
+int <B>netsnmp_register_old_api</B> (const char *moduleName, struct <B>variable</B> *var, size_t varsize, size_t numvars, oid *mibloc, size_t mibloclen, int priority, int range_subid, oid range_ubound, <B>netsnmp_session</B> *ss, const char *context, int timeout, int flags)
+
+<BR>
+
+<I>Registers an old API set into the mib </I><B>tree</B>. 
+
+<BR>
+
+int <B>netsnmp_register_mib_table_row</B> (const char *moduleName, struct <B>variable</B> *var, size_t varsize, size_t numvars, oid *mibloc, size_t mibloclen, int priority, int var_subid, <B>netsnmp_session</B> *ss, const char *context, int timeout, int flags)
+
+<BR>
+
+<I>registers a row within a mib table </I>
+
+<BR>
+
+int <B>netsnmp_old_api_helper</B> (<B>netsnmp_mib_handler</B> *handler, <B>netsnmp_handler_registration</B> *reginfo, <B>netsnmp_agent_request_info</B> *reqinfo, <B>netsnmp_request_info</B> *requests)
+
+<BR>
+
+<I>implements the old_api handler </I>
+
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>Detailed Description</H2>
+
+<P>
+
+Calls mib <B>module</B> code written in the old style of code. 
+<P>
+This is a backwards compatilibity <B>module</B> that allows code written in the old API to be run under the new handler based architecture. Use it by calling <B>netsnmp_register_old_api()</B>. 
+<A NAME="lbAE">&nbsp;</A>
+<H2>Function Documentation</H2>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H3><B>netsnmp_mib_handler</B>* get_old_api_handler (void)</H3>
+
+<P>
+
+returns a old_api handler that should be the final calling handler. Don't use this function. Use the <B>netsnmp_register_old_api()</B> function instead. 
+<P>
+
+Definition at line 38 of file old_api.c.
+<A NAME="lbAG">&nbsp;</A>
+<H3>int netsnmp_old_api_helper (<B>netsnmp_mib_handler</B> * handler, <B>netsnmp_handler_registration</B> * reginfo, <B>netsnmp_agent_request_info</B> * reqinfo, <B>netsnmp_request_info</B> * requests)</H3>
+
+<P>
+
+implements the old_api handler 
+<P>
+
+Definition at line 231 of file old_api.c.
+<A NAME="lbAH">&nbsp;</A>
+<H3>int netsnmp_register_mib_table_row (const char * moduleName, struct <B>variable</B> * var, size_t varsize, size_t numvars, oid * mibloc, size_t mibloclen, int priority, int var_subid, <B>netsnmp_session</B> * ss, const char * context, int timeout, int flags)</H3>
+
+<P>
+
+registers a row within a mib table 
+<P>
+
+Definition at line 112 of file old_api.c.
+<A NAME="lbAI">&nbsp;</A>
+<H3>int netsnmp_register_old_api (const char * moduleName, struct <B>variable</B> * var, size_t varsize, size_t numvars, oid * mibloc, size_t mibloclen, int priority, int range_subid, oid range_ubound, <B>netsnmp_session</B> * ss, const char * context, int timeout, int flags)</H3>
+
+<P>
+
+Registers an old API set into the mib <B>tree</B>. Functionally this mimics the old register_mib_context() function (and in fact the new register_mib_context() function merely calls this new old_api one). 
+<P>
+
+netsnmp_handler_registration_free(reginfo); already freed 
+<P>
+
+Definition at line 49 of file old_api.c.
+<A NAME="lbAJ">&nbsp;</A>
+<H2>Author</H2>
+
+<P>
+
+Generated automatically by Doxygen for net-snmp from the source code.
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DL>
+<DT><A HREF="#lbAC">Functions</A><DD>
+</DL>
+<DT><A HREF="#lbAD">Detailed Description</A><DD>
+<DT><A HREF="#lbAE">Function Documentation</A><DD>
+<DL>
+<DT><A HREF="#lbAF"><B>netsnmp_mib_handler</B>* get_old_api_handler (void)</A><DD>
+<DT><A HREF="#lbAG">int netsnmp_old_api_helper (<B>netsnmp_mib_handler</B> * handler, <B>netsnmp_handler_registration</B> * reginfo, <B>netsnmp_agent_request_info</B> * reqinfo, <B>netsnmp_request_info</B> * requests)</A><DD>
+<DT><A HREF="#lbAH">int netsnmp_register_mib_table_row (const char * moduleName, struct <B>variable</B> * var, size_t varsize, size_t numvars, oid * mibloc, size_t mibloclen, int priority, int var_subid, <B>netsnmp_session</B> * ss, const char * context, int timeout, int flags)</A><DD>
+<DT><A HREF="#lbAI">int netsnmp_register_old_api (const char * moduleName, struct <B>variable</B> * var, size_t varsize, size_t numvars, oid * mibloc, size_t mibloclen, int priority, int range_subid, oid range_ubound, <B>netsnmp_session</B> * ss, const char * context, int timeout, int flags)</A><DD>
+</DL>
+<DT><A HREF="#lbAJ">Author</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 19:05:38 GMT, September 28, 2009
+</BODY>
+
+<!-- Mirrored from www.net-snmp.org/docs/man/netsnmp_old_api.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:36 GMT -->
+</HTML>

@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=5.4.1_open_issues&oldid=3384 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:24:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>5.4.1 open issues - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"5.4.1_open_issues","wgTitle":"5.4.1 open issues","wgCurRevisionId":3384,"wgRevisionId":3384,"wgArticleId":1773,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"5.4.1_open_issues","wgRelevantArticleId":1773,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-5_4_1_open_issues skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">5.4.1 open issues</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"><div id="mw-revision-info">Revision as of 22:51, 15 May 2008 by <a href="http://www.net-snmp.org/wiki/index.php?title=User:Tanders&amp;action=edit&amp;redlink=1" class="new mw-userlink" title="User:Tanders (page does not exist)">Tanders</a> <span class="mw-usertoollinks">(<a href="http://www.net-snmp.org/wiki/index.php?title=User_talk:Tanders&amp;action=edit&amp;redlink=1" class="new" title="User talk:Tanders (page does not exist)">Talk</a> | <a href="http://www.net-snmp.org/wiki/index.php/Special:Contributions/Tanders" title="Special:Contributions/Tanders">contribs</a>)</span> <span class="comment">(<a href="#Open_issues_for_5.4.1">→</a>‎<span dir="auto"><span class="autocomment">Open issues for 5.4.1</span></span>)</span></div><br />
+				<div id="mw-revision-nav">(<a href="http://www.net-snmp.org/wiki/index.php?title=5.4.1_open_issues&amp;diff=prev&amp;oldid=3384" title="5.4.1 open issues">diff</a>) <a href="http://www.net-snmp.org/wiki/index.php?title=5.4.1_open_issues&amp;direction=prev&amp;oldid=3384" title="5.4.1 open issues">← Older revision</a> | Latest revision (diff) | Newer revision → (diff)</div></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>We try to collect significant open issues for the 5.4.1 release cycle here. Please add your contributions/comments and fix as much as you can!
+</p>
+<h2><span class="mw-headline" id="Open_issues_for_5.4.1">Open issues for 5.4.1</span></h2>
+<table width="100%" border="1">
+
+<tr align="center" bgcolor="lightblue">
+<td> Nr </td>
+<td> Issue </td>
+<td> Bug/patch </td>
+<td> Comment </td>
+<td> Assigned to
+</td></tr>
+<tr bgcolor="pink">
+<td> 1 </td>
+<td> ipAddressTable crash with double free </td>
+<td> Bug <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1733344">1733344</a> </td>
+<td> Crashes on FC6 with double free. Backtrace available. </td>
+<td> rstory
+</td></tr>
+<tr bgcolor="lightyellow">
+<td> 4 </td>
+<td> set O_NONBLOCK on Linux! </td>
+<td> Bug <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1718296">1718296</a> </td>
+<td> recvfrom can block if we don't set O_NONBLOCK on Linux </td>
+<td>&#160;?
+</td></tr>
+<tr bgcolor="lightyellow">
+<td> 5 </td>
+<td> HP-UX 11.23/IA64 build failure </td>
+<td> Bug <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1742278">1742278</a> </td>
+<td> Build fails in snmplib/system.c. Preprocessor output available. </td>
+<td> tanders/magfr?
+<p><br />
+</p>
+</td></tr>
+<tr bgcolor="lightyellow">
+<td> 6 </td>
+<td> hrStorageSize overflow </td>
+<td> Bug <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1743171">1743171</a> </td>
+<td> hrStorageSize is negative for large filesystems, although the MIB only allows values &gt;=0. </td>
+<td>&#160;?
+</td></tr>
+<tr bgcolor="lightyellow">
+<td> 7 </td>
+<td> error on subcontainer 'ia_addr' insert (-1) </td>
+<td> Bug <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1693039">1693039</a>, Patch <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1712645">1712645</a> </td>
+<td> Provide a more meaningful log message for duplicate IP addresses instead of spamming the log continuously. </td>
+<td> rstory?
+</td></tr>
+<tr bgcolor="lightyellow">
+<td> 8 </td>
+<td> ifTable transient interface handling </td>
+<td> Bug <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1238981">1238981</a>, Patch <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1513191">1513191</a> </td>
+<td> offer an (per-interface) config option how transient interfaces are handled in ifTable (same or different). A List FAQ.<br />This feels like a new feature, and not appropriate for 5.4.x? </td>
+<td> rstory?
+</td></tr>
+<tr bgcolor="lightyellow">
+<td> 9 </td>
+<td> Suppress error messages on SIGHUP </td>
+<td>&#160;? </td>
+<td> Remove the likely harmless, but annoying error messages on SIGHUP. A List FAQ  <br /> Handled for "extend" and "monitor" directives.  What others? </td>
+<td> rstory?/dts12
+</td></tr>
+<tr bgcolor="lightyellow">
+<td> 10 </td>
+<td> disman/event crash </td>
+<td> Bug <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1556259">1556259</a> </td>
+<td> Reported crashes in mteTrigger.c<br />This is a race condition between (typically high-volume) request handling and trap generation. Not realistic to address for 5.4.1? </td>
+<td> dts12
+</td></tr>
+<tr bgcolor="lightyellow">
+<td> 11 </td>
+<td> Solaris perl&lt;-&gt;host issues (due to largefiles) </td>
+<td> Bug <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1486366">1486366</a> </td>
+<td> Solaris system-supplied Perl is compiled with largefile support. The very same options break the build of the host module, though.<br />  At least detected (and embedded perl disabled) since 5.4.pre3. </td>
+<td>&#160;?
+</td></tr>
+<tr bgcolor="lightyellow">
+<td> 12 </td>
+<td> 64bit nlist </td>
+<td>  Bugs <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=148532">148532</a>, <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1484814">1484814</a>, <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1388562">1388562</a> </td>
+<td> nlist fails on 64bit systems (AIX, IRIX, Tru64). We need 64bit capable auto_nlist replacement routines. Every system has its own variant and changes are needed all over the net-snmp code. Stop-gap fix is specifying --without-kmem-usage which is now possible since 5.4.rc2. </td>
+<td> tanders
+</td></tr>
+<tr bgcolor="lightgreen">
+<td> </td>
+<td> "exec/sh /bin/true" hangs the agent </td>
+<td> Bug <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1745113">1745113</a> </td>
+<td> "exec truth /bin/true" causes the agent to hang while eating 100% cpu<br />Fixed in SVN revision 16594 </td>
+<td> dts12
+</td></tr>
+<tr bgcolor="lightgreen">
+<td> </td>
+<td> Perl linking </td>
+<td> - </td>
+<td> libperl is still incorrectly linked to the applications rather than libnetsnmpagent/libnetsnmptrapd. 5.4.1.rc1 allows to manually configure --enable-as-needed (default to off in 5.4, on in trunk). </td>
+<td> tanders
+</td></tr>
+<tr bgcolor="lightgreen">
+<td> </td>
+<td> OSX embedded perl broken </td>
+<td> Bug <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1377478">1377478</a> </td>
+<td> Embedded perl (and sometimes even the perl modules) seem to fail silently (and for unknown reasons) on OSX for some people, but not all. Should now be fixed in 5.4.1.rc1 when using proper libperl linking (--enable-as-needed). </td>
+<td> tanders
+</td></tr>
+<tr bgcolor="lightgreen">
+<td> </td>
+<td> AIX embedded perl build broken </td>
+<td> Bug <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1600099">1600099</a> </td>
+<td> Embedded perl fails to build on AIX, even with properly built shared libraries. It's a xlc/cc_r compiler issue. Now documented in README.aix. </td>
+<td> tanders
+</td></tr>
+<tr bgcolor="lightgreen">
+<td> </td>
+<td> library layering </td>
+<td> Bug <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1565496">1565496</a> (OSX), Patches <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1398873">1398873</a> <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1493522">1493522</a> </td>
+<td> Mostly fixed for 5.4.1.pre2. <a href="http://www.net-snmp.org/wiki/index.php/Library_layering" title="Library layering">Full story here.</a> </td>
+<td> tanders
+</td></tr>
+<tr bgcolor="lightgreen">
+<td> </td>
+<td> Python build </td>
+<td> - </td>
+<td> There's a Debian patch (#38) to allow for in-tree building of the Python modules. </td>
+<td> tanders
+</td></tr>
+<tr bgcolor="lightgreen">
+<td> </td>
+<td> snmptrap/trapsess send to port 161 </td>
+<td> Patch <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1620424">1620424</a> </td>
+<td> snmptrap and trapsess send to port 161 instead of port 162 by default. Patch from magfr available. </td>
+<td> magfr
+</td></tr>
+<tr bgcolor="lightgreen">
+<td> </td>
+<td> Linux CPU stats </td>
+<td> Bug <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1600261">1600261</a> </td>
+<td> Broken for Montavista Linux on XScale/ARM and possibly others. See bug description. Regression over 5.3.x.<br /> Appears to be very hardware-specific. Fixed in 5.4.x SVN (r15839). </td>
+<td> dts12
+</td></tr>
+<tr bgcolor="lightgreen">
+<td> </td>
+<td> fix perl compiler warnings </td>
+<td> - </td>
+<td> There are a number of nasty compiler warnings for the perl modules that needs to be dealt with. List provided to hardaker. (<a rel="nofollow" class="external free" href="http://pastebin.ca/196857">http://pastebin.ca/196857</a>) Dave has flagged three issues as potentially important after review (see list). Full fixes for SNMP.pm are in 5.4.x CVS. </td>
+<td> tanders
+</td></tr>
+<tr bgcolor="lightgreen">
+<td> </td>
+<td> OSX CPU stats </td>
+<td> Patch <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1600522">1600522</a> </td>
+<td> Neither cpu_sysctl (preferrable?) nor cpu_nlist compile on Darwin. rc1/rc2 ship cpu_null for Darwin. To be investigated! At least it doesn't seem to be a regression over 5.3.x, based on rstory's snmpwalk output for darwin7/8. <br />A new cpu_mach.c has been supplied as a patch after rc3!<br /> Too late for 5.4. Now in 5.4.x SVN. </td>
+<td> dts12/rstory/jalbert
+</td></tr>
+<tr bgcolor="lightgreen">
+<td>   </td>
+<td> libtool 1.5.24? </td>
+<td> - </td>
+<td> 5.4.1.pre3 ships with libtool 1.5.22. Is it worth upgrading to 1.5.24 (as in trunk)? Upgraded to 1.5.24 before 5.4.1.rc4. </td>
+<td> tanders
+</td></tr></table>
+<h2><span class="mw-headline" id="Documentation_and_testing_work_for_5.4.1">Documentation and testing work for 5.4.1</span></h2>
+<table width="100%">
+
+<tr align="center" bgcolor="lightblue">
+<td> Item </td>
+<td> Comment </td>
+<td> Assigned to
+</td></tr>
+<tr bgcolor="lightyellow">
+<td> manual pages </td>
+<td> quite a few manual pages currently ship with explicit XXX - to be filled in for 5.4.1 final. </td>
+<td> Volunteers?
+</td></tr>
+<tr bgcolor="lightyellow">
+<td> missing tests </td>
+<td> We're currently missing tests for at least:<br />&#160;disman/event monitoring, snmpvacm extensions, snmptranslate, snmpusm DH stuff, snmptrapd walk, ... </td>
+<td> Volunteers?
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514191014
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.016 seconds
+Real time usage: 0.018 seconds
+Preprocessor visited node count: 14/1000000
+Preprocessor generated node count: 26/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php?title=5.4.1_open_issues&amp;oldid=3384">http://www.net-snmp.org/wiki/index.php?title=5.4.1_open_issues&amp;oldid=3384</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/5.4.1_open_issues" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="http://www.net-snmp.org/wiki/index.php?title=Talk:5.4.1_open_issues&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="http://www.net-snmp.org/wiki/index.php?title=5.4.1_open_issues&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=5.4.1_open_issues&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=5.4.1+open+issues&amp;returntoquery=oldid%3D3384&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=5.4.1+open+issues&amp;returntoquery=oldid%3D3384" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/5.4.1_open_issues" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/5.4.1_open_issues" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="http://www.net-snmp.org/wiki/index.php?title=5.4.1_open_issues&amp;oldid=3384&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="http://www.net-snmp.org/wiki/index.php?title=5.4.1_open_issues&amp;oldid=3384" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=5.4.1_open_issues&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 15 May 2008, at 22:51.</li>
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":188});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=5.4.1_open_issues&oldid=3384 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:24:32 GMT -->
+</html>

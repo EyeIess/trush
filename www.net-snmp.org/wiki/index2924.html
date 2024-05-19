@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Test_Scripts&oldid=4478 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:28:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Test Scripts - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Test_Scripts","wgTitle":"Test Scripts","wgCurRevisionId":4478,"wgRevisionId":4478,"wgArticleId":2095,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Test_Scripts","wgRelevantArticleId":2095,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Test_Scripts skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Test Scripts</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"><div id="mw-revision-info">Revision as of 04:31, 16 August 2010 by <a href="http://www.net-snmp.org/wiki/index.php?title=User:Rstory&amp;action=edit&amp;redlink=1" class="new mw-userlink" title="User:Rstory (page does not exist)">Rstory</a> <span class="mw-usertoollinks">(<a href="http://www.net-snmp.org/wiki/index.php?title=User_talk:Rstory&amp;action=edit&amp;redlink=1" class="new" title="User talk:Rstory (page does not exist)">Talk</a> | <a href="http://www.net-snmp.org/wiki/index.php/Special:Contributions/Rstory" title="Special:Contributions/Rstory">contribs</a>)</span> <span class="comment">(<a href="#fulltests.2Fsupport.2Fsimple_TESTCONF.sh">→</a>‎<span dir="auto"><span class="autocomment">fulltests/support/simple_TESTCONF.sh</span></span>)</span></div><br />
+				<div id="mw-revision-nav">(<a href="http://www.net-snmp.org/wiki/index.php?title=Test_Scripts&amp;diff=prev&amp;oldid=4478" title="Test Scripts">diff</a>) <a href="http://www.net-snmp.org/wiki/index.php?title=Test_Scripts&amp;direction=prev&amp;oldid=4478" title="Test Scripts">← Older revision</a> | Latest revision (diff) | Newer revision → (diff)</div></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>Hints and tips on working with test scripts.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Environment_variables"><span class="tocnumber">1</span> <span class="toctext">Environment variables</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#fulltests.2Fsupport.2Fsimple_TESTCONF.sh"><span class="tocnumber">1.1</span> <span class="toctext">fulltests/support/simple_TESTCONF.sh</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#fulltests.2Fsupport.2Fsimple_eval_tools.sh"><span class="tocnumber">1.2</span> <span class="toctext">fulltests/support/simple_eval_tools.sh</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Functions"><span class="tocnumber">2</span> <span class="toctext">Functions</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#fulltests.2Fsupport.2Fsimple_eval_tools.sh_2"><span class="tocnumber">2.1</span> <span class="toctext">fulltests/support/simple_eval_tools.sh</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Environment_variables">Environment variables</span></h2>
+<h3><span class="mw-headline" id="fulltests.2Fsupport.2Fsimple_TESTCONF.sh">fulltests/support/simple_TESTCONF.sh</span></h3>
+<ul><li> SNMP_LIMIT_VMEM N&#160;; shell limit on memory used (bytes)</li>
+<li> SNMP_LIMIT_CPU N&#160;; shell limit on cpu used (seconds)</li>
+<li> SNMP_VERBOSE [0|1]</li>
+<li> SNMP_PREFER_NEAR_MIBS [0|1]&#160;; if set, set MIBDIRS=${srcdir}/mibs</li>
+<li> SNMP_TMPDIR dir&#160;; use dir for output/config (default /tmp/snmp-test-$testnum-$$)</li>
+<li> SNMP_TMP_PERSISTENTDIR dir&#160;; use dir for persistent dir</li>
+<li> SNMP_SAVE_TMPDIR [yes|no]&#160;; save SNMP_TMPDIR even for successful tests (no)</li>
+<li> SNMP_TESTDIR dir&#160;; where to look for tests</li>
+<li> SNMP_CONFIG_FILE path/xxx.conf&#160;; config file to use</li>
+<li> SNMPTRAPD_CONFIG_FILE path/xxx.conf&#160;; config file to use</li>
+<li> SNMPAPP_CONFIG_FILE path/xxx.conf&#160;; config file to use</li>
+<li> SNMP_SNMPD_PID_FILE path/xxx&#160;; pid file for app</li>
+<li> SNMP_SNMPD_LOG_FILE path/xxx&#160;; log file for app</li>
+<li> SNMP_SNMPTRAPD_PID_FILE path/xxx&#160;; pid file for app</li>
+<li> SNMP_SNMPTRAPD_LOG_FILE path/xxx&#160;; log file for app</li>
+<li> SNMP_AGENTX_PID_FILE path/xxx&#160;; pid file for app</li>
+<li> SNMP_AGENTX_LOG_FILE path/xxx&#160;; log file for app</li>
+<li> SNMP_FLAGS flags&#160;; use flags for all snmp commands (-d)</li>
+<li> SNMP_SNMPD_PORT N&#160;; use port N (default: probe for available high port)</li>
+<li> SNMP_SNMPTRAPD_PORT N&#160;; use port N (default: probe for available high port)</li>
+<li> SNMP_AGENTX_PORT N&#160;; use port N (default: probe for available high port)</li>
+<li> SNMP_TRANSPORT_SPEC X&#160;; use transport x (udp)</li>
+<li> SNMP_TEST_DEST addr&#160;; use address (127.0.0.1)</li></ul>
+<h3><span class="mw-headline" id="fulltests.2Fsupport.2Fsimple_eval_tools.sh">fulltests/support/simple_eval_tools.sh</span></h3>
+<ul><li> OK_TO_SAVE_RESULT [0|1]&#160;; save results (1)</li></ul>
+<h2><span class="mw-headline" id="Functions">Functions</span></h2>
+<h3><span class="mw-headline" id="fulltests.2Fsupport.2Fsimple_eval_tools.sh_2">fulltests/support/simple_eval_tools.sh</span></h3>
+<pre>HEADER "TEXT"
+</pre>
+<p>saves text to $SNMP_TMPDIR/invoked
+</p>
+<pre>OUTPUT "TEXT"
+</pre>
+<p>output test to console
+</p>
+<pre>SUCCESS "TEXT"
+</pre>
+<p>output "SUCCESS: TEXT"
+</p>
+<pre>FAILED
+</pre>
+<p>output "FAILED: TEXT"
+</p>
+<pre>SKIP "TEXT"
+</pre>
+<p>Calls REMOVETESTDATA, output "1..0 # SKIP TEXT" and exits
+</p>
+<pre>ISDEFINED X
+</pre>
+<p>checks (using grep) net-snmp-config.h, mib_module_config.h and agent_module_config.h for "^#define X"
+</p>
+<pre>SKIPIFNOT X
+</pre>
+<p>skips test if X is not defined
+</p>
+<pre>SKIPIF
+</pre>
+<p>skips test if X is defined
+</p>
+<pre>VERIFY X [Y] [Z] ...
+</pre>
+<p>checks for files X, Y, and Z and exits if any are missing
+</p>
+<pre>NEWOUTPUTFILE
+</pre>
+<p>bumps count in <i>junkoutputfile</i>
+</p>
+<pre>STARTTEST
+</pre>
+<p>creates new <i>junkoutputfile</i> or exits if it already exists
+</p>
+<pre>STOPTEST
+</pre>
+<p>removes <i>junkoutputfile</i>
+</p>
+<pre>REMOVETESTDATA
+</pre>
+<p>calls "rm -rf $SNMP_TMPDIR"
+</p>
+<pre>CAPTURE COMMAND [ARGS]
+</pre>
+<p>runs COMMAND (with optional ARGS) and captures output to file. Will output file contents if <i>SNMP_VERBOSE</i> is greater than 1.
+</p>
+<pre>DELAY
+</pre>
+<p>calls "sleep $SNMP_SLEEP"
+</p>
+<pre>SAVE_RESULTS
+</pre>
+<p>saves <i>return_value</i> to <i>real_return_value</i>
+</p>
+<pre>EXPECTRESULTS X
+</pre>
+<p>checks <i>snmp_last_test_result</i> against X and sets <i>return_value</i> to 0 if the match, and 1 otherwise.
+</p>
+<pre>CHECKCOUNT X
+</pre>
+<p>calls <i>CHECKFILECOUNT $junkoutputfile X</i>
+</p>
+<pre>CHECKVALUEIS A B C
+</pre>
+<p>call <i>GOOD C</i> or <i>BAD C</i>, depending on whether or not A = B
+</p>
+<pre>CHECKVALUEISNT
+</pre>
+<p>inverse of <i>CHECKVALUEIS</i>
+</p>
+<pre>CHECKFILECOUNT FILE N PAT
+</pre>
+<p>check FILE for N instances of PAT. N can also be <i>noerror</i> or <i>atleastone</i>.
+</p>
+<pre>CHECK X
+</pre>
+<p>calls <i>CHECKCOUNT 1 X</i>
+</p><p>.. many more ... to be continued
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20240514191803
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.004 seconds
+Real time usage: 0.005 seconds
+Preprocessor visited node count: 19/1000000
+Preprocessor generated node count: 24/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php?title=Test_Scripts&amp;oldid=4478">http://www.net-snmp.org/wiki/index.php?title=Test_Scripts&amp;oldid=4478</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/Test_Scripts" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="http://www.net-snmp.org/wiki/index.php?title=Talk:Test_Scripts&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="http://www.net-snmp.org/wiki/index.php?title=Test_Scripts&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=Test_Scripts&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=Test+Scripts&amp;returntoquery=oldid%3D4478&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=Test+Scripts&amp;returntoquery=oldid%3D4478" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/Test_Scripts" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/Test_Scripts" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="http://www.net-snmp.org/wiki/index.php?title=Test_Scripts&amp;oldid=4478&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="http://www.net-snmp.org/wiki/index.php?title=Test_Scripts&amp;oldid=4478" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=Test_Scripts&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 16 August 2010, at 04:31.</li>
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":167});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Test_Scripts&oldid=4478 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:28:28 GMT -->
+</html>

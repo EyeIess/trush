@@ -1,0 +1,495 @@
+Content-type: text/html
+
+<HTML>
+<!-- Mirrored from www.net-snmp.org/docs/man/mib_api.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:29 GMT -->
+<HEAD><TITLE>Manpage of MIB_API</TITLE>
+</HEAD><BODY>
+<H1>MIB_API</H1>
+Section: Net-SNMP (3)<BR>Updated: 06 Mar 2002<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+init_mib, add_mibdir, init_mib_internals,
+shutdown_mib,
+netsnmp_read_module, read_mib, read_all_mibs,
+add_module_replacement,
+read_objid, snmp_parse_oid, get_module_node,
+snmp_set_mib_errors, snmp_set_mib_warnings, snmp_set_save_descriptions,
+print_mib,
+print_objid, fprint_objid, snprint_objid,
+print_description, fprint_description, snprint_description - mib_api functions
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>#include &lt;<A HREF="file:/usr/include/net-snmp/mib_api.h">net-snmp/mib_api.h</A>&gt;</B>
+
+<P>
+
+<B>void init_mib(void);</B>
+
+<P>
+
+<B>int add_mibdir(const char *</B><I>dirname</I><B>);</B>
+
+<BR>
+
+<B>void init_mib_internals(void);</B>
+
+<P>
+
+<B>void shutdown_mib(void);</B>
+
+<A NAME="lbAD">&nbsp;</A>
+<H3>Reading and Parsing MIBs</H3>
+
+<P>
+
+<B>struct tree *netsnmp_read_module(const char *</B><I>name</I><B>);</B>
+
+<BR>
+
+<B>struct tree *read_mib(const char *</B><I>filename</I><B>);</B>
+
+<BR>
+
+<B>struct tree *read_all_mibs(void);</B>
+
+<P>
+
+<B>int add_module_replacement(const char *</B><I>old_module</I><B>,</B>
+
+<BR>
+
+<B>                           const char *</B><I>new_module</I><B>,</B>
+
+<BR>
+
+<B>                           const char *</B><I>tag</I><B>, int </B><I>len</I><B>);</B>
+
+<P>
+
+<B>void snmp_set_mib_warnings(int </B><I>level</I><B>);</B>
+
+<BR>
+
+<B>void snmp_set_mib_errors(  int </B><I>level</I><B>);</B>
+
+<BR>
+
+<B>void snmp_set_save_descriptions(int </B><I>save</I><B>);</B>
+
+<A NAME="lbAE">&nbsp;</A>
+<H3>Searching the MIB Tree</H3>
+
+<P>
+
+<B>int  read_objid(const char *</B><I>input</I><B>,</B>
+
+<BR>
+
+<B>                oid *</B><I>objid</I><B>, size_t *</B><I>objidlen</I><B>);</B>
+
+<BR>
+
+<B>oid *snmp_parse_oid(const char *</B><I>input</I><B>,</B>
+
+<BR>
+
+<B>                oid *</B><I>objid</I><B>, size_t *</B><I>objidlen</I><B>);</B>
+
+<BR>
+
+<B>int  get_module_node(const char *</B><I>name</I><B>, const char *</B><I>module</I><B>,</B>
+
+<BR>
+
+<B>                oid *</B><I>objid</I><B>, size_t *</B><I>objidlen</I><B>);</B>
+
+<A NAME="lbAF">&nbsp;</A>
+<H3>Output</H3>
+
+<P>
+
+<B>void  print_mib(FILE *</B><I>fp</I><B>);</B>
+
+<P>
+
+<B>void  print_objid(const oid *</B><I>objid</I><B>, size_t </B><I>objidlen</I><B>);</B>
+
+<BR>
+
+<B>void fprint_objid(FILE *</B><I>fp</I><B>,</B>
+
+<BR>
+
+<B>                  const oid *</B><I>objid</I><B>, size_t </B><I>objidlen</I><B>);</B>
+
+<BR>
+
+<B>int snprint_objid(char *</B><I>buf</I><B>, size_t </B><I>len</I><B>,</B>
+
+<BR>
+
+<B>                  const oid *</B><I>objid</I><B>, size_t </B><I>objidlen</I><B>);</B>
+
+<P>
+
+<B>void  print_description(const oid *</B><I>objid</I><B>, size_t </B><I>objidlen</I><B>, int </B><I>width</I><B>);</B>
+
+<BR>
+
+<B>void fprint_description(FILE *</B><I>fp</I><B>,</B>
+
+<BR>
+
+<B>                        const oid *</B><I>objid</I><B>, size_t </B><I>objidlen</I><B>, int </B><I>width</I><B>);</B>
+
+<BR>
+
+<B>int snprint_description(char *</B><I>buf</I><B>, size_t </B><I>len</I><B>,</B>
+
+<BR>
+
+<B>                        const oid *</B><I>objid</I><B>, size_t </B><I>objidlen</I><B>, int </B><I>width</I><B>);</B>
+
+<BR>
+
+<P>
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The functions dealing with MIB modules fall into four groups - those
+dealing with initialisation and shutdown, with reading in and parsing
+MIB files, with searching the MIB tree, and output routines.
+<A NAME="lbAH">&nbsp;</A>
+<H3>Initialisation and Shutdown</H3>
+
+<P>
+
+<B>add_mibdir</B>
+
+is used to add the specified directory to the path of locations which are
+searched for files containing MIB modules.
+Note that this does not actually load the MIB modules located
+in that directory, but is simply an initialisation step to make
+them available to
+<B>netsnmp_read_module</B>.
+
+This function returns a count of files found in the directory, or a -1
+if there is an error.  
+<P>
+
+<B>init_mib_internals</B>
+
+sets up the internal structures, preparatory to reading in MIB
+modules.  It should be called <I>after</I> all calls to
+<B>add_mibdir</B>,
+
+and before any calls to
+<B>netsnmp_read_module</B>.
+
+<P>
+
+<B>init_mib</B>
+
+is a convenience function that configures the MIB directory search path (using
+<B>add_mibdir</B>
+
+), set up the internal MIB framework (using
+<B>init_mib_internals</B>
+
+), and then loads the appropriate MIB modules (using
+<B>netsnmp_read_module</B> and <B>read_mib</B>).
+
+See the ENVIRONMENTAL VARIABLES section for details.
+<BR>
+
+It should be called before any other
+routine that manipulates or accesses the MIB tree.
+<P>
+
+<B>shutdown_mib</B>
+
+will clear the information that was gathered by 
+<B>netsnmp_read_module</B>, <B>add_mibdir</B> and <B>add_module_replacement</B>.
+
+It is strongly recommended that one does not invoke
+<B>shutdown_mib</B>
+
+while there are SNMP sessions being actively managed.
+<A NAME="lbAI">&nbsp;</A>
+<H3>Reading and Parsing MIBs</H3>
+
+<P>
+
+<B>netsnmp_read_module</B>
+
+takes the name of a MIB module (which need not be the same as the
+name of the file that contains the module), locates this within the
+configured list of MIB directories, and loads the definitions from
+the module into the active MIB tree.
+It also loads any MIB modules listed in the IMPORTS clause of this module.
+<P>
+
+<B>read_mib</B>
+
+is similar, but takes the name of the file containing the MIB module.
+Note that this file need not be located within the MIB directory
+search list (although any modules listed in the IMPORTS clause do).
+<P>
+
+<B>read_all_mibs</B>
+
+will read in all the MIB modules found on the MIB directory search list.
+<P>
+
+In general the parser is silent about what strangenesses it sees in
+the MIB files. To get warnings reported, call
+<B>snmp_set_mib_warnings</B>
+
+with a
+<I>level</I>
+
+of 1 (or 2 for even more warnings).
+<P>
+
+<B>add_module_replacement</B>
+
+can be used to allow new MIB modules to obsolete older ones, without
+needing to amend the IMPORTS clauses of other modules.  It takes the
+names of the old and new modules, together with an indication of which
+portions of the old module are affected.
+<DL COMPACT><DT><DD>
+<TABLE>
+<TR VALIGN=top><TD><B>tag </B></TD><TD><B> len </B></TD><TD><B> load the new module when:</B><BR></TD></TR>
+<TR VALIGN=top><TD>NULL </TD><TD> 0 </TD><TD> always (the old module is a strict subset of the new)<BR></TD></TR>
+<TR VALIGN=top><TD>name </TD><TD> 0 </TD><TD> for the given tag only<BR></TD></TR>
+<TR VALIGN=top><TD>name </TD><TD> non-0 </TD><TD> for any identifier with this prefix<BR></TD></TR>
+</TABLE>
+
+</DL>
+
+It can also be used to handle errors in the module identifiers used
+in MIB IMPORTS clauses (such as referring to
+<I>RFC1213</I>
+
+instead of
+<I>RFC1213-MIB</I>).
+
+<A NAME="lbAJ">&nbsp;</A>
+<H3>Searching the MIB Tree</H3>
+
+<P>
+
+<B>read_objid</B>
+
+takes a string containing a textual version of an object identifier
+(in either numeric or descriptor form), and transforms this into the
+corresponding list of sub-identifiers.  This is returned in the
+<I>output</I>
+
+parameter, with the number of sub-identifiers returned via
+<I>out_len</I>.
+
+When called, 
+<I>out_len</I>
+
+must hold the maximum length of the
+<I>output</I>
+
+array.
+If multiple object identifiers are being processed, then this
+length should be reset before each call.
+This function returns a value of 1 if it succeeds in parsing the string
+and 0 otherwise.
+<P>
+
+<B>snmp_parse_oid</B>
+
+is similar, but returns a pointer to the parsed OID buffer (or NULL).
+<P>
+
+<B>get_module_node</B>
+
+takes a descriptor and the name of a module, and returns the corresponding
+oid list, in the same way as
+<B>read_objid</B>
+
+above.
+<BR>
+
+If the module name is specified as &quot;ANY&quot;, then this routine will
+assume that the descriptor given is unique within the tree, and will
+return the matching entry.  If this assumption is invalid, then the
+behaviour as to which variable is returned is implementation
+dependent.
+<BR>
+
+<A NAME="lbAK">&nbsp;</A>
+<H3>Output</H3>
+
+<B>print_mib</B>
+
+will print out a representation of the currently active MIB tree to
+the specified FILE pointer.
+<P>
+
+<B>print_objid</B>
+
+will take an object identifier (as returned by
+<B>read_objid</B>, <B>snmp_parse_oid</B> or <B>get_module_node</B>),
+
+and prints the textual form of this OID to the standard output.
+<P>
+
+<B>fprint_objid</B>
+
+does the same, but prints to the FILE pointer specified by the initial
+parameter.
+<P>
+
+<B>snprint_objid</B>
+
+prints the same information into the buffer pointed to by
+<I>buf</I>
+
+which is of length
+<I>len</I>.
+
+It returns the number of characters printed, or -1 if the
+buffer was not large enough.  In the latter case,
+<I>buf</I>
+
+will typically contain a truncated version of the information (but
+this behaviour is not guaranteed).
+<P>
+
+<B>print_description</B>,
+
+<B>fprint_description</B>,
+
+and
+<B>snprint_description</B>
+
+take a similar object identifier
+and print out a version of the MIB definition for that object,
+together with the full OID. The
+<I>width</I>
+
+argument controls how the OID is layed out.
+<P>
+
+By default the parser does not save descriptions since they may be
+huge.  In order to be able to print them, it is necessary to invoke
+<B><A HREF="snmp_set_save_descriptions.html">snmp_set_save_descriptions</A>(1)</B><I>before</I>
+
+calling
+<B>init_mib</B>
+
+(or similar).
+<A NAME="lbAL">&nbsp;</A>
+<H2>ENVIRONMENT VARIABLES</H2>
+
+<P>
+
+The main use of environmental variables with respect to these API calls
+is to configure which MIB modules should be loaded, and where they are
+located.
+<DL COMPACT>
+<DT>MIBDIRS<DD>
+A colon separated list of directories to search for MIB modules.
+<BR>
+
+Default: /usr/local/share/snmp/mibs
+<BR>
+
+Used by
+<B>init_mib</B>, <B>netsnmp_read_module</B>, <B>read_all_mibs</B>
+
+and (implicitly) by
+<B>read_mib</B>.
+
+<DT>MIBS<DD>
+A colon separated list of MIB modules to load.
+<BR>
+
+The default list of modules will depend on how the Net-SNMP software
+was originally compiled, but is typically:
+IP-MIB:IF-MIB:TCP-MIB:UDP-MIB:SNMPv2-MIB:RFC1213-MIB:UCD-SNMP-MIB:HOST-RESOURCES-MIB
+<DT><DD>
+If the value of the
+<B>MIBS</B>
+
+environmental variable starts with a '+' character,
+then these MIB modules will be added to the default list.
+Otherwise these modules (plus any that they IMPORT from) will be loaded
+<I>instead</I>
+
+of the default list.
+<DT><DD>
+If the 
+<B>MIBS</B>
+
+environmental variable has the value
+<B>ALL</B> then <B>read_all_mibs</B>
+
+will be called to load the full collection of all available MIB modules.
+<DT><DD>
+Used by
+<B>init_mib</B>
+
+only.
+<DT>MIBFILES<DD>
+A colon separated list of files to load.
+<BR>
+
+Default: (none)
+<BR>
+
+Used by
+<B>init_mib</B>
+
+only.
+</DL>
+<A NAME="lbAM">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="snmp_api.html">snmp_api</A></B>(3),
+
+<B><A HREF="output_api.html">output_api</A></B>(3)
+
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DL>
+<DT><A HREF="#lbAD">Reading and Parsing MIBs</A><DD>
+<DT><A HREF="#lbAE">Searching the MIB Tree</A><DD>
+<DT><A HREF="#lbAF">Output</A><DD>
+</DL>
+<DT><A HREF="#lbAG">DESCRIPTION</A><DD>
+<DL>
+<DT><A HREF="#lbAH">Initialisation and Shutdown</A><DD>
+<DT><A HREF="#lbAI">Reading and Parsing MIBs</A><DD>
+<DT><A HREF="#lbAJ">Searching the MIB Tree</A><DD>
+<DT><A HREF="#lbAK">Output</A><DD>
+</DL>
+<DT><A HREF="#lbAL">ENVIRONMENT VARIABLES</A><DD>
+<DT><A HREF="#lbAM">SEE ALSO</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 19:05:37 GMT, September 28, 2009
+</BODY>
+
+<!-- Mirrored from www.net-snmp.org/docs/man/mib_api.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:29 GMT -->
+</HTML>

@@ -1,0 +1,526 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/docs/mibs/ucdDiskIOMIB.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:30:44 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../print1.css" />
+  </head>
+  <body background="../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../index.html">About</a><br />
+        
+
+        <a href="../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+
+        <a href="../readmefiles.html">Documentation</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../readmefiles.html"
+                  title="README files included with the package">README files</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../FAQ.html" 
+                  title="Frequently Asked Questions">FAQ</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../INSTALL.html" 
+                  title="Intall instructions for *nix systems">INSTALL</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../man/index.html"
+                  title="Man pages for utilities, daemons, api etc">Man pages</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="index.html"
+                  title="The MIB files distributed with Net-SNMP">MIBS</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../dev/agent/index.html"
+                  title="API documentation">API</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../../dev/projects.html">Development</a><br />
+        
+
+        <a href="../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+<h2>INTRODUCTION</h2>
+<ul>
+<p>
+This is a summary of information regarding objects below the <b>ucdDiskIOMIB</b>
+MIB object, which is defined within the <b>UCD-DISKIO-MIB</b> MIB
+document as <b>.1.3.6.1.4.1.2021.13.15</b>.
+</p>
+</ul>
+<h2>TABLE OF CONTENTS</h2>
+<ul>
+<h3><a href="#objects_Current">Current Objects</a></h3>
+<ul>
+<li><a href="#scalar_current">Scalars</a></li>
+  <li><a href="#diskIOTable">diskIOTable</a></li>
+</ul>
+<h3><a href="#objects_Deprecated">Deprecated Objects</a></h3>
+<ul>
+<li><a href="#scalar_notcurrent">Deprecated Scalars</a></li>
+</ul>
+<h3><a href="#notifications">Notifications</a></h3>
+<h3><a href="#textconventions">Textual Conventions</a></h3>
+<h3><a href="#treeview">Tree-based view</a></h3>
+</ul>
+<a name="objects_Current" />
+<a name="scalar_current" />
+<h2>SCALAR OBJECTS</h2>
+<ul>
+<table>
+<tr><th>Name</th><th>Type</th><th>Access</th><th>OID</th><th>Description</th></tr>
+</table>
+</ul>
+
+<h2>TABLE OBJECTS</h2>
+<a name="diskIOTable" /><h3>Table diskIOTable</h3>
+<ul>
+  <table>
+  <tr><td class="label">Table Name</td><td>diskIOTable</td></tr>
+  <tr><td class="label">In MIB</td><td>UCD-DISKIO-MIB</td></tr>
+  <tr><td class="label">Registered at OID</td><td>.1.3.6.1.4.1.2021.13.15.1</td></tr>
+  <tr><td class="label">Table Description</td>
+<td>
+<pre>
+Table of IO devices and how much data they have read/written.
+</pre>
+</td>
+</tr>
+<tr><td class="label"><a name="diskIOEntry" />Row Description</td>
+<td>
+<pre>
+An entry containing a device and its statistics.
+</pre>
+</td>
+</tr>
+  </table>
+
+  <h4>diskIOTable Indexes:</h4>
+
+<table>
+<tr class="label"><th>Name</th><th>Type</th><th>Access</th><th>Description</th></tr>
+  <tr>
+  <td>
+<a name="diskIOIndex" />
+1
+<br /><b>diskIOIndex</b>
+
+</td><td>
+  INTEGER32
+      <br />Legal values:
+        0 .. 65535
+
+  </td><td>ReadOnly</td>
+<td>
+<pre>
+Reference index for each observed device.
+</pre>
+</td>
+  </tr>
+</table>
+
+  <h4>Other diskIOTable Columns:</h4>
+<table>
+<tr class="label"><th>Name</th><th>Type</th><th>Access</th><th>Description</th></tr>
+  <tr>
+  <td>
+<a name="diskIODevice" />
+2
+<br /><b>diskIODevice</b>
+
+</td><td>
+  OCTETSTR
+      <br />Legal Lengths:
+        0 .. 255
+ <br>
+ <a href="#DisplayString">DisplayString</a>
+
+  </td><td>ReadOnly</td>
+<td>
+<p>
+Note: this object is based on the <a href="#DisplayString"> DisplayString TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+The name of the device we are counting/checking.
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="diskIONRead" />
+3
+<br /><b>diskIONRead</b>
+
+</td><td>
+  COUNTER
+
+  </td><td>ReadOnly</td>
+<td>
+<pre>
+The number of bytes read from this device since boot.
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="diskIONWritten" />
+4
+<br /><b>diskIONWritten</b>
+
+</td><td>
+  COUNTER
+
+  </td><td>ReadOnly</td>
+<td>
+<pre>
+The number of bytes written to this device since boot.
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="diskIOReads" />
+5
+<br /><b>diskIOReads</b>
+
+</td><td>
+  COUNTER
+
+  </td><td>ReadOnly</td>
+<td>
+<pre>
+The number of read accesses from this device since boot.
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="diskIOWrites" />
+6
+<br /><b>diskIOWrites</b>
+
+</td><td>
+  COUNTER
+
+  </td><td>ReadOnly</td>
+<td>
+<pre>
+The number of write accesses to this device since boot.
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="diskIOLA1" />
+9
+<br /><b>diskIOLA1</b>
+
+</td><td>
+  INTEGER32
+      <br />Legal values:
+        0 .. 100
+
+  </td><td>ReadOnly</td>
+<td>
+<pre>
+The 1 minute average load of disk (%)
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="diskIOLA5" />
+10
+<br /><b>diskIOLA5</b>
+
+</td><td>
+  INTEGER32
+      <br />Legal values:
+        0 .. 100
+
+  </td><td>ReadOnly</td>
+<td>
+<pre>
+The 5 minute average load of disk (%)
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="diskIOLA15" />
+11
+<br /><b>diskIOLA15</b>
+
+</td><td>
+  INTEGER32
+      <br />Legal values:
+        0 .. 100
+
+  </td><td>ReadOnly</td>
+<td>
+<pre>
+The 15 minute average load of disk (%)
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="diskIONReadX" />
+12
+<br /><b>diskIONReadX</b>
+
+</td><td>
+  COUNTER64
+
+  </td><td>ReadOnly</td>
+<td>
+<pre>
+The number of bytes read from this device since boot.
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="diskIONWrittenX" />
+13
+<br /><b>diskIONWrittenX</b>
+
+</td><td>
+  COUNTER64
+
+  </td><td>ReadOnly</td>
+<td>
+<pre>
+The number of bytes written to this device since boot.
+</pre>
+</td>
+  </tr>
+</table>
+</ul>
+<a name="objects_Deprecated" />
+  <hr />
+  <h1><font color="red">DEPRECATED OR OBSOLETE OR HISTORIC OBJECTS</font></h1>
+  <br>
+  <table class="deprecated"><tr><td>
+<a name="scalar_notcurrent" />
+<h2>SCALAR OBJECTS</h2>
+<ul>
+<table>
+<tr><th>Name</th><th>Type</th><th>Access</th><th>OID</th><th>Description</th></tr>
+</table>
+</ul>
+
+<h2>TABLE OBJECTS</h2>
+
+<br>
+  </table>
+<hr />
+<a name="notifications" />
+<h2>NOTIFICATIONS</h2>
+<ul>
+<p>
+</ul>
+
+
+<br>
+<hr />
+<a name="textconventions" />
+<h2>TEXTUAL CONVENTIONS</h2>
+<ul>
+<p>
+These TEXTUAL-CONVENTIONS are used in other parts of the document
+above.  They are SNMP's way of defining a datatype that is used
+repeatedly by other MIB objects.  Any implementation implementing
+objects that use one of these definitions must follow its DESCRIPTION
+clause as well as the DESCRIPTION clause of the object itself.
+</p>
+<table><tr class="label"><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td><a name="DisplayString">DisplayString</td><td>OCTETSTR</td><td><pre>Represents textual information taken from the NVT ASCII
+character set, as defined in pages 4, 10-11 of RFC 854.
+To summarize RFC 854, the NVT ASCII repertoire specifies:
+  - the use of character codes 0-127 (decimal)
+  - the graphics characters (32-126) are interpreted as
+                US ASCII
+  - NUL, LF, CR, BEL, BS, HT, VT and FF have the special
+                meanings specified in RFC 854
+  - the other 25 codes have no standard interpretation
+  - the sequence 'CR LF' means newline
+  - the sequence 'CR NUL' means carriage-return
+  - an 'LF' not preceded by a 'CR' means moving to the
+                same column on the next line.
+  - the sequence 'CR x' for any x other than LF or NUL is
+                illegal.  (Note that this also means that a string may
+                end with either 'CR LF' or 'CR NUL', but not with CR.)
+Any object defined using this syntax may not exceed 255
+            characters in length.</pre></td></tr>
+</table></ul>
+
+<a name="treeview" />
+<h2>TREE VIEW</h2>
+<p>Tree view generated by running: <b>snmptranslate -Tp UCD-DISKIO-MIB::ucdDiskIOMIB</b></p>
+<pre>
++--<a href="#ucdDiskIOMIB">ucdDiskIOMIB</a>(15)
+   |
+   +--<a href="#diskIOTable">diskIOTable</a>(1)
+      |
+      +--<a href="#diskIOEntry">diskIOEntry</a>(1)
+         |  Index: diskIOIndex
+         |
+         +-- -R-- Integer32 <a href="#diskIOIndex">diskIOIndex</a>(1)
+         |        Range: 0..65535
+         +-- -R-- String    <a href="#diskIODevice">diskIODevice</a>(2)
+         |        Textual Convention: <a href="#DisplayString">DisplayString</a>
+         |        Size: 0..255
+         +-- -R-- Counter   <a href="#diskIONRead">diskIONRead</a>(3)
+         +-- -R-- Counter   <a href="#diskIONWritten">diskIONWritten</a>(4)
+         +-- -R-- Counter   <a href="#diskIOReads">diskIOReads</a>(5)
+         +-- -R-- Counter   <a href="#diskIOWrites">diskIOWrites</a>(6)
+         +-- -R-- Integer32 <a href="#diskIOLA1">diskIOLA1</a>(9)
+         |        Range: 0..100
+         +-- -R-- Integer32 <a href="#diskIOLA5">diskIOLA5</a>(10)
+         |        Range: 0..100
+         +-- -R-- Integer32 <a href="#diskIOLA15">diskIOLA15</a>(11)
+         |        Range: 0..100
+         +-- -R-- Counter64 <a href="#diskIONReadX">diskIONReadX</a>(12)
+         +-- -R-- Counter64 <a href="#diskIONWrittenX">diskIONWrittenX</a>(13)
+</pre>
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/docs/mibs/ucdDiskIOMIB.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:30:44 GMT -->
+</html>
+
+
+

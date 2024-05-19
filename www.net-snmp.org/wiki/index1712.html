@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Library_layering&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:35:20 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Library layering - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Library_layering","wgTitle":"Library layering","wgCurRevisionId":4345,"wgRevisionId":4345,"wgArticleId":1713,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Library_layering","wgRelevantArticleId":1713,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load531d.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;printable=1&amp;skin=monobook" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="loadf198.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Library_layering skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Library layering</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Problem"><span class="tocnumber">1</span> <span class="toctext">Problem</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Discussion"><span class="tocnumber">2</span> <span class="toctext">Discussion</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Status"><span class="tocnumber">3</span> <span class="toctext">Status</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Library_linking"><span class="tocnumber">4</span> <span class="toctext">Library linking</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#References"><span class="tocnumber">5</span> <span class="toctext">References</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Problem">Problem</span></h2>
+<p>The three libraries libnetsnmpmibs, libnetsnmphelpers and libnetsnmpagent have circular dependencies instead of what should be a clean mibs -&gt; helpers -&gt; agent -&gt; main library dependency chain:
+</p>
+<ul><li> libnetsnmpmibs depends on libnetsnmphelpers</li>
+<li> both of these depend  on libnetsnmpagent</li>
+<li> all 3 of these depend  on libnetsnmp</li></ul>
+<p>There are only a few problematic calls/functions that violate this dependency chain:
+</p>
+<table width="100%">
+
+<tr align="center" bgcolor="lightblue">
+<td> Critical dependency </td>
+<td> Symbol/function </td>
+<td> implementation in ... (under agent/) </td>
+<td> caller(s) (under agent/) </td>
+<td> Comment
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> agent -&gt; mibs </td>
+<td> make_tempfile </td>
+<td> mibgroup/util_funcs.c </td>
+<td> mibgroup/utilities/execute.c:run_shell_command() </td>
+<td> fixed in 5.4+ by introducing netsnmp_mktemp
+</td></tr>
+<tr align="left" bgcolor="pink">
+<td> agent -&gt; helpers </td>
+<td> netsnmp_init_helpers </td>
+<td> helpers/all_helpers.c </td>
+<td> snmp_vars.c:init_agent() </td>
+<td> fix by e.g. merging agent and helpers libs (see below)
+</td></tr>
+<tr align="left" bgcolor="pink">
+<td> agent -&gt; helpers </td>
+<td> netsnmp_register_null </td>
+<td> helpers/null.c </td>
+<td> agent_registry.c:setup_tree() </td>
+<td> ditto
+</td></tr>
+<tr align="left" bgcolor="pink">
+<td> agent -&gt; helpers </td>
+<td> netsnmp_register_null_context </td>
+<td> helpers/null.c </td>
+<td> agent_registry.c:netsnmp_subtree_load() </td>
+<td> ditto
+</td></tr>
+<tr align="left" bgcolor="pink">
+<td> agent -&gt; helpers </td>
+<td> netsnmp_register_old_api </td>
+<td> helpers/old_api.c </td>
+<td> agent_registry.c:register_mib_context() </td>
+<td> ditto
+</td></tr>
+<tr align="left" bgcolor="pink">
+<td> agent -&gt; helpers </td>
+<td> netsnmp_bulk_to_next_fix_requests </td>
+<td> helpers/bulk_to_next.c </td>
+<td> mibgroup/agentx/master.c:agentx_got_response() </td>
+<td> ditto
+</td></tr>
+<tr align="left" bgcolor="pink">
+<td> agent -&gt; helpers </td>
+<td> netsnmp_get_bulk_to_next_handler </td>
+<td> helpers/bulk_to_next.c </td>
+<td> agent_handler.c:netsnmp_register_handler() </td>
+<td> ditto
+</td></tr>
+<tr align="center" bgcolor="lightblue">
+<td> other strange dependencies </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td>
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> libnetsnmptrapd -&gt; snmptrapd </td>
+<td> extern int dropauth </td>
+<td> apps/snmptrapd.c </td>
+<td> apps/snmptrapd_handlers.c:print_handler() </td>
+<td> Move 'dropauth' from snmptrapd.c to snmptrapd_handlers.c. Done for MAIN.
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> libnetsnmptrapd -&gt; snmptrapd </td>
+<td> extern int SyslogTrap </td>
+<td> apps/snmptrapd.c </td>
+<td> apps/snmptrapd_handlers.c:syslog_handler() </td>
+<td> Move 'SyslogTrap' from snmptrapd.c to snmptrapd_handlers.c. Done for MAIN.
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> libnetsnmptrapd -&gt; snmptrapd </td>
+<td> event_input </td>
+<td> apps/snmptrapd.c </td>
+<td> apps/snmptrapd_handlers.c:event_handler() </td>
+<td> Drop "-e"/printEventNumbers support altogether. Done for MAIN.
+</td></tr></table>
+<h2><span class="mw-headline" id="Discussion">Discussion</span></h2>
+<p>Most library layering issues have been solved without any drastic changes (see below for details). There's just one issue left: the circular dependency between the agent and helpers lib.
+</p><p>As of May 2010, we seem to have three choices:
+</p>
+<ul><li> Merge agent and helpers libraries into one libagent library again. Pro: maintain backward-compatibility. Con: agent lib will have increased footprint (+50%). Need to keep empty helpers lib around which is odd.</li>
+<li> Remove the netsnmp_init_helpers() call from init_agent() and require agent developers to add an explicit call to netsnmp_init_helpers() after every call to init_agent(). Pro: keep libraries separate. Small change for developers. Con: backwards-incompatible change.</li>
+<li> Clever compiler constructs to check if helpers lib has been loaded before agent lib. Con: non-portable (gcc-ism)!! Pro: maintain backward-compatibility, keep libraries separate.</li></ul>
+<p>The choice under discussion is basically between the first and second approach, unless somebody can come up with a portable third approach.
+</p>
+<h2><span class="mw-headline" id="Status">Status</span></h2>
+<table width="100%">
+
+<tr align="center" bgcolor="lightblue">
+<td> what? </td>
+<td> who? </td>
+<td> status?
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> rework Makefiles to build libnetsnmp, libnetsnmpagent, libnetsnmphelpers and libnetsnmpmibs in that order </td>
+<td> tanders </td>
+<td> done for 5.4+
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> duplicate libnetsnmpmibs' make_tempfile as netsnmp_mktemp in libnetsnmp </td>
+<td> tanders </td>
+<td> done for 5.4+
+</td></tr>
+<tr align="left" bgcolor="pink">
+<td> resolve circular dependency between agent and helpers libs (e.g. by merging them) </td>
+<td> tbd </td>
+<td> TODO (trunk only)
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> fix libnetsnmptrapd-&gt;snmptrapd dependencies by moving integer variables to the library and dropping the event_input code </td>
+<td> dts12, tanders </td>
+<td> done for MAIN
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> rework Makefiles/configure to fullfil internal and external library dependencies correctly (see below) </td>
+<td> tanders </td>
+<td> done (5.4+)
+</td></tr>
+<tr align="left" bgcolor="lightyellow">
+<td> link libperl to <b>libnetsnmpagent</b> instead of snmpd/snmptrapd. <i>How to check at configure time whether linking of libperl to a shared library works?</i> </td>
+<td> tanders </td>
+<td> forced for 5.5 (w/o additional configure check, r16529); protected by --enable-as-needed in 5.4 (r16569)
+</td></tr></table>
+<h2><span class="mw-headline" id="Library_linking">Library linking</span></h2>
+<p>Here are the details of what library linking dependencies need to be cleaned up.
+</p>
+<table width="100%">
+
+<tr align="center" bgcolor="lightblue">
+<td> shared object/library/binary </td>
+<td> currently linked against </td>
+<td> dependencies to be added/removed </td>
+<td> Comment
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> libnetsnmp.so </td>
+<td> -lcrypto </td>
+<td> ditto </td>
+<td> ok
+</td></tr>
+<tr align="left" bgcolor="lightyellow">
+<td> libnetsnmpagent.so </td>
+<td> - </td>
+<td> -lnetsnmp -lperl
+<p>Linking a shared library against libperl turns out to be tricky since existing PERLLDOPTS reference the static DynaLoader.a which isn't always portable.
+</p>
+</td>
+<td> r16529 (5.5) + r16569 (5.4.1.c1)
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> libnetsnmphelpers.so </td>
+<td> - </td>
+<td> -lnetsnmpagent -lnetsnmp </td>
+<td> r16419 (5.4+)
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> libnetsnmpmibs.so </td>
+<td> - </td>
+<td> -lnetsnmphelpers -lnetsnmpagent -lnetsnmp </td>
+<td> r16419 (5.4+)
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td>  </td>
+<td>  </td>
+<td> -ldl -lrpm -lrpmio -lpopt  -lz ... </td>
+<td> r16399 (5.4+)
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> libnetsnmptrapd.so </td>
+<td> - </td>
+<td> -lnetsnmpmibs -lnetsnmp -lperl </td>
+<td> r16419 (5.4+), r16529 (Perl, 5.5)
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> Perl SNMP/SNMP.so </td>
+<td> -lnetsnmp -lcrypto (net-snmp-config --libs) </td>
+<td> remove "-crypto" in "net-snmp-config --libs" </td>
+<td> r16419 (5.4+)
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> Perl NetSNMP/ASN/ASN.so </td>
+<td> see SNMP.so </td>
+<td> see SNMP.so </td>
+<td> r16419 (5.4+)
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> Perl NetSNMP/OID/OID.so </td>
+<td> see SNMP.so </td>
+<td> see SNMP.so </td>
+<td> r16419 (5.4+)
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> Perl NetSNMP/agent/default_store/default_store.so </td>
+<td> see SNMP.so </td>
+<td> see SNMP.so </td>
+<td> r16419 (5.4+)
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> Perl NetSNMP/default_store/default_store.so </td>
+<td> see SNMP.so </td>
+<td> see SNMP.so </td>
+<td> r16419 (5.4+)
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> Perl NetSNMP/TrapReceiver/TrapReceiver.so </td>
+<td> - </td>
+<td> -lnetsnmptrapd -lnetsnmpagent -lnetsnmp </td>
+<td> r16419 (5.4+)
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> Perl NetSNMP/agent/agent.so </td>
+<td> <b>almost everything</b> </td>
+<td> remove: most external references (dependencies are in libnetsnmpmibs instead)
+</td>
+<td> fixed for 5.4.1.pre3/5.5
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> Python netsnmp/client_intf.so </td>
+<td> see SNMP.so  </td>
+<td> see SNMP.so </td>
+<td> r16419 (5.4+)
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> agent/snmpd </td>
+<td> <b>almost everything</b> </td>
+<td> remove: most external references (incl. Perl; dependencies are in libnetsnmpmibs/libnetsnmpagent instead) </td>
+<td> fixed for 5.4.1.pre3/5.5
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> apps/snmptrapd </td>
+<td> <b>almost everything</b> </td>
+<td> remove: most external references (incl. Perl; dependencies are in libnetsnmpmibs/libnetsnmpagent instead) </td>
+<td> fixed for 5.4.1.pre3/5.5
+</td></tr>
+<tr align="left" bgcolor="lightgreen">
+<td> apps/snmp{get,set,walk,...} </td>
+<td> <b>almost everything</b> </td>
+<td> remove: most external references (not needed at all) </td>
+<td> fixed for 5.4.1.pre2/5.5
+</td></tr></table>
+<h2><span class="mw-headline" id="References">References</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="../support/irc/net-snmp.log.2006-10-19.html">2006-10-19 #net-snmp IRC log</a> (starting at 07:12:29)</li>
+<li> Bug <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1565496">#1565496</a>: library layering violation</li>
+<li> Bug <a rel="nofollow" class="external text" href="http://sf.net/support/tracker.php?aid=1619827">#1619827</a>: building with --as-needed is broken</li>
+<li> perl5-porters thread <a rel="nofollow" class="external text" href="http://groups.google.com/group/perl.perl5.porters/browse_thread/thread/ea44bccf8f25696f/beb1ede98e8edea6">"how to best link libperl to a shared library?"</a></li></ul>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514175958
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.014 seconds
+Real time usage: 0.017 seconds
+Preprocessor visited node count: 18/1000000
+Preprocessor generated node count: 24/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="index5540.html?title=Library_layering&amp;oldid=4345">http://www.net-snmp.org/wiki/index.php?title=Library_layering&amp;oldid=4345</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="index.php/Library_layering.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="index.php/Talk_Library_layering.html?title=Talk:Library_layering&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="indexe306.html?title=Library_layering&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="index545e.html?title=Library_layering&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="index1853.html?title=Special:UserLogin&amp;returnto=Library+layering&amp;returntoquery=printable%3Dyes&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="index602d.html?title=Special:UserLogin&amp;returnto=Library+layering&amp;returntoquery=printable%3Dyes" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="index.php/Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="index.php/Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="index.php/Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="index.php/FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="index.php/Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="index.php/Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="index.php/Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="index.php/Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="index.php/Special_WhatLinksHere/Library_layering.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="index.php/Special_RecentChangesLinked/Library_layering.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="index.php/Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-permalink"><a href="index5540.html?title=Library_layering&amp;oldid=4345" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="indexceef.html?title=Library_layering&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 25 May 2010, at 23:10.</li>
+									<li id="privacy"><a href="index.php/Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="index.php/Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="index.php/Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":132});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Library_layering&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:35:22 GMT -->
+</html>

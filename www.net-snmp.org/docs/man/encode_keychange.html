@@ -1,0 +1,116 @@
+Content-type: text/html
+
+<HTML>
+<!-- Mirrored from www.net-snmp.org/docs/man/encode_keychange.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:29 GMT -->
+<HEAD><TITLE>Manpage of encode_keychange</TITLE>
+</HEAD><BODY>
+<H1>encode_keychange</H1>
+Section: Net-SNMP (1)<BR>Updated: 16 Nov 2006<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+encode_keychange - produce the KeyChange string for SNMPv3
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>encode_keychange </B>
+
+-t md5|sha1
+[<I>OPTIONS</I>]
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>encode_keychange</B>
+
+produces a KeyChange string using the old and new passphrases 
+as described in Section 5 of RFC 2274 &quot;User-based Security Model (USM) for 
+version 3 of the Simple Network Management Protocol (SNMPv3)&quot;. <B>-t</B>
+option is mandatory and specifies the hash transform type to use.
+<P>
+The transform is used to convert passphrase to master key for a given
+user (Ku), convert master key to the localized key (Kul), and to hash the 
+old Kul with the random bits. 
+<P>
+Passphrases are obtained by examining a number of sources until success
+(in order listed):
+<DL COMPACT>
+<DT><DD>
+command line options (see 
+<B>-N</B>
+
+and
+<B>-O</B>
+
+options below);
+<DT><DD>
+the file 
+<B>$HOME/.snmp/passphrase.ek</B>
+
+which should only contain two lines with old and new passphrase;
+<DT><DD>
+standard input <B>-or-</B>  user input from the terminal.
+</DL>
+<P>
+
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<DL COMPACT>
+<DT><B>-E</B> [0x]&lt;<I>engineID</I>&gt; EngineID used for Kul generation.<DD>
+&lt;<I>engineID</I>&gt; is intepreted as a hex string when preceeded by 0x,
+otherwise it is treated as a text string. If no &lt;<I>engineID</I>&gt; is
+specified, it is constructed from the first IP address for the local
+host.
+<DT><B>-f</B><DD>
+Force passphrases to be read from standard input.
+<DT><B>-h</B><DD>
+Display the help message.
+<DT><B>-N</B> &quot;&lt;<I>new_passphrase</I>&gt;&quot;<DD>
+Passphrase used to generate the new Ku.
+<DT><B>-O</B> &quot;&lt;<I>old_passphrase</I>&gt;&quot;<DD>
+Passphrase used to generate the old Ku.
+<DT><B>-P</B><DD>
+Turn off the prompt for passphrases when getting data from standard input.
+<DT><B>-v</B><DD>
+Be verbose.
+<DT><B>-V</B><DD>
+Echo passphrases to terminal.
+</DL>
+<P>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<A NAME="lbAF">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+The localized key method is defined in RFC 2274, Sections 2.6 and A.2, and
+originally documented in
+<DL COMPACT>
+<DT><DD>
+U. Blumenthal, N. C. Hien, B. Wijnen,
+&quot;Key Derivation for Network Management Applications&quot;,
+IEEE Network Magazine, April/May issue, 1997.
+<P>
+</DL>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">SEE ALSO</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 19:05:39 GMT, September 28, 2009
+</BODY>
+
+<!-- Mirrored from www.net-snmp.org/docs/man/encode_keychange.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:29 GMT -->
+</HTML>

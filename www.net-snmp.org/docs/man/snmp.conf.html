@@ -1,0 +1,445 @@
+Content-type: text/html
+
+<HTML>
+<!-- Mirrored from www.net-snmp.org/docs/man/snmp.conf.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:28 GMT -->
+<HEAD><TITLE>Manpage of SNMP.CONF</TITLE>
+</HEAD><BODY>
+<H1>SNMP.CONF</H1>
+Section: Net-SNMP (5)<BR>Updated: 29 Jun 2005<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+snmp.conf - configuration files for the Net-SNMP applications
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+Applications built using the Net-SNMP libraries typically use one or
+more configuration files to control various aspects of their operation.
+These files (<B>snmp.conf</B> and <B>snmp.local.conf</B>) can be located
+in one of several locations, as described in the <I><A HREF="snmp_config.html">snmp_config</A>(5)</I>
+manual page.
+<P>
+
+In particular, /usr/local/etc/snmp/snmp.conf is a common file,
+containing the settings shared by all users of the system.
+~/.snmp/snmp.conf is a personal file, with the settings
+specific to a particular user.
+<A NAME="lbAD">&nbsp;</A>
+<H2>IMPORTANT NOTE</H2>
+
+Several of these directives may contain sensitive information
+(such as pass phrases).  Configuration files that include such
+settings should only be readable by the user concerned.
+<P>
+
+As well as application-specific configuration tokens, there are
+several directives that relate to standard library behaviour,
+relevant to most Net-SNMP applications.  Many of these correspond
+to standard command-line options, which are described in the
+<I><A HREF="snmpcmd.html">snmpcmd</A>(1)</I> manual page.
+<P>
+
+These directives can be divided into several distinct groups.
+<A NAME="lbAE">&nbsp;</A>
+<H2>CLIENT BEHAVIOUR</H2>
+
+<DL COMPACT>
+<DT>defDomain application domain<DD>
+The transport domain that should be used for a certain application type unless
+something else is specified.
+<DT>defTarget application domain target<DD>
+The target that should be used for connections to a certain application if the
+connection should be in a specific domain.
+<DT>defaultPort PORT<DD>
+defines the default UDP port that client SNMP applications will
+attempt to connect to.  This can be overridden by explicitly
+including a port number in the <I>AGENT</I> specification.
+See the <I><A HREF="snmpcmd.html">snmpcmd</A>(1)</I> manual page for more details.
+<DT><DD>
+If not specified, the default value for this token is 161.
+<DT>defVersion (1|2c|3)<DD>
+defines the default version of SNMP to use.
+This can be overridden using the <B>-v</B> option.
+<DT>defCommunity STRING<DD>
+defines the default community to use for SNMPv1 and SNMPv2c requests.
+This can be overridden using the <B>-c</B> option.
+
+<DT>alias NAME DEFINITION<DD>
+Creates an aliased tied to NAME for a given transport definition.  The
+alias can the be referred to using an alias: prefix.  Eg, a line of
+&quot;alias here udp:127.0.0.1:6161&quot; would allow you to use a destination
+host of &quot;alias:here&quot; instead of &quot;udp:127.0.0.1:6161&quot;.  This becomes
+more useful with complex transport addresses involving IPv6 addresses,
+etc.
+<DT>dumpPacket yes<DD>
+defines whether to display a hexadecimal dump of the raw SNMP requests
+sent and received by the application.
+This is equivalent to the <B>-d</B> option.
+<DT>doDebugging (1|0)<DD>
+turns on debugging for all applications run if set to 1.
+
+
+
+
+<DT>debugTokens TOKEN[,TOKEN...]<DD>
+defines the debugging tokens that should be turned on when
+<I>doDebugging</I> is set.
+This is equivalent to the <B>-D</B> option.
+
+<DT>16bitIDs yes<DD>
+restricts requestIDs, etc to 16-bit values.
+<DT><DD>
+The SNMP specifications define these ID fields as 32-bit quantities,
+and the Net-SNMP library typically initialises them to random values
+for security.
+However certain (broken) agents cannot handle ID values greater than
+2^16 - this option allows interoperability with such agents.
+<DT>clientaddr [&lt;transport-specifier&gt;:]&lt;transport-address&gt;<DD>
+specifies the source address to be used by command-line applications
+when sending SNMP requests. See <I><A HREF="snmpcmd.html">snmpcmd</A>(1)</I> for more information
+about the format of addresses.
+<DT><DD>
+This value is also used by <B>snmpd</B> when generating notifications.
+
+
+
+
+<DT>clientRecvBuf INTEGER<DD>
+specifies the desired size of the buffer to be used when receiving
+responses to SNMP requests.
+If the OS hard limit is lower than the <I>clientRecvBuf</I> value,
+then this will be used instead.
+Some platforms may decide to increase the size of the buffer
+actually used for internal housekeeping.
+<DT><DD>
+This directive will be ignored if the platforms does not support
+<I>setsockopt()</I>.
+<DT>clientSendBuf INTEGER<DD>
+is similar to <I>clientRecvBuf</I>, but applies to the size
+of the buffer used when sending SNMP requests.
+<DT>noRangeCheck yes<DD>
+disables the validation of varbind values against the MIB definition
+for the relevant OID.
+This is equivalent to the <B>-Ir</B> option.
+<DT><DD>
+This directive is primarily relevant to the <B>snmpset</B> command,
+but will also apply to any application that calls <I>snmp_add_var()</I>
+
+with a non-NULL value.
+
+
+
+<DT>noTokenWarnings<DD>
+disables warnings about unknown config file tokens.
+<DT>reverseEncodeBER (1|yes|true|0|no|false)<DD>
+controls how the encoding of SNMP requests is handled.
+<DT><DD>
+The default behaviour is to encode packets starting from the end of
+the PDU and working backwards.
+This directive can be used to disable this behaviour, and build
+the encoded request in the (more obvious) forward direction.
+<DT><DD>
+It should not normally be necessary to change this setting, as
+the encoding is basically the same in either case - but working
+backwards typically produces a slightly more efficient encoding,
+and hence a smaller network datagram.
+
+
+
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>SNMPv3 SETTINGS</H2>
+
+<DL COMPACT>
+<DT>defSecurityName STRING<DD>
+defines the default security name to use for SNMPv3 requests.
+This can be overridden using the <B>-u</B> option.
+<DT>defSecurityLevel noAuthNoPriv|authNoPriv|authPriv<DD>
+defines the default security level to use for SNMPv3 requests.
+This can be overridden using the <B>-l</B> option.
+<DT><DD>
+If not specified, the default value for this token is <I>noAuthNoPriv</I>.
+
+
+
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT>Note:<DD>
+<I>authPriv</I> is only available if the software has been compiled
+to use the OpenSSL libraries.
+</DL>
+</DL>
+
+<DT>defPassphrase STRING<DD>
+<DT>defAuthPassphrase STRING<DD>
+<DT>defPrivPassphrase STRING<DD>
+define the default authentication and privacy pass phrases to use
+for SNMPv3 requests.
+These can be overridden using the <B>-A</B> and <B>-X</B> options respectively.
+<DT><DD>
+The 
+<B>defPassphrase</B>
+
+value will be used for the authentication and/or privacy pass phrases
+if either of the other directives are not specified.
+<DT>defAuthType MD5|SHA<DD>
+<DT>defPrivType DES|AES<DD>
+define the default authentication and privacy protocols to use for
+SNMPv3 requests.
+These can be overridden using the <B>-a</B> and <B>-x</B> options respectively.
+<DT><DD>
+If not specified, SNMPv3 requests will default to MD5 authentication
+and DES encryption.
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT>Note:<DD>
+If the software has not been compiled to use the OpenSSL libraries,
+then only MD5 authentication is supported.
+Neither SHA authentication nor any form of encryption will be available.
+</DL>
+</DL>
+
+<DT>defContext STRING<DD>
+defines the default context to use for SNMPv3 requests.
+This can be overridden using the <B>-n</B> option.
+<DT><DD>
+If not specified, the default value for this token is the default context
+(i.e. the empty string &quot;&quot;).
+<DT>defSecurityModel STRING<DD>
+defines the security model to use for SNMPv3 requests.
+The default value is &quot;usm&quot; which is the only widely 
+used security model for SNMPv3.
+<DT>defAuthMasterKey 0xHEXSTRING<DD>
+<DT>defPrivMasterKey 0xHEXSTRING<DD>
+<DT>defAuthLocalizedKey 0xHEXSTRING<DD>
+<DT>defPrivLocalizedKey 0xHEXSTRING<DD>
+define the (hexadecimal) keys to be used for SNMPv3 secure communications.
+SNMPv3 keys are frequently derived from a passphrase, as discussed in
+the <I>defPassphrase</I> section above. However for improved security a
+truely random key can be generated and used instead (which would
+normally has better entropy than a password unless it is
+amazingly long).
+The directives are equivalent to the short-form
+command line options <B>-3m</B>, <B>-3M</B>, <B>-3k</B>, and <B>-3K</B>.
+<DT><DD>
+Localized keys are
+master keys which have been converted to a unique key which is only
+suitable for on particular SNMP engine (agent).  The length of the key
+needs to be appropriate for the authentication or encryption type
+being used (auth keys: MD5=16 bytes, SHA1=20 bytes;
+priv keys: DES=16 bytes (8
+bytes of which is used as an IV and not a key), and AES=16 bytes).
+<DT>sshtosnmpsocketperms PATH<DD>
+Sets the path of the sshtosnmp socket created by an application
+(e.g. snmpd) listening for incoming ssh connections through the
+sshtosnmp unix socket.
+<DT>sshtosnmpsocketperms MODE [OWNER [GROUP]]<DD>
+Sets the mode, owner and group of the sshtosnmp socket created by
+an application (e.g. snmpd) listening for incoming ssh connections
+through the sshtosnmp unix socket.  The socket needs to be read/write
+privileged for SSH users that are allowed to connect to the SNMP
+service (VACM access still needs to be granted as well, most likely
+through the TSM security model).
+
+
+
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>SERVER BEHAVIOUR</H2>
+
+<DL COMPACT>
+<DT>persistentDir DIRECTORY<DD>
+defines the directory where <B>snmpd</B> and <B>snmptrapd</B> store
+persistent configuration settings.
+<DT><DD>
+If not specified, the persistent directory defaults to
+/var/net-snmp
+<DT>noPersistentLoad yes<DD>
+<DT>noPersistentSave yes<DD>
+disable the loading and saving of persistent configuration information.
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT>Note:<DD>
+This will break SNMPv3 operations (and other behaviour that relies
+on changes persisting across application restart).  Use With Care.
+</DL>
+</DL>
+
+<DT>tempFilePattern PATTERN<DD>
+defines a filename template for creating temporary files,
+for handling input to and output from external shell commands.
+Used by the <I>mkstemp()</I> and <I>mktemp()</I> functions.
+<DT><DD>
+If not specified, the default pattern is &quot;/tmp/snmpdXXXXXX&quot;.
+<DT>serverRecvBuf INTEGER<DD>
+specifies the desired size of the buffer to be used when receiving
+incoming SNMP requests.
+If the OS hard limit is lower than the <I>serverRecvBuf</I> value,
+then this will be used instead.
+Some platforms may decide to increase the size of the buffer
+actually used for internal housekeeping.
+<DT><DD>
+This directive will be ignored if the platforms does not support
+<I>setsockopt()</I>.
+<DT>serverSendBuf INTEGER<DD>
+is similar to <I>serverRecvBuf</I>, but applies to the size
+of the buffer used when sending SNMP responses.
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H2>MIB HANDLING</H2>
+
+<DL COMPACT>
+<DT>mibdirs DIRLIST<DD>
+specifies a list of directories to search for MIB files.
+This operates in the same way as the <B>-M</B> option -
+see <I><A HREF="snmpcmd.html">snmpcmd</A>(1)</I> for details.
+Note that this value can be overridden by the
+<B>MIBDIRS</B>
+
+environment variable, and the <B>-M</B> option.
+<DT>mibs MIBLIST<DD>
+specifies a list of MIB modules (not files) that should be loaded.
+This operates in the same way as the <B>-m</B> option -
+see <I><A HREF="snmpcmd.html">snmpcmd</A>(1)</I> for details.
+Note that this list can be overridden by the
+<B>MIBS</B>
+
+environment variable, and the <B>-m</B> option.
+<DT>mibfile FILE<DD>
+specifies a (single) MIB file to load, in addition to the
+list read from the <I>mibs</I> token (or equivalent configuration).
+Note that this value can be overridden by the
+<B>MIBFILES</B>
+
+environment variable.
+<DT>showMibErrors (1|yes|true|0|no|false)<DD>
+whether to display MIB parsing errors.
+<DT>commentToEOL (1|yes|true|0|no|false)<DD>
+whether MIB parsing should be strict about comment termination.
+Many MIB writers assume that ASN.1 comments extend to the end of
+the text line, rather than being terminated by the next &quot;--&quot; token.
+This token can be used to accept such (strictly incorrect) MIBs.
+<BR>
+
+Note that this directive was previous (mis-)named <I>strictCommentTerm</I>,
+but with the reverse behaviour from that implied by the name.
+This earlier token is still accepted for backwards compatibility.
+<DT>mibAllowUnderline (1|yes|true|0|no|false)<DD>
+whether to allow underline characters in MIB object names and
+enumeration values.
+This token can be used to accept such (strictly incorrect) MIBs.
+<DT>mibWarningLevel INTEGER<DD>
+the minimum warning level of the warnings printed by the MIB parser.
+</DL>
+<A NAME="lbAI">&nbsp;</A>
+<H2>OUTPUT CONFIGURATION</H2>
+
+<DL COMPACT>
+<DT>logTimestamp (1|yes|true|0|no|false)<DD>
+Whether the commands should log timestamps with their error/message
+logging or not.  Note that output will not look as pretty with
+timestamps if the source code that is doing the logging does
+incremental logging of messages that are not line buffered before
+being passed to the logging routines.  This option is only used when file logging is active. 
+<DT>printNumericEnums (1|yes|true|0|no|false)<DD>
+Equivalent to
+<B>-Oe</B>.
+
+<DT>printNumericOids (1|yes|true|0|no|false)<DD>
+Equivalent to
+<B>-On</B>.
+
+<DT>dontBreakdownOids (1|yes|true|0|no|false)<DD>
+Equivalent to
+<B>-Ob</B>.
+
+<DT>escapeQuotes (1|yes|true|0|no|false)<DD>
+Equivalent to
+<B>-OE</B>.
+
+<DT>quickPrinting (1|yes|true|0|no|false)<DD>
+Equivalent to
+<B>-Oq</B>.
+
+<DT>printValueOnly (1|yes|true|0|no|false)<DD>
+Equivalent to
+<B>-Ov</B>.
+
+<DT>dontPrintUnits (1|yes|true|0|no|false)<DD>
+Equivalent to
+<B>-OU</B>.
+
+<DT>numericTimeticks (1|yes|true|0|no|false)<DD>
+Equivalent to
+<B>-Ot</B>.
+
+<DT>printHexText (1|yes|true|0|no|false)<DD>
+Equivalent to
+<B>-OT</B>.
+
+<DT>hexOutputLength integer<DD>
+Specifies where to break up the output of hexadecimal strings.  
+Set to 0 to disable line breaks.  Defaults to 16.
+<DT>suffixPrinting (0|1|2)<DD>
+The value 1 is equivalent to
+<B>-Os</B>
+
+and the value 2 is equivalent to
+<B>-OS</B>.
+
+<DT>oidOutputFormat (1|2|3|4|5|6)<DD>
+Maps -O options as follow: -Os=1, -OS=2, -Of=3, -On=4, -Ou=5.
+The value 6 has no matching -O option. It suppresses output.
+<DT>extendedIndex (1|yes|true|0|no|false)<DD>
+Equivalent to
+<B>-OX</B>.
+
+<DT>noDisplayHint (1|yes|true|0|no|false)<DD>
+Disables the use of DISPLAY-HINT information when parsing indices and
+values to set. Equivalent to
+<B>-Ih</B>.
+
+</DL>
+<A NAME="lbAJ">&nbsp;</A>
+<H2>FILES</H2>
+
+/usr/local/etc/snmp/snmp.conf,
+/usr/local/etc/snmp/snmp.local.conf - common configuration settings
+<BR>
+
+~/.snmp/snmp.conf - user-specific configuration settings
+<A NAME="lbAK">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<A HREF="snmpcmd.html">snmpcmd</A>(1).
+
+
+
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">IMPORTANT NOTE</A><DD>
+<DT><A HREF="#lbAE">CLIENT BEHAVIOUR</A><DD>
+<DT><A HREF="#lbAF">SNMPv3 SETTINGS</A><DD>
+<DT><A HREF="#lbAG">SERVER BEHAVIOUR</A><DD>
+<DT><A HREF="#lbAH">MIB HANDLING</A><DD>
+<DT><A HREF="#lbAI">OUTPUT CONFIGURATION</A><DD>
+<DT><A HREF="#lbAJ">FILES</A><DD>
+<DT><A HREF="#lbAK">SEE ALSO</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 19:05:39 GMT, September 28, 2009
+</BODY>
+
+<!-- Mirrored from www.net-snmp.org/docs/man/snmp.conf.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:28 GMT -->
+</HTML>

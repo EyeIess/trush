@@ -1,0 +1,311 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-5/toolkit/mfd/if-mib/ifTable/mib2c.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:05:12 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../../../../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../../../../../print1.css" />
+  </head>
+  <body background="../../../../../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../../../../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../../../../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../../../../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../../../../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../../../../../index.html">About</a><br />
+        
+
+        <a href="../../../../../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../../../../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../../../index.html"
+                  title="Net-SNMP v5 tutorial">Version 5.x</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../../../../tutorial-4/index.html"
+                  title="UCD-SNMP v4 tutorial">Version 4.x</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../../../../../../docs/readmefiles.html">Documentation</a><br />
+        
+
+        <a href="../../../../../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../../../../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../../../../../../dev/projects.html">Development</a><br />
+        
+
+        <a href="../../../../../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../../../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>MFD: Running mib2c</title>
+  </head>
+
+  <body bgcolor="#ffffff">
+    <!-- ========================================================= -->
+    <h1>Running mib2c: Generating the template code</h1>
+    <p>
+      The first step is to generate the code. First, create a new directory
+      for the code. For this tutorial, e will assume you have a directory
+      named <code>ifTable</code>. You have two options to generate the
+      code. One is <i>mib2c</i>, and the other is <i>mib2c-update</i>.
+      If you are simply walking through the the tutorial as a learning
+      experience, run <i>mib2c</i> directly. If you are just using the
+      tutorial as a guide for generating your own code, I recommend
+      using the <i>mib2c-update</i> script, so you can take advantage
+      enhancements or bug-fixes in future releases. See the
+      <a href="../../../mib2c/mib2c-update.html">mib2c-update page</a> for
+      more details.
+    </p><p>
+      For the tutorial, we will use <i>mib2c</i> directly.
+    </p>
+    <table><tr><td width=20></td><td><code>&nbsp</code></td><td bgcolor=CCCCCC>
+            <code><pre>$ <font color=blue>mib2c -c mib2c.mfd.conf ifTable</font>
+writing to ifTable.h
+| +-> Processing table ifTable
+writing to -
+writing to default-table-ifTable.m2d
+writing to ifTable.c
+writing to ifTable_data_get.h
+writing to ifTable_data_get.c
+| |   +-> Processing nonindex ifDescr
+| |   +-> Processing nonindex ifType
+| |   +-> Processing nonindex ifMtu
+| |   +-> Processing nonindex ifSpeed
+| |   +-> Processing nonindex ifPhysAddress
+| |   +-> Processing nonindex ifAdminStatus
+| |   +-> Processing nonindex ifOperStatus
+| |   +-> Processing nonindex ifLastChange
+| |   +-> Processing nonindex ifInOctets
+| |   +-> Processing nonindex ifInUcastPkts
+| |   +-> Processing nonindex ifInNUcastPkts
+| |   +-> Processing nonindex ifInDiscards
+| |   +-> Processing nonindex ifInErrors
+| |   +-> Processing nonindex ifInUnknownProtos
+| |   +-> Processing nonindex ifOutOctets
+| |   +-> Processing nonindex ifOutUcastPkts
+| |   +-> Processing nonindex ifOutNUcastPkts
+| |   +-> Processing nonindex ifOutDiscards
+| |   +-> Processing nonindex ifOutErrors
+| |   +-> Processing nonindex ifOutQLen
+| |   +-> Processing nonindex ifSpecific
+writing to ifTable_data_set.h
+writing to ifTable_data_set.c
+| |   +-> Processing nonindex ifAdminStatus
+writing to ifTable_oids.h
+writing to ifTable_enums.h
+writing to ifTable_interface.h
+writing to ifTable_interface.c
+writing to ifTable_data_access.h
+writing to ifTable_data_access.c
+writing to ifTable-README-FIRST.txt
+writing to ifTable-README-ifTable.txt
+writing to ifTable_doxygen.conf
+running indent on ifTable_data_get.c
+running indent on ifTable_data_get.h
+running indent on ifTable_interface.c
+running indent on ifTable_interface.h
+running indent on ifTable_enums.h
+running indent on ifTable_oids.h
+running indent on ifTable_data_access.c
+running indent on ifTable_data_set.c
+running indent on ifTable_data_access.h
+running indent on ifTable.c
+running indent on ifTable.h
+running indent on ifTable_data_set.h
+</td></tr><tr><td width=20></td><td><code>&nbsp</code></td><td bgcolor=CCCCCC>
+            <code><pre>$ <font color=blue>mib2c -c mfd-makefile.m2m ifTable</font>
+writing to ifTable_Makefile
+/usr/share/snmp/mib2c-data/mfd-makefile.m2m:120 contained a line that started with a @ but did not match any mib2c configuration tokens.
+(maybe missing the trailing @?)
+/usr/share/snmp/mib2c-data/mfd-makefile.m2m:120 [       @set -e; $(CC) -M $(COPTS) $(CFLAGS) $(CPPFLAGS) $< \
+]
+</td></tr><tr><td width=20></td><td><code>&nbsp</code></td><td bgcolor=CCCCCC>
+            <code><pre>$ <font color=blue>mib2c -c subagent.m2c ifTable</font>
+writing to ifTable_subagent.c
+running indent on ifTable_subagent.c
+    </td></tr></table>
+    <p>
+      When mib2c finishes, you should have several files. Here is a
+      list, with links to the complete source for this tutorial:
+    </p>
+    <table><tr><td width=20></td><td bgcolor=CCCCCC><pre>
+<a href="source/default-table-ifTable.m2d">default-table-ifTable.m2d</a>
+<a href="source/ifTable-README-FIRST.txt">ifTable-README-FIRST.txt
+<a href="source/ifTable-README-ifTable.txt">ifTable-README-ifTable.txt
+<a href="source/ifTable.c">ifTable.c</a>
+<a href="source/ifTable.h">ifTable.h</a>
+<a href="source/ifTable_data_access.c">ifTable_data_access.c</a>
+<a href="source/ifTable_data_access.h">ifTable_data_access.h</a>
+<a href="source/ifTable_data_get.c">ifTable_data_get.c</a>
+<a href="source/ifTable_data_get.h">ifTable_data_get.h</a>
+<a href="source/ifTable_data_set.c">ifTable_data_set.c</a>
+<a href="source/ifTable_data_set.h">ifTable_data_set.h</a>
+<a href="source/ifTable_enums.h">ifTable_enums.h</a>
+<a href="source/ifTable_interface.c">ifTable_interface.c</a>
+<a href="source/ifTable_interface.h">ifTable_interface.h</a>
+<a href="source/ifTable_oids.h">ifTable_oids.h</a>
+<a href="source/ifTable_Makefile">ifTable_Makefile</a>
+<a href="source/ifTable_subagent.c">ifTable_subagent.c</a>
+</pre></td></tr></table>
+    <p><var>ifTable-README-FIRST.txt</var> contains a basic overview of MFD,
+      similar to this tutorial. The basic steps outlined in
+      <var>ifTable-README-ifTable.txt</var> were used to write this tutorial.
+    </p><p>
+      Another new idea introduced with the MFD configuration files is user
+      settable variables to influence the code which is generated. The file
+      <var>default-table-ifTable.m2d</var> contains some of the values
+      used when mib2 was run. (
+      <i>Note: this file is only generated if it does not already exist.
+        It is not updated during subsequent runs of mib2c.</i>
+      ) For this simple example, we are going to use all the defaults. In
+      later tutorials, we'll look more closely at these mib2c variables.
+    </p>
+    <!-- ========================================================= -->
+    <p></p>
+    <font size=+1>
+      <a href="structures.html">Next: data structures</a> |
+      <a href="index.html">Back: Introduction</a> |
+      <a href="../index.html">Up: IF-MIB Tutorials</a>
+    </font>
+    <!-- ========================================================= -->
+    <hr>
+    rstory at freesnmp dot com<br>
+Version $Revision$
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../../../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../../../../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-5/toolkit/mfd/if-mib/ifTable/mib2c.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:05:19 GMT -->
+</html>
+
+
+

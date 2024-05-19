@@ -1,0 +1,414 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Simple_Application&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:23:45 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>View source for TUT:Simple Application - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"TUT:Simple_Application","wgTitle":"TUT:Simple Application","wgCurRevisionId":5853,"wgRevisionId":0,"wgArticleId":1750,"wgIsArticle":!1,"wgIsRedirect":!1,"wgAction":"edit","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!0,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"TUT:Simple_Application","wgRelevantArticleId":1750,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-TUT_Simple_Application skin-monobook action-edit">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">View source for TUT:Simple Application</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub">← <a href="http://www.net-snmp.org/wiki/index.php/TUT:Simple_Application" title="TUT:Simple Application">TUT:Simple Application</a></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text"><p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://www.net-snmp.org/wiki/index.php?title=Net-SNMP_Wiki:Users&amp;action=edit&amp;redlink=1" class="new" title="Net-SNMP Wiki:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<hr />
+<p>You can view and copy the source of this page.
+</p><textarea readonly="" accesskey="," id="wpTextbox1" cols="80" rows="25" style="" lang="en" dir="ltr" name="wpTextbox1">Here we discuss how to write a simple application. Its only purpose is to retrieve the value of a variable from a remote host. 
+
+{{TUT:File-Table-Top-and-basics}}
+| [http://www.net-snmp.org/tutorial/tutorial-5/toolkit/demoapp/snmpdemoapp.c snmpdemoapp.c] || The C source code
+|}
+
+First, we must include some header files. After you've installed the net-snmp toolkit, some easy to use header files have been installed that handle most situations you'll run into. We start our snmpdemoapp.c file with these: 
+
+  #include &lt;net-snmp/net-snmp-config.h>
+  #include &lt;net-snmp/net-snmp-includes.h>
+
+
+Next, we'll set up some local definitions that you can toggle if you want to use SNMPv3 or SNMPv1. By default, we're setting up for SNMPv3 here (which is more complex) so make sure you've read about the  SNMPv3 Options  first. If you don't want to deal with SNMPv3 for now, turn the #define statement below to #undef. 
+
+  /* change the word "define" to "undef" to try the (insecure) SNMPv1 version */
+  #define DEMO_USE_SNMP_VERSION_3
+  
+  #ifdef DEMO_USE_SNMP_VERSION_3
+  #include "net-snmp/transform_oids.h"
+  const char *our_v3_passphrase = "The Net-SNMP Demo Password";
+  #endif
+
+
+Next, we declare our main() routine and the variables we need: 
+
+
+  main() {
+
+
+The first variables we need to declare: 
+
+* '''struct snmp_session:''' A structure that holds information about who we're going to be talking to. We need to declare 2 of these, one to fill with information, and second which is a pointer returned by the library. 
+
+* '''struct snmp_pdu:''' This structure will hold all of the information that we're going to send to the remote host. We'll declare a second for the information that they are going to send back. 
+
+* '''oid:''' An OID is going to hold the location of the information which we want to retrieve. It'll need a size as well. 
+
+* '''struct variable_list:''' This will hold the variables that we want to manipulate via SNMP. 
+
+    struct snmp_session session, *ss;
+    struct snmp_pdu *pdu;
+    struct snmp_pdu *response;
+            
+    oid anOID[MAX_OID_LEN];
+    size_t anOID_len = MAX_OID_LEN;
+    
+    struct variable_list *vars;
+    int status;
+    
+Then, the first thing we must do is to initialize the snmp library: 
+
+    /*
+     * Initialize the SNMP library
+     */
+    init_snmp("snmpapp");
+    
+Next, we'll initialize a session that describes who we want to talk to, what version of SNMP we want to use, how to authenticate to it, etc. A full definition of this session can be found in the net-snmp/snmp_api.h header file. 
+
+We've picked SNMPv3 by default above, which is a bit more complex to understand so make sure you've read 
+
+     /*
+     * Initialize a "session" that defines who we're going to talk to
+     */
+    snmp_sess_init( &amp;session );                   /* set up defaults */
+    session.peername = "test.net-snmp.org";
+    
+    /* set up the authentication parameters for talking to the server */
+    
+    #ifdef DEMO_USE_SNMP_VERSION_3
+    
+    /* Use SNMPv3 to talk to the experimental server */
+    
+    /* set the SNMP version number */
+    session.version=SNMP_VERSION_3;
+         
+    /* set the SNMPv3 user name */
+    session.securityName = strdup("MD5User");
+    session.securityNameLen = strlen(session.securityName);
+    
+    /* set the security level to authenticated, but not encrypted */
+    session.securityLevel = SNMP_SEC_LEVEL_AUTHNOPRIV;
+    
+    /* set the authentication method to MD5 */
+    session.securityAuthProto = usmHMACMD5AuthProtocol;
+    session.securityAuthProtoLen = sizeof(usmHMACMD5AuthProtocol)/sizeof(oid);
+    session.securityAuthKeyLen = USM_AUTH_KU_LEN;
+     
+    /* set the authentication key to a MD5 hashed version of our
+       passphrase "The Net-SNMP Demo Password" (which must be at least 8
+       characters long) */
+    if (generate_Ku(session.securityAuthProto,
+                    session.securityAuthProtoLen,
+                    (u_char *) our_v3_passphrase, strlen(our_v3_passphrase),
+                    session.securityAuthKey,
+                    &amp;session.securityAuthKeyLen) != SNMPERR_SUCCESS) {
+        snmp_perror(argv[0]);
+        snmp_log(LOG_ERR,
+                 "Error generating Ku from authentication pass phrase. \n");
+        exit(1);
+    }
+    
+    #else /* we'll use the insecure (but simpler) SNMPv1 */
+    
+    /* set the SNMP version number */
+    session.version = SNMP_VERSION_1;
+    
+    /* set the SNMPv1 community name used for authentication */
+    session.community = "demopublic";
+    session.community_len = strlen(session.community);
+    
+    #endif /* SNMPv1 */
+   
+After we have established the session, we then need to open it. Opening it returns a pointer to another session that we should use
+for all our future calls:
+
+    /* windows32 specific initialization (is a noop on unix) */
+    SOCK_STARTUP;
+    
+    /*
+     * Open the session
+     */
+    ss = snmp_open(&amp;session);                     /* establish the session */
+
+If the session failed to open properly, print an error message and exit: 
+
+    if (!ss) {
+        snmp_perror("ack");
+        snmp_log(LOG_ERR, "something horrible happened!!!\n");
+        exit(2);
+    }
+
+Next we create the PDU the we are going to send to the remote host
+when we request information. In this case, we're going to create a
+SNMP-GET pdu, which is what the snmpget program uses, for instance. It
+retrieves a value for each oid that you initialize it with.
+
+    /*
+     * Create the PDU for the data for our request.
+     *   1) We're going to GET the system.sysDescr.0 node.
+     */
+    pdu = snmp_pdu_create(SNMP_MSG_GET);
+    
+So, let's fill it with our requested oid. Let's get the system.sysDescr.0 variable for this example. There are numerous ways you could create the oid in question. You could put in the numerical unsigned integer values yourself into the anOID array we created above, or you could use one of the following function calls to do it. We recommend the first one (get_node), as it is the most powerful and accepts more types of OIDs. 
+
+    read_objid(".1.3.6.1.2.1.1.1.0", anOID, &amp;anOID_len);
+    
+    #if OTHER_METHODS
+    get_node("sysDescr.0", anOID, &amp;anOID_len);
+    read_objid("system.sysDescr.0", anOID, &amp;anOID_len);
+    #endif
+    
+So we add this oid, with a NULL value to the PDU using the following statement: (all oids should be paired with a NULL value for outgoing requests for information. For an SNMP-SET pdu, we'd put in the value we wanted to set the oid to). 
+
+    snmp_add_null_var(pdu, anOID, anOID_len);
+    
+Finally, we can send out the request using the session pointer and the pdu and we get back a status and the response, which is stored in the newly malloced response pdu pointer. 
+
+    /*
+     * Send the Request out.
+     */
+    status = snmp_synch_response(ss, pdu, &amp;response);
+    
+Now we can examine the information, assuming our request was fulfilled properly. If not, we'll print the error that caused the problem:
+
+    /*
+     * Process the response.
+     */
+    if (status == STAT_SUCCESS &amp;&amp; response->errstat == SNMP_ERR_NOERROR) {
+      /*
+       * SUCCESS: Print the result variables
+       */
+    
+Let's print the pdu's variable to the terminal using the print_variable routine: 
+
+      for(vars = response->variables; vars; vars = vars->next_variable)
+        print_variable(vars->name, vars->name_length, vars);
+        
+Then, for kicks, lets get the information and manipulate it ourselves (checking to make sure it's the type we're expecting (a string) first): 
+
+      /* manipulate the information ourselves */
+      for(vars = response->variables; vars; vars = vars->next_variable) {
+        int count=1;
+        if (vars->type == ASN_OCTET_STR) {
+          char *sp = malloc(1 + vars->val_len);
+          memcpy(sp, vars->val.string, vars->val_len);
+          sp[vars->val_len] = '\0';
+          printf("value #%d is a string: %s\n", count++, sp);
+          free(sp);
+        }
+        else
+          printf("value #%d is NOT a string! Ack!\n", count++);
+      }
+        
+Finally, print a description of the error in case there was one: 
+
+    } else {
+      /*
+       * FAILURE: print what went wrong!
+       */
+     
+      if (status == STAT_SUCCESS)
+        fprintf(stderr, "Error in packet\nReason: %s\n",
+                snmp_errstring(response->errstat));
+      else
+        snmp_sess_perror("snmpget", ss);
+     
+    }
+        
+Last, but not least, free the response, as it is now our job to do so. Exit cleanly by calling snmp_close() as well: 
+
+    /*
+     * Clean up:
+     *  1) free the response.
+     *  2) close the session.
+     */
+    if (response)
+      snmp_free_pdu(response);
+    snmp_close(ss);
+     
+    /* windows32 specific cleanup (is a noop on unix) */
+    SOCK_CLEANUP;
+    
+  } /* main() */
+    
+Ok, we're done. Let's compile it (using the Makefile distributed above): 
+
+  % '''make snmpdemoapp'''
+  cc -I/usr/local/include -g   -c snmpdemoapp.c -o snmpdemoapp.o
+  cc -o snmpdemoapp snmpdemoapp.o -lsnmp
+    
+And then, run it, which produces the results we were expecting: 
+
+  % '''./snmpdemoapp'''
+  system.sysDescr.0 = HP-UX net-snmp B.10.20 A 9000/715
+  value #1 is a string: HP-UX net-snmp B.10.20 A 9000/715
+    
+=== Homework: ===
+
+# Change the program to use an SNMP_MSG_GETNEXT PDU instead. 
+# Change the program to request more variables (like system.sysUpTime.0 and/or system.sysLocation.0).
+
+{{TUT:LIST}}
+
+=== Follow-on Reading ===
+
+Internally the snmp library does a lot of things for you.  You can learn about what's happening internally by looking at the [[Command Line Calling Order]] page.
+</textarea><div class="templatesUsed"><div class="mw-templatesUsedExplanation"><p>Templates used on this page:
+</p></div><ul>
+<li><a href="http://www.net-snmp.org/wiki/index.php/Template:TUT:File-Table-Top" title="Template:TUT:File-Table-Top">Template:TUT:File-Table-Top</a> (<a href="http://www.net-snmp.org/wiki/index.php?title=Template:TUT:File-Table-Top&amp;action=edit" title="Template:TUT:File-Table-Top">view source</a>) </li><li><a href="http://www.net-snmp.org/wiki/index.php/Template:TUT:File-Table-Top-and-basics" title="Template:TUT:File-Table-Top-and-basics">Template:TUT:File-Table-Top-and-basics</a> (<a href="http://www.net-snmp.org/wiki/index.php?title=Template:TUT:File-Table-Top-and-basics&amp;action=edit" title="Template:TUT:File-Table-Top-and-basics">view source</a>) </li><li><a href="http://www.net-snmp.org/wiki/index.php/Template:TUT:LIST" title="Template:TUT:LIST">Template:TUT:LIST</a> (<a href="http://www.net-snmp.org/wiki/index.php?title=Template:TUT:LIST&amp;action=edit" title="Template:TUT:LIST">view source</a>) </li></ul></div><p id="mw-returnto">Return to <a href="http://www.net-snmp.org/wiki/index.php/TUT:Simple_Application" title="TUT:Simple Application">TUT:Simple Application</a>.</p>
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php/TUT:Simple_Application">http://www.net-snmp.org/wiki/index.php/TUT:Simple_Application</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/TUT:Simple_Application" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk"><a href="http://www.net-snmp.org/wiki/index.php/Talk:TUT:Simple_Application" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource" class="selected"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Simple_Application&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Simple_Application&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3ASimple+Application&amp;returntoquery=action%3Dedit&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3ASimple+Application&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/TUT:Simple_Application" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/TUT:Simple_Application" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Simple_Application&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.edit.collapsibleFooter","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":139});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Simple_Application&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:23:45 GMT -->
+</html>

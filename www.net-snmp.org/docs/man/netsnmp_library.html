@@ -1,0 +1,1293 @@
+Content-type: text/html
+
+<HTML>
+<!-- Mirrored from www.net-snmp.org/docs/man/netsnmp_library.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:29 GMT -->
+<HEAD><TITLE>Manpage of The Net-SNMP library</TITLE>
+</HEAD><BODY>
+<H1>The Net-SNMP library</H1>
+Section: net-snmp (3)<BR>Updated: 23 Sep 2009<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+The Net-SNMP library - 
+<A NAME="lbAC">&nbsp;</A>
+<H3>Data Structures</H3>
+
+<P>
+
+<BR>
+
+struct <B>snmp_internal_session</B>
+
+<BR>
+
+<BR>
+
+struct <B>session_list</B>
+
+<BR>
+
+
+<A NAME="lbAD">&nbsp;</A>
+<H3>Modules</H3>
+
+<P>
+
+<BR>
+
+<B>asn1 parsing and datatype manipulation routines.</B>
+
+<BR>
+
+<P>
+
+<P>
+<I>Note on. </I>
+
+<BR>
+
+<B>A generic callback mechanism</B>
+
+<BR>
+
+<BR>
+
+<B>generic linked-list data handling with a string as a key.</B>
+
+<BR>
+
+<BR>
+
+<B>storage space for defaults</B>
+
+<BR>
+
+<P>
+
+<P>
+<I>The purpose of the default storage is three-fold:. </I>
+
+<BR>
+
+<B>mib parsing and datatype manipulation routines.</B>
+
+<BR>
+
+<BR>
+
+<B>Store and retrieve data referenced by an OID.</B>
+
+<BR>
+
+<P>
+
+<P>
+<I>This is essentially a way of storing data associated with a given OID. </I>
+
+<BR>
+
+<B>parsing various configuration files at run time</B>
+
+<BR>
+
+<P>
+
+<P>
+<I>The read_config related functions are a fairly extensible system of parsing various configuration files at the run time. </I>
+
+<BR>
+
+<B>generic library based alarm timers for various parts of an application</B>
+
+<BR>
+
+<BR>
+
+<B>various PDU processing routines</B>
+
+<BR>
+
+<BR>
+
+<B>generic logging for net-snmp</B>
+
+<BR>
+
+<BR>
+
+<B>Memory Utility Routines</B>
+
+<BR>
+
+
+<A NAME="lbAE">&nbsp;</A>
+<H3>Defines</H3>
+
+<P>
+
+<BR>
+
+#define <B>MIN</B>(a, b)   (((a) &lt; (b)) ? (a) : (b))
+
+<BR>
+
+<BR>
+
+#define <B>MIB_CLIENTS_ARE_EVIL</B>   1
+
+<BR>
+
+<BR>
+
+#define <B>_init_agent_callback_transport</B>()
+
+<BR>
+
+<BR>
+
+#define <B>SNMP_NEED_REQUEST_LIST</B>
+
+<BR>
+
+<BR>
+
+#define <B>timercmp</B>(tvp, uvp, cmp)
+
+<BR>
+
+<BR>
+
+#define <B>timerclear</B>(tvp)   (tvp)-&gt;tv_sec = (tvp)-&gt;tv_usec = 0
+
+<BR>
+
+<BR>
+
+#define <B>MAX_PACKET_LENGTH</B>   (0x7fffffff)
+
+<BR>
+
+<BR>
+
+#define <B>NETSNMP_STREAM_QUEUE_LEN</B>   5
+
+<BR>
+
+<BR>
+
+#define <B>BSD4_2</B>
+
+<BR>
+
+<BR>
+
+#define <B>DEFAULT_COMMUNITY</B>   'public'
+
+<BR>
+
+<BR>
+
+#define <B>DEFAULT_RETRIES</B>   5
+
+<BR>
+
+<BR>
+
+#define <B>DEFAULT_TIMEOUT</B>   1000000L
+
+<BR>
+
+<BR>
+
+#define <B>DEFAULT_REMPORT</B>   SNMP_PORT
+
+<BR>
+
+<BR>
+
+#define <B>DEFAULT_ENTERPRISE</B>   default_enterprise
+
+<BR>
+
+<BR>
+
+#define <B>DEFAULT_TIME</B>   0
+
+<BR>
+
+<BR>
+
+#define <B>MAXIMUM_PACKET_SIZE</B>   0x7fffffff
+
+<BR>
+
+<BR>
+
+#define <B>DEBUGPRINTPDUTYPE</B>(token, type)   DEBUGDUMPSECTION(token, snmp_pdu_type(type))
+
+<BR>
+
+<BR>
+
+#define <B>ERROR_STAT_LENGTH</B>   11
+
+<BR>
+
+
+<A NAME="lbAF">&nbsp;</A>
+<H3>Functions</H3>
+
+<P>
+
+<BR>
+
+int <B>init_agent</B> (const char *app)
+
+<BR>
+
+<I>Initialize the agent. </I>
+
+<BR>
+
+void <B>shutdown_agent</B> (void)
+
+<BR>
+
+<BR>
+
+void <B>add_to_init_list</B> (char *module_list)
+
+<BR>
+
+<BR>
+
+int <B>should_init</B> (const char *module_name)
+
+<BR>
+
+<BR>
+
+int <B>snmp_build</B> (u_char **pkt, size_t *pkt_len, size_t *offset, <B>netsnmp_session</B> *pss, <B>netsnmp_pdu</B> *pdu)
+
+<BR>
+
+<BR>
+
+int <B>snmp_get_errno</B> (void)
+
+<BR>
+
+<BR>
+
+void <B>snmp_synch_reset</B> (<B>netsnmp_session</B> *notused)
+
+<BR>
+
+<BR>
+
+void <B>snmp_synch_setup</B> (<B>netsnmp_session</B> *notused)
+
+<BR>
+
+<BR>
+
+const char * <B>strerror</B> (int err)
+
+<BR>
+
+<BR>
+
+const char * <B>snmp_pdu_type</B> (int type)
+
+<BR>
+
+<BR>
+
+long <B>snmp_get_next_reqid</B> (void)
+
+<BR>
+
+<BR>
+
+long <B>snmp_get_next_msgid</B> (void)
+
+<BR>
+
+<BR>
+
+long <B>snmp_get_next_sessid</B> (void)
+
+<BR>
+
+<BR>
+
+long <B>snmp_get_next_transid</B> (void)
+
+<BR>
+
+<BR>
+
+void <B>snmp_perror</B> (const char *prog_string)
+
+<BR>
+
+<BR>
+
+void <B>snmp_set_detail</B> (const char *detail_string)
+
+<BR>
+
+<BR>
+
+const char * <B>snmp_api_errstring</B> (int snmp_errnumber)
+
+<BR>
+
+<BR>
+
+void <B>snmp_error</B> (<B>netsnmp_session</B> *psess, int *p_errno, int *p_snmp_errno, char **p_str)
+
+<BR>
+
+<BR>
+
+void <B>snmp_sess_error</B> (void *sessp, int *p_errno, int *p_snmp_errno, char **p_str)
+
+<BR>
+
+<BR>
+
+void <B>netsnmp_sess_log_error</B> (int priority, const char *prog_string, <B>netsnmp_session</B> *ss)
+
+<BR>
+
+<BR>
+
+void <B>snmp_sess_perror</B> (const char *prog_string, <B>netsnmp_session</B> *ss)
+
+<BR>
+
+<BR>
+
+void <B>snmp_sess_init</B> (<B>netsnmp_session</B> *session)
+
+<BR>
+
+<I>Library API routines concerned with specifying and using SNMP 'sessions' including sending and receiving requests. </I>
+
+<BR>
+
+void <B>init_snmp</B> (const char *type)
+
+<BR>
+
+<I>Calls the functions to do config file loading and mib </I><B>module</B> parsing in the correct order. 
+
+<BR>
+
+void <B>snmp_store</B> (const char *type)
+
+<BR>
+
+<BR>
+
+void <B>snmp_shutdown</B> (const char *type)
+
+<BR>
+
+<I>Shuts down the application, saving any needed persistent storage, and appropriate clean up. </I>
+
+<BR>
+
+<B>netsnmp_session</B> * <B>snmp_open</B> (<B>netsnmp_session</B> *session)
+
+<BR>
+
+<BR>
+
+<B>netsnmp_session</B> * <B>snmp_open_ex</B> (<B>netsnmp_session</B> *session, int(*fpre_parse)(<B>netsnmp_session</B> *, <B>netsnmp_transport</B> *, void *, int), int(*fparse)(<B>netsnmp_session</B> *, <B>netsnmp_pdu</B> *, u_char *, size_t), int(*fpost_parse)(<B>netsnmp_session</B> *, <B>netsnmp_pdu</B> *, int), int(*fbuild)(<B>netsnmp_session</B> *, <B>netsnmp_pdu</B> *, u_char *, size_t *), int(*frbuild)(<B>netsnmp_session</B> *, <B>netsnmp_pdu</B> *, u_char **, size_t *, size_t *), int(*fcheck)(u_char *, size_t))
+
+<BR>
+
+<BR>
+
+int <B>snmpv3_probe_contextEngineID_rfc5343</B> (void *slp, <B>netsnmp_session</B> *session)
+
+<BR>
+
+<I>probe for engineID using RFC 5343 probing mechanisms </I>
+
+<BR>
+
+int <B>snmpv3_engineID_probe</B> (struct <B>session_list</B> *slp, <B>netsnmp_session</B> *in_session)
+
+<BR>
+
+<I>probe for peer engineID </I>
+
+<BR>
+
+<B>netsnmp_session</B> * <B>snmp_add</B> (<B>netsnmp_session</B> *in_session, <B>netsnmp_transport</B> *transport, int(*fpre_parse)(<B>netsnmp_session</B> *, <B>netsnmp_transport</B> *, void *, int), int(*fpost_parse)(<B>netsnmp_session</B> *, <B>netsnmp_pdu</B> *, int))
+
+<BR>
+
+<BR>
+
+<B>netsnmp_session</B> * <B>snmp_add_full</B> (<B>netsnmp_session</B> *in_session, <B>netsnmp_transport</B> *transport, int(*fpre_parse)(<B>netsnmp_session</B> *, <B>netsnmp_transport</B> *, void *, int), int(*fparse)(<B>netsnmp_session</B> *, <B>netsnmp_pdu</B> *, u_char *, size_t), int(*fpost_parse)(<B>netsnmp_session</B> *, <B>netsnmp_pdu</B> *, int), int(*fbuild)(<B>netsnmp_session</B> *, <B>netsnmp_pdu</B> *, u_char *, size_t *), int(*frbuild)(<B>netsnmp_session</B> *, <B>netsnmp_pdu</B> *, u_char **, size_t *, size_t *), int(*fcheck)(u_char *, size_t), <B>netsnmp_pdu</B> *(*fcreate_pdu)(<B>netsnmp_transport</B> *, void *, size_t))
+
+<BR>
+
+<BR>
+
+void * <B>snmp_sess_add_ex</B> (<B>netsnmp_session</B> *in_session, <B>netsnmp_transport</B> *transport, int(*fpre_parse)(<B>netsnmp_session</B> *, <B>netsnmp_transport</B> *, void *, int), int(*fparse)(<B>netsnmp_session</B> *, <B>netsnmp_pdu</B> *, u_char *, size_t), int(*fpost_parse)(<B>netsnmp_session</B> *, <B>netsnmp_pdu</B> *, int), int(*fbuild)(<B>netsnmp_session</B> *, <B>netsnmp_pdu</B> *, u_char *, size_t *), int(*frbuild)(<B>netsnmp_session</B> *, <B>netsnmp_pdu</B> *, u_char **, size_t *, size_t *), int(*fcheck)(u_char *, size_t), <B>netsnmp_pdu</B> *(*fcreate_pdu)(<B>netsnmp_transport</B> *, void *, size_t))
+
+<BR>
+
+<BR>
+
+void * <B>snmp_sess_add</B> (<B>netsnmp_session</B> *in_session, <B>netsnmp_transport</B> *transport, int(*fpre_parse)(<B>netsnmp_session</B> *, <B>netsnmp_transport</B> *, void *, int), int(*fpost_parse)(<B>netsnmp_session</B> *, <B>netsnmp_pdu</B> *, int))
+
+<BR>
+
+<BR>
+
+void * <B>snmp_sess_open</B> (<B>netsnmp_session</B> *pss)
+
+<BR>
+
+<BR>
+
+int <B>create_user_from_session</B> (<B>netsnmp_session</B> *session)
+
+<BR>
+
+<BR>
+
+int <B>snmp_sess_close</B> (void *sessp)
+
+<BR>
+
+<BR>
+
+int <B>snmp_close</B> (<B>netsnmp_session</B> *session)
+
+<BR>
+
+<BR>
+
+int <B>snmp_close_sessions</B> (void)
+
+<BR>
+
+<BR>
+
+int <B>snmpv3_header_realloc_rbuild</B> (u_char **pkt, size_t *pkt_len, size_t *offset, <B>netsnmp_session</B> *session, <B>netsnmp_pdu</B> *pdu)
+
+<BR>
+
+<BR>
+
+int <B>snmpv3_scopedPDU_header_realloc_rbuild</B> (u_char **pkt, size_t *pkt_len, size_t *offset, <B>netsnmp_pdu</B> *pdu, size_t body_len)
+
+<BR>
+
+<BR>
+
+int <B>snmpv3_packet_realloc_rbuild</B> (u_char **pkt, size_t *pkt_len, size_t *offset, <B>netsnmp_session</B> *session, <B>netsnmp_pdu</B> *pdu, u_char *pdu_data, size_t pdu_data_len)
+
+<BR>
+
+<BR>
+
+int <B>snmpv3_packet_build</B> (<B>netsnmp_session</B> *session, <B>netsnmp_pdu</B> *pdu, u_char *packet, size_t *out_length, u_char *pdu_data, size_t pdu_data_len)
+
+<BR>
+
+<BR>
+
+u_char * <B>snmp_pdu_build</B> (<B>netsnmp_pdu</B> *pdu, u_char *cp, size_t *out_length)
+
+<BR>
+
+<BR>
+
+int <B>snmp_pdu_realloc_rbuild</B> (u_char **pkt, size_t *pkt_len, size_t *offset, <B>netsnmp_pdu</B> *pdu)
+
+<BR>
+
+<BR>
+
+int <B>snmpv3_parse</B> (<B>netsnmp_pdu</B> *pdu, u_char *data, size_t *length, u_char **after_header, <B>netsnmp_session</B> *sess)
+
+<BR>
+
+<BR>
+
+int <B>snmpv3_make_report</B> (<B>netsnmp_pdu</B> *pdu, int error)
+
+<BR>
+
+<BR>
+
+int <B>snmpv3_get_report_type</B> (<B>netsnmp_pdu</B> *pdu)
+
+<BR>
+
+<BR>
+
+int <B>snmp_pdu_parse</B> (<B>netsnmp_pdu</B> *pdu, u_char *data, size_t *length)
+
+<BR>
+
+<BR>
+
+u_char * <B>snmpv3_scopedPDU_parse</B> (<B>netsnmp_pdu</B> *pdu, u_char *cp, size_t *length)
+
+<BR>
+
+<BR>
+
+int <B>snmp_send</B> (<B>netsnmp_session</B> *session, <B>netsnmp_pdu</B> *pdu)
+
+<BR>
+
+<BR>
+
+int <B>snmp_sess_send</B> (void *sessp, <B>netsnmp_pdu</B> *pdu)
+
+<BR>
+
+<BR>
+
+int <B>snmp_async_send</B> (<B>netsnmp_session</B> *session, <B>netsnmp_pdu</B> *pdu, snmp_callback callback, void *cb_data)
+
+<BR>
+
+<BR>
+
+int <B>snmp_sess_async_send</B> (void *sessp, <B>netsnmp_pdu</B> *pdu, snmp_callback callback, void *cb_data)
+
+<BR>
+
+<BR>
+
+void <B>snmp_free_var_internals</B> (<B>netsnmp_variable_list</B> *var)
+
+<BR>
+
+<BR>
+
+void <B>snmp_free_var</B> (<B>netsnmp_variable_list</B> *var)
+
+<BR>
+
+<BR>
+
+void <B>snmp_free_varbind</B> (<B>netsnmp_variable_list</B> *var)
+
+<BR>
+
+<BR>
+
+void <B>snmp_free_pdu</B> (<B>netsnmp_pdu</B> *pdu)
+
+<BR>
+
+<BR>
+
+<B>netsnmp_pdu</B> * <B>snmp_create_sess_pdu</B> (<B>netsnmp_transport</B> *transport, void *opaque, size_t olength)
+
+<BR>
+
+<BR>
+
+void <B>snmp_read</B> (fd_set *fdset)
+
+<BR>
+
+<BR>
+
+void <B>snmp_read2</B> (<B>netsnmp_large_fd_set</B> *fdset)
+
+<BR>
+
+<BR>
+
+int <B>_sess_read</B> (void *sessp, <B>netsnmp_large_fd_set</B> *fdset)
+
+<BR>
+
+<BR>
+
+int <B>snmp_sess_read</B> (void *sessp, fd_set *fdset)
+
+<BR>
+
+<BR>
+
+int <B>snmp_sess_read2</B> (void *sessp, <B>netsnmp_large_fd_set</B> *fdset)
+
+<BR>
+
+<BR>
+
+int <B>snmp_select_info</B> (int *numfds, fd_set *fdset, struct timeval *timeout, int *block)
+
+<BR>
+
+<BR>
+
+int <B>snmp_select_info2</B> (int *numfds, <B>netsnmp_large_fd_set</B> *fdset, struct timeval *timeout, int *block)
+
+<BR>
+
+<BR>
+
+int <B>snmp_sess_select_info</B> (void *sessp, int *numfds, fd_set *fdset, struct timeval *timeout, int *block)
+
+<BR>
+
+<BR>
+
+int <B>snmp_sess_select_info2</B> (void *sessp, int *numfds, <B>netsnmp_large_fd_set</B> *fdset, struct timeval *timeout, int *block)
+
+<BR>
+
+<BR>
+
+void <B>snmp_timeout</B> (void)
+
+<BR>
+
+<BR>
+
+void <B>snmp_sess_timeout</B> (void *sessp)
+
+<BR>
+
+<BR>
+
+int <B>snmp_oid_ncompare</B> (const oid *in_name1, size_t len1, const oid *in_name2, size_t len2, size_t max_len)
+
+<BR>
+
+<BR>
+
+int <B>snmp_oid_compare</B> (const oid *in_name1, size_t len1, const oid *in_name2, size_t len2)
+
+<BR>
+
+<I>lexicographical compare two object identifiers. </I>
+
+<BR>
+
+int <B>netsnmp_oid_compare_ll</B> (const oid *in_name1, size_t len1, const oid *in_name2, size_t len2, size_t *offpt)
+
+<BR>
+
+<I>lexicographical compare two object identifiers and return the point where they differ </I>
+
+<BR>
+
+int <B>snmp_oidtree_compare</B> (const oid *in_name1, size_t len1, const oid *in_name2, size_t len2)
+
+<BR>
+
+<I>Compares 2 OIDs to determine if they are equal up until the shortest length. </I>
+
+<BR>
+
+int <B>snmp_oidsubtree_compare</B> (const oid *in_name1, size_t len1, const oid *in_name2, size_t len2)
+
+<BR>
+
+<BR>
+
+int <B>netsnmp_oid_equals</B> (const oid *in_name1, size_t len1, const oid *in_name2, size_t len2)
+
+<BR>
+
+<I>Compares 2 OIDs to determine if they are exactly equal. </I>
+
+<BR>
+
+int <B>netsnmp_oid_is_subtree</B> (const oid *in_name1, size_t len1, const oid *in_name2, size_t len2)
+
+<BR>
+
+<I>Identical to netsnmp_oid_equals, except only the length up to len1 is compared. </I>
+
+<BR>
+
+int <B>netsnmp_oid_find_prefix</B> (const oid *in_name1, size_t len1, const oid *in_name2, size_t len2)
+
+<BR>
+
+<I>Given two OIDs, determine the common prefix to them both. </I>
+
+<BR>
+
+<B>netsnmp_variable_list</B> * <B>snmp_pdu_add_variable</B> (<B>netsnmp_pdu</B> *pdu, const oid *name, size_t name_length, u_char type, const void *value, size_t len)
+
+<BR>
+
+<I>Library API routines concerned with </I><B>variable</B> bindings and values. 
+
+<BR>
+
+<B>netsnmp_variable_list</B> * <B>snmp_varlist_add_variable</B> (<B>netsnmp_variable_list</B> **varlist, const oid *name, size_t name_length, u_char type, const void *value, size_t len)
+
+<BR>
+
+<BR>
+
+int <B>snmp_add_var</B> (<B>netsnmp_pdu</B> *pdu, const oid *name, size_t name_length, char type, const char *value)
+
+<BR>
+
+<BR>
+
+void * <B>snmp_sess_pointer</B> (<B>netsnmp_session</B> *session)
+
+<BR>
+
+<BR>
+
+<B>netsnmp_session</B> * <B>snmp_sess_session</B> (void *sessp)
+
+<BR>
+
+<BR>
+
+<B>netsnmp_transport</B> * <B>snmp_sess_transport</B> (void *sessp)
+
+<BR>
+
+<BR>
+
+void <B>snmp_sess_transport_set</B> (void *sp, <B>netsnmp_transport</B> *t)
+
+<BR>
+
+<BR>
+
+oid * <B>snmp_duplicate_objid</B> (const oid *objToCopy, size_t objToCopyLen)
+
+<BR>
+
+<BR>
+
+u_int <B>snmp_increment_statistic</B> (int which)
+
+<BR>
+
+<BR>
+
+u_int <B>snmp_increment_statistic_by</B> (int which, int count)
+
+<BR>
+
+<BR>
+
+u_int <B>snmp_get_statistic</B> (int which)
+
+<BR>
+
+<BR>
+
+void <B>snmp_init_statistics</B> (void)
+
+<BR>
+
+
+<A NAME="lbAG">&nbsp;</A>
+<H3>Variables</H3>
+
+<P>
+
+<BR>
+
+struct <B>module_init_list</B> * <B>initlist</B> = NULL
+
+<BR>
+
+<BR>
+
+struct <B>module_init_list</B> * <B>noinitlist</B> = NULL
+
+<BR>
+
+<BR>
+
+<B>netsnmp_subtree</B> * <B>subtrees</B>
+
+<BR>
+
+<BR>
+
+long <B>long_return</B>
+
+<BR>
+
+<BR>
+
+u_char <B>return_buf</B> [258]
+
+<BR>
+
+<BR>
+
+struct timeval <B>starttime</B>
+
+<BR>
+
+<BR>
+
+int <B>callback_master_num</B> = -1
+
+<BR>
+
+<BR>
+
+oid <B>nullOid</B> [] = { 0, 0 }
+
+<BR>
+
+<BR>
+
+int <B>nullOidLen</B> = sizeof(nullOid)
+
+<BR>
+
+<BR>
+
+struct <B>session_list</B> * <B>Sessions</B> = NULL
+
+<BR>
+
+<BR>
+
+int <B>snmp_errno</B> = 0
+
+<BR>
+
+
+<A NAME="lbAH">&nbsp;</A>
+<H2>Define Documentation</H2>
+
+<P>
+
+<A NAME="lbAI">&nbsp;</A>
+<H3>#define timercmp(tvp, uvp, cmp)<B>Value:</B></H3>
+
+<P>
+
+<PRE>
+/* CSTYLED */         ((tvp)-&gt;tv_sec cmp (uvp)-&gt;tv_sec ||         ((tvp)-&gt;tv_sec == (uvp)-&gt;tv_sec &amp;&amp;         /* CSTYLED */         (tvp)-&gt;tv_usec cmp (uvp)-&gt;tv_usec))
+</PRE>
+
+<P>
+
+Definition at line 149 of file snmp_api.c.
+<A NAME="lbAJ">&nbsp;</A>
+<H2>Function Documentation</H2>
+
+<P>
+
+<A NAME="lbAK">&nbsp;</A>
+<H3>int _sess_read (void * sessp, <B>netsnmp_large_fd_set</B> * fdset)</H3>
+
+<P>
+
+XXX-rks: why no SNMP_FREE(isp-&gt;packet); ??
+<P>
+
+XXX-rks: why no SNMP_FREE(isp-&gt;packet); ?? 
+<P>
+
+Definition at line 5679 of file snmp_api.c.
+<A NAME="lbAL">&nbsp;</A>
+<H3>int init_agent (const char * app)</H3>
+
+<P>
+
+Initialize the agent. Calls into init_agent_read_config to set tha app's configuration file in the appropriate default storage space, NETSNMP_DS_LIB_APPTYPE. Need to call init_agent before calling init_snmp.
+<P>
+
+<B>Parameters:</B>
+<DL COMPACT><DT><DD>
+<I>app</I> the configuration file to be read in, gets stored in default storage
+</DL>
+
+<P>
+
+<B>Returns:</B>
+<DL COMPACT><DT><DD>
+Returns non-zero on failure and zero on success.
+</DL>
+
+<P>
+
+<B>See also:</B>
+<DL COMPACT><DT><DD>
+<B>init_snmp</B> 
+</DL>
+
+<P>
+
+<P>
+<P>
+
+Definition at line 273 of file snmp_vars.c.
+<A NAME="lbAM">&nbsp;</A>
+<H3>void init_snmp (const char * type)</H3>
+
+<P>
+
+Calls the functions to do config file loading and mib <B>module</B> parsing in the correct order. <B>Parameters:</B>
+<DL COMPACT><DT><DD>
+<I>type</I> label for the config file 'type'
+</DL>
+
+<P>
+
+<B>Returns:</B>
+<DL COMPACT><DT><DD>
+void
+</DL>
+
+<P>
+
+<B>See also:</B>
+<DL COMPACT><DT><DD>
+<B>init_agent</B> 
+</DL>
+
+<P>
+
+<P>
+<P>
+
+Definition at line 793 of file snmp_api.c.
+<A NAME="lbAN">&nbsp;</A>
+<H3>int netsnmp_oid_compare_ll (const oid * in_name1, size_t len1, const oid * in_name2, size_t len2, size_t * offpt)</H3>
+
+<P>
+
+lexicographical compare two object identifiers and return the point where they differ Caution: this method is called often by command responder applications (ie, agent).
+<P>
+
+<B>Returns:</B>
+<DL COMPACT><DT><DD>
+-1 if name1 &lt; name2, 0 if name1 = name2, 1 if name1 &gt; name2 and offpt = len where name1 != name2 
+</DL>
+
+<P>
+
+<P>
+<P>
+
+Definition at line 6680 of file snmp_api.c.
+<A NAME="lbAO">&nbsp;</A>
+<H3>int netsnmp_oid_equals (const oid * in_name1, size_t len1, const oid * in_name2, size_t len2)</H3>
+
+<P>
+
+Compares 2 OIDs to determine if they are exactly equal. This should be faster than doing a snmp_oid_compare for different length OIDs, since the length is checked first and if != returns immediately. Might be very slighly faster if lengths are ==. 
+<P>
+
+<B>Parameters:</B>
+<DL COMPACT><DT><DD>
+<I>in_name1</I> A pointer to the first oid. 
+<BR>
+
+<I>len1</I> length of the first OID (in segments, not bytes) 
+<BR>
+
+<I>in_name2</I> A pointer to the second oid. 
+<BR>
+
+<I>len2</I> length of the second OID (in segments, not bytes) 
+</DL>
+
+<P>
+
+<B>Returns:</B>
+<DL COMPACT><DT><DD>
+0 if they are equal, 1 if they are not. 
+</DL>
+
+<P>
+
+<P>
+<P>
+
+Definition at line 6761 of file snmp_api.c.
+<A NAME="lbAP">&nbsp;</A>
+<H3>int netsnmp_oid_find_prefix (const oid * in_name1, size_t len1, const oid * in_name2, size_t len2)</H3>
+
+<P>
+
+Given two OIDs, determine the common prefix to them both. <B>Parameters:</B>
+<DL COMPACT><DT><DD>
+<I>in_name1</I> A pointer to the first oid. 
+<BR>
+
+<I>len1</I> Length of the first oid. 
+<BR>
+
+<I>in_name2</I> A pointer to the second oid. 
+<BR>
+
+<I>len2</I> Length of the second oid. 
+</DL>
+
+<P>
+
+<B>Returns:</B>
+<DL COMPACT><DT><DD>
+length of largest common index of commonality. 1 = first, 0 if none * or -1 on error. 
+</DL>
+
+<P>
+
+<P>
+<P>
+
+Definition at line 6817 of file snmp_api.c.
+<A NAME="lbAQ">&nbsp;</A>
+<H3>int netsnmp_oid_is_subtree (const oid * in_name1, size_t len1, const oid * in_name2, size_t len2)</H3>
+
+<P>
+
+Identical to netsnmp_oid_equals, except only the length up to len1 is compared. Functionally, this determines if in_name2 is equal or a subtree of in_name1 
+<P>
+
+<B>Parameters:</B>
+<DL COMPACT><DT><DD>
+<I>in_name1</I> A pointer to the first oid. 
+<BR>
+
+<I>len1</I> length of the first OID (in segments, not bytes) 
+<BR>
+
+<I>in_name2</I> A pointer to the second oid. 
+<BR>
+
+<I>len2</I> length of the second OID (in segments, not bytes) 
+</DL>
+
+<P>
+
+<B>Returns:</B>
+<DL COMPACT><DT><DD>
+0 if one is a common prefix of the other. 
+</DL>
+
+<P>
+
+<P>
+<P>
+
+Definition at line 6797 of file snmp_api.c.
+<A NAME="lbAR">&nbsp;</A>
+<H3>int snmp_oid_compare (const oid * in_name1, size_t len1, const oid * in_name2, size_t len2)</H3>
+
+<P>
+
+lexicographical compare two object identifiers. Caution: this method is called often by command responder applications (ie, agent).
+<P>
+
+<B>Returns:</B>
+<DL COMPACT><DT><DD>
+-1 if name1 &lt; name2, 0 if name1 = name2, 1 if name1 &gt; name2 
+</DL>
+
+<P>
+
+<P>
+<P>
+
+Definition at line 6631 of file snmp_api.c.
+<A NAME="lbAS">&nbsp;</A>
+<H3>int snmp_oidtree_compare (const oid * in_name1, size_t len1, const oid * in_name2, size_t len2)</H3>
+
+<P>
+
+Compares 2 OIDs to determine if they are equal up until the shortest length. <B>Parameters:</B>
+<DL COMPACT><DT><DD>
+<I>in_name1</I> A pointer to the first oid. 
+<BR>
+
+<I>len1</I> length of the first OID (in segments, not bytes) 
+<BR>
+
+<I>in_name2</I> A pointer to the second oid. 
+<BR>
+
+<I>len2</I> length of the second OID (in segments, not bytes) 
+</DL>
+
+<P>
+
+<B>Returns:</B>
+<DL COMPACT><DT><DD>
+0 if they are equal, 1 if in_name1 is &gt; in_name2, or -1 if &lt;. 
+</DL>
+
+<P>
+
+<P>
+<P>
+
+Definition at line 6733 of file snmp_api.c.
+<A NAME="lbAT">&nbsp;</A>
+<H3><B>netsnmp_variable_list</B>* snmp_pdu_add_variable (<B>netsnmp_pdu</B> * pdu, const oid * name, size_t name_length, u_char type, const void * value, size_t len)</H3>
+
+<P>
+
+Library API routines concerned with <B>variable</B> bindings and values. 
+<P>
+
+Definition at line 6885 of file snmp_api.c.
+<A NAME="lbAU">&nbsp;</A>
+<H3>void snmp_sess_init (<B>netsnmp_session</B> * session)</H3>
+
+<P>
+
+Library API routines concerned with specifying and using SNMP 'sessions' including sending and receiving requests. 
+<P>
+
+Definition at line 715 of file snmp_api.c.
+<A NAME="lbAV">&nbsp;</A>
+<H3>void snmp_shutdown (const char * type)</H3>
+
+<P>
+
+Shuts down the application, saving any needed persistent storage, and appropriate clean up. <B>Parameters:</B>
+<DL COMPACT><DT><DD>
+<I>type</I> Label for the config file 'type' used
+</DL>
+
+<P>
+
+<B>Returns:</B>
+<DL COMPACT><DT><DD>
+void 
+</DL>
+
+<P>
+
+<P>
+<P>
+
+Definition at line 859 of file snmp_api.c.
+<A NAME="lbAW">&nbsp;</A>
+<H3>int snmpv3_engineID_probe (struct <B>session_list</B> * slp, <B>netsnmp_session</B> * in_session)</H3>
+
+<P>
+
+probe for peer engineID <B>Parameters:</B>
+<DL COMPACT><DT><DD>
+<I>slp</I> session list pointer. 
+<BR>
+
+<I>in_session</I> session for errors
+</DL>
+
+<P>
+
+<B>Note:</B>
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT>*<DD>
+called by _sess_open(), snmp_sess_add_ex()
+<DT>*<DD>
+in_session is the user supplied session provided to those functions.
+<DT>*<DD>
+the first session in slp should the internal allocated copy of in_session
+</DL>
+<P>
+
+</DL>
+
+<P>
+
+<B>Returns:</B>
+<DL COMPACT><DT><DD>
+0 : error 
+<P>
+
+1 : ok 
+</DL>
+
+<P>
+
+<P>
+<P>
+
+Definition at line 1371 of file snmp_api.c.
+<A NAME="lbAX">&nbsp;</A>
+<H3>int snmpv3_probe_contextEngineID_rfc5343 (void * slp, <B>netsnmp_session</B> * session)</H3>
+
+<P>
+
+probe for engineID using RFC 5343 probing mechanisms Designed to be a callback for within a security model's probe_engineid hook. Since it's likely multiple security models won't have engineIDs to probe for then this function is a callback likely to be used by multiple future security models. E.G. both SSH and DTLS. 
+<P>
+
+Definition at line 1274 of file snmp_api.c.
+<A NAME="lbAY">&nbsp;</A>
+<H2>Author</H2>
+
+<P>
+
+Generated automatically by Doxygen for net-snmp from the source code.
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DL>
+<DT><A HREF="#lbAC">Data Structures</A><DD>
+<DT><A HREF="#lbAD">Modules</A><DD>
+<DT><A HREF="#lbAE">Defines</A><DD>
+<DT><A HREF="#lbAF">Functions</A><DD>
+<DT><A HREF="#lbAG">Variables</A><DD>
+</DL>
+<DT><A HREF="#lbAH">Define Documentation</A><DD>
+<DL>
+<DT><A HREF="#lbAI">#define timercmp(tvp, uvp, cmp)<B>Value:</B></A><DD>
+</DL>
+<DT><A HREF="#lbAJ">Function Documentation</A><DD>
+<DL>
+<DT><A HREF="#lbAK">int _sess_read (void * sessp, <B>netsnmp_large_fd_set</B> * fdset)</A><DD>
+<DT><A HREF="#lbAL">int init_agent (const char * app)</A><DD>
+<DT><A HREF="#lbAM">void init_snmp (const char * type)</A><DD>
+<DT><A HREF="#lbAN">int netsnmp_oid_compare_ll (const oid * in_name1, size_t len1, const oid * in_name2, size_t len2, size_t * offpt)</A><DD>
+<DT><A HREF="#lbAO">int netsnmp_oid_equals (const oid * in_name1, size_t len1, const oid * in_name2, size_t len2)</A><DD>
+<DT><A HREF="#lbAP">int netsnmp_oid_find_prefix (const oid * in_name1, size_t len1, const oid * in_name2, size_t len2)</A><DD>
+<DT><A HREF="#lbAQ">int netsnmp_oid_is_subtree (const oid * in_name1, size_t len1, const oid * in_name2, size_t len2)</A><DD>
+<DT><A HREF="#lbAR">int snmp_oid_compare (const oid * in_name1, size_t len1, const oid * in_name2, size_t len2)</A><DD>
+<DT><A HREF="#lbAS">int snmp_oidtree_compare (const oid * in_name1, size_t len1, const oid * in_name2, size_t len2)</A><DD>
+<DT><A HREF="#lbAT"><B>netsnmp_variable_list</B>* snmp_pdu_add_variable (<B>netsnmp_pdu</B> * pdu, const oid * name, size_t name_length, u_char type, const void * value, size_t len)</A><DD>
+<DT><A HREF="#lbAU">void snmp_sess_init (<B>netsnmp_session</B> * session)</A><DD>
+<DT><A HREF="#lbAV">void snmp_shutdown (const char * type)</A><DD>
+<DT><A HREF="#lbAW">int snmpv3_engineID_probe (struct <B>session_list</B> * slp, <B>netsnmp_session</B> * in_session)</A><DD>
+<DT><A HREF="#lbAX">int snmpv3_probe_contextEngineID_rfc5343 (void * slp, <B>netsnmp_session</B> * session)</A><DD>
+</DL>
+<DT><A HREF="#lbAY">Author</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 19:05:37 GMT, September 28, 2009
+</BODY>
+
+<!-- Mirrored from www.net-snmp.org/docs/man/netsnmp_library.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:29 GMT -->
+</HTML>

@@ -1,0 +1,111 @@
+Content-type: text/html
+
+<HTML>
+<!-- Mirrored from www.net-snmp.org/docs/man/netsnmp_read_only.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:37 GMT -->
+<HEAD><TITLE>Manpage of read_only</TITLE>
+</HEAD><BODY>
+<H1>read_only</H1>
+Section: net-snmp (3)<BR>Updated: 23 Sep 2009<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+read_only - 
+<P>
+
+Make your handler read_only automatically The only purpose of this handler is to return an appropriate error for any requests passed to it in a SET mode.  
+<P>
+<A NAME="lbAC">&nbsp;</A>
+<H3>Functions</H3>
+
+<P>
+
+<BR>
+
+<B>netsnmp_mib_handler</B> * <B>netsnmp_get_read_only_handler</B> (void)
+
+<BR>
+
+<I>returns a read_only handler that can be injected into a given handler chain. </I>
+
+<BR>
+
+int <B>netsnmp_read_only_helper</B> (<B>netsnmp_mib_handler</B> *handler, <B>netsnmp_handler_registration</B> *reginfo, <B>netsnmp_agent_request_info</B> *reqinfo, <B>netsnmp_request_info</B> *requests)
+
+<BR>
+
+<BR>
+
+void <B>netsnmp_init_read_only_helper</B> (void)
+
+<BR>
+
+<I>initializes the read_only helper which then registers a read_only handler as a run-time injectable handler for configuration file use. </I>
+
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>Detailed Description</H2>
+
+<P>
+
+Make your handler read_only automatically The only purpose of this handler is to return an appropriate error for any requests passed to it in a SET mode. 
+<P>
+Inserting it into your handler chain will ensure you're never asked to perform a SET request so you can ignore those error conditions. 
+<A NAME="lbAE">&nbsp;</A>
+<H2>Function Documentation</H2>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H3><B>netsnmp_mib_handler</B>* netsnmp_get_read_only_handler (void)</H3>
+
+<P>
+
+returns a read_only handler that can be injected into a given handler chain. 
+<P>
+
+Definition at line 23 of file read_only.c.
+<A NAME="lbAG">&nbsp;</A>
+<H3>void netsnmp_init_read_only_helper (void)</H3>
+
+<P>
+
+initializes the read_only helper which then registers a read_only handler as a run-time injectable handler for configuration file use. 
+<P>
+
+Definition at line 72 of file read_only.c.
+<A NAME="lbAH">&nbsp;</A>
+<H2>Author</H2>
+
+<P>
+
+Generated automatically by Doxygen for net-snmp from the source code.
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DL>
+<DT><A HREF="#lbAC">Functions</A><DD>
+</DL>
+<DT><A HREF="#lbAD">Detailed Description</A><DD>
+<DT><A HREF="#lbAE">Function Documentation</A><DD>
+<DL>
+<DT><A HREF="#lbAF"><B>netsnmp_mib_handler</B>* netsnmp_get_read_only_handler (void)</A><DD>
+<DT><A HREF="#lbAG">void netsnmp_init_read_only_helper (void)</A><DD>
+</DL>
+<DT><A HREF="#lbAH">Author</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 19:05:38 GMT, September 28, 2009
+</BODY>
+
+<!-- Mirrored from www.net-snmp.org/docs/man/netsnmp_read_only.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:37 GMT -->
+</HTML>

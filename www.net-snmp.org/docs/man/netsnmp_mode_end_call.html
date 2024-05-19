@@ -1,0 +1,148 @@
+Content-type: text/html
+
+<HTML>
+<!-- Mirrored from www.net-snmp.org/docs/man/netsnmp_mode_end_call.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:37 GMT -->
+<HEAD><TITLE>Manpage of mode_end_call</TITLE>
+</HEAD><BODY>
+<H1>mode_end_call</H1>
+Section: net-snmp (3)<BR>Updated: 23 Sep 2009<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+mode_end_call - 
+<P>
+
+At the end of a series of requests, call another handler hook.  
+<P>
+<A NAME="lbAC">&nbsp;</A>
+<H3>Functions</H3>
+
+<P>
+
+<BR>
+
+<B>netsnmp_mib_handler</B> * <B>netsnmp_get_mode_end_call_handler</B> (<B>netsnmp_mode_handler_list</B> *endlist)
+
+<BR>
+
+<I>returns a mode_end_call handler that can be injected into a given handler chain. </I>
+
+<BR>
+
+<B>netsnmp_mode_handler_list</B> * <B>netsnmp_mode_end_call_add_mode_callback</B> (<B>netsnmp_mode_handler_list</B> *endlist, int mode, <B>netsnmp_mib_handler</B> *callbackh)
+
+<BR>
+
+<I>adds a mode specific callback to the callback list. </I>
+
+<BR>
+
+int <B>netsnmp_mode_end_call_helper</B> (<B>netsnmp_mib_handler</B> *handler, <B>netsnmp_handler_registration</B> *reginfo, <B>netsnmp_agent_request_info</B> *reqinfo, <B>netsnmp_request_info</B> *requests)
+
+<BR>
+
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>Detailed Description</H2>
+
+<P>
+
+At the end of a series of requests, call another handler hook. 
+<P>
+Handlers that want to loop through a series of requests and then receive a callback at the end of a particular MODE can use this helper to make this possible. For most modules, this is not needed as the handler itself could perform a for() loop around the request list and then perform its actions afterwards. However, if something like the serialize helper is in use this isn't possible because not all the requests for a given handler are being passed downward in a single group. Thus, this helper *must* be added above other helpers like the serialize helper to be useful.
+<P>
+
+Multiple mode specific handlers can be registered and will be called in the order they were regestered in. Callbacks regesterd with a mode of NETSNMP_MODE_END_ALL_MODES will be called for all modes. 
+<A NAME="lbAE">&nbsp;</A>
+<H2>Function Documentation</H2>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H3><B>netsnmp_mib_handler</B>* netsnmp_get_mode_end_call_handler (<B>netsnmp_mode_handler_list</B> * endlist)</H3>
+
+<P>
+
+returns a mode_end_call handler that can be injected into a given handler chain. <B>Parameters:</B>
+<DL COMPACT><DT><DD>
+<I>endlist</I> The callback list for the handler to make use of. 
+</DL>
+
+<P>
+
+<B>Returns:</B>
+<DL COMPACT><DT><DD>
+An injectable Net-SNMP handler. 
+</DL>
+
+<P>
+
+<P>
+<P>
+
+Definition at line 45 of file mode_end_call.c.
+<A NAME="lbAG">&nbsp;</A>
+<H3><B>netsnmp_mode_handler_list</B>* netsnmp_mode_end_call_add_mode_callback (<B>netsnmp_mode_handler_list</B> * endlist, int mode, <B>netsnmp_mib_handler</B> * callbackh)</H3>
+
+<P>
+
+adds a mode specific callback to the callback list. <B>Parameters:</B>
+<DL COMPACT><DT><DD>
+<I>endlist</I> the information structure for the mode_end_call helper. Can be NULL to create a new list. 
+<BR>
+
+<I>mode</I> the mode to be called upon. A mode of NETSNMP_MODE_END_ALL_MODES = all modes. 
+<BR>
+
+<I>callbackh</I> the netsnmp_mib_handler callback to call. 
+</DL>
+
+<P>
+
+<B>Returns:</B>
+<DL COMPACT><DT><DD>
+the new registration information list upon success. 
+</DL>
+
+<P>
+
+<P>
+<P>
+
+Definition at line 65 of file mode_end_call.c.
+<A NAME="lbAH">&nbsp;</A>
+<H2>Author</H2>
+
+<P>
+
+Generated automatically by Doxygen for net-snmp from the source code.
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DL>
+<DT><A HREF="#lbAC">Functions</A><DD>
+</DL>
+<DT><A HREF="#lbAD">Detailed Description</A><DD>
+<DT><A HREF="#lbAE">Function Documentation</A><DD>
+<DL>
+<DT><A HREF="#lbAF"><B>netsnmp_mib_handler</B>* netsnmp_get_mode_end_call_handler (<B>netsnmp_mode_handler_list</B> * endlist)</A><DD>
+<DT><A HREF="#lbAG"><B>netsnmp_mode_handler_list</B>* netsnmp_mode_end_call_add_mode_callback (<B>netsnmp_mode_handler_list</B> * endlist, int mode, <B>netsnmp_mib_handler</B> * callbackh)</A><DD>
+</DL>
+<DT><A HREF="#lbAH">Author</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 19:05:37 GMT, September 28, 2009
+</BODY>
+
+<!-- Mirrored from www.net-snmp.org/docs/man/netsnmp_mode_end_call.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:37 GMT -->
+</HTML>

@@ -1,0 +1,308 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:23:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>View source for TUT:Configuring snmptrapd to parse MIBS from 3rd party Vendors - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"TUT:Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors","wgTitle":"TUT:Configuring snmptrapd to parse MIBS from 3rd party Vendors","wgCurRevisionId":3440,"wgRevisionId":0,"wgArticleId":1886,"wgIsArticle":!1,"wgIsRedirect":!1,"wgAction":"edit","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!0,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"TUT:Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors","wgRelevantArticleId":1886,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],
+"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-TUT_Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors skin-monobook action-edit">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">View source for TUT:Configuring snmptrapd to parse MIBS from 3rd party Vendors</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub">← <a href="http://www.net-snmp.org/wiki/index.php/TUT:Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors" title="TUT:Configuring snmptrapd to parse MIBS from 3rd party Vendors">TUT:Configuring snmptrapd to parse MIBS from 3rd party Vendors</a></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text"><p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://www.net-snmp.org/wiki/index.php?title=Net-SNMP_Wiki:Users&amp;action=edit&amp;redlink=1" class="new" title="Net-SNMP Wiki:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<hr />
+<p>You can view and copy the source of this page.
+</p><textarea readonly="" accesskey="," id="wpTextbox1" cols="80" rows="25" style="" lang="en" dir="ltr" name="wpTextbox1">AKA, "How the hell do I log Cisco-specific traps?"
+
+__TOC__
+
+== Introduction ==
+By default, [[Net-SNMP]] clients and servers only understand a set of default [[MIB]]s.
+
+Many agents/devices implement a variety of these default vendor-neutral MIBs (IF-MIB, etc.) as part of a compatibility package, but if you wish to communicate with vendor-customized MIB trees on a device, you must load the MIBs for that device from the vendor.  For snmptrapd(8), traps with OIDs in trees not enumerated by the installed MIB files will show up in numeric format.
+
+=== Commonly Requested MIBs ===
+* [[Cisco Systems]]
+* [[APC]] (American Power Conversions PowerNet)
+
+== Installing Custom MIBs ==
+
+[[snmptrapd]] behaves like all other Net-SNMP applications and conforms to the standard methods of finding and loading MIBs.  The "[[TUT:Using and loading MIBS|Using and loading MIBS]]" tutorial goes into depth about how to configure a Net-SNMP application to load extra MIBs.  In summary, it boils down to:
+
+# Identify the MIBs for your platform/product
+# Install them into your $MIBDIR
+# Adjust your $MIB variable and restart the [[snmptrapd]](8) binary
+
+
+=== Identifying MIBs for your platform ===
+
+The process is vendor-specific.
+
+==== APC ====
+
+APC has one huge MIB for all of its product lines: [[PowerNet]] MIB
+
+==== Cisco ====
+
+Cisco has approximately one thousand MIBs for various products:
+
+ seklecki@rampage:/home/seklecki$ echo ls | ftp -a ftp://ftp.cisco.com/pub/mibs/v2/ | wc -l
+    1084
+
+To find the MIBs supported by your Cisco product, look in the technical appendix of each product and/or use the MIB browser tool.  You will need to search by your firmware file name (if you do not have access to the console, ask your admin, or walk the device with the community string provided)
+
+http://tools.cisco.com/Support/SNMP/do/MIBSupport.do?local=en&amp;step=3
+
+Example Cisco Catalyst 3548-XL:
+
+To find your hardware ver:
+
+ cs0#sh version   | include proc
+ cisco WS-C3548-XL (PowerPC403) processor (revision 0x01) with 16384K/1024K bytes of memory.
+
+To find your IOS/firmware filename:
+
+ cs0#sh flash: 
+ Directory of flash:/
+   2  -rwx     1811552   Feb 28 1993 19:27:28  c3500xl-c3h2s-mz.120-5.WC17.bin
+
+Once you search for your release, you will get an index of files that are required to meet various inter-MIB dependencies.  [http://people.collaborativefusion.com/~seklecki/images/IOS_MIB_Seach_Result_List.png Example Screehsot]
+
+You will also always need SNMPv2-SMI for all Cisco-related MIBs
+
+=== Install the MIBs in $MIBDIR ===
+
+Place the files with appropriate permissions and ownership in $PREFIX/share/snmp/mibs/.  The file extensions from Cisco are .my.  From APC its a .txt.  Both are fine.
+
+=== Activate the MIBs ===
+
+As per [[snmpcmd]](1), the -m flag can be set to 'ALL' for your [[snmptrapd]](8) execution command and/or export environmental variable '''MIBS'''
+
+==== RC Script ====
+
+If you're running [[FreeBSD]] or [[NetBSD]], which you should be, just modify your [[rc.conf]](5) to reflect:
+
+ snmptrapd_enable="YES"
+ snmptrapd_flags="-a -p /var/run/snmptrapd.pid -Ls 2 -Lf /var/log/snmptrapd-direct.log -m ALL"
+
+=== Make snmptrapd(8) generate usable logs: ===
+
+For a long time, I routed snmpd(8) and snmptrapd(8) traps though syslog(8).  However, most commercial systems (and packet dump/analysis tools) display traps as:
+
+&lt;pre>
+
+ Header Var: Val
+ Header Var: Val
+ Header Var: Val
+   OID1 - (Value) Format
+   OID2 - (Value) Format
+   OID3 - (Value) Format
+   OID4 - (Value) Format
+   ....
+&lt;/pre>
+
+This format is much more machine and human-parseable.
+
+The following [[snmptrapd.conf]](5) excerpts will get you a human readable snmptrapd-direct.log which you will need to rotate using [[newsyslog]](8), but also local traps to syslog(3) facility LOCAL2:
+
+ logoption s 2
+ logoption f /var/log/snmptrapd-direct.log
+
+ format2 %V\n% Agent Address: %A \n Agent Hostname: %B \n Date: %H - %J - %K - %L - %M - %Y \n Enterprise OID: %N \n Trap Type: %W \n Trap Sub-Type: %q \n Community/Infosec Context: %P \n Uptime: %T \n Description: %W \n PDU Attribute/Value Pair Array:\n%v \n -------------- \n
+
+=== Examples ===
+
+==== Cisco Authentication Failure ====
+
+===== Without Custom MIB =====
+ $ sudo tail -50 /var/log/snmptrapd-direct.log 
+ NET-SNMP version 5.4.1
+ 2008-05-08 18:18:11 vlan12.as0.lab00.pitbpa0.priv.collaborativefusion.com [UDP: [192.168.3.6]:54394]: DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: 812050957)
+ 93 days, 23:41:49.57 SNMPv2-MIB::snmpTrapOID.0 = OID: CISCO-SMI::ciscoMgmt.43.2.0.1  CISCO-SMI::ciscoMgmt.43.1.1.6.1.3.96 = INTEGER: 1  
+ CISCO-SMI::ciscoMgmt.43.1.1.6.1.4.96 = INTEGER: 3        CISCO-SMI::ciscoMgmt.43.1.1.6.1.5.96 = INTEGER: 4
+
+
+
+===== With Custom MIB =====
+ $ sudo tail -50 /var/log/snmptrapd-direct.log 
+ NET-SNMP version 5.4.1
+  Agent Address: 0.0.0.0 
+  Agent Hostname: vlan12.as0.lab00.*
+  Date: 21 - 56 - 21 - 17 - 6 - 1991 
+  Enterprise OID: . 
+  Trap Type: Cold Start 
+  Trap Sub-Type: 0 
+  Community/Infosec Context: TRAP2, SNMP v2c, community foo
+  Uptime: 0 
+  Description: Cold Start 
+  PDU Attribute/Value Pair Array:
+ DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (812034228) 93 days, 23:39:02.28
+ SNMPv2-MIB::snmpTrapOID.0 = OID: CISCO-CONFIG-MAN-MIB::ciscoConfigManEvent
+ CISCO-CONFIG-MAN-MIB::ccmHistoryEventCommandSource.93 = INTEGER: commandLine(1)
+ CISCO-CONFIG-MAN-MIB::ccmHistoryEventConfigSource.93 = INTEGER: running(3)
+ CISCO-CONFIG-MAN-MIB::ccmHistoryEventConfigDestination.93 = INTEGER: startup(4) 
+  -------------- 
+
+
+As you can see, the later configuration is a significant improvement.  
+
+'''Note:''' Logging with the improved format to the syslog does not improve the situation, as line-feed+carriage return characters are translated.
+
+ This page to be created on 05/06/2008 by [[User:Bseklecki|Brian A. Seklecki]]
+
+[[Category: Tutorials]]
+[[Category: MIBs]]
+[[Category: Stub]]
+</textarea><div class="templatesUsed"></div><p id="mw-returnto">Return to <a href="http://www.net-snmp.org/wiki/index.php/TUT:Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors" title="TUT:Configuring snmptrapd to parse MIBS from 3rd party Vendors">TUT:Configuring snmptrapd to parse MIBS from 3rd party Vendors</a>.</p>
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php/TUT:Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors">http://www.net-snmp.org/wiki/index.php/TUT:Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/TUT:Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="http://www.net-snmp.org/wiki/index.php?title=Talk:TUT:Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource" class="selected"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3AConfiguring+snmptrapd+to+parse+MIBS+from+3rd+party+Vendors&amp;returntoquery=action%3Dedit&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3AConfiguring+snmptrapd+to+parse+MIBS+from+3rd+party+Vendors&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/TUT:Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/TUT:Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.edit.collapsibleFooter","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":110});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:23:30 GMT -->
+</html>

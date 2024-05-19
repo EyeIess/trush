@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Stash_cache&oldid=5214 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:03:10 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Stash cache - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Stash_cache","wgTitle":"Stash cache","wgCurRevisionId":5214,"wgRevisionId":5214,"wgArticleId":2252,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Helpers"],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Stash_cache","wgRelevantArticleId":2252,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Stash_cache skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Stash cache</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"><div id="mw-revision-info">Revision as of 22:41, 15 July 2011 by <a href="http://www.net-snmp.org/wiki/index.php/User:Wes" title="User:Wes" class="mw-userlink">Wes</a> <span class="mw-usertoollinks">(<a href="http://www.net-snmp.org/wiki/index.php/User_talk:Wes" title="User talk:Wes">Talk</a> | <a href="http://www.net-snmp.org/wiki/index.php/Special:Contributions/Wes" title="Special:Contributions/Wes">contribs</a>)</span> <span class="comment">(<a href="#Internal_Details">→</a>‎<span dir="auto"><span class="autocomment">Internal Details</span></span>)</span></div><br />
+				<div id="mw-revision-nav">(<a href="http://www.net-snmp.org/wiki/index.php?title=Stash_cache&amp;diff=prev&amp;oldid=5214" title="Stash cache">diff</a>) <a href="http://www.net-snmp.org/wiki/index.php?title=Stash_cache&amp;direction=prev&amp;oldid=5214" title="Stash cache">← Older revision</a> | Latest revision (diff) | Newer revision → (diff)</div></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div align="right" style="float: right; width: 20em; border-color: black; border-style: solid; border-width: 1px; margin-left: 10px;">
+<table style="width: 100%;">
+
+<tr style="font-size: 1.2em;" bgcolor="#ddd">
+<td colspan="2" style="text-align: center;"> Net-SNMP MIB Helper
+</td></tr>
+<tr style="font-size: 1.2em;" bgcolor="#ddd">
+<td colspan="2" style="text-align: center;"> <b>Stash Cache</b>
+</td></tr>
+<tr>
+<th> <b>Documentation:</b>
+</th>
+<th><a rel="nofollow" class="external text" href="http://www.net-snmp.org/dev/agent/group__stash__cache.html">doxygen API</a>
+</th></tr>
+
+
+<tr>
+<th> <b>Code:</b>
+</th>
+<th><a rel="nofollow" class="external text" href="http://net-snmp.git.sourceforge.net/git/gitweb.cgi?p=net-snmp/net-snmp;a=blob_plain;f=agent/helpers/stash_cache.c;hb=HEAD">agent/helpers/stash_cache.c</a>
+</th></tr>
+
+
+<tr style="" bgcolor="#ddd">
+<td> Other Helpers:
+</td>
+<td> <a href="http://www.net-snmp.org/wiki/index.php/Agent_Helpers" title="Agent Helpers">Agent Helpers</a>
+</td></tr></table>
+</div>
+<p>The <b>stash_cache</b> <a href="http://www.net-snmp.org/wiki/index.php/Handler" title="Handler">handler</a> that can be injected either pragmatically or at run-time through the 'injectHandler' <a href="http://www.net-snmp.org/wiki/index.php/Snmpd.conf" title="Snmpd.conf">snmpd.conf</a> configuration directive.
+</p><p>The purpose of the handler is to cache information from the lower sources, store it in an extremely fast searchable hash-tree, and return it to the agent any time new requests come in.  The <i>stash_cache</i> handler needs to be injected above any table helper that takes care of normally returning data.  Once the data is cached, it won't query the lower table handler again until the cache expires.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Handler_Types_that_Support_The_stash_cache"><span class="tocnumber">1</span> <span class="toctext">Handler Types that Support The stash_cache</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Usage"><span class="tocnumber">2</span> <span class="toctext">Usage</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Programatically"><span class="tocnumber">2.1</span> <span class="toctext">Programatically</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#snmpd.conf"><span class="tocnumber">2.2</span> <span class="toctext">snmpd.conf</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Internal_Details"><span class="tocnumber">3</span> <span class="toctext">Internal Details</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Graphical_Handler_Chain"><span class="tocnumber">4</span> <span class="toctext">Graphical Handler Chain</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Handler_Types_that_Support_The_stash_cache">Handler Types that Support The stash_cache</span></h2>
+<p>Right now the stash_cache is only usable with these handler types:
+</p>
+<ul><li> <a href="http://www.net-snmp.org/wiki/index.php/Table_iterator" title="Table iterator">table_iterator</a></li></ul>
+<h2><span class="mw-headline" id="Usage">Usage</span></h2>
+<h3><span class="mw-headline" id="Programatically">Programatically</span></h3>
+<p>In the modules code you can inject the handler as follows (usually after it's fully registered):
+</p>
+<pre> netsnmp_inject_handler_before(tptr-&gt;reginfo,
+                               netsnmp_get_bare_stash_cache_handler(),
+                               _clone_handler(handler),
+                               "table_iterator");
+</pre>
+<p>You can also use the <i>netsnmp_get_timed_bare_stash_cache_handler(...)</i> function to create a handler with more specific timing parameters.
+</p>
+<h3><span class="mw-headline" id="snmpd.conf">snmpd.conf</span></h3>
+<p>For tables that are implemented using a compliant handler, you can insert the stash cache at run-time using the following snmpd.conf syntax:
+</p>
+<pre> injectHandler stash_cache <i>TABLE_NAME</i> table_iterator
+</pre>
+<p>The <i>table_iterator</i> portion tells <a href="http://www.net-snmp.org/wiki/index.php/Snmpd" title="Snmpd">snmpd</a> to inject the handler before the <i>table_iterator</i> part of the chain, which is required.  Substitute a different handler type if the module is implemented using a different handler type.
+</p>
+<h2><span class="mw-headline" id="Internal_Details">Internal Details</span></h2>
+<p>Internally, the stash cache intercepts GET and GETNEXT requests being sent down the handler chain.  It will then:
+</p>
+<ul><li> If the cache is present and recent, it will answer it and not call the lower handlers</li>
+<li> If the cache is out of date, it will create a new request with a special internal mode (<i>MODE_GET_STASH</i>)).  The lower helper should extract the passed in <a href="http://www.net-snmp.org/wiki/index.php?title=Oid_stash&amp;action=edit&amp;redlink=1" class="new" title="Oid stash (page does not exist)">oid_stash</a> pointer and fill it with a complete copy of the table's data.  IE, the lower handle doesn't just return a portion of the information, it needs to return <b>everything</b>!</li></ul>
+<h2><span class="mw-headline" id="Graphical_Handler_Chain">Graphical Handler Chain</span></h2>
+<p>Graphically, before the stash_cache gets inserted the chain likely looks like this:
+</p>
+<div class="MediaTransformError" style="width: 205px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+<p>And afterward:
+</p>
+<div class="MediaTransformError" style="width: 205px; height: 0px; display:inline-block;">Error creating thumbnail: Unable to save thumbnail to destination</div>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514181959
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.065 seconds
+Real time usage: 0.095 seconds
+Preprocessor visited node count: 46/1000000
+Preprocessor generated node count: 212/1000000
+Post‐expand include size: 1044/2097152 bytes
+Template argument size: 116/2097152 bytes
+Highest expansion depth: 4/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    9.357      1 - Template:Helper
+100.00%    9.357      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php?title=Stash_cache&amp;oldid=5214">http://www.net-snmp.org/wiki/index.php?title=Stash_cache&amp;oldid=5214</a>"</div>
+					<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://www.net-snmp.org/wiki/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="http://www.net-snmp.org/wiki/index.php/Category:Helpers" title="Category:Helpers">Helpers</a></li></ul></div></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/Stash_cache" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="http://www.net-snmp.org/wiki/index.php?title=Talk:Stash_cache&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="http://www.net-snmp.org/wiki/index.php?title=Stash_cache&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=Stash_cache&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=Stash+cache&amp;returntoquery=oldid%3D5214&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=Stash+cache&amp;returntoquery=oldid%3D5214" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/Stash_cache" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/Stash_cache" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="http://www.net-snmp.org/wiki/index.php?title=Stash_cache&amp;oldid=5214&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="http://www.net-snmp.org/wiki/index.php?title=Stash_cache&amp;oldid=5214" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=Stash_cache&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 15 July 2011, at 22:41.</li>
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":285});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Stash_cache&oldid=5214 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:03:10 GMT -->
+</html>

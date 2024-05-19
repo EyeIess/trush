@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=MFD:ifXTable:Data_Structures&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:21:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>MFD:ifXTable:Data Structures - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"MFD:ifXTable:Data_Structures","wgTitle":"MFD:ifXTable:Data Structures","wgCurRevisionId":5177,"wgRevisionId":5177,"wgArticleId":2235,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"MFD:ifXTable:Data_Structures","wgRelevantArticleId":2235,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load531d.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;printable=1&amp;skin=monobook" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="loadf198.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-MFD_ifXTable_Data_Structures skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">MFD:ifXTable:Data Structures</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div align="right" style="float: right; width: 20em; border-color: black; border-style: solid; border-width: 1px; margin-left: 10px;">
+<table style="width: 100%;">
+
+<tr style="font-size: 1.2em;" bgcolor="#ddd">
+<td colspan="2" style="text-align: center;"> MFD Tutorial
+</td></tr>
+<tr style="text-align: left;">
+<td>
+<ul><li> <a href="index.php/MIB_for_Dummies.html" title="MIB for Dummies">MIB for Dummies</a></li>
+<li> <a href="index.php/MFD_IF-MIB.html" title="MFD:IF-MIB">MFD:IF-MIB</a></li>
+<li> <a href="index.php/MFD_ifTable.html" title="MFD:ifTable">MFD:ifTable</a>
+<ul><li> <a href="index.php/MFD_ifTable_mib2c.html" title="MFD:ifTable:mib2c">MFD:ifTable:mib2c‎</a></li>
+<li> <a href="index.php/MFD_ifTable_Data_Structures.html" title="MFD:ifTable:Data Structures">MFD:ifTable:Data Structures</a></li>
+<li> <a href="index.php/MFD_ifTable_Data_Access.html" title="MFD:ifTable:Data Access">MFD:ifTable:Data Access</a></li>
+<li> <a href="index.php/MFD_ifTable_Get_Data.html" title="MFD:ifTable:Get Data">MFD:ifTable:Get Data</a></li>
+<li> <a href="index.php/MFD_ifTable_Testing.html" title="MFD:ifTable:Testing">MFD:ifTable:Testing</a></li></ul></li>
+<li> <a href="index.php/MFD_ifXTable.html" title="MFD:ifXTable">MFD:ifXTable</a>
+<ul><li> <a href="index.php/MFD_ifXTable_mib2c.html" title="MFD:ifXTable:mib2c">MFD:ifXTable:mib2c‎</a></li>
+<li> <strong class="selflink">MFD:ifXTable:Data Structures</strong></li>
+<li> <a href="index.php/MFD_ifXTable_Data_Access.html" title="MFD:ifXTable:Data Access">MFD:ifXTable:Data Access</a></li>
+<li> <a href="index.php/MFD_ifXTable_Get_Data.html" title="MFD:ifXTable:Get Data">MFD:ifXTable:Get Data</a></li>
+<li> <a href="index.php/MFD_ifXTable_Testing_Gets.html?title=MFD:ifXTable:Testing_Gets&amp;action=edit&amp;redlink=1" class="new" title="MFD:ifXTable:Testing Gets (page does not exist)">MFD:ifXTable:Testing Gets</a></li>
+<li> <a href="index.php/MFD_ifXTable_Set_Data.html?title=MFD:ifXTable:Set_Data&amp;action=edit&amp;redlink=1" class="new" title="MFD:ifXTable:Set Data (page does not exist)">MFD:ifXTable:Set Data</a></li>
+<li> <a href="index.php/MFD_ifXTable_Testing_Sets.html?title=MFD:ifXTable:Testing_Sets&amp;action=edit&amp;redlink=1" class="new" title="MFD:ifXTable:Testing Sets (page does not exist)">MFD:ifXTable:Testing Sets</a></li></ul></li></ul>
+</td></tr></table>
+</div>
+<h2><span class="mw-headline" id="MFD:_ifXTable_Data_Structures">MFD: ifXTable Data Structures</span></h2>
+<p>Let's take a look in <var>ifXTable.h</var>. Since we will be using
+the netsnmp access routines to get the interface  data, we specified
+<var>netsnmp_interface_entry</var> as our data context. You might
+expect to run into it a lot in the code. Instead, the code uses
+a typedef:
+</p>
+    <table><tr><td width="20"></td>
+          <td></td><td bgcolor="CCCCCC">
+<pre>   /*
+    * data context
+    */
+   typedef <font color="red">netsnmp_interface_entry</font> ifXTable_data;
+</pre>
+</td></tr></table>
+<p>Whenever you see <var>ifXTable_data</var>, remember that it is
+simply a typedef for <var>netsnmp_interface_entry</var>. As we will
+see in a moment, the the row request context has a pointer to an
+<var>ifXTable_data</var> structure. The first edit we need to make
+is to include the interface access header file:
+</p>
+    <table><tr><td width="20"></td>
+          <td></td><td bgcolor="CCCCCC">
+<pre>#include &lt;net-snmp/library/asn1.h&gt;<font color="blue">
+#include &lt;net-snmp/data_access/interface.h&gt;</font>
+</pre>
+</td></tr></table>
+<p>However, the <var>netsnmp_interface_entry</var> does not contain all
+the information we need to implement all the ifXTable columns.
+In particluar, the ifLinkUpDownTrapEnable and ifAlias columns are
+specific to the ifXTable, and not kept in the netsnmp_interface_entry
+structure. To keep track of them, we'll add them to the
+<var>rowrequest_context</var>. Because we specified a type for our
+data context, mib2c did not generate storage for any columns. So
+we need to add storage. For consistency's sake, we'll use mib2c to
+generate a data context. We specify <em>dummy</em> as the output file
+name, so that it won't get confused with the other ifXTable
+implementation files.
+</p>
+    <table><tr><td width="20"></td>
+          <td></td><td bgcolor="CCCCCC">
+<pre>$ <font color="blue">mib2c -f dummy -c mib2c.column_storage.conf ifXTable</font>
+</pre>
+</td></tr></table>
+<p><br />    
+Then we copy the definitions we need from <var>dummy_storage.h</var>
+to the <var>rowrequest_context</var> in <var>ifXTable.h</var>:
+</p>
+    <table><tr><td width="20"></td>
+          <td></td><td bgcolor="CCCCCC">
+<pre>   /*
+    *********************************************************************
+    * Row request context
+    * When your functions are called, you will be passed a
+    * ifXTable_rowreq_ctx pointer.
+    */
+   typedef struct ifXTable_rowreq_ctx_s {
+
+   /** this must be first for container compare to work */
+       netsnmp_index   oid_idx;
+       oid             oid_tmp[MAX_OID_LEN];   /* xxx-rks: shrink this */
+
+       ifXTable_mib_index tbl_idx;
+
+       ifXTable_data  *data;
+       ifXTable_undo_data *undo;
+
+   /** implementor's context pointer provided during registration */
+       ifXTable_registration_ptr ifXTable_reg;
+
+       /*
+        * TODO:
+        * add any other useful data
+        *       (e.g. flags for when a column has been set)
+        */<font color="blue">
+       /** ifLinkUpDownTrapEnable(14)/INTEGER/ASN_INTEGER/long(u_long)//l/A/W/E/r/d/h */
+       u_long          ifLinkUpDownTrapEnable;
+
+       /** ifAlias(18)/DisplayString/ASN_OCTET_STR/char(char)//L/A/W/e/R/d/H */
+       char            ifAlias[64];
+       size_t          ifAlias_len;        /* # of char elements, not bytes */
+</font>
+       /*
+        * storage for future expansion
+        */
+       netsnmp_data_list *ifXTable_data_list;
+
+   } ifXTable_rowreq_ctx;
+</pre>
+</td>
+        </tr>
+    </table>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514185842
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.011 seconds
+Real time usage: 0.015 seconds
+Preprocessor visited node count: 19/1000000
+Preprocessor generated node count: 44/1000000
+Post‐expand include size: 770/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    2.828      1 - Template:MFDTutorial
+100.00%    2.828      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="index19c7.html?title=MFD:ifXTable:Data_Structures&amp;oldid=5177">http://www.net-snmp.org/wiki/index.php?title=MFD:ifXTable:Data_Structures&amp;oldid=5177</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="index.php/MFD_ifXTable_Data_Structures.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="index.php/Talk_MFD_ifXTable_Data_Structures.html?title=Talk:MFD:ifXTable:Data_Structures&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="indexd51b.html?title=MFD:ifXTable:Data_Structures&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="index355f.html?title=MFD:ifXTable:Data_Structures&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="indexe671.html?title=Special:UserLogin&amp;returnto=MFD%3AifXTable%3AData+Structures&amp;returntoquery=printable%3Dyes&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="indexaa3b-2.html?title=Special:UserLogin&amp;returnto=MFD%3AifXTable%3AData+Structures&amp;returntoquery=printable%3Dyes" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="index.php/Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="index.php/Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="index.php/Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="index.php/FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="index.php/Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="index.php/Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="index.php/Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="index.php/Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="index.php/Special_WhatLinksHere/MFD_ifXTable_Data_Structures.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="index.php/Special_RecentChangesLinked/MFD_ifXTable_Data_Structures.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="index.php/Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-permalink"><a href="index19c7.html?title=MFD:ifXTable:Data_Structures&amp;oldid=5177" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="index4aac.html?title=MFD:ifXTable:Data_Structures&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 13 July 2011, at 21:53.</li>
+									<li id="privacy"><a href="index.php/Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="index.php/Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="index.php/Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":136});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=MFD:ifXTable:Data_Structures&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:21:15 GMT -->
+</html>

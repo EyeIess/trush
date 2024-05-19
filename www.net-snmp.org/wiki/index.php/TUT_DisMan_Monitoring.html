@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/TUT:DisMan_Monitoring by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 17:59:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>TUT:DisMan Monitoring - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"TUT:DisMan_Monitoring","wgTitle":"TUT:DisMan Monitoring","wgCurRevisionId":4795,"wgRevisionId":4795,"wgArticleId":1927,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"TUT:DisMan_Monitoring","wgRelevantArticleId":1927,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="../load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="../load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<link rel="shortcut icon" href="../../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="../opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://net-snmp.sourceforge.net/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="../apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-TUT_DisMan_Monitoring skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">TUT:DisMan Monitoring</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>The DisMan (Distributed Management) working group in the <a href="IETF.html" title="IETF">IETF</a> produced <a href="http://www.rfc-editor.org/rfc/rfc2981.txt" class="extiw" title="rfc:2981">RFC:2981</a>, which defines a set of MIB tables describing an <i>Event Management System</i>.  With this system employed, devices are able to monitor themselves and neighboring devices for problems and report the problems via SNMP <a href="Notifications.html?title=Notifications&amp;action=edit&amp;redlink=1" class="new" title="Notifications (page does not exist)">notifications</a>.  This can greatly relieve the amount of traffic a network management station needs to send to every device on the network.
+</p><p>The <a rel="nofollow" class="external text" href="../../docs/man/snmpd.conf.html#lbAX">snmpd.conf</a> manual page describes this feature at length.
+</p><p>Because it's the most typical usage, the remainder of this page discusses <i>self-management</i> (the agent querying itself) as opposed to querying other external devices.  This document also specifies how to perform <i>self-management</i> using snmpd.conf configuration directives.  It is actually possible to completely configure an agent using SNMP <a href="SET.html" title="SET">SETs</a> to the EVENT-MIB tables themselves.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Getting_Started"><span class="tocnumber">1</span> <span class="toctext">Getting Started</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Step_1:_Defining_the_Query_Access_Credentials"><span class="tocnumber">1.1</span> <span class="toctext">Step 1: Defining the Query Access Credentials</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Step_2:_Define_where_to_send_the_notifications"><span class="tocnumber">1.2</span> <span class="toctext">Step 2: Define where to send the notifications</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Step_2:_Define_what_to_monitor"><span class="tocnumber">1.3</span> <span class="toctext">Step 2: Define what to monitor</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#Monitoring_disk_space"><span class="tocnumber">1.3.1</span> <span class="toctext">Monitoring disk space</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Other_Configuration_Options"><span class="tocnumber">2</span> <span class="toctext">Other Configuration Options</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Setting_the_monitoring_frequency"><span class="tocnumber">2.1</span> <span class="toctext">Setting the monitoring frequency</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Getting_Started">Getting Started</span></h2>
+<h3><span class="mw-headline" id="Step_1:_Defining_the_Query_Access_Credentials">Step 1: Defining the Query Access Credentials</span></h3>
+<p>The internal monitoring actually makes its internal queries through SNMP itself.  Thus you need to "authorize" the service to actually browse the data from the agent.
+</p><p>The first requirement is that you define a SNMPv3 username to use when performing self-management.  First, we must define a user, add access control for it, and create it.  <b>PLEASE PICK A NAME DIFFERENT THAN <i>myMonitorName</i> and <i>mysecretepassword</i></b>, which is used below.  Any name unique to your institution will work just fine.
+</p>
+<pre> createUser    <i>myMonitoringName</i> SHA <i>mysecretpassword</i> AES
+ rouser        <i>myMonitoringName</i>
+ iquerySecName <i>myMonitoringName</i>
+</pre>
+<h3><span class="mw-headline" id="Step_2:_Define_where_to_send_the_notifications">Step 2: Define where to send the notifications</span></h3>
+<p>We'll assume a simple trap receiver with only SNMPv2c support:
+</p>
+<pre> trap2sink myhost.example.com myCommunity
+</pre>
+<h3><span class="mw-headline" id="Step_2:_Define_what_to_monitor">Step 2: Define what to monitor</span></h3>
+<p>Now you need to define exactly what you want to monitor.  We can't tell you what is important to actually monitor, so we'll just give you some examples of popular things to monitor.
+</p>
+<h4><span class="mw-headline" id="Monitoring_disk_space">Monitoring disk space</span></h4>
+<p>Lets say you want to be notified when your processor load goes over 90%.  You can do this by examining the HOST-RESOURCES-MIB::hrProcessorLoad column from the hrProcessorTable.  First a simple expression just to do this:
+</p>
+<pre> monitor machineTooBusy hrProcessorLoad &gt; 90
+</pre>
+<p>The <i>machineTooBusy</i> token is a name we've given to this particular monitor line.  It is 
+</p><p>This will generate a notification like this (reformatted output from <a href="Snmptrapd.html" title="Snmptrapd">snmptrapd</a>):
+</p>
+<pre> DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (6539) 0:01:05.39
+ SNMPv2-MIB::snmpTrapOID.0 = OID: <font color="green">DISMAN-EVENT-MIB::mteTriggerFired</font>
+ DISMAN-EVENT-MIB::mteHotTrigger.0 = STRING: <font color="green">machineTooBusy</font>
+ DISMAN-EVENT-MIB::mteHotTargetName.0 = STRING:  
+ DISMAN-EVENT-MIB::mteHotContextName.0 = STRING:     
+ DISMAN-EVENT-MIB::mteHotOID.0 = OID: <font color="red">HOST-RESOURCES-MIB::hrProcessorLoad.769</font>
+ DISMAN-EVENT-MIB::mteHotValue.0 = <font color="red">INTEGER: 92</font>
+</pre>
+<p>The <font color="green">mteTriggerFired</font> is the notification that is actually sent.  The <font color="green">machineTooBusy</font> part comes from our own name for the monitoring event.  And the actual values that triggered this notification were from the <font color="red">hrProcessorLoad.769</font> OID instance which had a value of <font color="red">92</font>.
+</p><p>Another notification will be triggered after it falls back down below the 90% mark later.
+</p>
+<h2><span class="mw-headline" id="Other_Configuration_Options">Other Configuration Options</span></h2>
+<h3><span class="mw-headline" id="Setting_the_monitoring_frequency">Setting the monitoring frequency</span></h3>
+<p>The agent won't monitor endless for the values because it would take up all your processing time!  But you can control how frequently it does check for problems.  The default is every 600 seconds (10 minutes), but you can change this with the <b>-r</b> switch:
+</p>
+<pre> monitor -r 30 machineTooBusy hrProcessorLoad &gt; 90
+</pre>
+<!-- 
+NewPP limit report
+Cached time: 20171115234918
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.088 seconds
+Real time usage: 0.096 seconds
+Preprocessor visited node count: 35/1000000
+Preprocessor generated node count: 48/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+
+<!-- Saved in parser cache with key n12694_wikidb:pcache:idhash:1927-0!*!0!!en!*!* and timestamp 20171115234918 and revision id 4795
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://net-snmp.sourceforge.net/wiki/index.php?title=TUT:DisMan_Monitoring&amp;oldid=4795">http://net-snmp.sourceforge.net/wiki/index.php?title=TUT:DisMan_Monitoring&amp;oldid=4795</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="TUT_DisMan_Monitoring.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="Talk_TUT_DisMan_Monitoring.html?title=Talk:TUT:DisMan_Monitoring&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="../index08a4.html?title=TUT:DisMan_Monitoring&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="../indexd41e.html?title=TUT:DisMan_Monitoring&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="../index19d7.html?title=Special:UserLogin&amp;returnto=TUT%3ADisMan+Monitoring&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="../index30b5.html?title=Special:UserLogin&amp;returnto=TUT%3ADisMan+Monitoring" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/TUT_DisMan_Monitoring.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/TUT_DisMan_Monitoring.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="../indexd935.html?title=TUT:DisMan_Monitoring&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="../indexbb1b.html?title=TUT:DisMan_Monitoring&amp;oldid=4795" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="../indexb086.html?title=TUT:DisMan_Monitoring&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 12 March 2011, at 00:18.</li>
+									<li id="privacy"><a href="Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":1037});
+} );</script></body><!-- Cached 20171115234919 -->
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/TUT:DisMan_Monitoring by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 17:59:50 GMT -->
+</html>

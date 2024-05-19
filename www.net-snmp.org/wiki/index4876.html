@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Configuring_snmptrapd&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:23:22 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>View source for TUT:Configuring snmptrapd - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"TUT:Configuring_snmptrapd","wgTitle":"TUT:Configuring snmptrapd","wgCurRevisionId":4677,"wgRevisionId":0,"wgArticleId":1865,"wgIsArticle":!1,"wgIsRedirect":!1,"wgAction":"edit","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!0,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"TUT:Configuring_snmptrapd","wgRelevantArticleId":1865,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-TUT_Configuring_snmptrapd skin-monobook action-edit">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">View source for TUT:Configuring snmptrapd</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub">← <a href="http://www.net-snmp.org/wiki/index.php/TUT:Configuring_snmptrapd" title="TUT:Configuring snmptrapd">TUT:Configuring snmptrapd</a></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text"><p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://www.net-snmp.org/wiki/index.php?title=Net-SNMP_Wiki:Users&amp;action=edit&amp;redlink=1" class="new" title="Net-SNMP Wiki:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<hr />
+<p>You can view and copy the source of this page.
+</p><textarea readonly="" accesskey="," id="wpTextbox1" cols="80" rows="25" style="" lang="en" dir="ltr" name="wpTextbox1">[[snmptrapd]] is a Net-SNMP application that lets operators receive SNMP [[notifications]] ([[informs]] and [[traps]]) and process them.
+
+== Configuring snmptrapd to allow traps in the door ==
+
+By default, snmptrapd does not do anything with received notifications.  You have to tell it what you want to receive notifications.
+
+=== Configuring snmptrapd to accept SNMPv1 or SNMPv2c notifications ===
+
+To receive SNMPv1 or SNMPv2c notifications you need to tell snmptrapd your community strings.  The easiest way to do this is by using the ''authCommunity'' snmptrapd.conf configuration file token.  For example, this line:
+
+  authCommunity log,execute,net public
+
+Will let snmptrapd process notifications received using the "public" community string.  Those notifications may be logged, allowed to trigger executable actions (see below), and resend data to the network (forward).
+
+=== Configuring snmptrap to accept SNMPv3 notifications ===
+
+SNMPv3 adds security to the SNMP protocol and is a safer way to receive notification data.  But, it's a bit more complex to set up.  Configuration of SNMPv3 notifications is described fully on a [[TUT:Configuring snmptrapd to receive SNMPv3 notifications|separate page]]:
+
+== Processing Notifications ==
+
+Generating traps is only half of the battle.   We also need something
+to receive the notification, and respond accordingly.
+The Net-SNMP suite includes an application &lt;code>snmptrapd&lt;/code>
+which can accept and process such notifications.
+
+By default, it will simply log all incoming notifications via syslog.
+The two &lt;code>snmptrap&lt;/code> commands described in [[TUT:snmptrap#SNMPv1_Traps]]:
+
+  $ snmptrap -v 1 -c public host '''UCD-TRAP-TEST-MIB::demotraps''' "" '''6 17''' "" \
+        SNMPv2-MIB::sysLocation.0 s "Just here"
+
+and 
+
+  $ snmptrap -v 2c -c public host "" '''UCD-NOTIFICATION-TEST-MIB::demoNotif''' \
+        SNMPv2-MIB::sysLocation.0 s "Just here"
+
+would be logged as:
+
+  1999-11-12 23:26:07 localhost [127.0.0.1] UCD-TRAP-TEST-MIB::demotraps:
+        Enterprise Specific Trap (demoTrap) Uptime: 1 day, 5:34:06
+        SNMPv2-MIB::sysLocation.0 = "Just here"
+
+and
+
+  1999-11-13 08:31:33 localhost [127.0.0.1]:
+        SNMPv2-MIB::sysUpTime.0 = Timeticks: (13917129) 1 day, 14:39:31.29
+        SNMPv2-MIB::snmpTrapOID.0 = OID: UCD-NOTIFICATION-TEST-MIB::demoNotif
+        SNMPv2-MIB::sysLocation.0 = "just here" 
+
+respectively (MIB is defined in [[TUT:snmptrap#Trap_Definitions]]).
+
+=== Trap Handlers ===
+
+The snmptrapd utility also has the ability to execute other programs on the reception
+of a trap. This is controlled by the traphandle directive, with the syntax 
+
+  traphandle OID command
+
+Notice, that this only takes an OID to determine which trap (or notification) is received. This means that SNMPv1 traps, which have a ''trap type'' and ''specific type'', need to be represented in SNMPv2 format, which is described in RFC 2089.
+
+==== Matching SNMPv1 OIDs ====
+SNMPv1 traps fall into two broad categories: ''generic'' and ''enterprise specific''. Generic traps use ''trap types'' 0 through 5, and do not use the ''specific type''. To match a generic trap, the traphandle OID should be the SNMPv2-MIB::snmpTraps OID, with an additional final OID of the ''trap type'' + 1. For example, to match linkDown traps (''trap type'' 2), the correct OID would be "1.3.6.1.6.3.1.1.5.3" (or SNMPv2-MIB::snmpTraps.3, which is also IF-MIB::linkDown).
+
+  ''SNMPv2-MIB::snmpTraps   1.3.6.1.6.3.1.1.5''
+   SNMPv2-MIB::coldStart             1.3.6.1.6.3.1.1.5.'''1'''
+   SNMPv2-MIB::warmStart             1.3.6.1.6.3.1.1.5.'''2'''
+   IF-MIB::linkDown                  1.3.6.1.6.3.1.1.5.'''3'''
+   IF-MIB::linkUp                    1.3.6.1.6.3.1.1.5.'''4'''
+   SNMPv2-MIB::authenticationFailure 1.3.6.1.6.3.1.1.5.'''5'''
+
+When the ''trap type'' is 6, the trap is an ''enterprise specific'' trap. When matching these traps, the traphandle OID is constructed using the enterprise OID and ''specific type'' specified in the trap. Earlier in the tutorial, we sent a SNMPv1 enterprise specific trap with an enterprise OID of UCD-TRAP-TEST-MIB::demotraps, a ''trap type'' of 6 and a ''specific type'' of 17. To match this trap type, the traphandle OID should be the enterprise OID, plus 0, plus the ''specific type''. So the correct OID would be ".1.3.6.1.4.1.2021.13.990.0.17" (or UCD-TRAP-TEST-MIB::demoTrap).
+
+==== Matching SNMPv2 OIDs ====
+SNMPv2 traps and informs are much easier, because they include the correct OID in the SNMPv2-MIB::snmpTrapOID.0 variable in the trap.
+
+==== Example handler script ====
+The command specifies a command to be executed by snmptrapd upon reception by the command. This command is executed with the data of the trap as its standard input. The first line is the host name, the second the IP address of the trap sender, and the following lines consists of an OID VALUE pair with the data from the received trap. 
+
+A simple shell script to be called from snmptrapd is the following: 
+
+  #!/bin/sh
+  
+  read host
+  read ip
+  vars=
+  
+  while read oid val
+  do
+    if [ "$vars" = "" ]
+    then
+      vars="$oid = $val"
+    else
+      vars="$vars, $oid = $val"
+    fi
+  done
+  
+  echo trap: $1 $host $ip $vars
+
+Now, given the following sample snmptrapd.conf file, 
+
+  # the generic traps
+  traphandle SNMPv2-MIB::coldStart    /home/nba/bin/traps cold
+  traphandle SNMPv2-MIB::warmStart    /home/nba/bin/traps warm
+  traphandle IF-MIB::linkDown         /home/nba/bin/traps down
+  traphandle IF-MIB::linkUp           /home/nba/bin/traps up
+  traphandle SNMPv2-MIB::authenticationFailure /home/nba/bin/traps auth
+  # this one is deprecated
+  traphandle .1.3.6.1.6.3.1.1.5.6     /home/nba/bin/traps egp-neighbor-loss
+  
+  # enterprise specific traps
+  traphandle UCD-TRAP-TEST-MIB::demoTrap /home/nba/bin/traps demo-trap
+  traphandle UCD-NOTIFICATION-TEST-MIB::demoNotif /home/nba/bin/traps demo-notif
+
+The following snmptrap invocation, to issue a generic Link down trap (OID 1.3.6.1.6.3.1.1.5.'''3'''), 
+
+  % ''snmptrap -v 1 -c public localhost TRAP-TEST-MIB::demotraps localhost '''2''' 0 "" \
+        IF-MIB::ifIndex i 1''
+
+results in the following output from snmptrapd:
+
+  1999-11-13 12:46:49 localhost [127.0.0.1]  TRAP-TEST-MIB::traps:
+        Link Down Trap (0) Uptime: 1 day, 18:54:46.27
+        IF-MIB::ifIndex.0 = 1
+
+and the following output from the handler:
+
+  trap: down localhost 127.0.0.1 SNMPv2-MIB::sysUpTime = 1:18:54:46.27, SNMPv2-MIB::snmpTrapOID = IF-MIB::linkDown, IF-MIB::ifIndex.0 = 1, SNMPv2-MIB::snmpTrapEnterprise = TRAP-TEST-MIB::traps
+
+and issuing our enterprise specific trap ('''.1.3.6.1.4.1.2021.13.990.0.17''') gives this output from our handler:
+
+  trap: demoTrap localhost 127.0.0.1 SNMPv2-MIB::sysUpTime = 1:19:00:48.01, SNMPv2-MIB::snmpTrapOID = '''UCD-TRAP-TEST-MIB::demoTrap''', SNMPv2-MIB::sysLocation.0 = "just here", SNMPv2-MIB::snmpTrapEnterprise = UCD-TRAP-TEST-MIB::traps
+
+and finally our enterprise specific notification:
+
+  trap: demoNotif localhost 127.0.0.1 SNMPv2-MIB::sysUpTime.0 = 1:19:02:06.33, SNMPv2-MIB::snmpTrapOID.0 = UCD-NOTIFICATION-TEST-MIB::demoNotif, SNMPv2-MIB::sysLocation.0 = "just here"
+
+&lt;hr>
+
+{{TUT:LIST}}
+</textarea><div class="templatesUsed"><div class="mw-templatesUsedExplanation"><p>Template used on this page:
+</p></div><ul>
+<li><a href="http://www.net-snmp.org/wiki/index.php/Template:TUT:LIST" title="Template:TUT:LIST">Template:TUT:LIST</a> (<a href="http://www.net-snmp.org/wiki/index.php?title=Template:TUT:LIST&amp;action=edit" title="Template:TUT:LIST">view source</a>) </li></ul></div><p id="mw-returnto">Return to <a href="http://www.net-snmp.org/wiki/index.php/TUT:Configuring_snmptrapd" title="TUT:Configuring snmptrapd">TUT:Configuring snmptrapd</a>.</p>
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php/TUT:Configuring_snmptrapd">http://www.net-snmp.org/wiki/index.php/TUT:Configuring_snmptrapd</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/TUT:Configuring_snmptrapd" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="http://www.net-snmp.org/wiki/index.php?title=Talk:TUT:Configuring_snmptrapd&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource" class="selected"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Configuring_snmptrapd&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Configuring_snmptrapd&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3AConfiguring+snmptrapd&amp;returntoquery=action%3Dedit&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3AConfiguring+snmptrapd&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/TUT:Configuring_snmptrapd" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/TUT:Configuring_snmptrapd" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Configuring_snmptrapd&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.edit.collapsibleFooter","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":134});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Configuring_snmptrapd&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:23:22 GMT -->
+</html>

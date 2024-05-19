@@ -1,0 +1,855 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/docs/mibs/netSnmpExamples.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:30:44 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../print1.css" />
+  </head>
+  <body background="../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../index.html">About</a><br />
+        
+
+        <a href="../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+
+        <a href="../readmefiles.html">Documentation</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../readmefiles.html"
+                  title="README files included with the package">README files</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../FAQ.html" 
+                  title="Frequently Asked Questions">FAQ</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../INSTALL.html" 
+                  title="Intall instructions for *nix systems">INSTALL</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../man/index.html"
+                  title="Man pages for utilities, daemons, api etc">Man pages</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="index.html"
+                  title="The MIB files distributed with Net-SNMP">MIBS</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../dev/agent/index.html"
+                  title="API documentation">API</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../../dev/projects.html">Development</a><br />
+        
+
+        <a href="../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+<h2>INTRODUCTION</h2>
+<ul>
+<p>
+This is a summary of information regarding objects below the <b>netSnmpExamples</b>
+MIB object, which is defined within the <b>NET-SNMP-EXAMPLES-MIB</b> MIB
+document as <b>.1.3.6.1.4.1.8072.2</b>.
+</p>
+</ul>
+<h2>TABLE OF CONTENTS</h2>
+<ul>
+<h3><a href="#objects_Current">Current Objects</a></h3>
+<ul>
+<li><a href="#scalar_current">Scalars</a></li>
+  <li><a href="#netSnmpIETFWGTable">netSnmpIETFWGTable</a></li>
+  <li><a href="#netSnmpHostsTable">netSnmpHostsTable</a></li>
+</ul>
+<h3><a href="#objects_Deprecated">Deprecated Objects</a></h3>
+<ul>
+<li><a href="#scalar_notcurrent">Deprecated Scalars</a></li>
+</ul>
+<h3><a href="#notifications">Notifications</a></h3>
+<h3><a href="#textconventions">Textual Conventions</a></h3>
+<h3><a href="#treeview">Tree-based view</a></h3>
+</ul>
+<a name="objects_Current" />
+<a name="scalar_current" />
+<h2>SCALAR OBJECTS</h2>
+<ul>
+<table>
+<tr><th>Name</th><th>Type</th><th>Access</th><th>OID</th><th>Description</th></tr>
+  <tr>
+  <td>
+<a name="netSnmpExampleInteger" />
+1
+<br /><b>netSnmpExampleInteger</b>
+
+</td><td>
+  INTEGER32
+
+  </td><td>ReadWrite</td>
+    <td>.1.3.6.1.4.1.8072.2.1.1</td>
+<td>
+<pre>
+This is a simple object which merely houses a writable
+integer.  It's only purposes is to hold the value of a single
+integer.  Writing to it will simply change the value for
+subsequent GET/GETNEXT/GETBULK retrievals.
+
+This example object is implemented in the
+agent/mibgroup/examples/scalar_int.c file.
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="netSnmpExampleSleeper" />
+2
+<br /><b>netSnmpExampleSleeper</b>
+
+</td><td>
+  INTEGER32
+
+  </td><td>ReadWrite</td>
+    <td>.1.3.6.1.4.1.8072.2.1.2</td>
+<td>
+<pre>
+This is a simple object which is a basic integer.  It's value
+indicates the number of seconds that the agent will take in
+responding to requests of this object.  This is implemented
+in a way which will allow the agent to keep responding to
+other requests while access to this object is blocked.  It is
+writable, and changing it's value will change the amount of
+time the agent will effectively wait for before returning a
+response when this object is manipulated.  Note that SET
+requests through this object will take longer, since the
+delay is applied to each internal transaction phase, which
+could result in delays of up to 4 times the value of this
+object.
+
+This example object is implemented in the
+agent/mibgroup/examples/delayed_instance.c file.
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="netSnmpExampleString" />
+3
+<br /><b>netSnmpExampleString</b>
+
+</td><td>
+  OCTETSTR
+      <br />Legal Lengths:
+        0 .. 255
+ <br>
+ <a href="#SnmpAdminString">SnmpAdminString</a>
+
+  </td><td>ReadWrite</td>
+    <td>.1.3.6.1.4.1.8072.2.1.3</td>
+<td>
+<p>
+Note: this object is based on the <a href="#SnmpAdminString"> SnmpAdminString TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+This is a simple object which merely houses a writable
+string.  It's only purposes is to hold the value of a single
+string.  Writing to it will simply change the value for
+subsequent GET/GETNEXT/GETBULK retrievals.
+
+This example object is implemented in the
+agent/mibgroup/examples/watched.c file.
+</pre>
+</td>
+  </tr>
+</table>
+</ul>
+
+<h2>TABLE OBJECTS</h2>
+<a name="netSnmpIETFWGTable" /><h3>Table netSnmpIETFWGTable</h3>
+<ul>
+  <table>
+  <tr><td class="label">Table Name</td><td>netSnmpIETFWGTable</td></tr>
+  <tr><td class="label">In MIB</td><td>NET-SNMP-EXAMPLES-MIB</td></tr>
+  <tr><td class="label">Registered at OID</td><td>.1.3.6.1.4.1.8072.2.2.1</td></tr>
+  <tr><td class="label">Table Description</td>
+<td>
+<pre>
+This table merely contains a set of data which is otherwise
+useless for true network management.  It is a table which
+describes properies about a IETF Working Group, such as the
+names of the two working group chairs.
+
+This example table is implemented in the
+agent/mibgroup/examples/data_set.c file.
+</pre>
+</td>
+</tr>
+<tr><td class="label"><a name="netSnmpIETFWGEntry" />Row Description</td>
+<td>
+<pre>
+A row describing a given working group
+</pre>
+</td>
+</tr>
+  </table>
+
+  <h4>netSnmpIETFWGTable Indexes:</h4>
+
+<table>
+<tr class="label"><th>Name</th><th>Type</th><th>Access</th><th>Description</th></tr>
+  <tr>
+  <td>
+<a name="nsIETFWGName" />
+1
+<br /><b>nsIETFWGName</b>
+
+</td><td>
+  OCTETSTR
+      <br />Legal Lengths:
+        1 .. 32
+
+  </td><td>NoAccess</td>
+<td>
+<pre>
+The name of the IETF Working Group this table describes.
+</pre>
+</td>
+  </tr>
+</table>
+
+  <h4>Other netSnmpIETFWGTable Columns:</h4>
+<table>
+<tr class="label"><th>Name</th><th>Type</th><th>Access</th><th>Description</th></tr>
+  <tr>
+  <td>
+<a name="nsIETFWGChair1" />
+2
+<br /><b>nsIETFWGChair1</b>
+
+</td><td>
+  OCTETSTR
+
+  </td><td>Create</td>
+<td>
+<pre>
+One of the names of the chairs for the IETF working group.
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="nsIETFWGChair2" />
+3
+<br /><b>nsIETFWGChair2</b>
+
+</td><td>
+  OCTETSTR
+
+  </td><td>Create</td>
+<td>
+<pre>
+The other name, if one exists, of the chairs for the IETF
+working group.
+</pre>
+</td>
+  </tr>
+</table>
+</ul>
+<a name="netSnmpHostsTable" /><h3>Table netSnmpHostsTable</h3>
+<ul>
+  <table>
+  <tr><td class="label">Table Name</td><td>netSnmpHostsTable</td></tr>
+  <tr><td class="label">In MIB</td><td>NET-SNMP-EXAMPLES-MIB</td></tr>
+  <tr><td class="label">Registered at OID</td><td>.1.3.6.1.4.1.8072.2.2.2</td></tr>
+  <tr><td class="label">Table Description</td>
+<td>
+<pre>
+An example table that implements a wrapper around the
+/etc/hosts file on a machine using the iterator helper API.
+</pre>
+</td>
+</tr>
+<tr><td class="label"><a name="netSnmpHostsEntry" />Row Description</td>
+<td>
+<pre>
+A host name mapped to an ip address
+</pre>
+</td>
+</tr>
+  </table>
+
+  <h4>netSnmpHostsTable Indexes:</h4>
+
+<table>
+<tr class="label"><th>Name</th><th>Type</th><th>Access</th><th>Description</th></tr>
+  <tr>
+  <td>
+<a name="netSnmpHostName" />
+1
+<br /><b>netSnmpHostName</b>
+
+</td><td>
+  OCTETSTR
+      <br />Legal Lengths:
+        0 .. 64
+
+  </td><td>NoAccess</td>
+<td>
+<pre>
+A host name that exists in the /etc/hosts (unix) file.
+</pre>
+</td>
+  </tr>
+</table>
+
+  <h4>Other netSnmpHostsTable Columns:</h4>
+<table>
+<tr class="label"><th>Name</th><th>Type</th><th>Access</th><th>Description</th></tr>
+  <tr>
+  <td>
+<a name="netSnmpHostAddressType" />
+2
+<br /><b>netSnmpHostAddressType</b>
+
+</td><td>
+  INTEGER
+ <br>
+ <a href="#InetAddressType">InetAddressType</a>
+     <br>(ENUM list below)
+
+  </td><td>Create</td>
+<td>
+<p>
+Note: this object is based on the <a href="#InetAddressType"> InetAddressType TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+The address type of then given host.
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="netSnmpHostAddress" />
+3
+<br /><b>netSnmpHostAddress</b>
+
+</td><td>
+  OCTETSTR
+      <br />Legal Lengths:
+        0 .. 255
+ <br>
+ <a href="#InetAddress">InetAddress</a>
+
+  </td><td>Create</td>
+<td>
+<p>
+Note: this object is based on the <a href="#InetAddress"> InetAddress TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+The address of then given host.
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="netSnmpHostStorage" />
+4
+<br /><b>netSnmpHostStorage</b>
+
+</td><td>
+  INTEGER
+ <br>
+ <a href="#StorageType">StorageType</a>
+     <br>(ENUM list below)
+
+  </td><td>Create</td>
+<td>
+<p>
+Note: this object is based on the <a href="#StorageType"> StorageType TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+The storage type for this conceptual row.
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="netSnmpHostRowStatus" />
+5
+<br /><b>netSnmpHostRowStatus</b>
+
+</td><td>
+  INTEGER
+ <br>
+ <a href="#RowStatus">RowStatus</a>
+     <br>(ENUM list below)
+
+  </td><td>Create</td>
+<td>
+<p>
+Note: this object is based on the <a href="#RowStatus"> RowStatus TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+The status of this conceptual row.
+</pre>
+</td>
+  </tr>
+</table>
+</ul>
+<a name="objects_Deprecated" />
+  <hr />
+  <h1><font color="red">DEPRECATED OR OBSOLETE OR HISTORIC OBJECTS</font></h1>
+  <br>
+  <table class="deprecated"><tr><td>
+<a name="scalar_notcurrent" />
+<h2>SCALAR OBJECTS</h2>
+<ul>
+<table>
+<tr><th>Name</th><th>Type</th><th>Access</th><th>OID</th><th>Description</th></tr>
+</table>
+</ul>
+
+<h2>TABLE OBJECTS</h2>
+
+<br>
+  </table>
+<hr />
+<a name="notifications" />
+<h2>NOTIFICATIONS</h2>
+<ul>
+<p>
+<a name="netSnmpExampleHeartbeatNotification" /><h3>Notification: netSnmpExampleHeartbeatNotification</h3>
+
+  <table>
+  <tr><td class="label">Notification Name</td><td>netSnmpExampleHeartbeatNotification</td></tr>
+  <tr><td class="label">In MIB</td><td>NET-SNMP-EXAMPLES-MIB</td></tr>
+  <tr><td class="label">Registered at OID</td><td>.1.3.6.1.4.1.8072.2.3.0.1</td></tr>
+  <tr><td class="label">Notification Description</td>
+<td>
+<pre>
+An example notification, used to illustrate the
+definition and generation of trap and inform PDUs
+(including the use of both standard and additional
+varbinds in the notification payload).
+This notification will typically be sent every
+	 30 seconds, using the code found in the example module
+    agent/mibgroup/examples/notification.c
+</pre>
+</td>
+  </tr>
+  <tr> <td class="label">Mandatory<br />Objects</td><td>
+  <table>
+      <tr><td><a href="#netSnmpExampleHeartbeatRate">netSnmpExampleHeartbeatRate</a></td></tr>
+  </table></td></tr>
+  </table>
+</ul>
+
+
+<br>
+<hr />
+<a name="textconventions" />
+<h2>TEXTUAL CONVENTIONS</h2>
+<ul>
+<p>
+These TEXTUAL-CONVENTIONS are used in other parts of the document
+above.  They are SNMP's way of defining a datatype that is used
+repeatedly by other MIB objects.  Any implementation implementing
+objects that use one of these definitions must follow its DESCRIPTION
+clause as well as the DESCRIPTION clause of the object itself.
+</p>
+<table><tr class="label"><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td><a name="StorageType">StorageType</td><td>INTEGER<table class="enums"><tr><th>Value</th><th>Label/Meaning</th></tr><tr><td>1</td><td>other</td></tr><tr><td>2</td><td>volatile</td></tr><tr><td>3</td><td>nonVolatile</td></tr><tr><td>4</td><td>permanent</td></tr><tr><td>5</td><td>readOnly</td></tr></table></td><td><pre>Describes the memory realization of a conceptual row.  A
+row which is volatile(2) is lost upon reboot.  A row which
+is either nonVolatile(3), permanent(4) or readOnly(5), is
+backed up by stable storage.  A row which is permanent(4)
+can be changed but not deleted.  A row which is readOnly(5)
+cannot be changed nor deleted.
+
+If the value of an object with this syntax is either
+permanent(4) or readOnly(5), it cannot be written.
+Conversely, if the value is either other(1), volatile(2) or
+nonVolatile(3), it cannot be modified to be permanent(4) or
+readOnly(5).  (All illegal modifications result in a
+'wrongValue' error.)
+
+Every usage of this textual convention is required to
+specify the columnar objects which a permanent(4) row must
+at a minimum allow to be writable.</pre></td></tr>
+<tr><td><a name="InetAddress">InetAddress</td><td>OCTETSTR</td><td><pre>Denotes a generic Internet address.
+An InetAddress value is always interpreted within the context
+         of an InetAddressType value.  Every usage of the InetAddress
+         textual convention is required to specify the InetAddressType
+         object that provides the context.  It is suggested that the
+         InetAddressType object be logically registered before the
+         object(s) that use the InetAddress textual convention, if
+         they appear in the same logical row.
+The value of an InetAddress object must always be
+         consistent with the value of the associated InetAddressType
+         object.  Attempts to set an InetAddress object to a value
+         inconsistent with the associated InetAddressType
+         must fail with an inconsistentValue error.
+When this textual convention is used as the syntax of an
+         index object, there may be issues with the limit of 128
+         sub-identifiers specified in SMIv2, STD 58.  In this case,
+         the object definition MUST include a 'SIZE' clause to
+         limit the number of potential instance sub-identifiers;
+         otherwise the applicable constraints MUST be stated in
+         the appropriate conceptual row DESCRIPTION clauses, or
+         in the surrounding documentation if there is no single
+         DESCRIPTION clause that is appropriate.</pre></td></tr>
+<tr><td><a name="InetAddressType">InetAddressType</td><td>INTEGER<table class="enums"><tr><th>Value</th><th>Label/Meaning</th></tr><tr><td>0</td><td>unknown</td></tr><tr><td>1</td><td>ipv4</td></tr><tr><td>2</td><td>ipv6</td></tr><tr><td>3</td><td>ipv4z</td></tr><tr><td>4</td><td>ipv6z</td></tr><tr><td>16</td><td>dns</td></tr></table></td><td><pre>A value that represents a type of Internet address.
+unknown(0)  An unknown address type.  This value MUST
+                     be used if the value of the corresponding
+                     InetAddress object is a zero-length string.
+                     It may also be used to indicate an IP address
+                     that is not in one of the formats defined
+                     below.
+ipv4(1)     An IPv4 address as defined by the
+                     InetAddressIPv4 textual convention.
+ipv6(2)     An IPv6 address as defined by the
+                     InetAddressIPv6 textual convention.
+ipv4z(3)    A non-global IPv4 address including a zone
+                     index as defined by the InetAddressIPv4z
+                     textual convention.
+ipv6z(4)    A non-global IPv6 address including a zone
+                     index as defined by the InetAddressIPv6z
+                     textual convention.
+dns(16)     A DNS domain name as defined by the
+                     InetAddressDNS textual convention.
+Each definition of a concrete InetAddressType value must be
+         accompanied by a definition of a textual convention for use
+         with that InetAddressType.
+To support future extensions, the InetAddressType textual
+         convention SHOULD NOT be sub-typed in object type definitions.
+         It MAY be sub-typed in compliance statements in order to
+         require only a subset of these address types for a compliant
+         implementation.
+Implementations must ensure that InetAddressType objects
+         and any dependent objects (e.g., InetAddress objects) are
+         consistent.  An inconsistentValue error must be generated
+         if an attempt to change an InetAddressType object would,
+         for example, lead to an undefined InetAddress value.  In
+particular, InetAddressType/InetAddress pairs must be
+         changed together if the address type changes (e.g., from
+         ipv6(2) to ipv4(1)).</pre></td></tr>
+<tr><td><a name="RowStatus">RowStatus</td><td>INTEGER<table class="enums"><tr><th>Value</th><th>Label/Meaning</th></tr><tr><td>1</td><td>active</td></tr><tr><td>2</td><td>notInService</td></tr><tr><td>3</td><td>notReady</td></tr><tr><td>4</td><td>createAndGo</td></tr><tr><td>5</td><td>createAndWait</td></tr><tr><td>6</td><td>destroy</td></tr></table></td><td><pre>The RowStatus textual convention is used to manage the
+creation and deletion of conceptual rows, and is used as the
+value of the SYNTAX clause for the status column of a
+conceptual row (as described in Section 7.7.1 of [2].)
+
+The status column has six defined values:
+
+     - `active', which indicates that the conceptual row is
+     available for use by the managed device;
+
+     - `notInService', which indicates that the conceptual
+     row exists in the agent, but is unavailable for use by
+     the managed device (see NOTE below); 'notInService' has
+     no implication regarding the internal consistency of
+     the row, availability of resources, or consistency with
+     the current state of the managed device;
+
+     - `notReady', which indicates that the conceptual row
+     exists in the agent, but is missing information
+     necessary in order to be available for use by the
+     managed device (i.e., one or more required columns in
+     the conceptual row have not been instanciated);
+
+     - `createAndGo', which is supplied by a management
+     station wishing to create a new instance of a
+     conceptual row and to have its status automatically set
+     to active, making it available for use by the managed
+     device;
+
+     - `createAndWait', which is supplied by a management
+     station wishing to create a new instance of a
+     conceptual row (but not make it available for use by
+     the managed device); and,
+     - `destroy', which is supplied by a management station
+     wishing to delete all of the instances associated with
+     an existing conceptual row.
+
+Whereas five of the six values (all except `notReady') may
+be specified in a management protocol set operation, only
+three values will be returned in response to a management
+protocol retrieval operation:  `notReady', `notInService' or
+`active'.  That is, when queried, an existing conceptual row
+has only three states:  it is either available for use by
+the managed device (the status column has value `active');
+it is not available for use by the managed device, though
+the agent has sufficient information to attempt to make it
+so (the status column has value `notInService'); or, it is
+not available for use by the managed device, and an attempt
+to make it so would fail because the agent has insufficient
+information (the state column has value `notReady').
+
+                         NOTE WELL
+
+     This textual convention may be used for a MIB table,
+     irrespective of whether the values of that table's
+     conceptual rows are able to be modified while it is
+     active, or whether its conceptual rows must be taken
+     out of service in order to be modified.  That is, it is
+     the responsibility of the DESCRIPTION clause of the
+     status column to specify whether the status column must
+     not be `active' in order for the value of some other
+     column of the same conceptual row to be modified.  If
+     such a specification is made, affected columns may be
+     changed by an SNMP set PDU if the RowStatus would not
+     be equal to `active' either immediately before or after
+     processing the PDU.  In other words, if the PDU also
+     contained a varbind that would change the RowStatus
+     value, the column in question may be changed if the
+     RowStatus was not equal to `active' as the PDU was
+     received, or if the varbind sets the status</pre></td></tr>
+<tr><td><a name="SnmpAdminString">SnmpAdminString</td><td>OCTETSTR</td><td><pre>An octet string containing administrative
+information, preferably in human-readable form.
+
+To facilitate internationalization, this
+information is represented using the ISO/IEC
+IS 10646-1 character set, encoded as an octet
+string using the UTF-8 transformation format
+described in [RFC2279].
+
+Since additional code points are added by
+amendments to the 10646 standard from time
+to time, implementations must be prepared to
+encounter any code point from 0x00000000 to
+0x7fffffff.  Byte sequences that do not
+correspond to the valid UTF-8 encoding of a
+code point or are outside this range are
+prohibited.
+
+The use of control codes should be avoided.
+
+When it is necessary to represent a newline,
+the control code sequence CR LF should be used.
+
+The use of leading or trailing white space should
+be avoided.
+
+For code points not directly supported by user
+interface hardware or software, an alternative
+means of entry and display, such as hexadecimal,
+may be provided.
+
+For information encoded in 7-bit US-ASCII,
+the UTF-8 encoding is identical to the
+US-ASCII encoding.
+
+UTF-8 may require multiple bytes to represent a
+single character / code point; thus the length
+of this object in octets may be different from
+the number of characters encoded.  Similarly,
+size constraints refer to the number of encoded
+octets, not the number of characters represented
+by an encoding.
+
+Note that when this TC is used for an object that
+is used or envisioned to be used as an index, then
+a SIZE restriction MUST be specified so that the
+number of sub-identifiers for any object instance
+does not exceed the limit of 128, as defined by
+[RFC3416].
+
+Note that the size of an SnmpAdminString object is
+measured in octets, not characters.
+                </pre></td></tr>
+</table></ul>
+
+<a name="treeview" />
+<h2>TREE VIEW</h2>
+<p>Tree view generated by running: <b>snmptranslate -Tp NET-SNMP-EXAMPLES-MIB::netSnmpExamples</b></p>
+<pre>
++--<a href="#netSnmpExamples">netSnmpExamples</a>(2)
+   |
+   +--<a href="#netSnmpExampleScalars">netSnmpExampleScalars</a>(1)
+   |  |
+   |  +-- -RW- Integer32 <a href="#netSnmpExampleInteger">netSnmpExampleInteger</a>(1)
+   |  +-- -RW- Integer32 <a href="#netSnmpExampleSleeper">netSnmpExampleSleeper</a>(2)
+   |  +-- -RW- String    <a href="#netSnmpExampleString">netSnmpExampleString</a>(3)
+   |           Textual Convention: <a href="#SnmpAdminString">SnmpAdminString</a>
+   |           Size: 0..255
+   |
+   +--<a href="#netSnmpExampleTables">netSnmpExampleTables</a>(2)
+   |  |
+   |  +--<a href="#netSnmpIETFWGTable">netSnmpIETFWGTable</a>(1)
+   |  |  |
+   |  |  +--<a href="#netSnmpIETFWGEntry">netSnmpIETFWGEntry</a>(1)
+   |  |     |  Index: nsIETFWGName
+   |  |     |
+   |  |     +-- ---- String    <a href="#nsIETFWGName">nsIETFWGName</a>(1)
+   |  |     |        Size: 1..32
+   |  |     +-- CR-- String    <a href="#nsIETFWGChair1">nsIETFWGChair1</a>(2)
+   |  |     +-- CR-- String    <a href="#nsIETFWGChair2">nsIETFWGChair2</a>(3)
+   |  |
+   |  +--<a href="#netSnmpHostsTable">netSnmpHostsTable</a>(2)
+   |     |
+   |     +--<a href="#netSnmpHostsEntry">netSnmpHostsEntry</a>(1)
+   |        |  Index: netSnmpHostName
+   |        |
+   |        +-- ---- String    <a href="#netSnmpHostName">netSnmpHostName</a>(1)
+   |        |        Size: 0..64
+   |        +-- CR-- EnumVal   <a href="#netSnmpHostAddressType">netSnmpHostAddressType</a>(2)
+   |        |        Textual Convention: <a href="#InetAddressType">InetAddressType</a>
+   |        |        Values: unknown(0), ipv4(1), ipv6(2), ipv4z(3), ipv6z(4), dns(16)
+   |        +-- CR-- String    <a href="#netSnmpHostAddress">netSnmpHostAddress</a>(3)
+   |        |        Textual Convention: <a href="#InetAddress">InetAddress</a>
+   |        |        Size: 0..255
+   |        +-- CR-- EnumVal   <a href="#netSnmpHostStorage">netSnmpHostStorage</a>(4)
+   |        |        Textual Convention: <a href="#StorageType">StorageType</a>
+   |        |        Values: other(1), volatile(2), nonVolatile(3), permanent(4), readOnly(5)
+   |        +-- CR-- EnumVal   <a href="#netSnmpHostRowStatus">netSnmpHostRowStatus</a>(5)
+   |                 Textual Convention: <a href="#RowStatus">RowStatus</a>
+   |                 Values: active(1), notInService(2), notReady(3), createAndGo(4), createAndWait(5), destroy(6)
+   |
+   +--<a href="#netSnmpExampleNotifications">netSnmpExampleNotifications</a>(3)
+      |
+      +--<a href="#netSnmpExampleNotificationPrefix">netSnmpExampleNotificationPrefix</a>(0)
+      |  |
+      |  +--<a href="#netSnmpExampleHeartbeatNotification">netSnmpExampleHeartbeatNotification</a>(1)
+      |
+      +-- ---N String    <a href="#netSnmpExampleNotification">netSnmpExampleNotification</a>(1)
+      |        Textual Convention: <a href="#SnmpAdminString">SnmpAdminString</a>
+      |        Size: 0..255
+      |
+      +--<a href="#netSnmpExampleNotificationObjects">netSnmpExampleNotificationObjects</a>(2)
+         |
+         +-- ---N Integer32 <a href="#netSnmpExampleHeartbeatRate">netSnmpExampleHeartbeatRate</a>(1)
+         +-- ---N String    <a href="#netSnmpExampleHeartbeatName">netSnmpExampleHeartbeatName</a>(2)
+                  Textual Convention: <a href="#SnmpAdminString">SnmpAdminString</a>
+                  Size: 0..255
+</pre>
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/docs/mibs/netSnmpExamples.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:30:44 GMT -->
+</html>
+
+
+

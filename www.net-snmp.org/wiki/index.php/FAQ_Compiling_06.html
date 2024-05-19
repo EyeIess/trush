@@ -1,0 +1,258 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/FAQ:Compiling_06 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:10:54 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>FAQ:Compiling 06 - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"FAQ:Compiling_06","wgTitle":"FAQ:Compiling 06","wgCurRevisionId":4000,"wgRevisionId":4000,"wgArticleId":1617,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"FAQ:Compiling_06","wgRelevantArticleId":1617,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="../load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="../load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<link rel="shortcut icon" href="../../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="../opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://net-snmp.sourceforge.net/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="../apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-FAQ_Compiling_06 skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">FAQ:Compiling 06</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><h1><span class="mw-headline" id="How_can_I_compile_the_project_for_use_on_an_embedded_system.3F">How can I compile the project for use on an embedded system?</span></h1>
+<p>Although this is definitely a Frequently Asked Question on the project
+mailing lists, it hasn't really been a Frequently <i>Answered</i> Question.
+The basic problem is that none of the core development team have much
+involvement or experience with embedded systems.  And although we have
+repeatedly put out a plea for implementation reports and advice, this
+has not so far been particularly successful.  So the first thing to say
+is that the following suggestions should be treated with a greater than
+usual level of suspicion.
+</p><p>The second thing to say is that compiling the Net-SNMP project for use
+on an embedded system typically means compiling the <b>agent</b> (rather than
+the trap receiver, or command-line tools).  So that is what this entry
+will concentrate on.
+</p><p>There are three main aspects to consider:
+</p>
+<ul><li> how to compile the code,</li>
+<li> <i>what</i> code to compile, and</li>
+<li> how to install the resulting agent binary.</li></ul>
+<p>The Net-SNMP project uses the standard <code>configure</code> mechanism, so the
+usual cross-compilation options are available - in particular <code>--host</code>
+and <code>--target</code>.  It is also possible to specify the compiler and linker
+to use (<code>--with-cc</code> and <code>--with-ld</code>), and any special flags to pass
+to them (<code>--with-cflags</code> and <code>--with-ldflags</code>).   There shouldn't be
+anything particularly special about compiling the Net-SNMP code, so
+see the documentation for your target environment for more information.<br />
+(And please let us know if there <b>is</b> anything special that should be
+mentioned here!)
+</p><p>If the aim is simply to generate an SNMP agent to run on the target
+system, it's probably not necessary to compile the command-line tools
+or trap receiver.  The configure option <code>--disable-applications</code> will
+omit these elements.  See the <a href="FAQ_Compiling_05.html" title="FAQ:Compiling 05">previous entry</a> for other potentially
+relevant useful options.
+</p><p>Unfortunately, the SNMP agent (and in particular, the code for individual
+MIB modules) is the most system-specific part of the Net-SNMP software.
+It may prove necessary to disable particular MIB modules if they do not
+compile successfully, or attempt to use the wrong system-specific APIs.
+This can be done using the configure option <code>--with-out-mib-modules</code>.
+Alternatively, the option <code>--enable-mini-agent</code> will omit all but the
+core MIB module code.  Additional modules can then be added individually
+using <code>--with-mib-modules</code>.
+</p><p>Further information about how to deal with problems with individual MIB
+modules is reliant on suitable reports being forthcoming from the wider
+Net-SNMP community.  The ball is in your court!
+</p><p>Finally, installing the agent binary is <b>not</b> simply a matter of copying
+the <code>snmpd</code> file onto the target system.  The agent typically relies on
+a number of additional libraries (and possibly the presence of assorted
+MIB files, unless this has been explicitly omitted).  It is normally
+necessary to run <code>make install</code>, before copying the installed framework
+to the target system.
+</p><p>If the install destination needs to be different to the eventual location
+on the target system, this can be handled using the configure options
+<code>--prefix</code> (for the target location) and <code>--with-install-prefix</code> (for the
+temporary install location).  Alternatively, this can be handled as part
+of the install command:
+</p>
+<pre>      make install prefix={target location} INSTALL_PREFIX={temp location}
+</pre>
+<p>Alternatively, if the agent is compiled with static linking (and no MIB
+files), then it may be possible to simply copy the agent binary across to
+the target system.  See the <a href="FAQ_Compiling_07.html" title="FAQ:Compiling 07">next entry</a> for details.
+</p>
+<pre>   <a href="FAQ_Compiling.html" title="FAQ:Compiling">FAQ:Compiling</a>
+   
+</pre>
+<ol><li> <a href="FAQ_Compiling_01.html" title="FAQ:Compiling 01">How do I control the environment used to compile the software?</a></li>
+<li> <a href="FAQ_Compiling_02.html" title="FAQ:Compiling 02">How do I control the environment used to compile the software under Windows?</a></li>
+<li> <a href="FAQ_Compiling_03.html" title="FAQ:Compiling 03">Why does the compilation complain about missing libraries?</a></li>
+<li> <a href="FAQ_Compiling_04.html" title="FAQ:Compiling 04">How can I reduce the memory footprint?</a></li>
+<li> <a href="FAQ_Compiling_05.html" title="FAQ:Compiling 05">How can I reduce the installation footprint or speed up compilation?</a></li>
+<li> <strong class="selflink">How can I compile the project for use on an embedded system?</strong></li>
+<li> <a href="FAQ_Compiling_07.html" title="FAQ:Compiling 07">How can I compile the project to use static linking?</a></li>
+<li> <a href="FAQ_Compiling_08.html" title="FAQ:Compiling 08">Why does 'make test' skip various tests?</a></li>
+<li> <a href="FAQ_Compiling_09.html" title="FAQ:Compiling 09">Why does 'make test' complain about a pid file?</a></li></ol>
+
+<!-- 
+NewPP limit report
+Cached time: 20171115233313
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.087 seconds
+Real time usage: 0.095 seconds
+Preprocessor visited node count: 6/1000000
+Preprocessor generated node count: 28/1000000
+Post‐expand include size: 4423/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   27.998      1 - -total
+ 50.45%   14.124      1 - Template:FAQ:Compiling_06b
+ 47.67%   13.347      1 - Template:FAQ:Compiling
+-->
+
+<!-- Saved in parser cache with key n12694_wikidb:pcache:idhash:1617-0!*!0!*!*!*!* and timestamp 20171115233313 and revision id 4000
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://net-snmp.sourceforge.net/wiki/index.php?title=FAQ:Compiling_06&amp;oldid=4000">http://net-snmp.sourceforge.net/wiki/index.php?title=FAQ:Compiling_06&amp;oldid=4000</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="FAQ_Compiling_06.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="Talk_FAQ_Compiling_06.html?title=Talk:FAQ:Compiling_06&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="../index3964.html?title=FAQ:Compiling_06&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="../index7312.html?title=FAQ:Compiling_06&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="../indexf854.html?title=Special:UserLogin&amp;returnto=FAQ%3ACompiling+06&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="../indexe8dc.html?title=Special:UserLogin&amp;returnto=FAQ%3ACompiling+06" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/FAQ_Compiling_06.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/FAQ_Compiling_06.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="../indexbba4.html?title=FAQ:Compiling_06&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="../indexf69b.html?title=FAQ:Compiling_06&amp;oldid=4000" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="../index1dc1.html?title=FAQ:Compiling_06&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 19 July 2009, at 16:24.</li>
+									<li id="privacy"><a href="Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":987});
+} );</script></body><!-- Cached 20171116024521 -->
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/FAQ:Compiling_06 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:11:02 GMT -->
+</html>

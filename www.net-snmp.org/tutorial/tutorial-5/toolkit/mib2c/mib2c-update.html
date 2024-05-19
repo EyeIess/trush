@@ -1,0 +1,328 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-5/toolkit/mib2c/mib2c-update.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:17:04 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../../../print1.css" />
+  </head>
+  <body background="../../../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../../../index.html">About</a><br />
+        
+
+        <a href="../../../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../index.html"
+                  title="Net-SNMP v5 tutorial">Version 5.x</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../../tutorial-4/index.html"
+                  title="UCD-SNMP v4 tutorial">Version 4.x</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../../../../docs/readmefiles.html">Documentation</a><br />
+        
+
+        <a href="../../../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../../../../dev/projects.html">Development</a><br />
+        
+
+        <a href="../../../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>mib2c</title>
+  </head>
+
+  <body>
+    <!-- ========================================================= -->
+    <h1>mib2c-update</h1>
+    <p><b>THIS PAGE IS STILL UNDER CONSTRUCTION</b></p>
+    <p>
+      mib2c generates template code which you must customize. So what
+      happens when the confiugration file you chost is updated to fix
+      a bug or add a new feature? Traditionally, you have had to
+      manually merge the changes into your code, or merge your
+      your customizations into a freshly generated code set. (see
+      <a href="#manual">pseudo-algorithm</a> for the manual steps
+      needed).
+    </p><p>
+      The shell script <var>mib2c-update</var> is a wrapper around mib2c
+      and other utilities to help you take advantage of updates
+      to the configuration file you chose for your mib module without
+      having 
+    <p>
+      If all goes well, there might not be any conflicts. If you changed
+      any configuration optione, or there were lots of changes to the
+      configuration files, you may have to do quite a bit of manual patching.
+    </p>
+    <!-- ========================================================= -->
+    <p>&nbsp</p><hr width=80%><p>&nbsp</p><a name="config"></a>
+    <h2>Basic Configuration</h2>
+    <p>
+      <i>mib2c-update</i> does not take any commanline parameters.
+      All configuration is kept in the file <code>.mib2c-updaterc</code> in
+      the directory where the code is generated. This configuration file
+      needs to contain two pieces of information: the table name, and the
+      <i>mib2c</i> configuration file to use. The format is pretty
+      basic:
+    </p>
+    <table><tr><td width=20></td><td bgcolor=CCCCCC><pre>
+#
+# example mib2c-update configuration file
+#
+
+# UPDATE_OID should contain the table for which code will be generated
+#
+UPDATE_OID=ipAddressTable
+
+#
+# UPDATE_CONF should contain the mib2c configuration file to be used
+#
+UPDATE_CONF=mib2c.mfd.conf</pre></td></tr></table>
+    <p>
+      Those are the only required options. If you want to pass additional
+      arguments to <i>mib2c</i>, you can set the options in
+      <code>UPDATE_MIB2C_OPTS</code>:
+    </p>
+    <table><tr><td width=20></td><td bgcolor=CCCCCC><pre>
+UPDATE_MIB2C_OPTS="-q -f ipAddress"</pre></td></tr></table>
+    <p>
+      You can also configure the directories that <i>mib2c-update</i>
+      will use to generate temporary code. The available options, and
+      their defaults, are:
+    </p>
+    <ul>
+      <li><code><b>UPDATE_CURR</b>=.</code><br>
+        Determines where the current code is. The default is the current
+        working directory.
+      <li><code><b>UPDATE_ORIG</b>=.orig</code><br>
+        Determines where the original template code is. In this case,
+        originial means the template used for the code in current.
+      <li><code><b>UPDATE_NEW</b>=.new</code><br>
+        Determines where the new template code should be generated.
+      <li><code><b>UPDATE_PATCH</b>=.patch</code><br>
+        Determines where the template and custom code patches should be
+        generated.
+      <li><code><b>UPDATE_MERGED</b>=.merged</code><br>
+        Determines where the merging of the new code with the patches
+        should occur.
+      <li><code><b>UPDATE_BACKUP</b>=.backup</code><br>
+        Determines where the current and original code will be backed up.
+      <li>
+    </ul>
+
+    <!-- ========================================================= -->
+    <p>&nbsp</p><hr width=80%><p>&nbsp</p><a name="config"></a>
+    <h2>Running mib2c-update</h2>
+    <p>
+      Note: if you are trying to use <i>mib2c-update</i> after the fact
+      (i.e. you originally generated you code with mib2c directly, skip
+      ahead to <a href="#retroactive">using mib2c-update retroactively</a>.
+    </p><p>
+      The first run of <i>mib2c-update</i> is very easy. Simply create
+      your configuration file, <code>.mib2c-updaterc</code>, as described
+      above, and then run <i>mib2c-update</i>. The temporary directories
+      will be created, and <i>mib2c</i> will be run to generate the
+      initial code.
+    </p><p>
+      ... EXAMPLE RUN HERE ...
+    </p><p>
+      Once you have generated the code, I strongly recommend that you
+      check it in to a source code version control system, such as
+      CVS, Subversion, RCS, ClearCase or (shudder) Microsoft SourceSafe.
+      This will help you recover if a bug in <i>mib2-update</i> causes
+      any problems.  Both the <code>current</code> and <code>original</code>
+      directories should be put under version control.
+    </p><p>
+
+
+    <!-- ========================================================= -->
+    <p>&nbsp</p><hr width=80%><p>&nbsp</p><a name="config"></a>
+    <h2>Running mib2c-update</h2>
+    <p>
+      If you are trying to use <i>mib2c-update</i> after the fact
+      (i.e. you originally generated you code with mib2c directly), you
+      have to do a little work to be able to use mib2c-update.
+    </p><p>
+      ... TBD ...
+    </p><p>
+    </p><p>
+
+    <!-- ========================================================= -->
+    <p>&nbsp</p><hr width=80%><p>&nbsp</p><a name="manual"></a>
+    <h2>Manual updates</h2>
+    <p>
+      If you want to manage the process manually, it goes something
+      like this:
+    </p>
+    <ul>
+      <li>In a new directory (eg orig), generate the code for your table using
+        the same mib2c configuration file and options that were originally
+        used to generate the code.
+      <li>use <code>diff</code> to compare the unmodified template code to
+        your existing code, and save the output to create a patch of your changes.
+      <li>in a new directory (eg new), generate the code for your table using
+        the updated mib2c configuration files, but with the same options that
+        were originally used to generate the code.
+      <li>use <code>diff</code> to compare the original template code to the
+        updated template code, and save the output to create a patch of the
+        configuration file changes.
+      <li>copy the new code to a new directory (eg merge), and apply the
+        configuration file patch.
+      <li>apply your custome changes patch to the merge directory
+      <li>resolve any conflicts or failed patches.
+    </ul>
+    <!-- ========================================================= -->
+    <font size=+1>
+      <a href="index.html">Back: mib2c</a> |
+      <a href="../index-2.html">Up</a>
+    </font>
+    <!-- ========================================================= -->
+    <hr>
+    rstory at freesnmp dot com<br>
+Version $Revision$
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-5/toolkit/mib2c/mib2c-update.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:17:04 GMT -->
+</html>
+
+
+

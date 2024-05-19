@@ -1,0 +1,239 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/docs/man/netsnmp_Container_iterator.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:36 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../print1.css" />
+  </head>
+  <body background="../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../index.html">About</a><br />
+        
+
+        <a href="../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+
+        <a href="../readmefiles.html">Documentation</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../readmefiles.html"
+                  title="README files included with the package">README files</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../FAQ.html" 
+                  title="Frequently Asked Questions">FAQ</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../INSTALL.html" 
+                  title="Intall instructions for *nix systems">INSTALL</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="index.html"
+                  title="Man pages for utilities, daemons, api etc">Man pages</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../mibs/index.html"
+                  title="The MIB files distributed with Net-SNMP">MIBS</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../dev/agent/index.html"
+                  title="API documentation">API</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../../dev/projects.html">Development</a><br />
+        
+
+        <a href="../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+    <h1>Container_iterator</h1>Section: C Library Functions (3)<br />
+    Updated: 24 Nov 2004<br />
+    <a href="#index">Index</a> <a href="../readmefiles.html">Return to Main Contents</a>
+    <hr />
+    <a name="lbAB" id="lbAB">&nbsp;</a>
+
+    <h2>NAME</h2>Container_iterator - <a name="lbAC" id="lbAC">&nbsp;</a>
+
+    <h3>Typedefs</h3>
+
+    <p><br />
+    typedef int( <b>Netsnmp_Iterator_Loop_Key</b> )(void *iterator_ctx, netsnmp_ref_void *loop_ctx, netsnmp_ref_void *key)<br />
+    <br />
+    typedef int( <b>Netsnmp_Iterator_Loop_Data</b> )(void *iterator_ctx, netsnmp_ref_void *loop_ctx, netsnmp_ref_void
+    *data)<br />
+    <br />
+    typedef int( <b>Netsnmp_Iterator_Ctx</b> )(void *iterator_ctx, netsnmp_ref_void *loop_ctx)<br />
+    <br />
+    typedef int( <b>Netsnmp_Iterator_Ctx_Dup</b> )(void *iterator_ctx, netsnmp_ref_void *loop_ctx, netsnmp_ref_void *dup_ctx, int
+    reuse)<br />
+    <br />
+    typedef int( <b>Netsnmp_Iterator_Op</b> )(void *iterator_ctx)<br />
+    <br />
+    typedef int( <b>Netsnmp_Iterator_Data</b> )(void *iterator_ctx, const void *data)<br />
+    <a name="lbAD" id="lbAD">&nbsp;</a></p>
+
+    <h3>Functions</h3>
+
+    <p><br />
+    void <b>netsnmp_container_iterator_init</b> (void)<br />
+    <br />
+    netsnmp_container * <b>netsnmp_container_iterator_get</b> (void *iterator_user_ctx, netsnmp_container_compare *compare,
+    Netsnmp_Iterator_Loop_Key *get_first, Netsnmp_Iterator_Loop_Key *get_next, Netsnmp_Iterator_Loop_Data *get_data,
+    Netsnmp_Iterator_Ctx_Dup *save_pos, Netsnmp_Iterator_Ctx *init_loop_ctx, Netsnmp_Iterator_Ctx *cleanup_loop_ctx,
+    Netsnmp_Iterator_Data *free_user_ctx, int sorted)<br />
+    <br />
+    void <b>netsnmp_container_iterator_set_data_cb</b> (netsnmp_container *c, Netsnmp_Iterator_Data *insert_data,
+    Netsnmp_Iterator_Data *remove_data, Netsnmp_Iterator_Op *get_size)<br /></p>
+    <hr />
+    <a name="index" id="index">&nbsp;</a>
+
+    <h2>Index</h2>
+
+    <dl>
+      <dt><a href="#lbAB">NAME</a></dt>
+
+      <dd>
+        <dl>
+          <dt><a href="#lbAC">Typedefs</a></dt>
+
+          <dt><a href="#lbAD">Functions</a></dt>
+        </dl>
+      </dd>
+    </dl>
+    <hr />
+    This document was created by <a href="http://localhost/cgi-bin/man/man2html">man2html</a>, using the manual pages.<br />
+    Time: 13:12:01 GMT, September 23, 2007
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/docs/man/netsnmp_Container_iterator.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:37 GMT -->
+</html>
+
+
+

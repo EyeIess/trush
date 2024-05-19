@@ -1,0 +1,427 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Using_DTLS&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:49:45 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Using DTLS - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Using_DTLS","wgTitle":"Using DTLS","wgCurRevisionId":5867,"wgRevisionId":5867,"wgArticleId":1982,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Using_DTLS","wgRelevantArticleId":1982,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load531d.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;printable=1&amp;skin=monobook" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="loadf198.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Using_DTLS skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Using DTLS</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>"<a href="index.php/SNMP-2.html" title="SNMP">SNMP</a> over <a href="index.php/DTLS.html" title="DTLS">DTLS</a> over <a href="index.php/UDP.html" title="UDP">UDP</a>" and "<a href="index.php/SNMP-2.html" title="SNMP">SNMP</a> over <a href="index.php/TLS.html" title="TLS">TLS</a> over <a href="index.php/TCP.html?title=TCP&amp;action=edit&amp;redlink=1" class="new" title="TCP (page does not exist)">TCP</a>" (<a href="http://www.rfc-editor.org/rfc/rfc5953.txt" class="extiw" title="rfc:5953">RFC5953</a>) are supported in Net-SNMP 5.6 and beyond (5.5 had preliminary experimental support that shouldn't be considered complete).  This page describes what is necessary to configure the software to use it.
+</p><p><b>Note: these instructions are preliminary and are subject to change until the release of the 5.6 software</b>
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Compiling_Net-SNMP_with_TLS_and_DTLS_Support"><span class="tocnumber">1</span> <span class="toctext">Compiling Net-SNMP with TLS and DTLS Support</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Generating_X.509_Certificates"><span class="tocnumber">2</span> <span class="toctext">Generating X.509 Certificates</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Generating_a_CA-signed_Certificate"><span class="tocnumber">2.1</span> <span class="toctext">Generating a CA-signed Certificate</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="#Generating_the_CA_Certificate"><span class="tocnumber">2.1.1</span> <span class="toctext">Generating the CA Certificate</span></a></li>
+<li class="toclevel-3 tocsection-5"><a href="#Generating_CA-signed_Certificates"><span class="tocnumber">2.1.2</span> <span class="toctext">Generating CA-signed Certificates</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-6"><a href="#Generating_a_Self-signed_Certificate"><span class="tocnumber">2.2</span> <span class="toctext">Generating a Self-signed Certificate</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Examining_the_Fingerprints"><span class="tocnumber">2.3</span> <span class="toctext">Examining the Fingerprints</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Configuring_Servers"><span class="tocnumber">3</span> <span class="toctext">Configuring Servers</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#Configuring_Certificates"><span class="tocnumber">3.1</span> <span class="toctext">Configuring Certificates</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Setting_the_Server.27s_Certificate"><span class="tocnumber">3.2</span> <span class="toctext">Setting the Server's Certificate</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Recognizing_Client_Certificates"><span class="tocnumber">3.3</span> <span class="toctext">Recognizing Client Certificates</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Setting_up_Access_Control"><span class="tocnumber">3.4</span> <span class="toctext">Setting up Access Control</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Opening_and_Listening_on_a_Port_for_DTLS_traffic"><span class="tocnumber">3.5</span> <span class="toctext">Opening and Listening on a Port for DTLS traffic</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-14"><a href="#Configuring_the_Applications"><span class="tocnumber">4</span> <span class="toctext">Configuring the Applications</span></a>
+<ul>
+<li class="toclevel-2 tocsection-15"><a href="#Setting_certificates_via_the_command_line"><span class="tocnumber">4.1</span> <span class="toctext">Setting certificates via the command line</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Setting_the_Clients.27s_Certificate_in_the_snmp.conf_file"><span class="tocnumber">4.2</span> <span class="toctext">Setting the Clients's Certificate in the snmp.conf file</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-17"><a href="#Running_and_Testing"><span class="tocnumber">5</span> <span class="toctext">Running and Testing</span></a>
+<ul>
+<li class="toclevel-2 tocsection-18"><a href="#Debugging"><span class="tocnumber">5.1</span> <span class="toctext">Debugging</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Where_to_find.2Finstall_certificates.3F"><span class="tocnumber">5.2</span> <span class="toctext">Where to find/install certificates?</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Which_certificates.2Fkeys_are_being_loaded.3F"><span class="tocnumber">5.3</span> <span class="toctext">Which certificates/keys are being loaded?</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#How_can_I_get_the_fingerprints_for_a_certificate.3F"><span class="tocnumber">5.4</span> <span class="toctext">How can I get the fingerprints for a certificate?</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Compiling_Net-SNMP_with_TLS_and_DTLS_Support">Compiling Net-SNMP with TLS and DTLS Support</span></h2>
+<p>Just ensure you have a recent version of <a href="index.php/OpenSSL.html" title="OpenSSL">OpenSSL</a> installed as well as run configure with the following two options in addition to your normal options:
+</p>
+<pre># ./configure <b>--with-security-modules=tsm --with-transports=TLSTCP,DTLSUDP</b>
+</pre>
+<h2><span class="mw-headline" id="Generating_X.509_Certificates">Generating X.509 Certificates</span></h2>
+<p>DTLS uses <a href="index.php/X.html?title=X.509&amp;action=edit&amp;redlink=1" class="new" title="X.509 (page does not exist)">X.509</a> certificates to authenticate both the client and server sides of DTLS connections.  This means that both the SNMP server and client need to have certificates generated and installed in order to make use of DTLS.  The client will need to verify the servers certificate, to make sure it's talking to the server it thinks it is.  The server needs to verify the clients certificate, and possibly extract user-name information from it, in order to verify the client is who they say they are and assign appropriate access control settings.
+</p><p>Net-SNMP comes with an easy-to-use certificate management program (<b>net-snmp-cert</b>) that helps you generate and manage certificates on your system.  You're encouraged to use it but you may certainly make your own as well.
+</p><p>Note: net-snmp-cert creates and uses its own openssl configuration file. Before you start generating certificates, you might
+want to customize this configuration file for your Country, State, Locality and so on.  The first step is to get net-snmp-cert
+to generate its default file. You can do this by  running the following command:
+</p>
+<pre># net-snmp-cert showcerts
+</pre>
+<p>The only output should be the path to the newly created tls directory which contains the newly installed openssl.conf. Tweak
+to taste and then continue with the rest of this tutorial.
+</p><p>You may also need to change the permissions of the created directory hierarchy. This will be handled by the tool in the near future.
+</p>
+<pre># chmod 755 /usr/local/share/snmp/tls/ /usr/local/share/snmp/tls/ca-certs/ /usr/local/share/snmp/tls/certs/
+</pre>
+<h3><span class="mw-headline" id="Generating_a_CA-signed_Certificate">Generating a CA-signed Certificate</span></h3>
+<p>Generally you'll want to generate a master CA certificate that is used as a trust point for all you software.  IE, you can configure snmpd to trust any certificate that has been signed by this single CA certificate.  That doesn't mean they'll get access, however, because they'll still need to pass the <a href="index.php/VACM-2.html?title=VACM&amp;action=edit&amp;redlink=1" class="new" title="VACM (page does not exist)">VACM</a> checks before they can get or send any data to the server.
+</p>
+<h4><span class="mw-headline" id="Generating_the_CA_Certificate">Generating the CA Certificate</span></h4>
+<p>To generate a CA certificate:
+</p>
+<pre># net-snmp-cert genca -I -n hostname.example.com
+</pre>
+<h4><span class="mw-headline" id="Generating_CA-signed_Certificates">Generating CA-signed Certificates</span></h4>
+<p>Generate the one for the manager:
+</p>
+<pre># net-snmp-cert gencsr -I -t manager -n joecool --san email:cooljoe@hostname.example.com
+</pre>
+<p>Then generate one for your agent:
+</p>
+<pre># net-snmp-cert gencsr -I -t snmpd -n hostname.example.com --san DNS:snmpd.example.com
+</pre>
+<p>Then sign them:
+</p>
+<pre># net-snmp-cert signcsr -I --with-ca hostname.example.com --csr manager
+# net-snmp-cert signcsr -I --with-ca hostname.example.com --csr snmpd
+</pre>
+<p>And move them to the certs directory and make them readable:
+</p>
+<pre># mv /usr/local/share/snmp/tls/newcerts/*.crt /usr/local/share/snmp/tls/certs/
+# chmod a+r /usr/local/share/snmp/tls/ca-certs/* /usr/local/share/snmp/tls/certs/*
+</pre>
+<p>If your manager will be a non-root user, you may want to move their private key to
+their home directory:
+</p>
+<pre>$ net-snmp-cert showcerts
+$ sudo cp /usr/local/share/snmp/tls/certs/manager.crt ~/.snmp/tls/certs/
+$ sudo mv /usr/local/share/snmp/tls/private/manager.key ~/.snmp/tls/private/
+$ sudo chown $USER: ~/.snmp/tls/private/manager.key
+</pre>
+<h3><span class="mw-headline" id="Generating_a_Self-signed_Certificate">Generating a Self-signed Certificate</span></h3>
+<p>If you don't want to generate a CA to sign everything, you can also simply generate self-signed certificates.
+</p><p>Generate the one for the manager:
+</p>
+<pre># net-snmp-cert gencert -I -t manager -n joecool --san email:cooljoe@hostname.example.com
+</pre>
+<p>Then generate one for your agent:
+</p>
+<pre># net-snmp-cert gencert -I -t snmpd -n hostname.example.com --san DNS:snmpd.example.com
+</pre>
+<p>To see what certificates you've generated use the following command:
+</p>
+<pre># net-snmp-cert showcerts
+certs/manager.crt:
+subject= /C=US/ST=California/L=Davis/O=Net-SNMP Developers/OU=SNMP/DTLS/CN=joecool/emailAddress=joecool@users.net-snmp.org
+
+certs/snmpd.crt:
+subject= /C=US/ST=California/L=Davis/O=Net-SNMP Developers/OU=SNMP/DTLS/CN=hostname.example.com/emailAddress=admin@users.net-snmp.org
+
+</pre>
+<p><b>todo: document how to change all the parameters, configure the config files, etc</b>
+</p>
+<h3><span class="mw-headline" id="Examining_the_Fingerprints">Examining the Fingerprints</span></h3>
+<p>We'll be referring to fingerprints in the configuration files a lot.  Here's how to find them:
+</p>
+<pre># net-snmp-cert showcerts --fingerprint
+certs/manager.crt:
+SHA1 Fingerprint=56:E4:53:CE:D4:52:87:A7:74:11:BE:BA:9F:37:11:23:4A:77:CE:83
+
+certs/snmpd.crt:
+SHA1 Fingerprint=2A:10:4A:09:3C:7C:DF:E9:11:0F:73:D9:C6:58:90:74:3C:E3:6A:CC
+</pre>
+<p>You can see the subjects as well by adding the --subject option:
+</p>
+<pre>$ net-snmp-cert showcerts --fingerprint --subject
+certs/test.crt:
+subject= /C=US/ST=GA/L=Atlanta/O=Net-SNMP/OU=Development/CN=admin/emailAddress=admin@example.com
+SHA1 Fingerprint=7B:5E:D5:0D:A0:BD:04:E9:C4:A6:9C:30:3D:7D:99:03:C1:82:D1:36
+</pre>
+<h2><span class="mw-headline" id="Configuring_Servers">Configuring Servers</span></h2>
+<h3><span class="mw-headline" id="Configuring_Certificates">Configuring Certificates</span></h3>
+<p>The tokens for specifying which <a href="index.php/X.html?title=X.509&amp;action=edit&amp;redlink=1" class="new" title="X.509 (page does not exist)">X.509</a> certificates are configured in the <a href="index.php/Snmp.html?title=Snmp.conf&amp;action=edit&amp;redlink=1" class="new" title="Snmp.conf (page does not exist)">snmp.conf</a> file.  <b>Note: </b> the <a href="index.php/Snmpd-2.html" title="Snmpd.conf">snmpd.conf</a> file examples below contain the <i>[snmp]</i> prefix to fool the snmpd.conf file into reading snmp.conf tokens (as described in the <a rel="nofollow" class="external text" href="../docs/man/snmp_config.html">snmp_config</a> manual page).
+</p>
+<h3><span class="mw-headline" id="Setting_the_Server.27s_Certificate">Setting the Server's Certificate</span></h3>
+<p>By default, <a href="index.php/Snmpd.html" title="Snmpd">snmpd</a> will search for a certificate named <i>snmpd.crt</i> and if found, use that certificate. If another tag was specified for the server certificate, the <a href="index.php/Snmpd.html" title="Snmpd">snmpd</a> server needs to be configured with its key.  To do this, add the following line to the snmpd.conf file using the correct fingerprint from your fingerprint list (see above for how to list fingerprints).
+</p>
+<pre> [snmp] serverCert 2A:10:4A:09:3C:7C:DF:E9:11:0F:73:D9:C6:58:90:74:3C:E3:6A:CC
+</pre>
+<h3><span class="mw-headline" id="Recognizing_Client_Certificates">Recognizing Client Certificates</span></h3>
+<p>You must configure a mapping for a SNMPv3 user name. You can specify the user name directly (using the --sn flag), or use a field from the certificate (like the common name using the --cn flag). Here are two examples. The first specifies that the common name from
+the certificate should be used as the user name, while the second specifies the user name directly (<i>SnmpAdmin</i>):
+</p>
+<pre>certSecName 10 56:E4:53:CE:D4:52:87:A7:74:11:BE:BA:9F:37:11:23:4A:77:CE:83 --cn
+certSecName 20 56:E4:53:CE:D4:52:87:A7:74:11:BE:BA:9F:37:11:23:4A:77:CE:83 --sn SnmpAdmin
+</pre>
+<p>See the snmpd.conf manual page for futhere documentation on the usage of the <i>certSecName</i> token.
+</p>
+<h3><span class="mw-headline" id="Setting_up_Access_Control">Setting up Access Control</span></h3>
+<p>SNMP over TLS and DTLS is a mode of SNMPv3, so <a href="index.php/Access_control.html?title=Access_control&amp;action=edit&amp;redlink=1" class="new" title="Access control (page does not exist)">access control</a> settings are done using the standard <a href="index.php/VACM-2.html?title=VACM&amp;action=edit&amp;redlink=1" class="new" title="VACM (page does not exist)">VACM</a> configuration tokens.  The <a href="index.php/Security_model.html?title=Security_model&amp;action=edit&amp;redlink=1" class="new" title="Security model (page does not exist)">security model</a> used should normally be <a href="index.php/TSM.html" title="TSM">TSM</a> (further discussed below in the example usage section).  Here are some example snmpd.conf configuration settings for incoming users with a X.509 <a href="index.php/CommonName.html?title=CommonName&amp;action=edit&amp;redlink=1" class="new" title="CommonName (page does not exist)">CommonName</a> field of "joecool", which matches the certificate generated above:
+</p>
+<pre> rwuser -s tsm "joecool"
+</pre>
+<h3><span class="mw-headline" id="Opening_and_Listening_on_a_Port_for_DTLS_traffic">Opening and Listening on a Port for DTLS traffic</span></h3>
+<p><a href="index.php/Snmpd.html" title="Snmpd">snmpd</a> and <a href="index.php/Snmptrapd.html" title="Snmptrapd">snmptrapd</a> can both be configured to accept and process connections sent over DTLS.  This is done on the command line using the <i>dtls:</i> and <i>tls:</i> addressing specifier.  E.G. this:
+</p>
+<pre> # snmpd dtlsudp:10161 tlstcp:10161
+</pre>
+<p>tells snmpd to open two ports (udp's 10161 and tcp's 10161) and listen for incoming SNMP over DTLS and SNMP over TLS connections to them.
+</p>
+<h2><span class="mw-headline" id="Configuring_the_Applications">Configuring the Applications</span></h2>
+<p>Tools like <a href="index.php/Snmpget.html" title="Snmpget">snmpget</a>, <a href="index.php/Snmpwalk.html" title="Snmpwalk">snmpwalk</a> or anything that uses the core <a href="index.php/Session.html?title=Session&amp;action=edit&amp;redlink=1" class="new" title="Session (page does not exist)">session</a> structures within the main <a href="index.php/Libnetsnmp.html?title=Libnetsnmp&amp;action=edit&amp;redlink=1" class="new" title="Libnetsnmp (page does not exist)">Net-Snmp library</a> like the <a href="index.php/Perl.html?title=Perl&amp;action=edit&amp;redlink=1" class="new" title="Perl (page does not exist)">perl</a> and <a href="index.php/Python.html?title=Python&amp;action=edit&amp;redlink=1" class="new" title="Python (page does not exist)">python</a> modules can make use of <a href="index.php/DTLS.html" title="DTLS">DTLS</a> using the procedures described below.
+</p>
+<h3><span class="mw-headline" id="Setting_certificates_via_the_command_line">Setting certificates via the command line</span></h3>
+<p>The snmp applications can use the -T flag to pass configuration to the transports being used (i.e. <i>TLS</i> and <i>DTLS</i>):
+</p>
+<pre># snmpget -v 3 --defSecurityModel=tsm -u joecool -l authPriv \
+          -T our_identity=56:E4:53:CE:D4:52:87:A7:74:11:BE:BA:9F:37:11:23:4A:77:CE:83 \
+          -T their_identity=2A:10:4A:09:3C:7C:DF:E9:11:0F:73:D9:C6:58:90:74:3C:E3:6A:CC \
+          dtlsudp:localhost:10161 sysContact.0
+</pre>
+<h3><span class="mw-headline" id="Setting_the_Clients.27s_Certificate_in_the_snmp.conf_file">Setting the Clients's Certificate in the snmp.conf file</span></h3>
+<p>For certificates you're going to use regularily you should put them in your <a href="index.php/Snmp.html?title=Snmp.conf&amp;action=edit&amp;redlink=1" class="new" title="Snmp.conf (page does not exist)">snmp.conf</a> file instead (such as ~/.snmp/snmp.conf):
+To do this, use the following two <i>snmp.conf</i> tokens to configure the client with it's key (the first line) and the server's key (the second line):
+</p>
+<pre> defX509ClientPub   56:E4:53:CE:D4:52:87:A7:74:11:BE:BA:9F:37:11:23:4A:77:CE:83
+ defX509ServerPub 2A:10:4A:09:3C:7C:DF:E9:11:0F:73:D9:C6:58:90:74:3C:E3:6A:CC
+</pre>
+<p><i>Note: this tool will change to allow more remote servers and CAs to be specified.</i>
+</p><p>You might also want to add default security settings:
+</p>
+<pre>defSecurityModel tsm
+defSecurityName joecool
+defSecurityLevel authPriv
+</pre>
+<h2><span class="mw-headline" id="Running_and_Testing">Running and Testing</span></h2>
+<p>Start the server:
+</p>
+<pre> # snmpd dtlsudp:10161 tlstcp:10161
+</pre>
+<p>And try to get results from it (assuming the snmp.conf discussed above)
+</p><p><b>dtls:</b>
+</p>
+<pre> # ./snmpget dtlsudp:localhost:10161 sysContact.0
+</pre>
+<p><b>tls</b>
+</p>
+<pre> # ./snmpget tlstcp:localhost:10161 sysContact.0
+</pre>
+<h3><span class="mw-headline" id="Debugging">Debugging</span></h3>
+<p>For debugging in the server, run it in the foreground and turn on debugging of <i>dtls</i>, <i>tls</i> and <i>tsm</i>:
+</p>
+<pre># snmpd -f -Le -Dtsm,dtls,tls,openssl,cert dtlsudp:10161
+</pre>
+<p>Same for the clients:
+</p>
+<pre># snmpget -Dtsm,dtls,tls,openssl,cert ...
+</pre>
+<h3><span class="mw-headline" id="Where_to_find.2Finstall_certificates.3F">Where to find/install certificates?</span></h3>
+<p>The library will search for a <i>tls</i> directory in each path in the SNMPCONFPATH. The
+default path is
+</p>
+<pre>$PREFIX/etc/snmp:$PREFIX/share/snmp:$PREFIX/lib/snmp:$HOME/.snmp
+</pre>
+<p>Note that the Net-SNMP default for PREFIX is /usr/local, but most distributions use a
+prefix of /usr.
+</p><p>You can find the SNMPCONF path for your installation two ways.
+</p><p>If your distribution include the <i>net-snmp-config</i> utility:
+</p>
+<pre>net-snmp-config --snmpconfpath
+</pre>
+<p>Otherwise, assuming debugging was not disabled, you can use this command:
+</p>
+<pre>snmpget -Lo -Dread_config -H 2&gt;&amp;1 |grep "config path"|head -n 1
+</pre>
+<h3><span class="mw-headline" id="Which_certificates.2Fkeys_are_being_loaded.3F">Which certificates/keys are being loaded?</span></h3>
+<p>You can see what the tools are doing by turning on debug. The following
+command will show which directories are being scanned and which
+certificates/keys are being picked up:
+</p>
+<pre>snmpget -Lo -Dcert:index:dir -H | grep cert
+</pre>
+<p>You can also list the certificates using the net-snmp-cert utility:
+</p>
+<pre>net-snmp-cert showcerts
+</pre>
+<h3><span class="mw-headline" id="How_can_I_get_the_fingerprints_for_a_certificate.3F">How can I get the fingerprints for a certificate?</span></h3>
+<p>Many of the configuration files use certificate fingerprints, which you can
+find using the net-snmp-cert utility:
+</p>
+<pre>net-snmp-cert showcerts  --subject --fingerprint
+</pre>
+<!-- 
+NewPP limit report
+Cached time: 20240514181334
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.015 seconds
+Real time usage: 0.023 seconds
+Preprocessor visited node count: 90/1000000
+Preprocessor generated node count: 116/1000000
+Post‐expand include size: 58/2097152 bytes
+Template argument size: 22/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    3.593      1 - Template:Man
+100.00%    3.593      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="index4ca7.html?title=Using_DTLS&amp;oldid=5867">http://www.net-snmp.org/wiki/index.php?title=Using_DTLS&amp;oldid=5867</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="index.php/Using_DTLS.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="index.php/Talk_Using_DTLS.html?title=Talk:Using_DTLS&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="index0bff.html?title=Using_DTLS&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="index901a.html?title=Using_DTLS&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="index1777.html?title=Special:UserLogin&amp;returnto=Using+DTLS&amp;returntoquery=printable%3Dyes&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="indexaf6f.html?title=Special:UserLogin&amp;returnto=Using+DTLS&amp;returntoquery=printable%3Dyes" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="index.php/Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="index.php/Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="index.php/Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="index.php/FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="index.php/Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="index.php/Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="index.php/Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="index.php/Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="index.php/Special_WhatLinksHere/Using_DTLS.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="index.php/Special_RecentChangesLinked/Using_DTLS.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="index.php/Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-permalink"><a href="index4ca7.html?title=Using_DTLS&amp;oldid=5867" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="index1a20.html?title=Using_DTLS&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 26 January 2015, at 11:40.</li>
+									<li id="privacy"><a href="index.php/Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="index.php/Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="index.php/Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":141});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Using_DTLS&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:49:48 GMT -->
+</html>

@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/Cache_handler by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:25:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Cache handler - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Cache_handler","wgTitle":"Cache handler","wgCurRevisionId":5204,"wgRevisionId":5204,"wgArticleId":2251,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Helpers"],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Cache_handler","wgRelevantArticleId":2251,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="../load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="../load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<link rel="shortcut icon" href="../../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="../opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://net-snmp.sourceforge.net/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="../apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Cache_handler skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Cache handler</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div align="right" style="float: right; width: 20em; border-color: black; border-style: solid; border-width: 1px; margin-left: 10px;">
+<table style="width: 100%;">
+
+<tr style="font-size: 1.2em;" bgcolor="#ddd">
+<td colspan="2" style="text-align: center;"> Net-SNMP MIB Helper
+</td></tr>
+<tr style="font-size: 1.2em;" bgcolor="#ddd">
+<td colspan="2" style="text-align: center;"> <b>Cache Handler</b>
+</td></tr>
+<tr>
+<th> <b>Documentation:</b>
+</th>
+<th><a rel="nofollow" class="external text" href="../../dev/agent/group__cache__handler.html">doxygen API</a>
+</th></tr>
+
+
+<tr>
+<th> <b>Code:</b>
+</th>
+<th><a rel="nofollow" class="external text" href="http://net-snmp.git.sourceforge.net/git/gitweb.cgi?p=net-snmp/net-snmp;a=blob_plain;f=agent/helpers/cache_helper.c;hb=HEAD">agent/helpers/cache_helper.c</a>
+</th></tr>
+
+
+<tr style="" bgcolor="#ddd">
+<td> Other Helpers:
+</td>
+<td> <a href="Agent_Helpers.html" title="Agent Helpers">Agent Helpers</a>
+</td></tr></table>
+</div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Overview"><span class="tocnumber">1</span> <span class="toctext">Overview</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Usage"><span class="tocnumber">2</span> <span class="toctext">Usage</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Initialization"><span class="tocnumber">2.1</span> <span class="toctext">Initialization</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Loading_the_Cache"><span class="tocnumber">2.2</span> <span class="toctext">Loading the Cache</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Freeing_the_Cache"><span class="tocnumber">2.3</span> <span class="toctext">Freeing the Cache</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Using_the_Cache_Data"><span class="tocnumber">2.4</span> <span class="toctext">Using the Cache Data</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Final_Notes"><span class="tocnumber">3</span> <span class="toctext">Final Notes</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Overview">Overview</span></h2>
+<p>The cache_helper is designed to do one thing: help you manage a cache of data for a given mib implementation.  It simply calls your load and free hooks based on how long the cache should remain valid.  You define the data structures to hold the information and use your cache to respond to requests.  The cache handler simply takes care of the timing about when to load it.
+</p><p>It is typically injected during the mib module's initialization routine.
+</p>
+<h2><span class="mw-headline" id="Usage">Usage</span></h2>
+<p>Using the cache handler involves a few steps:
+</p>
+<ol><li> inject a cache handler into the handler chain for your module</li>
+<li> implement the loading routine</li>
+<li> implement the free routine</li>
+<li> use the cache to load your data</li></ol>
+<h3><span class="mw-headline" id="Initialization">Initialization</span></h3>
+<p>In your init_XXX() routine, do something like this:
+</p>
+<pre> #define MY_CACHE_TIMEOUT 30
+ #define MAX_CACHE_SIZE   100
+
+ NetsnmpCacheLoad my_cache_load;
+ NetsnmpCacheFree my_cache_free;
+
+ struct my_cache {
+   u_long  index;
+   char   *value;
+ };
+
+ static struct my_cache *theCache;
+ static size_t theCacheSize;
+
+ void init_XXX() {
+   netsnmp_mib_handler *cache_handler;
+
+   theCache = 0;
+   theCacheSize = 0;
+
+   /* create and register your "object".  Example using the ... */
+   netsnmp_register_table_iterator(reginfo, iterator_info);
+
+   /* now create our cache handler: */
+   cache_handler = netsnmp_get_cache_handler(MY_CACHE_TIMEOUT,               /* how long a cache is valid for */
+                                             my_cache_load,                 /* a pointer to the cache loading function */
+                                             my_cahe_free,                   /* a pointer to the cache freeing function */
+                                             my_oid, OID_LENGTH(my_oid)));   /* the OID of the registration point */
+
+   /* Inject the handler into the handler chain for our registration: */
+   netsnmp_inject_handler(reginfo, cache_handler);
+ }
+</pre>
+<h3><span class="mw-headline" id="Loading_the_Cache">Loading the Cache</span></h3>
+<p>To load the cache, simply do whatever it is your need to do in order
+to load all the data ahead of time.  IE, here is where you should put
+the slowest of your loading code to cache the results into a memory structure.
+</p>
+<pre>static int
+my_cache_load(netsnmp_cache *cache, void *magic) {
+  int i = 0;
+
+  theCache = calloc(MAX_CACHE_SIZE, sizeof(struct my_cache));
+  theCacheSize = MAX_CACHE_SIZE;
+
+  while ( /* ... loop over your data source */ &amp;&amp; i &lt; theCacheSize) {
+     theCache[i].index = i;
+     theCache[i].value = strdup(/* get a value */);
+     /* store lots of values? */
+
+     i++;
+  }
+  return SNMP_ERR_SUCCESS;
+}
+</pre>
+<h3><span class="mw-headline" id="Freeing_the_Cache">Freeing the Cache</span></h3>
+<p>To free the cache, we need to free the data:
+</p>
+<pre>void
+my_cache_free(netsnmp_cache *cache, void *magic)
+{
+  int i;
+
+  netsnmp_assert_or_return(cache&#160;!= NULL, );
+  netsnmp_assert_or_return(theCache&#160;!= NULL, );
+
+  for(i = 0; i &lt; theCacheSize; i ++) {
+    free(theCache[i].value);
+  }
+  free(theCache);
+}
+</pre>
+<h3><span class="mw-headline" id="Using_the_Cache_Data">Using the Cache Data</span></h3>
+<p>Once the cache has been defined, the above load and free routines will
+be called automatically by the handler.  All you need is to use the
+loaded data in your handler's routines.  For example, in an iterator
+based table implementation:
+</p>
+<pre>netsnmp_variable_list *
+my_first_entry(void **loop_context,
+               void **data_context,
+               netsnmp_variable_list *index,
+               netsnmp_iterator_info *data)
+{
+    netsnmp_assert_or_return(theCacheSize &gt; 0, );
+
+    /*
+     * Point to the first entry, and use the
+     * 'next_entry' hook to retrieve this row
+     */
+    *loop_context = 0;
+    return my_next_entry( loop_context, data_context, index, data );
+}
+
+netsnmp_variable_list *
+my_next_entry( void **loop_context,
+               void **data_context,
+               netsnmp_variable_list *index,
+               netsnmp_iterator_info *data)
+{
+    u_long i = (int)*loop_context;
+    long port;
+
+    if (theCacheSize &lt; i)
+        return NULL;
+
+    /*
+     * Set up the indexing for the specified row...
+     */
+    snmp_set_var_value(index, (u_char *)&amp;i, sizeof(i));
+
+    /*
+     * ... return the data structure for this row,
+     * and update the loop context ready for the next one.
+     */
+    *data_context = (void *) &amp;theCache[i];
+    *loop_context = (void *)++i;
+
+    return index;
+}
+</pre>
+<h2><span class="mw-headline" id="Final_Notes">Final Notes</span></h2>
+<p>Make sure to look at the flags (read the documentation) that are available for controlling the caching.  There is a fair amount of flexibility in how things are loaded, freed, timed, etc.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20171115061651
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.069 seconds
+Real time usage: 0.074 seconds
+Preprocessor visited node count: 50/1000000
+Preprocessor generated node count: 216/1000000
+Post‐expand include size: 1054/2097152 bytes
+Template argument size: 125/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   20.720      1 - -total
+100.00%   20.720      1 - Template:Helper
+-->
+
+<!-- Saved in parser cache with key n12694_wikidb:pcache:idhash:2251-0!*!0!!en!*!* and timestamp 20171115061651 and revision id 5204
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://net-snmp.sourceforge.net/wiki/index.php?title=Cache_handler&amp;oldid=5204">http://net-snmp.sourceforge.net/wiki/index.php?title=Cache_handler&amp;oldid=5204</a>"</div>
+					<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="Special_Categories.html" title="Special:Categories">Category</a>: <ul><li><a href="Category_Helpers.html" title="Category:Helpers">Helpers</a></li></ul></div></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="Cache_handler.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="Talk_Cache_handler.html?title=Talk:Cache_handler&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="../index0dd5.html?title=Cache_handler&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="../indexccad.html?title=Cache_handler&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="../index4a55.html?title=Special:UserLogin&amp;returnto=Cache+handler&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="../index25eb.html?title=Special:UserLogin&amp;returnto=Cache+handler" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Cache_handler.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Cache_handler.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="../indexb260.html?title=Cache_handler&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="../indexfefa.html?title=Cache_handler&amp;oldid=5204" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="../indexd93a.html?title=Cache_handler&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 14 July 2011, at 17:00.</li>
+									<li id="privacy"><a href="Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":807});
+} );</script></body><!-- Cached 20171115231405 -->
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/Cache_handler by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:25:50 GMT -->
+</html>

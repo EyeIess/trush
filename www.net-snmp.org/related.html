@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/related.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 17:54:43 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="print1.css" />
+  </head>
+  <body background="images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="index.html">About</a><br />
+        
+
+        <a href="download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+
+        <a href="docs/readmefiles.html">Documentation</a><br />
+        
+
+        <a href="wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="support/contacts.html" >Support</a><br />
+        
+
+        <a href="dev/projects.html">Development</a><br />
+        
+
+        <a href="related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+
+<p class="SectionTitle">
+Software
+</p>
+
+<ul>
+<li><a href="http://sourceforge.net/projects/opensnmp/">OpenSNMP:</a> Our sister SNMPv3 reference release: A C++, threaded, modular snmpv3 reference implementation.</li>
+<li><a href="http://net-policy.sourceforge.net/">Net-Policy</a>: Net-Policy is a highly-scalable, role-and-policy based network management system. It distrubutes configuration to a network primarily
+through the SNMP protocol. (Its initial configuration mechanisms are designed for IPsec VPN management.) Stop configuring your SNMP agents one host at a time!</li>
+<li><a href="http://sourceforge.net/projects/snarl-snmp/">snarl-snmp</a>: snarl (Snmp based Network Application for Remote Logging and monitoring) is an active MIB module for net-snmp-5.0.3 and
+higher to actively monitor dynamic web applications. snmp traps are sent and escalated on alarms</li>
+<li><a href="http://netsnmpj.sourceforge.net/">netsnmpj</a>: NetSNMPJ is a open source java library that implements a java API around the Net-SNMP code base.</li>
+<li><a href="http://www.ibr.cs.tu-bs.de/projects/jasmin/index.html">Jasmin:</a> A DISMAN-SCRIPT-MIB implementation. This is a third party MIB module that implements the DISMAN-SCRIPT-MIB for use with
+a the Net-SNMP agent. The implementation supports multiple languages and runtime systems and A script MIB extensibility protocol (SMX) to plugin additional runtime systems.</li>
+<li><a href="http://fetchlog.sourceforge.net/">Fetchlog</a>: The fetchlog utility fetches and converts the last new messages of a logfile similar to tail. Together with Net-SNMP it can be used to
+look in remote logfiles or to monitor logfiles, for example with <a href="http://www.nagios.org/">Nagios</a>.</li>
+<li><a href="http://snmptt.sourceforge.net/">SNMPTT</a>: SNMPTT is a SNMP trap handler written in Perl for use with the Net-SNMP snmptrapd program. Received traps are translated into friendly
+messages using variable substitution.</li>
+<li><a href="http://www.zenoss.org/">Zenoss</a>:
+Zenoss is an enterprise grade monitoring system that provides
+Inventory/Configuration, Event, Performance and Availability management
+in a single integrated package.  It is written in Python using the Zope
+web application framework and Twisted network programming environment.
+It has pre-built templates for devices with Net-SNMP installed.
+Zenoss is written to be easy to use for a beginner, yet flexible
+and powerful enough for the advanced user.</li>
+<li><a href="http://www.opennms.org/">OpenNMS</a>:
+OpenNMS is the world's first enterprise grade network management application
+platform developed under the open source model. Implemented in Java and
+designed to scale to manage tens of thousands of nodes, OpenNMS automatically
+performs both fault and performance management functions against any Net-SNMP
+agents in your environment.</li>
+</ul>
+
+<p class="SectionTitle">
+Other sources of information about SNMP in general
+</p>
+
+<ul>
+<li>The <a href="http://www.faqs.org/faqs/by-newsgroup/comp/comp.protocols.snmp.html">comp.protocols.snmp FAQ</a>.</li>
+<li><a href="http://www.simple-times.org/pub/simple-times/issues/">The Simple Times</a> -- A quarterly to yearly (or less) journal about SNMP</li>
+<li><a href="http://www.mibdepot.com/">The MIB Depot</a>: A useful site for finding and downloading MIBs</li>
+<li>A <a href="c64test.html">Counter Test Mib</a> module to test 32 and 64 bit counters.</li>
+</ul>
+<p class="SectionTitle">
+IETF and SNMP protocol standards related information
+</p>
+
+<ul>
+<li>The <a href="http://www.ietf.org/">main IETF web page.</a></li>
+<li>The <a href="http://www.ibr.cs.tu-bs.de/projects/snmpv3/">SNMPv3 web page.</a></li>
+<li>The <a href="http://www.scguild.com/agentx/">agentx web page</a>. (AgentX is a subagent protocol which net-snmp supports)</li>
+<!-- li><a href="http://www.ietf.org/html.charters/eos-charter.html">The Evolution of SNMP (EoS) Working Group</a> information. This is where future extensions to SNMP are being designed.</li -->
+<!-- li><a href="http://www.ietf.org/html.charters/sming-charter.html">The SMI Next Generation (sming) Working Group</a> information. This is where future changes to the SMI language are being defined.
+(SMI is the language in which MIBs are written).</li -->
+</ul>
+<hr />
+<br />
+
+
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/related.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 17:54:43 GMT -->
+</html>
+
+
+

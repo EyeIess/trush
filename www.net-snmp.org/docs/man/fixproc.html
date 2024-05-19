@@ -1,0 +1,89 @@
+Content-type: text/html
+
+<HTML>
+<!-- Mirrored from www.net-snmp.org/docs/man/fixproc.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:29 GMT -->
+<HEAD><TITLE>Manpage of fixproc</TITLE>
+</HEAD><BODY>
+<H1>fixproc</H1>
+Section: Net-SNMP (1)<BR>Updated: 16 Nov 2006<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+fixproc - Fixes a process by performing the specified action.
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<P>
+
+<B>fixproc</B>
+
+[<I>-min n</I>]
+[<I>-max n</I>]
+[<I>-check | -kill | -restart | -exist | -fix</I>]
+proc ...
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<P>
+
+Fixes a process named &quot;proc&quot; by performing the specified action.  The
+actions can be check, kill, restart, exist, or fix.  The action is specified
+on the command line or is read from a default database, which describes
+the default action to take for each process.  The database format and
+the meaning of each action are described below.
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<DL COMPACT>
+<DT><B>-min n</B>
+
+<DD>
+minimum number of processes that should be running, defaults to 1
+<DT><B>-max n</B>
+
+<DD>
+maximum number of processes that should be running, defaults to 1
+<DT><B>-check</B>
+
+<DD>
+check process against database /local/etc/fixproc.conf.
+<DT><B>-kill</B>
+
+<DD>
+kill process, wait 5 seconds, kill -9 if still exist
+<DT><B>-restart</B>
+
+<DD>
+kill process, wait 5 seconds, kill -9 if still exist, then start again
+<DT><B>-exist</B>
+
+<DD>
+checks if proc exists in ps &amp;&amp; (min &lt;= num. of processes &lt;= max)
+<DT><B>-fix</B>
+
+<DD>
+check process against database /local/etc/fixproc.conf. Perform defined
+action, if check fails.
+<P>
+</DL>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 19:05:39 GMT, September 28, 2009
+</BODY>
+
+<!-- Mirrored from www.net-snmp.org/docs/man/fixproc.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:29 GMT -->
+</HTML>

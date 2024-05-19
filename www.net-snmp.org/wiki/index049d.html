@@ -1,0 +1,424 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=DTLS_Implementation_Notes&oldid=4133 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:18:22 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>DTLS Implementation Notes - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"DTLS_Implementation_Notes","wgTitle":"DTLS Implementation Notes","wgCurRevisionId":4133,"wgRevisionId":4133,"wgArticleId":1951,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"DTLS_Implementation_Notes","wgRelevantArticleId":1951,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-DTLS_Implementation_Notes skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">DTLS Implementation Notes</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"><div id="mw-revision-info">Revision as of 21:38, 4 January 2010 by <a href="http://www.net-snmp.org/wiki/index.php?title=User:Rstory&amp;action=edit&amp;redlink=1" class="new mw-userlink" title="User:Rstory (page does not exist)">Rstory</a> <span class="mw-usertoollinks">(<a href="http://www.net-snmp.org/wiki/index.php?title=User_talk:Rstory&amp;action=edit&amp;redlink=1" class="new" title="User talk:Rstory (page does not exist)">Talk</a> | <a href="http://www.net-snmp.org/wiki/index.php/Special:Contributions/Rstory" title="Special:Contributions/Rstory">contribs</a>)</span> <span class="comment">(typo)</span></div><br />
+				<div id="mw-revision-nav">(<a href="http://www.net-snmp.org/wiki/index.php?title=DTLS_Implementation_Notes&amp;diff=prev&amp;oldid=4133" title="DTLS Implementation Notes">diff</a>) <a href="http://www.net-snmp.org/wiki/index.php?title=DTLS_Implementation_Notes&amp;direction=prev&amp;oldid=4133" title="DTLS Implementation Notes">← Older revision</a> | Latest revision (diff) | Newer revision → (diff)</div></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>This page documents the experience of implementing <a href="http://www.net-snmp.org/wiki/index.php/SNMP" title="SNMP">SNMP</a> over <a href="http://www.net-snmp.org/wiki/index.php/DTLS" title="DTLS">DTLS</a> as described by documents being developed for the <a href="http://www.net-snmp.org/wiki/index.php/ISMS" title="ISMS">ISMS</a> working group.  A large section of this is relevant only to SNMP developers (Net-SNMP or otherwise) and some of this is relevant to anyone who is implementing a DTLS solution using <a href="http://www.net-snmp.org/wiki/index.php/OpenSSL" title="OpenSSL">OpenSSL</a>.  In particular, there are a number of tricks that need to be employed to make an <a href="http://www.net-snmp.org/wiki/index.php/OpenSSL" title="OpenSSL">OpenSSL</a> based DTLS server properly handle multiple clients.
+</p><p>(The Net-SNMP DTLS implementation and this document were done by <a href="http://www.net-snmp.org/wiki/index.php/User:Wes" title="User:Wes">Wes Hardaker</a>)
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Net-SNMP_Background"><span class="tocnumber">1</span> <span class="toctext">Net-SNMP Background</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#OpenSSL_Background"><span class="tocnumber">2</span> <span class="toctext">OpenSSL Background</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#TLS.2FDTLS"><span class="tocnumber">2.1</span> <span class="toctext">TLS/DTLS</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#BIOs"><span class="tocnumber">2.2</span> <span class="toctext">BIOs</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#TCP_vs_UDP_Background"><span class="tocnumber">3</span> <span class="toctext">TCP vs UDP Background</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#OpenSSL_Context_Background"><span class="tocnumber">4</span> <span class="toctext">OpenSSL Context Background</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Where_the_problem_comes_in"><span class="tocnumber">5</span> <span class="toctext">Where the problem comes in</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Problem_1:_UDP_is_a_single_socket"><span class="tocnumber">5.1</span> <span class="toctext">Problem 1: UDP is a single socket</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Problem_2:_Packets_Pile_Up"><span class="tocnumber">5.2</span> <span class="toctext">Problem 2: Packets Pile Up</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#The_Solution_That_Works"><span class="tocnumber">6</span> <span class="toctext">The Solution That Works</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#Initialize_things"><span class="tocnumber">6.1</span> <span class="toctext">Initialize things</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Receiving_a_Packet"><span class="tocnumber">6.2</span> <span class="toctext">Receiving a Packet</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Sending_a_Packet"><span class="tocnumber">6.3</span> <span class="toctext">Sending a Packet</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Caveats"><span class="tocnumber">6.4</span> <span class="toctext">Caveats</span></a>
+<ul>
+<li class="toclevel-3 tocsection-15"><a href="#DTLS_Cookie_Handling"><span class="tocnumber">6.4.1</span> <span class="toctext">DTLS Cookie Handling</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#Memory_Leak.3F"><span class="tocnumber">6.4.2</span> <span class="toctext">Memory Leak?</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-17"><a href="#Other_possible_solutions"><span class="tocnumber">7</span> <span class="toctext">Other possible solutions</span></a>
+<ul>
+<li class="toclevel-2 tocsection-18"><a href="#Writing_a_new_UDP_BIO"><span class="tocnumber">7.1</span> <span class="toctext">Writing a new UDP BIO</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Modify_the_internal_OpenSSL_Architecture"><span class="tocnumber">7.2</span> <span class="toctext">Modify the internal OpenSSL Architecture</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Campgnol_VPN.27s_solution"><span class="tocnumber">7.3</span> <span class="toctext">Campgnol VPN's solution</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Net-SNMP_Background">Net-SNMP Background</span></h2>
+<p>Net-SNMP implements the <a href="http://www.net-snmp.org/wiki/index.php?title=Transport&amp;action=edit&amp;redlink=1" class="new" title="Transport (page does not exist)">transports</a> over which SNMP messages can be sent using a pluggable architecture.  This architecture defines hooks that allow implemented transports to handle opening, sending and receiving packets through "something or other".  The "something or other" can be pretty much anything and Net-SNMP has support for IPv4/UDP, IPv6/TCP, UnixDomain Sockets, IPX, and internal pipe()s to name just a few of the diverse examples.
+</p><p>To implement <a href="http://www.net-snmp.org/wiki/index.php/DTLS" title="DTLS">DTLS</a> support within Net-SNMP a new <a href="http://www.net-snmp.org/wiki/index.php?title=Transport&amp;action=edit&amp;redlink=1" class="new" title="Transport (page does not exist)">transport</a> had to be written that was responsible for sending and receiving packets.  This new file (<a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmpDTLSUDPDomain.c?view=log"><i>snmplib/snmpDTLSUDPDomain.c</i></a>) is functional and has passed a number of tests.  It is still experimental in nature but will be in the  Net-SNMP 5.5 release.
+</p>
+<h2><span class="mw-headline" id="OpenSSL_Background">OpenSSL Background</span></h2>
+<p><a href="http://www.net-snmp.org/wiki/index.php/OpenSSL" title="OpenSSL">OpenSSL</a>'s internal implementation architecture is well designed from a modular point of view.  To some extent, however, this will come back to bite us as we'll see later on.
+</p>
+<h3><span class="mw-headline" id="TLS.2FDTLS">TLS/DTLS</span></h3>
+<p>Internally the <a href="http://www.net-snmp.org/wiki/index.php/TLS" title="TLS">TLS</a> and <a href="http://www.net-snmp.org/wiki/index.php/DTLS" title="DTLS">DTLS</a> implementations merely process the data they receive through "anything" and send responses back through the configured mechanism.  These sending and receiving mechanisms are entirely separated from the TLS/DTLS implementations by a modular data sending and receiving framework called <i>BIO</i>s.
+</p>
+<h3><span class="mw-headline" id="BIOs">BIOs</span></h3>
+<p>BIOs in <a href="http://www.net-snmp.org/wiki/index.php/OpenSSL" title="OpenSSL">OpenSSL</a> are merely code that knows how to send and receive data.  You could easily think of them as a buffering layer between a data producer and consumer and where-ever-the-data-needs-to-go.  They act in a very similar fashion to the way <a href="http://www.net-snmp.org/wiki/index.php?title=Transport&amp;action=edit&amp;redlink=1" class="new" title="Transport (page does not exist)">transports</a> separate the Net-SNMP packet processing from the sending/receiving framework (but OpenSSL has many more BIO implementations than Net-SNMP has transport implementations).
+</p><p>BIOs exist in OpenSSL to handle sending and receiving from many different directions.  Probably the most common BIO is the one that attaches to a network socket like the TCP BIO.  There are also BIOs that wrap around <a href="http://www.net-snmp.org/wiki/index.php?title=Stdout&amp;action=edit&amp;redlink=1" class="new" title="Stdout (page does not exist)">stdout</a>, and there are memory BIOs that merely store data in a buffer.  Starting with some version of OpenSSL there also was a <i>datagram</i> BIO that was designed to be used with DTLS and UDP.  The <i>datagram</i> BIO is merely a wrapper around UDP sockets in the same way that the TCP BIO wrapped around TCP sockets.
+</p>
+<h2><span class="mw-headline" id="TCP_vs_UDP_Background">TCP vs UDP Background</span></h2>
+<p>There is a fundamental difference, of course, between how UDP and TCP works.  The biggest difference is in receiving packets.  Normally for TCP you have to call accept() to allow a new connection to come through and get a new OS socket for sending and receiving on that socket which is then bound to just that peer.  You may have no idea yet how important that last statement is, so let me repeat it.  In bold.  <b>TCP implementations provide consumers with one socket per connection</b>.
+</p><p>Within the OpenSSL framework, when a new connection is requested from a new client the OpenSSL stack also creates a new BIO which is then attached to the new socket.
+</p><p>With UDP there is only one socket available to send and receive from (well, you could create multiple sockets with a different socket per client using a different UDP port per socket but you'd have to convince all your clients to send the traffic to the newly opened port just for them...).  With UDP a receiving server needs to check each packet that it's getting data from for the source address.  If it needs to respond to the packet then it needs to make sure that it remembers the address so it can send the response back to the right place.  (TCP implementations, on the other hand remember it for you so there is less to do).
+</p>
+<h2><span class="mw-headline" id="OpenSSL_Context_Background">OpenSSL Context Background</span></h2>
+<p><a href="http://www.net-snmp.org/wiki/index.php/OpenSSL" title="OpenSSL">OpenSSL</a> needs to keep state with respect to every TLS or DTLS session that it has established.  It does this through the use of a <i>SSL *</i> pointer which is then attached to the sending and receiving BIO * pointer using a call as follows:
+</p>
+<pre>   SSL_set_bio(SSL *<i>ptr</i>, BIO *<i>read_from_bio</i>, BIO *<i>write_to_bio</i>);
+</pre>
+<p>Whenever stuff needs to be done (be it sending data or negotiating cryptography) then the OpenSSL internal TLS implementation can use these two "tied" BIOs for reading or writing.  Normally, as I mentioned earlier, these BIOs are wrappers around TCP sockets for use with TLS.  But wait, there's more...
+</p>
+<h2><span class="mw-headline" id="Where_the_problem_comes_in">Where the problem comes in</span></h2>
+<h3><span class="mw-headline" id="Problem_1:_UDP_is_a_single_socket">Problem 1: UDP is a single socket</span></h3>
+<p>The first problem is that UDP uses only a single socket for sending and receiving.  But when writing an application that needs to communicate with multiple remote peers (like a server would certainly need to do) then OpenSSL has to be able to send to and receive from these multiple peers.  IE, it needs multiple <i>SSL *</i> / <i>BIO *</i> pairs.  I thought, originally, that maybe I could trick OpenSSL and manually tell it which <i>SSL *</i> pointer to use for each packet (and each <i>SSL *</i> pointer would still be bound to a single <i>BIO *</i> and thus to a single socktet).  I tried do a PEEK at the incoming packet and based on where it was coming from (the remote source address and source port) and then I could pick the right <i>SSL *</i> pointer and tell OpenSSL to process the incoming packet.  That way I could have just one <i>DGRAM</i> based BIO (like all the OpenSSL examples use) and still handle multiple connections.
+</p><p>This actually almost worked, except for the next problem got in the way:
+</p>
+<h3><span class="mw-headline" id="Problem_2:_Packets_Pile_Up">Problem 2: Packets Pile Up</span></h3>
+<p>When OpenSSL is operating, particularly when starting up a new TLS or DTLS session, it needs to read and write multiple packets in order to complete negotiations.  Internally OpenSSL will attempt to read as much as it can from the BIO it was given in order to process as much as possible before returning control to the application (with or without data for it).
+</p><p>In the case of TLS over TCP, this is perfectly safe since the the BIO is attached to a socket where all the data coming through the socket should be destined for that one TLS connection.
+</p><p>However!  This concept of reading as much as you want fails completely when using UDP.  The first packet may certainly be destined for the current <i>SSL *</i> session (especially if the application handed it carefully to OpenSSL as described above).  But there is no guarantee that the next packet will be from the same client or the same (D)TLS session.
+</p><p>So, when OpenSSL is trying to be as proactive as it can by reading and processing as much as it can from a socket before returning data to the calling application, it may actually try to read multiple packets from the BIO attached to the UDP socket.  It assumes they're all destined for the <i>SSL *</i> session that it's currently handling.  This is a completely invalid thing to do, unfortunately.  In fact when I launched two DTLS instrumented versions of <a href="http://www.net-snmp.org/wiki/index.php/Snmpget" title="Snmpget">snmpget</a> against a single DTLS instrumented <a href="http://www.net-snmp.org/wiki/index.php/Snmpd" title="Snmpd">snmpd</a> server then one of the clients failed because it was suddenly trying to read too much data from the UDP socket and ended up reading packets for one <i>SSL *</i> session that were, in fact, destined for the other.
+</p>
+<h2><span class="mw-headline" id="The_Solution_That_Works">The Solution That Works</span></h2>
+<p><b>Note:</b> make sure you read to the end of this article, as other people's solutions are documented below and may be better than the one described here.
+</p><p>So, the solution that I've found that works is to take the sockets completely away from OpenSSL's view.  Instead, I use memory BIOs to communicate with OpenSSL and my code personally copies stuff between the network's UDP socket and the input and output memory buffer BIOs.  This works fairly well but requires a lot more processing by the client/server code that OpenSSL really should take care of for us.
+</p><p>The general set up is described in the following sub-sections.
+</p><p><b>THIS IS HALF PSEUDO-CODE AND WILL NOT WORK AS IS</b>
+</p>
+<h3><span class="mw-headline" id="Initialize_things">Initialize things</span></h3>
+<pre>   SSL_library_init();
+   SSL_load_error_strings();
+   ERR_load_BIO_strings();
+   OpenSSL_add_all_algorithms();
+   
+   /* Open UDP socket */
+   int sock = socket(PF_INET, SOCK_DGRAM, 0);
+</pre>
+<p><br />
+</p>
+<h3><span class="mw-headline" id="Receiving_a_Packet">Receiving a Packet</span></h3>
+<p>After select() notices that there is new traffic on the socket, you should be able to do something like:
+</p>
+<pre>   struct sockaddr_in frombuf;
+   struct sockaddr *from = &amp;frombuf;
+   size_t fromlen = sizeof(frombuf);
+   rc = recvfrom(sock, buf, size, MSG_DONTWAIT, from, &amp;fromlen);
+   
+</pre>
+<p>Now, if this is a new connection (i.e., from a new remote address and remote port) then we won't have anything in our cache and we need to create a new <i>SSL *</i> connection context for it and a new set of memory BIOs for handing stuff in and out.
+</p><p>So, only if it's from a new address/port:
+</p>
+<pre>   /* this assumes you have a valid <i>SSL_CTX *ctx</i> already created and available */
+   SSL *con = SSL_new(ctx);
+   
+   /* set up the memory-buffer BIOs */
+   BIO *for_reading = BIO_new(BIO_s_mem());
+   BIO *for_writing = BIO_new(BIO_s_mem());
+   BIO_set_mem_eof_return(for_reading, -1);
+   BIO_set_mem_eof_return(for_writing, -1);
+   
+   /* bind them together */
+   SSL_set_bio(con, for_reading, for_writing);
+   /* if on the client: SSL_set_connect_state(con); */
+   SSL_set_accept_state(cachep-&gt;con);
+</pre>
+<p><br />
+Remembering the <i>con</i>, <i>for_reading</i> and <i>for_writing</i> pointers and associating them with a remote address/port combination is left as an exercise for the reader.  You can look at the caching system that is used within the <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/snmpDTLSUDPDomain.c?view=log">snmpDTLSUDPDomain.c file</a>.
+</p><p>Once the two BIOs and the SSL pointers are known (regardless of whether they are remembered from a cache or created fresh (like above) then we continue on and actually read the data from the buf:
+</p>
+<pre>   /* write the received buffer from the UDP socket to the memory-based input bio */
+   BIO_write(for_reading, buf, rc);
+   
+   /* Tell openssl to process the packet now stored in the memory bio */
+   rc = SSL_read(con, buf, size);
+   
+   /* at this point <i>buf</i> will store the results (with a length of <i>rc</i>) */
+</pre>
+<p><br />
+What if OpenSSL is in a negotiation phase?  If so, it'll have an outgoing packet to send and it will have queued it into the <i>for_writing</i> buffer.  So you need to check whether the buffer contains data, and if it does then send it out.
+</p>
+<pre>   /* this should be done even if rc == -1 and no consumable data was received*/
+   if (BIO_ctrl_pending(for_writing) &gt; 0) {
+        /* Read the data out of the for_writing bio */
+        outsize = BIO_read(for_writing, outbuf, sizeof(outbuf));
+   
+        /* send it out the udp port */
+        rc2 = sendto(sock, outbuf, outsize, 0, &amp;sockaddr, sizeof(struct sockaddr));
+   }
+</pre>
+<h3><span class="mw-headline" id="Sending_a_Packet">Sending a Packet</span></h3>
+<p>When sending a packet, we need to see if we have an open connection.  If we don't have one (ie, it's a new destination) then we do something similar as we did above so I won't repeat it here: create an input and output memory bio and attach them to a new <i>SSL *</i> pointer.  For a client, we don't technically need to do it this way because it would be easy to use a new <i>DGRAM</i> bio per server to talk to (each with its own fresh socket).  It's not as tricky as the server side where we can't do that as easily because there is only one socket.  But for completeness, here is the process using memory BIOs again:
+</p>
+<pre>   /* call OpenSSL to write out our <i>buf</i>fer of data. */
+   /* reminder: this actually writes it out to a memory bio */
+   rc = SSL_write(con, buf, size);
+   
+   /* Read the actual packet to be sent out of the <i>for_writing</i> bio */
+   rc = BIO_read(for_writing, outbuf, sizeof(outbuf));
+   
+   /* and send it out the udp socket */
+   rc = sendto(sock, outbuf, rc, 0, &amp;sockaddr, sizeof(struct sockaddr));
+</pre>
+<p><br />
+</p>
+<h3><span class="mw-headline" id="Caveats">Caveats</span></h3>
+<p>There are some downsides that haven't been mentioned yet:
+</p>
+<h4><span class="mw-headline" id="DTLS_Cookie_Handling">DTLS Cookie Handling</span></h4>
+<p>This completely breaks cookie handling within DTLS.  Ok, it doesn't break it but it defeats the purpose.  Now we're keeping state for OpenSSL but the whole point of DTLS cookies is to not keep any state at all until the client proves themselves by sufficiently responding to the cookie request.  We're now caching data before the client has done this.
+</p>
+<h4><span class="mw-headline" id="Memory_Leak.3F">Memory Leak?</span></h4>
+<p>I have a memory leak occuring within my current implementation that I haven't traced down yet.  I think it must in my code, not in any of my OpenSSL usage...  I'll delete this note when I've found and removed the problem from my code (or replace it with a new description of the problem that I apparently couldn't fix).
+</p>
+<h2><span class="mw-headline" id="Other_possible_solutions">Other possible solutions</span></h2>
+<p>There are a few other ways to potentially get around the OpenSSL DTLS issues.  They all require changes to OpenSSL itself.
+</p>
+<h3><span class="mw-headline" id="Writing_a_new_UDP_BIO">Writing a new UDP BIO</span></h3>
+<p>In theory, a new dgram BIO could be written that would fake an accept call and auto-fork a new BIO for new incoming "connections" (defined just like above using a unique combination of remote IP address and port number).  The new BIO could still read and write from a single socket, but each BIO would have to do a PEEK on the socket to make sure the next incoming dgram message was from the expected source/port pair (or else don't read from it).  This can be easily accomplished through the kernel using connected sockets, however, and shouldn't require application code once the patch to OpenSSL is completed.
+</p><p>Robin Seggelmann has implemented a <a rel="nofollow" class="external text" href="http://sctp.fh-muenster.de/">bunch of patches to OpenSSL</a> for supporting DTLS in a better way within OpenSSL itself.  The ones known to date are listed below:
+</p>
+<ul><li> <a rel="nofollow" class="external text" href="http://www.mail-archive.com/openssl-dev@openssl.org/msg24669.html">DTLS Renegotiation Bug</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.mail-archive.com/openssl-dev@openssl.org/msg25207.html">DTLS Timer Bug</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.mail-archive.com/openssl-dev@openssl.org/msg25206.html">DTLS Retransmission Bug</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.mail-archive.com/openssl-dev@openssl.org/msg25205.html">DTLS Application Data in Handshake Bug</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.mail-archive.com/openssl-dev@openssl.org/msg25209.html">TLS key material extractor</a> (probably needed)</li>
+<li> <a rel="nofollow" class="external text" href="http://www.mail-archive.com/openssl-dev@openssl.org/msg25204.html">DTLS Client Random Bug</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.mail-archive.com/openssl-dev@openssl.org/msg25239.html">DTLS Fragment Bug</a></li></ul>
+<p>Ok...  I stopped looking at this point because the number of outstanding <a rel="nofollow" class="external text" href="http://rt.openssl.org/index.html?q=dtls">patches/bugs</a> is huge for DTLS.  The good news is that means there is interest in it which means hopefully future versions will have this problem fixed.
+</p><p>Supposedly the patches have now been applied to the OpenSSL trunk and will be in the next release.
+</p>
+<h3><span class="mw-headline" id="Modify_the_internal_OpenSSL_Architecture">Modify the internal OpenSSL Architecture</span></h3>
+<p>I'm sure by completely modifying how OpenSSL looks at BIOs would probably help.  But most likely some major changes might be needed and even guessing as to what is far beyond my knowledge level of OpenSSL.
+</p>
+<h3><span class="mw-headline" id="Campgnol_VPN.27s_solution">Campgnol VPN's solution</span></h3>
+<p>The below are the notes from Florent Bondoux on his experiencese with DTLS and OpenSSL:
+</p>
+<div style="margin-left: 50px; background-color: #e5e5e5;">
+<p>I'm the current author/maintainer of <a rel="nofollow" class="external text" href="http://campagnol.sourceforge.net/">Campgnol VPN</a> which is mentioned
+later in the thread.
+</p><p>Campagnol is a small Layer 3 tunneling VPN over UDP/DTLS.
+One of its design objective was to use some NAT traversal technique.
+So it uses UDP hole punching to establish the new connections and
+therefore uses a single UDP socket.
+I'll try to explain how Campagnol handles this multiple peers per
+socket issue.
+</p><p>So the objective is to efficiently uncouple the DTLS reading operation
+from the socket.
+There is no problem for the writing operation, just use the Datagram
+BIO.
+For the reading operation, I actually first tried with MSG_PEEK, hit
+the same problem than you, and then tried with the mem BIO. But if you
+use this BIO instead of the datagram BIO, you will lose the
+possibility to retransmit handshake messages. Moreover I think this
+BIO is only suited to store a single packet which may not be easy
+since it has no blocking facility. So I preferred to create a new BIO
+more suited to my needs.
+</p><p>This is the relevant parts of the design of Campagnol&#160;:
+</p>
+<ul><li> For each connection:
+<ul><li> one structure, holding its VPN context and its SSL object</li>
+<li> one worker thread</li></ul></li></ul>
+<ul><li> For each SSL object:
+<ul><li> the writing BIO is a datagram BIO (possibly chained to a custom BIO doing some traffic shaping)</li>
+<li> the reading BIO is a custom BIO implementing a FIFO queue.</li></ul></li></ul>
+<ul><li> The FIFO BIO:
+<ul><li> offers blocking I/O when the queue is empty or full</li>
+<li> has an optional timeout for the reading operation so that OpenSSL can use the timeout condition to (try to) retransmit handshake message.</li>
+<li> provides the same BIO controls than the Datagram BIO, so that the DTLS code can check the timeout condition.</li></ul></li></ul>
+<ul><li> one thread is reading the socket in loop:
+<ul><li> if the sender is a connected peer, it pushes the packet in the proper FIFO BIO.</li>
+<li> otherwise it will try to open a new connection (hole punching), create the VPN context, start a new worker thread, etc. before pushing the packet.</li></ul></li></ul>
+<ul><li> each worker thread:
+<ul><li> does the DTLS handshake</li>
+<li> loops over SSL_read which blocks until the socket thread pushes a packet</li>
+<li> does the shutdown operation and die.</li></ul></li></ul>
+<p>So this FIFO BIO does the trick. Since it provides the same interface
+than the datagram BIO, timeout and retransmission are possible.
+Moreover I think it's especially interesting on slow machines where it
+</p>
+<ul><li>seems* to give better throughput than a simple buffer. Last but not</li></ul>
+<p>least, I prefer this solution since I did not modified anything from
+OpenSSL&#160;:)
+</p><p>It's source code is available <a rel="nofollow" class="external text" href="http://campagnol.svn.sourceforge.net/viewvc/campagnol/trunk/clien/bss_fifo.c?revision=204&amp;view=markup">here</a>
+</p>
+</div>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514184335
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.014 seconds
+Real time usage: 0.016 seconds
+Preprocessor visited node count: 80/1000000
+Preprocessor generated node count: 86/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php?title=DTLS_Implementation_Notes&amp;oldid=4133">http://www.net-snmp.org/wiki/index.php?title=DTLS_Implementation_Notes&amp;oldid=4133</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/DTLS_Implementation_Notes" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="http://www.net-snmp.org/wiki/index.php?title=Talk:DTLS_Implementation_Notes&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="http://www.net-snmp.org/wiki/index.php?title=DTLS_Implementation_Notes&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=DTLS_Implementation_Notes&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=DTLS+Implementation+Notes&amp;returntoquery=oldid%3D4133&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=DTLS+Implementation+Notes&amp;returntoquery=oldid%3D4133" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/DTLS_Implementation_Notes" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/DTLS_Implementation_Notes" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="http://www.net-snmp.org/wiki/index.php?title=DTLS_Implementation_Notes&amp;oldid=4133&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="http://www.net-snmp.org/wiki/index.php?title=DTLS_Implementation_Notes&amp;oldid=4133" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=DTLS_Implementation_Notes&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 4 January 2010, at 21:38.</li>
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":3570});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=DTLS_Implementation_Notes&oldid=4133 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:18:22 GMT -->
+</html>

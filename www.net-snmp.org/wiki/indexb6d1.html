@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Simple_Async_Application&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:24:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>View source for TUT:Simple Async Application - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"TUT:Simple_Async_Application","wgTitle":"TUT:Simple Async Application","wgCurRevisionId":5850,"wgRevisionId":0,"wgArticleId":1751,"wgIsArticle":!1,"wgIsRedirect":!1,"wgAction":"edit","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!0,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"TUT:Simple_Async_Application","wgRelevantArticleId":1751,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-TUT_Simple_Async_Application skin-monobook action-edit">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">View source for TUT:Simple Async Application</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub">← <a href="http://www.net-snmp.org/wiki/index.php/TUT:Simple_Async_Application" title="TUT:Simple Async Application">TUT:Simple Async Application</a></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text"><p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://www.net-snmp.org/wiki/index.php?title=Net-SNMP_Wiki:Users&amp;action=edit&amp;redlink=1" class="new" title="Net-SNMP Wiki:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<hr />
+<p>You can view and copy the source of this page.
+</p><textarea readonly="" accesskey="," id="wpTextbox1" cols="80" rows="25" style="" lang="en" dir="ltr" name="wpTextbox1">Here we discuss how to write an asynchronous application. It's only purpose is to retrieve the value of a set of variables from a set of remote hosts. (This is for the C library, see [[TUT:Simple_Perl_Async_Application]] for Perl.)
+
+{{TUT:File-Table-Top-and-basics}}
+| [http://www.net-snmp.org/tutorial/tutorial-5/toolkit/asyncapp/asyncapp.c asyncapp.c] || The Asynchronous C source code
+|}
+
+This discussion assumes that you already have read the snmpdemoapp tutorial section. 
+
+The program assumes that you have a set of hosts that you want to interrogate for a set of variables. For simplicity's sake each query just asks for one variable. 
+
+The program defines two structures, struct host which holds the host specific data, hostname and community to be used, and struct oid which holds the object to be queried for. 
+
+  /*
+   * a list of hosts to query
+   */
+  struct host {
+    char *name;
+    char *community;
+  } hosts[] = {
+    { "test1",            "public" },
+    { "test2",            "public" },
+    { "test3",            "public" },
+    { "test4",            "public" },
+    { NULL }
+  };
+  
+  /*
+   * a list of variables to query for
+   */
+  struct oid {
+    char *Name;
+    oid Oid[MAX_OID_LEN];
+    int OidLen;
+  } oids[] = {
+    { "system.sysDescr.0" },
+    { "interfaces.ifNumber.1" },
+    { "interfaces.ifNumber.0" },
+    { NULL }
+  };
+
+As a brush up, we then define the function synchronous that scans the hosts using synchronous calls: 
+
+  void synchronous (void)
+  {
+    struct host *hp;
+  
+    for (hp = hosts; hp->name; hp++) {
+      struct snmp_session ss, *sp;
+      struct oid *op;
+  
+      snmp_sess_init(&amp;ss);                        /* initialize session */
+      ss.version = SNMP_VERSION_2c;
+      ss.peername = hp->name;
+      ss.community = hp->community;
+      ss.community_len = strlen(ss.community);
+      snmp_synch_setup(&amp;ss);
+      if (!(sp = snmp_open(&amp;ss))) {
+        snmp_perror("snmp_open");
+        continue;
+      }
+      for (op = oids; op->Name; op++) {
+        struct snmp_pdu *req, *resp;
+        int status;
+        req = snmp_pdu_create(SNMP_MSG_GET);
+        snmp_add_null_var(req, op->Oid, op->OidLen);
+        status = snmp_synch_response(sp, req, &amp;resp);
+        if (!print_result(status, sp, resp)) break;
+        snmp_free_pdu(resp);
+      }
+      snmp_close(sp);
+    }
+  }
+
+This should contain no surprises, as you already mastered the
+snmpdemoapp chapter.
+
+Now onto the new material. We define a struct session to hold our per-host state:
+
+  struct session {
+    struct snmp_session *sess;          /* SNMP session data */ 
+    struct oid *current_oid;            /* How far in our poll are we */
+  } sessions[sizeof(hosts)/sizeof(hosts[0])];
+  
+  int active_hosts;                     /* hosts that we have not completed */
+
+We then need a callback function, to be called whenever a response is received: 
+
+  int asynch_response(int operation, struct snmp_session *sp, int reqid,
+                      struct snmp_pdu *pdu, void *magic)
+  {
+    struct session *host = (struct session *)magic;
+    struct snmp_pdu *req;
+  
+whenever a response is received, we will print it out, and send the next request out: 
+
+    if (operation == RECEIVED_MESSAGE) {
+      if (print_result(STAT_SUCCESS, host->sess, pdu)) {
+        host->current_oid++;                      /* send next GET (if any) */
+        if (host->current_oid->Name) {
+  
+there is still more to do ... build the next request 
+
+          req = snmp_pdu_create(SNMP_MSG_GET);
+          snmp_add_null_var(req, host->current_oid->Oid, host->current_oid->OidLen);
+          if (snmp_send(host->sess, req))
+  
+we are still in business 
+
+            return 1;
+          else {
+  
+something went wrong. Print out error message, and fall through to decrement active_hosts 
+
+            snmp_perror("snmp_send");
+            snmp_free_pdu(req);
+          }
+        }
+      }
+    }
+    else
+      print_result(STAT_TIMEOUT, host->sess, pdu);
+
+    /* something went wrong (or end of variables)
+     * this host not active any more
+     */
+    active_hosts--;
+    return 1;
+  }
+
+Now the code to fire this up, and keep it running until we are done 
+
+  void asynchronous(void)
+  {
+    struct session *hs;
+    struct host *hp;
+
+First we loop through all the hosts, opening a session for each and sending out the first request: 
+
+    /* startup all hosts */
+    for (hs = sessions, hp = hosts; hp->name; hs++, hp++) {
+      struct snmp_pdu *req;
+      struct snmp_session sess;
+      snmp_sess_init(&amp;sess);                    /* initialize session */
+      sess.version = SNMP_VERSION_2c;
+      sess.peername = hp->name;
+      sess.community = hp->community;
+      sess.community_len = strlen(sess.community);
+
+The next two lines is where we deviate from the good old sync setup 
+
+      sess.callback = asynch_response;            /* default callback */
+      sess.callback_magic = hs;
+      if (!(hs->sess = snmp_open(&amp;sess))) {
+        snmp_perror("snmp_open");
+        continue;
+      }
+      hs->current_oid = oids;
+      req = snmp_pdu_create(SNMP_MSG_GET);        /* send the first GET */
+      snmp_add_null_var(req, hs->current_oid->Oid, hs->current_oid->OidLen);
+      if (snmp_send(hs->sess, req))
+        active_hosts++;
+      else {
+        snmp_perror("snmp_send");
+        snmp_free_pdu(req);
+      }
+    }
+
+That was the startup code. Now we just wait for things to settle down again. All the real work is handled inside the callback function. 
+
+    /* loop while any active hosts */
+    while (active_hosts) {
+      int fds = 0, block = 1;
+      fd_set fdset;
+      struct timeval timeout;
+
+snmp_select_info is the function that gets us all we need to be able to call select 
+
+      FD_ZERO(&amp;fdset);
+      snmp_select_info(&amp;fds, &amp;fdset, &amp;timeout, &amp;block);
+      fds = select(fds, &amp;fdset, NULL, NULL, block ? NULL : &amp;timeout);
+
+snmp_read will read all sockets with pending data, and process them 
+
+      if (fds) snmp_read(&amp;fdset);
+      else snmp_timeout();
+    }
+
+Now active_hosts == 0, and all data have been returned. Close all sessions and finish up. 
+
+    /* cleanup */
+    for (hp = hosts, hs = sessions; hp->name; hs++, hp++) {
+      if (hs->sess) snmp_close(hs->sess);
+    }
+  }
+
+The main program just demonstrates the two ways to do the job: 
+
+  int main (int argc, char **argv)
+  {
+    initialize();
+  
+    printf("---------- synchronous -----------\n");
+    synchronous();
+  
+    printf("---------- asynchronous -----------\n");
+    asynchronous();
+  
+    return 0;
+  }
+
+Thats it. Lets now see it in action: 
+
+  % '''./asyncapp'''
+  ---------- synchronous -----------
+  23:08:49.429595 test1: Timeout
+  23:08:49.609789 test2: system.sysDescr.0 = SunOS test2 5.6 Generic_105181-16 sun4u
+  23:08:49.759717 test2: interfaces.ifNumber.1 = No Such Instance currently exists
+  23:08:49.899715 test2: interfaces.ifNumber.0 = No Such Object available on this agent
+  23:08:50.059725 test3: system.sysDescr.0 = Linux test3 2.2.5-22 #1 Wed Jun 2 09:17:03 EDT 1999 i686
+  23:08:50.199715 test3: interfaces.ifNumber.1 = No Such Object available on this agent
+  23:08:50.339712 test3: interfaces.ifNumber.0 = No Such Object available on this agent
+  23:08:56.429595 test4: Timeout
+  ---------- asynchronous -----------
+  23:08:50.519702 test2: system.sysDescr.0 = SunOS test2 5.6 Generic_105181-16 sun4u
+  23:08:50.569680 test3: system.sysDescr.0 = Linux test3 2.2.5-22 #1 Wed Jun 2 09:17:03 EDT 1999 i686
+  23:08:50.669682 test2: interfaces.ifNumber.1 = No Such Instance currently exists
+  23:08:50.699669 test3: interfaces.ifNumber.1 = No Such Object available on this agent
+  23:08:50.809714 test2: interfaces.ifNumber.0 = No Such Object available on this agent
+  23:08:50.879675 test3: interfaces.ifNumber.0 = No Such Object available on this agent
+  23:08:56.429590 test1: Timeout
+  23:08:56.430095 test4: Timeout
+  %
+
+{{TUT:LIST}}
+</textarea><div class="templatesUsed"><div class="mw-templatesUsedExplanation"><p>Templates used on this page:
+</p></div><ul>
+<li><a href="http://www.net-snmp.org/wiki/index.php/Template:TUT:File-Table-Top" title="Template:TUT:File-Table-Top">Template:TUT:File-Table-Top</a> (<a href="http://www.net-snmp.org/wiki/index.php?title=Template:TUT:File-Table-Top&amp;action=edit" title="Template:TUT:File-Table-Top">view source</a>) </li><li><a href="http://www.net-snmp.org/wiki/index.php/Template:TUT:File-Table-Top-and-basics" title="Template:TUT:File-Table-Top-and-basics">Template:TUT:File-Table-Top-and-basics</a> (<a href="http://www.net-snmp.org/wiki/index.php?title=Template:TUT:File-Table-Top-and-basics&amp;action=edit" title="Template:TUT:File-Table-Top-and-basics">view source</a>) </li><li><a href="http://www.net-snmp.org/wiki/index.php/Template:TUT:LIST" title="Template:TUT:LIST">Template:TUT:LIST</a> (<a href="http://www.net-snmp.org/wiki/index.php?title=Template:TUT:LIST&amp;action=edit" title="Template:TUT:LIST">view source</a>) </li></ul></div><p id="mw-returnto">Return to <a href="http://www.net-snmp.org/wiki/index.php/TUT:Simple_Async_Application" title="TUT:Simple Async Application">TUT:Simple Async Application</a>.</p>
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php/TUT:Simple_Async_Application">http://www.net-snmp.org/wiki/index.php/TUT:Simple_Async_Application</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/TUT:Simple_Async_Application" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk"><a href="http://www.net-snmp.org/wiki/index.php/Talk:TUT:Simple_Async_Application" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource" class="selected"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Simple_Async_Application&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Simple_Async_Application&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3ASimple+Async+Application&amp;returntoquery=action%3Dedit&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=TUT%3ASimple+Async+Application&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/TUT:Simple_Async_Application" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/TUT:Simple_Async_Application" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=TUT:Simple_Async_Application&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.edit.collapsibleFooter","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":157});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Simple_Async_Application&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:24:03 GMT -->
+</html>

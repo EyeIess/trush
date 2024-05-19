@@ -1,0 +1,503 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Using_TLS&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:22:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>TUT:Using TLS - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"TUT:Using_TLS","wgTitle":"TUT:Using TLS","wgCurRevisionId":4678,"wgRevisionId":4678,"wgArticleId":2071,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"TUT:Using_TLS","wgRelevantArticleId":2071,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load531d.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;printable=1&amp;skin=monobook" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="loadf198.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-TUT_Using_TLS skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">TUT:Using TLS</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="padding-left: 1em; border-width: 2px; border-color: #bb0000; border-style: solid; background-color: #ffcccc; width: 95%; margin-bottom: .5em;">
+<div style="font-size: 1.2em; font-weight: bold; border-width: 0px 0px 4px 0px; border-color: #bb0000; border-style: solid; display: block; padding-bottom: .2em; padding-top: .2em;">Requires Net-SNMP 5.6</div>
+<p>Note: Features discussed on this page require Net-SNMP version <b>5.6</b> or higher.
+</p>
+</div>
+<p>"SNMP over DTLS over UDP" and "SNMP over TLS over TCP" (<a href="http://www.rfc-editor.org/rfc/rfc5953.txt" class="extiw" title="rfc:5953">RFC5953</a>) are supported in Net-SNMP 5.6 and beyond. This page describes how
+to use <a href="index.php/DTLS.html" title="DTLS">DTLS</a> or <a href="index.php/TLS.html" title="TLS">TLS</a> for the end user. For information on the administering and configuring the agent with DTLS/TLS support,
+see <a href="index.php/Using_DTLS.html" title="Using DTLS">Using_DTLS</a>.
+</p><p>TLS and DTLS make use of the <a href="index.php/TSM.html" title="TSM">Transport Security Model (TSM)</a> security model, defined in <a href="http://www.rfc-editor.org/rfc/rfc5591.txt" class="extiw" title="rfc:5591">RFC5591</a> which was created as an alternative to the <a href="index.php/USM.html" title="USM">USM</a> security model (which is discussed in the <a href="index.php/TUT_SNMPv3_Options.html" title="TUT:SNMPv3 Options">SNMPv3 Options tutorial</a>.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#DTLS_vs_TLS"><span class="tocnumber">1</span> <span class="toctext">DTLS vs TLS</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Required_Build_Options"><span class="tocnumber">2</span> <span class="toctext">Required Build Options</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Zero-config_Example"><span class="tocnumber">3</span> <span class="toctext">Zero-config Example</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Importing_the_tutorial_certificates"><span class="tocnumber">3.1</span> <span class="toctext">Importing the tutorial certificates</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Querying_the_Net-SNMP_test_server"><span class="tocnumber">3.2</span> <span class="toctext">Querying the Net-SNMP test server</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Obtaining_and_using_test.net-snmp.org_certificates"><span class="tocnumber">4</span> <span class="toctext">Obtaining and using test.net-snmp.org certificates</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Extracting_the_tarball"><span class="tocnumber">4.1</span> <span class="toctext">Extracting the tarball</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Querying_the_demo_agent"><span class="tocnumber">4.2</span> <span class="toctext">Querying the demo agent</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="#Querying_using_filenames_for_keys"><span class="tocnumber">4.2.1</span> <span class="toctext">Querying using filenames for keys</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#Querying_using_fingerprints_for_keys"><span class="tocnumber">4.2.2</span> <span class="toctext">Querying using fingerprints for keys</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#Querying_using_a_trusted_CA_certificate_and_their_properly_encoded_hostname"><span class="tocnumber">4.2.3</span> <span class="toctext">Querying using a trusted CA certificate and their properly encoded hostname</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#Setting_up_configuration"><span class="tocnumber">4.2.4</span> <span class="toctext">Setting up configuration</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#Getting_tutorial_certificates_into_a_Java_Keystore"><span class="tocnumber">5</span> <span class="toctext">Getting tutorial certificates into a Java Keystore</span></a>
+<ul>
+<li class="toclevel-2 tocsection-14"><a href="#Public_Certificates"><span class="tocnumber">5.1</span> <span class="toctext">Public Certificates</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Private_Keys"><span class="tocnumber">5.2</span> <span class="toctext">Private Keys</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Tutorial_Sections"><span class="tocnumber">6</span> <span class="toctext">Tutorial Sections</span></a>
+<ul>
+<li class="toclevel-2"><a href="#About_the_SNMP_Protocol"><span class="tocnumber">6.1</span> <span class="toctext">About the SNMP Protocol</span></a></li>
+<li class="toclevel-2"><a href="#Net-SNMP_Command_Line_Applications"><span class="tocnumber">6.2</span> <span class="toctext">Net-SNMP Command Line Applications</span></a></li>
+<li class="toclevel-2"><a href="#Application_Configuration"><span class="tocnumber">6.3</span> <span class="toctext">Application Configuration</span></a></li>
+<li class="toclevel-2"><a href="#Net-SNMP_Daemons"><span class="tocnumber">6.4</span> <span class="toctext">Net-SNMP Daemons</span></a></li>
+<li class="toclevel-2"><a href="#Coding_Tutorials"><span class="tocnumber">6.5</span> <span class="toctext">Coding Tutorials</span></a></li>
+<li class="toclevel-2"><a href="#Debugging_SNMP_Applications_and_Agents"><span class="tocnumber">6.6</span> <span class="toctext">Debugging SNMP Applications and Agents</span></a></li>
+<li class="toclevel-2"><a href="#Operating_System_Specific_Tutorials"><span class="tocnumber">6.7</span> <span class="toctext">Operating System Specific Tutorials</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="DTLS_vs_TLS">DTLS vs TLS</span></h2>
+<p><a href="index.php/TLS.html" title="TLS">TLS</a> and <a href="index.php/DTLS.html" title="DTLS">DTLS</a> are both protocols that protect packets in transit.  The first runs over <a href="index.php/TCP.html?title=TCP&amp;action=edit&amp;redlink=1" class="new" title="TCP (page does not exist)">TCP</a> porto 10161 and the second over <a href="index.php/UDP.html" title="UDP">UDP</a> port 10161, which both have unique advantages (and a discussion of those advantages is beyond scope of this tutorial).  
+</p><p>Below you'll find examples that use both the <i>dtlsudp:</i> prefix and the <i>tlstcp:</i> prefix.  Our <i>test.net-snmp.org</i> server will respond to both transports so you can try them both out.
+</p>
+<h2><span class="mw-headline" id="Required_Build_Options">Required Build Options</span></h2>
+<p>You must have added these options when configure was run to make the following tutorial work:
+</p>
+<pre> --with-security-modules=tsm --with-transports="DTLSUDP TLSTCP"
+</pre>
+<h2><span class="mw-headline" id="Zero-config_Example">Zero-config Example</span></h2>
+<h3><span class="mw-headline" id="Importing_the_tutorial_certificates">Importing the tutorial certificates</span></h3>
+<p>You must download and install the certificates you will use to connect to the agent
+(tutorial-joecool), the certificate that the agent will present for verification
+(tutorial-agent) and the certificate authority that signed the agent's certificate
+(tutorial-CA). The net-snmp-cert utility can import the certificate and put them
+in the proper locations for you.
+</p>
+<pre>$ <b>net-snmp-cert -t tutorial-joecool import</b> \
+     <b><a rel="nofollow" class="external free" href="../tutorial/tutorial-5/certificates/tutorial-joecool.html">http://www.net-snmp.org/tutorial/tutorial-5/certificates/tutorial-joecool.crt</a></b> \
+     <b><a rel="nofollow" class="external free" href="../tutorial/tutorial-5/certificates/tutorial-joecool-2.html">http://www.net-snmp.org/tutorial/tutorial-5/certificates/tutorial-joecool.key</a></b>
+
+$ <b>net-snmp-cert -t tutorial-agent import</b> \
+      <b><a rel="nofollow" class="external free" href="../tutorial/tutorial-5/certificates/tutorial-agent.html">http://www.net-snmp.org/tutorial/tutorial-5/certificates/tutorial-agent.crt</a></b>
+
+$ <b>net-snmp-cert -t tutorial-CA import</b> \
+      <b><a rel="nofollow" class="external free" href="../tutorial/tutorial-5/certificates/tutorial-CA.html">http://www.net-snmp.org/tutorial/tutorial-5/certificates/tutorial-CA.crt</a></b>
+</pre>
+<h3><span class="mw-headline" id="Querying_the_Net-SNMP_test_server">Querying the Net-SNMP test server</span></h3>
+<p>In these examples, <i>test.net-snmp.org</i> is the host name of the agent to query, using version 3 of the SNMP protocol and the transport security model, and an authPriv message protected a dtls connection using the certificates identified by the given certificate tags.  The OID being requested is <tt>sysUpTime.0</tt> from the MIB module <tt>SNMPv2-MIB</tt>.
+</p><p>First we directly specify both our identity and the identity we expect the agent to present:
+</p>
+<pre>$ <b>snmpget -T our_identity=tutorial-joecool</b> \
+          <b>-T their_identity=tutorial-agent</b> \
+          <b>-t 10 tls:test.net-snmp.org sysUpTime.0</b>
+</pre>
+<p>You can also specify a trusted certificate authority (CA) for the agent, instead of a specific certificate:
+</p>
+<pre>$ <b>snmpget -T our_identity=tutorial-joecool</b> \
+          <b>-T trust_cert=tutorial-CA</b> \
+          <b>-t 10 tls:test.net-snmp.org sysUpTime.0</b>
+</pre>
+<p>Once you add certificate options to your configuration files, you no longer need to specify
+certificate on the command line:
+</p>
+<pre>$ <b>echo trustCert tutorial-CA &gt;&gt; $HOME/.snmp/snmp.conf</b>
+$ <b>echo clientCert tutorial-joecool &gt;&gt; $HOME/.snmp/snmp.conf</b>
+
+$ <b>snmpget -t 10 tls:test.net-snmp.org sysUpTime.0</b>
+</pre>
+<h2><span class="mw-headline" id="Obtaining_and_using_test.net-snmp.org_certificates">Obtaining and using test.net-snmp.org certificates</span></h2>
+<p>You will need the certificates for the Net-SNMP test server and test user for this tutorial. A compressed tarball is avaialable <a rel="nofollow" class="external text" href="../tutorial/tutorial-5/certificates/tutorial-.snmp.tar.gz">here</a>, along with its <a rel="nofollow" class="external text" href="../tutorial/tutorial-5/certificates/tutorial-.snmp.tar.gz.asc">gpg signature</a>.  Or you can download the individual files as well:
+</p>
+<table style="margin-left: 2em;">
+
+<tr>
+<td> complete tar.gz
+</td>
+<td> <a rel="nofollow" class="external free" href="../tutorial/tutorial-5/certificates/tutorial-.snmp.tar.gz">http://www.net-snmp.org/tutorial/tutorial-5/certificates/tutorial-.snmp.tar.gz</a>
+</td></tr>
+<tr>
+<td> User tutorial
+</td>
+<td> <a rel="nofollow" class="external free" href="../tutorial/tutorial-5/certificates/tutorial-joecool.html">http://www.net-snmp.org/tutorial/tutorial-5/certificates/tutorial-joecool.crt</a>
+</td></tr>
+<tr>
+<td> User private key
+</td>
+<td> <a rel="nofollow" class="external free" href="../tutorial/tutorial-5/certificates/tutorial-joecool.html">http://www.net-snmp.org/tutorial/tutorial-5/certificates/tutorial-joecool.crt</a>
+</td></tr>
+<tr>
+<td> CA certificate
+</td>
+<td> <a rel="nofollow" class="external free" href="../tutorial/tutorial-5/certificates/tutorial-CA.html">http://www.net-snmp.org/tutorial/tutorial-5/certificates/tutorial-CA.crt</a>
+</td></tr>
+<tr>
+<td> Agent certificate
+</td>
+<td> <a rel="nofollow" class="external free" href="../tutorial/tutorial-5/certificates/tutorial-agent.html">http://www.net-snmp.org/tutorial/tutorial-5/certificates/tutorial-agent.crt</a>
+</td></tr>
+</table>
+<p>The net-snmp-cert command is able to pull these certificates directly from a URL, as shown in the previous example.
+</p>
+<h3><span class="mw-headline" id="Extracting_the_tarball">Extracting the tarball</span></h3>
+<p>If you retrieved the entire certificate tar-ball, extract it as follows:
+</p><p>Once you have the <tt>tutorial-.snmp</tt> tarball, uncompress it in your home directory:
+</p>
+<pre>$ tar xvfz tutorial-.snmp.tar.gz
+
+.snmp/
+.snmp/snmp.conf.tutorial
+.snmp/tls/
+.snmp/tls/newcerts/
+.snmp/tls/private/
+.snmp/tls/private/tutorial-joecool.key
+.snmp/tls/ca-certs/
+.snmp/tls/ca-certs/tutorial-CA.crt
+.snmp/tls/certs/
+.snmp/tls/certs/tutorial-joecool.crt
+.snmp/tls/certs/tutorial-agent.crt
+</pre>
+<p>You can use net-snmp-cert to show you the certificates (and their fingerprints):
+</p>
+<pre>$ net-snmp-cert showcert
+/home/dummy/.snmp/tls:
+
+certs/tutorial-agent.crt:
+subject= /C=US/ST=California/O=Net-SNMP Developers/OU=SNMP-TLS/CN=tutorial-agent/emailAddress=tutorial-agent@test.net-snmp.org
+
+
+certs/tutorial-joecool.crt:
+subject= /C=US/ST=California/O=Net-SNMP Developers/OU=SNMP-TLS/CN=Joe Cool/emailAddress=joe.cool@test.net-snmp.org
+</pre>
+<pre>$ net-snmp-cert showcert --fingerprint
+/home/dummy/.snmp/tls:
+
+certs/tutorial-agent.crt:
+SHA1 Fingerprint=CA:B8:0A:B3:6B:4C:21:2A:F2:92:CD:0B:6B:DF:6A:9F:23:D6:30:4B
+
+
+certs/tutorial-joecool.crt:
+SHA1 Fingerprint=CD:74:45:C9:A3:A3:55:0A:6C:37:03:B2:49:38:B1:01:99:95:8E:43
+</pre>
+<h3><span class="mw-headline" id="Querying_the_demo_agent">Querying the demo agent</span></h3>
+<h4><span class="mw-headline" id="Querying_using_filenames_for_keys">Querying using filenames for keys</span></h4>
+<p>Now that you have the certificates, you can query the test agent using the file names:
+</p>
+<pre>snmpget -T our_identity=tutorial-joecool \
+        -T their_identity=tutorial-agent \
+        tlstcp:test.net-snmp.org sysContact.0
+</pre>
+<h4><span class="mw-headline" id="Querying_using_fingerprints_for_keys">Querying using fingerprints for keys</span></h4>
+<p>or the fingerprints:
+</p>
+<pre>snmpget -T our_identity=CD:74:45:C9:A3:A3:55:0A:6C:37:03:B2:49:38:B1:01:99:95:8E:43 \
+        -T their_identity=CA:B8:0A:B3:6B:4C:21:2A:F2:92:CD:0B:6B:DF:6A:9F:23:D6:30:4B \
+        tls:test.net-snmp.org sysContact.0
+</pre>
+<h4><span class="mw-headline" id="Querying_using_a_trusted_CA_certificate_and_their_properly_encoded_hostname">Querying using a trusted CA certificate and their properly encoded hostname</span></h4>
+<p>You can also specify that you trust the host CA and expect the remote certificate to have it's host name in its certificate file that matches your command line:
+</p>
+<pre>snmpget -T our_identity=tutorial-joecool \
+        -T trustCert=tutorial-CA \
+        tlstcp:test.net-snmp.org sysContact.0
+</pre>
+<p>(this won't work if their presented certificate doesn't contain "test.net-snmp.org")
+</p>
+<h4><span class="mw-headline" id="Setting_up_configuration">Setting up configuration</span></h4>
+<p>Those are long ugly command lines, so you might want to add some defaults in your configuration file, snmp.conf.
+There is an included snmp.conf file, but to ensure that we don't overwrite any existing snmp.conf it
+must be appended to your existing configuration file.
+</p>
+<pre>$ cat $HOME/.snmp/snmp.conf.tutorial &gt;&gt; $HOME/.snmp/snmp.conf
+</pre>
+<p>Now try this much simpler query:
+</p>
+<pre>$ snmpget tls:test.net-snmp.org sysContact.0
+SNMPv2-MIB::sysContact.0 = STRING: Net-SNMP Coders &lt;net-snmp-coders@lists.sourceforge.net&gt;
+</pre>
+<h2><span class="mw-headline" id="Getting_tutorial_certificates_into_a_Java_Keystore">Getting tutorial certificates into a Java Keystore</span></h2>
+<p>If you need to use a Java client for testing, you have to jump through a few hoops
+to get Java to use the tutorial certificates.
+</p>
+<h3><span class="mw-headline" id="Public_Certificates">Public Certificates</span></h3>
+<p>Importing certificates is pretty easy.
+</p>
+<pre>keytool -import -keystore net-snmp.jks -alias tutorial-ca -file ca-certs/tutorial-CA.crt
+</pre>
+<p>Keytool doesn't like the text expansion of the certificate, so copy the agent certificate and delete everything before '-----BEGIN CERTIFICATE-----'.
+</p>
+<pre>cp certs/tutorial-agent.crt /tmp/tutorial-agent.crt
+vi /tmp/tutorial-agent.crt
+keytool -import -keystore net-snmp.jks -alias tutorial-agent -file /tmp/tutorial-agent.crt
+</pre>
+<h3><span class="mw-headline" id="Private_Keys">Private Keys</span></h3>
+<p>Private keys, not so easy.
+</p><p>First convert them to DER:
+</p>
+<pre>openssl x509 -in certs/tutorial-joecool.crt -inform PEM -out joecool-cert.der -outform DER
+openssl pkcs8 -topk8 -nocrypt -in private/tutorial-joecool.key -inform PEM -out joecool-key.der -outform DER
+</pre>
+<p>Java's keytool can't import private keys, so we have to rely on the kindness of strangers. In this case, Neal Groothuis. Head over to <a rel="nofollow" class="external free" href="http://www.nealgroothuis.name/import-a-private-key-into-a-java-keystore/">http://www.nealgroothuis.name/import-a-private-key-into-a-java-keystore/</a> and cut-and-paste his KeyStoreImport.java code to a local file.
+<b>WARNING: KeyStoreImport will echo your password!</b>
+</p>
+<pre>javac KeyStoreImport.java
+java KeyStoreImport net-snmp.jks joecool-cert.der  joecool-key.der  joecool
+</pre>
+<p>Check your work:
+</p>
+<pre>keytool -list -keystore net-snmp.jks
+</pre>
+<hr />
+<h2><span class="mw-headline" id="Tutorial_Sections">Tutorial Sections</span></h2>
+<h3><span class="mw-headline" id="About_the_SNMP_Protocol">About the SNMP Protocol</span></h3>
+<p>These tutorial links talk about SNMP generically and how the protocol itself works.  They are good introductory reading material and the concepts are important to understand before diving into the later tutorials about Net-SNMP itself.
+</p>
+<ul><li> <a href="index.php/TUT_SNMP.html" title="TUT:SNMP"> How SNMP Works</a>: About the protocol itself (GETs, GETNEXTs, etc)</li>
+<li> <a href="index.php/TUT_MIBs.html" title="TUT:MIBs"> What data is in SNMP</a>: All about SNMP <i>Management Information Bases</i> (MIBs)</li>
+<li> <a href="index.php/TUT_Security.html" title="TUT:Security"> Securing SNMP</a>: How to use the SNMP protocol securely</li></ul>
+<h3><span class="mw-headline" id="Net-SNMP_Command_Line_Applications">Net-SNMP Command Line Applications</span></h3>
+<p>These tutorial pages discuss the command line tools provided in the Net-SNMP suite of tools.  Nearly all the example commands in these tutorials works if you try it yourself, as they're all examples that talk to our online Net-SNMP test agent.  Given them a shot!
+</p>
+<ul><li> <a href="index.php/TUT_snmptranslate.html" title="TUT:snmptranslate"> snmptranslate</a>: learning about the MIB tree.</li>
+<li> <a href="index.php/TUT_snmpget.html" title="TUT:snmpget"> snmpget</a>: retrieving data from a host.</li>
+<li> <a href="index.php/TUT_snmpgetnext.html" title="TUT:snmpgetnext"> snmpgetnext</a>: retrieving unknown indexed data.</li>
+<li> <a href="index.php/TUT_snmpwalk.html" title="TUT:snmpwalk"> snmpwalk</a>: retrieving lots of data at once!</li>
+<li> <a href="index.php/TUT_snmptable.html" title="TUT:snmptable"> snmptable</a>: displaying a table.</li>
+<li> <a href="index.php/TUT_snmpset.html" title="TUT:snmpset"> snmpset</a>: peforming write operations.</li>
+<li> <a href="index.php/TUT_snmpbulkget.html" title="TUT:snmpbulkget"> snmpbulkget</a>: communicates with a network entity using SNMP GETBULK request</li>
+<li> <a href="index.php/TUT_snmpbulkwalk.html" title="TUT:snmpbulkwalk"> snmpbulkwalk</a>: retrieve a sub-tree of management values using SNMP GETBULK requests.</li>
+<li> <a href="index.php/TUT_snmptrap.html" title="TUT:snmptrap"> snmptrap</a>: Sending and receiving traps, and acting upon them. 
+<ul><li> <a href="index.php/TUT_snmptrap_SNMPv3.html" title="TUT:snmptrap SNMPv3"> Traps/informs with SNMPv3/USM</a>: Sending and receiving SNMPv3/USM TRAPs and INFORMs</li>
+<li> <a href="index.php/TUT_agentxtrap.html" title="TUT:agentxtrap"> Sending Traps/Informs via AgentX</a>: Sending notifications from the command line through snmpd </li></ul></li>
+<li> Common command line options: 
+<ul><li> <a href="index.php/TUT_Using_and_loading_MIBS.html" title="TUT:Using and loading MIBS"> Using and loading MIBS</a></li>
+<li> <a href="index.php/TUT_SNMPv3_Options.html" title="TUT:SNMPv3 Options"> SNMPv3/USM Options</a></li>
+<li> <strong class="selflink"> Using SNMPv3 over TLS and DTLS</strong></li>
+<li> <a href="index.php/TUT_Customized_Output_Formats.html" title="TUT:Customized Output Formats"> Customized Output Formats</a></li></ul></li>
+<li> <a href="index.php/TUT_mib2c_config_files.html" title="TUT:mib2c config files"> Writing mib2c config files </a></li></ul>
+<h3><span class="mw-headline" id="Application_Configuration">Application Configuration</span></h3>
+<p>All of our applications support configuration to allow you to customize how they behave.
+</p>
+<ul><li> <a href="index.php/TUT_Configuring_Net-SNMP_Applications.html" title="TUT:Configuring Net-SNMP Applications"> Configuration files for Net-SNMP applications</a></li></ul>
+<h3><span class="mw-headline" id="Net-SNMP_Daemons">Net-SNMP Daemons</span></h3>
+<p>Net-SNMP comes with two long-running daemons: a SNMP agent (<i><a href="index.php/Snmpd.html" title="Snmpd">snmpd</a></i>) for responding to management requests and a notification receiver (<i><a href="index.php/Snmptrapd.html" title="Snmptrapd">snmptrapd</a></i>) for receiving SNMP notifications.
+</p>
+<ul><li> SNMP Agent (snmpd) Configuration
+<ul><li> <a href="index.php/TUT_snmpd_configuration.html" title="TUT:snmpd configuration">Configuration Basics</a></li>
+<li> <a href="index.php/Vacm.html" title="Vacm"> Access Control (VACM)</a></li>
+<li> <a href="index.php/Snmpconf.html" title="Snmpconf">snmpconf</a></li></ul></li>
+<li> SNMP Notification Receiver (snmptrapd)
+<ul><li> <a href="index.php/TUT_Configuring_snmptrapd.html" title="TUT:Configuring snmptrapd">Configuring snmptrapd</a></li>
+<li> <a href="index.php/TUT_Configuring_snmptrapd_to_receive_SNMPv3_notifications.html" title="TUT:Configuring snmptrapd to receive SNMPv3 notifications">Configuring SNMPv3 notifications</a></li>
+<li> <a href="index.php/TUT_Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors.html" title="TUT:Configuring snmptrapd to parse MIBS from 3rd party Vendors">Configuring snmptrapd to understand vendor-specific MIBS (Cisco)</a></li></ul></li>
+<li> Agent Monitoring
+<ul><li> <a href="index.php/TUT_DisMan_Monitoring.html" title="TUT:DisMan Monitoring">DisMan Monitoring</a></li>
+<li> <a href="index.php/TUT_MRTG.html" title="TUT:MRTG">Monitoring with MRTG</a></li></ul></li></ul>
+<h3><span class="mw-headline" id="Coding_Tutorials">Coding Tutorials</span></h3>
+<p>Net-SNMP comes with a highly flexible and extensible API.  The API allows you to create your own commands, add extensions to the agent to support your own <a href="index.php/MIB.html" title="MIB">MIBs</a> and perform specialized processing of notifications.
+</p>
+<ul><li> Client / Manager Coding Tutorials
+<ul><li> <a href="index.php/TUT_Simple_Application.html" title="TUT:Simple Application">Writing a simple application</a></li>
+<li> <a href="index.php/TUT_Simple_Async_Application.html" title="TUT:Simple Async Application">Writing a simple asynchronous application</a></li></ul></li>
+<li> Agent Coding Tutorials
+<ul><li> The <a href="index.php/Agent_Architecture.html" title="Agent Architecture">Agent Architecture</a> page might be worth reading before or after the agent coding tutorials, and describes how the <a href="index.php/Agent_Helpers.html" title="Agent Helpers">Agent Helpers</a> work under the hood.</li>
+<li> <a href="index.php/TUT_Writing_a_MIB_Module.html" title="TUT:Writing a MIB Module"> Writing a mib module</a> to serve information described by an SNMP MIB, and how to compile it into the net-snmp snmpd agent.</li>
+<li> <a href="index.php/TUT_Writing_a_Dynamically_Loadable_Object.html" title="TUT:Writing a Dynamically Loadable Object"> Writing a Dynamically Loadable Object</a> that can be loaded into the SNMP agent.</li>
+<li> <a href="index.php/TUT_Writing_a_Subagent.html" title="TUT:Writing a Subagent"> Writing a Subagent</a> that can be run to attach to the snmpd master agent.</li>
+<li> <a href="index.php/Tut_Extending_snmpd_using_perl.html" title="Tut:Extending snmpd using perl"> Writing a perl plugin to extend the agent</a> using the NetSNMP::agent module.</li>
+<li> <a href="index.php/Tut_Extending_snmpd_using_shell_scripts.html" title="Tut:Extending snmpd using shell scripts"> Writing shell scripts to extend the agent</a></li>
+<li> Using mib2c to help write an agent code template for you
+<ul><li> <a href="index.php/TUT_mib2c_General_Overview.html" title="TUT:mib2c General Overview"> General mib2c Overview</a></li>
+<li> <a href="index.php/TUT_mib2c-update.html" title="TUT:mib2c-update"> Using the mib2c-update script to <i>recode</i> your code</a></li>
+<li> <a rel="nofollow" class="external text" href="../tutorial/tutorial-5/toolkit/mfd/index.html">mib2c.mfd.conf tutorial</a></li></ul></li></ul></li>
+<li> <a href="index.php/TUT_Header_files.html" title="TUT:Header files">Header files and autoconf</a></li></ul>
+<h3><span class="mw-headline" id="Debugging_SNMP_Applications_and_Agents">Debugging SNMP Applications and Agents</span></h3>
+<p>All our tools and applications have extensive debugging output.  These tutorials talk about how the debugging system works and how you can add your own debugging statements to you code:
+</p>
+<ul><li> <a href="index.php/Debugging_output.html" title="Debugging output"> Debugging output printed using the -D command line option</a>
+<ul><li> <a href="index.php/DEBUGMSG.html" title="DEBUGMSG"> Putting DEBUGMSG tokens in your code</a></li></ul></li>
+<li> <a href="index.php/Debugging_packet_traces.html?title=Debugging_packet_traces&amp;action=edit&amp;redlink=1" class="new" title="Debugging packet traces (page does not exist)"> Using -Ddump to display packet breakdowns</a></li>
+<li> <a href="index.php/Debugger.html" title="Debugger">Debugging using GDB</a></li></ul>
+<h3><span class="mw-headline" id="Operating_System_Specific_Tutorials">Operating System Specific Tutorials</span></h3>
+<ul><li> Building With Visual Studio 2005 Express
+<ul><li> <a href="index.php/Using_the_command_line_and_nmake.html" title="Using the command line and nmake">Using the command line and nmake</a></li></ul></li>
+<li> Building Net-SNMP 64-bit with Visual C++ 2010 Express
+<ul><li> <a href="index.php/Using_the_command_line_and_nmake_(VC%2b%2b_2010_Express).html" title="Using the command line and nmake (VC++ 2010 Express)">Using the command line and nmake (VC++ 2010 Express)</a></li></ul></li>
+<li> <a href="index.php/Net-Snmp_on_Ubuntu.html" title="Net-Snmp on Ubuntu">Net-Snmp on Ubuntu</a></li>
+<li> <a href="index.php/Net-SNMP_and_lm-sensors_on_Ubuntu_10.html" title="Net-SNMP and lm-sensors on Ubuntu 10.04">Net-SNMP and lm-sensors on Ubuntu 10.04</a></li>
+<li> Net-SNMP for windows:
+<ul><li> How to install: <a rel="nofollow" class="external autonumber" href="http://www.netadmintools.com/art487.html">[1]</a></li>
+<li> How to configure: <a rel="nofollow" class="external autonumber" href="http://www.netadmintools.com/art488.html">[2]</a></li></ul></li></ul>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514175215
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.021 seconds
+Real time usage: 0.028 seconds
+Preprocessor visited node count: 77/1000000
+Preprocessor generated node count: 122/1000000
+Post‐expand include size: 6197/2097152 bytes
+Template argument size: 6/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    6.401      1 - -total
+ 52.66%    3.371      1 - Template:TUT:LIST
+ 41.90%    2.682      1 - Template:Require
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="index3d6a.html?title=TUT:Using_TLS&amp;oldid=4678">http://www.net-snmp.org/wiki/index.php?title=TUT:Using_TLS&amp;oldid=4678</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="index.php/TUT_Using_TLS.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="index.php/Talk_TUT_Using_TLS.html?title=Talk:TUT:Using_TLS&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="index5983.html?title=TUT:Using_TLS&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="indexcf26.html?title=TUT:Using_TLS&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="index3cc8.html?title=Special:UserLogin&amp;returnto=TUT%3AUsing+TLS&amp;returntoquery=printable%3Dyes&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="index2d5f.html?title=Special:UserLogin&amp;returnto=TUT%3AUsing+TLS&amp;returntoquery=printable%3Dyes" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="index.php/Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="index.php/Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="index.php/Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="index.php/FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="index.php/Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="index.php/Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="index.php/Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="index.php/Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="index.php/Special_WhatLinksHere/TUT_Using_TLS.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="index.php/Special_RecentChangesLinked/TUT_Using_TLS.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="index.php/Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-permalink"><a href="index3d6a.html?title=TUT:Using_TLS&amp;oldid=4678" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="indexd543.html?title=TUT:Using_TLS&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 25 January 2011, at 00:32.</li>
+									<li id="privacy"><a href="index.php/Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="index.php/Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="index.php/Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":158});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=TUT:Using_TLS&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:22:44 GMT -->
+</html>

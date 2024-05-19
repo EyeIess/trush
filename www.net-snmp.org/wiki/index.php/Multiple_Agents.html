@@ -1,0 +1,257 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/Multiple_Agents by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:46:54 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Multiple Agents - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Multiple_Agents","wgTitle":"Multiple Agents","wgCurRevisionId":4247,"wgRevisionId":4247,"wgArticleId":1842,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Agent","Persistence"],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Multiple_Agents","wgRelevantArticleId":1842,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="../load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="../load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<link rel="shortcut icon" href="../../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="../opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="../api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="../apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Multiple_Agents skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Multiple Agents</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="margin-left: 10px; float: right; width: 30%; border: 2px solid black; background-color: #eee; padding: 2px;"><div style="font-size: 1.2em; background-color: #ccf; width: 100%; text-align: center; border-width: 0px 0px 2px 0px; border-color: #aad; border-style: solid;">Good Answer</div><p>This is a <a href="Category_GoodAnswer.html" title="Category:GoodAnswer">Good Answer</a> article.  It was likely created as a response to a question on a Net-SNMP <a href="Mailing_Lists.html" title="Mailing Lists">Mailing List</a> and written up here for others to see.  It likely covers material not yet in the <a href="FAQ.html" title="FAQ">FAQ</a> or in the <a href="Tutorials.html" title="Tutorials">Tutorial</a> but may someday be moved there</p><div align="center"><a href="Good_Answers.html" title="Good Answers" class="mw-redirect">Find More Good Answers</a></div></div>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Question"><span class="tocnumber">1</span> <span class="toctext">Question</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Answer"><span class="tocnumber">2</span> <span class="toctext">Answer</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#First_determine_if_this_is_something_you_should_do"><span class="tocnumber">2.1</span> <span class="toctext">First determine if this is something you should do</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#If_you_are_going_to_do_it..."><span class="tocnumber">2.2</span> <span class="toctext">If you are going to do it...</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Determine_your_current_configuration_path:"><span class="tocnumber">2.3</span> <span class="toctext">Determine your current configuration path:</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Set_the_environment_variable_SNMPCONFPATH"><span class="tocnumber">2.4</span> <span class="toctext">Set the environment variable SNMPCONFPATH</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Configure_a_unique_snmpd.conf"><span class="tocnumber">2.5</span> <span class="toctext">Configure a unique snmpd.conf</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Repeat"><span class="tocnumber">2.6</span> <span class="toctext">Repeat</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Be_careful"><span class="tocnumber">2.7</span> <span class="toctext">Be careful</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Question">Question</span></h2>
+<p>How can I run multiple copies of the agent on a single machine?
+</p>
+<h2><span class="mw-headline" id="Answer">Answer</span></h2>
+<h3><span class="mw-headline" id="First_determine_if_this_is_something_you_should_do">First determine if this is something you should do</span></h3>
+<p>There are many many arguments against doing just this in general.  Other solutions, like using <a href="AgentX.html?title=AgentX&amp;action=edit&amp;redlink=1" class="new" title="AgentX (page does not exist)">AgentX</a>, etc are more advisable if you just need a different process.
+</p><p>XXX: document
+</p>
+<h3><span class="mw-headline" id="If_you_are_going_to_do_it...">If you are going to do it...</span></h3>
+<p>To run the same executable multiple times, on different ports, and
+ensure that the persistent directories don't conflict, use these
+steps:
+</p>
+<h3><span class="mw-headline" id="Determine_your_current_configuration_path:">Determine your current configuration path:</span></h3>
+<pre>snmpd -f -Lo -Dread_config -H 2&gt;&amp;1 | grep "config path" | head -1
+</pre>
+<p>This will probably be something like:
+</p>
+<pre>/usr/etc/snmp:/usr/share/snmp:/usr/lib/snmp:/root/.snmp:/var/net-snmp
+</pre>
+<p><br />
+</p>
+<h3><span class="mw-headline" id="Set_the_environment_variable_SNMPCONFPATH">Set the environment variable SNMPCONFPATH</span></h3>
+<p>Set the environment variable SNMPCONFPATH to the string from step 1,
+replacing /var/net-snmp with a unique directory and starting with a unique
+directory. You can also remove any directories that are empty, if you want.
+</p><p>NOTE: any conf files in the non-unique part of this path will be shared by ALL
+agents. 
+</p>
+<pre>export SNMPCONFPATH=/usr/share/snmp/agent1:/usr/share/snmp:/var/net-snmp/agent1
+</pre>
+<p><br />
+</p>
+<h3><span class="mw-headline" id="Configure_a_unique_snmpd.conf">Configure a unique snmpd.conf</span></h3>
+<ul><li> Set the unique persistent directory</li></ul>
+<pre> echo "[snmp] persistentDir /var/net-snmp/agent1" &gt;&gt; /usr/share/snmp/agent1/snmpd.conf
+</pre>
+<ul><li> Set the unique address or port</li></ul>
+<pre> echo "agentAddress udp:1161" &gt;&gt; /usr/share/snmp/agent1/snmpd.conf
+</pre>
+<p><b>SNMPv3 Note:</b> If you do this using the default SNMPv3 engineID creation mechanism, everything will work fine.  If you use the others, you may run into SNMPv3 engineID conflicts.  Thus, make use of the default Net-SNMP engineID to be safe (which is based on time and a random number).
+</p>
+<h3><span class="mw-headline" id="Repeat">Repeat</span></h3>
+<p>repeat for each agent, using a unique directory and address/port each time.
+</p><p><br />
+</p>
+<h3><span class="mw-headline" id="Be_careful">Be careful</span></h3>
+<p>NOTE: if you are using the same shell to start all the agents, if you
+forget to change one of the environment variables before starting the next
+agent, things will get messy. I would recommend creating a script to start
+each agent, and have the script set the environment variables for you.
+</p><p>The other option is to specify the environment variable on the command
+line when starting snmpd, instead of exporting it. For example:
+</p>
+<pre>env SNMPCONFPATH=/opt/snmp/agent1:/opt/snmp:/var/net-snmp/agent1 snmpd
+</pre>
+<!-- 
+NewPP limit report
+Cached time: 20171115143430
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.075 seconds
+Real time usage: 0.090 seconds
+Preprocessor visited node count: 41/1000000
+Preprocessor generated node count: 56/1000000
+Post‐expand include size: 680/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   15.230      1 - -total
+100.00%   15.230      1 - Template:GoodAnswer
+-->
+
+<!-- Saved in parser cache with key n12694_wikidb:pcache:idhash:1842-0!*!0!!en!*!* and timestamp 20171115143430 and revision id 4247
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="../indexb6c3.html?title=Multiple_Agents&amp;oldid=4247">http://www.net-snmp.org/wiki/index.php?title=Multiple_Agents&amp;oldid=4247</a>"</div>
+					<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="Special_Categories.html" title="Special:Categories">Categories</a>: <ul><li><a href="Category_Agent.html" title="Category:Agent">Agent</a></li><li><a href="Category_Persistence.html" title="Category:Persistence">Persistence</a></li></ul></div></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="Multiple_Agents.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="Talk_Multiple_Agents.html?title=Talk:Multiple_Agents&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="../index3f67-2.html?title=Multiple_Agents&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="../index099c.html?title=Multiple_Agents&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="../index2800.html?title=Special:UserLogin&amp;returnto=Multiple+Agents&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="../index31f2.html?title=Special:UserLogin&amp;returnto=Multiple+Agents" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Multiple_Agents.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Multiple_Agents.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="../index46bd.html?title=Multiple_Agents&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="../indexb6c3.html?title=Multiple_Agents&amp;oldid=4247" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="../index8512.html?title=Multiple_Agents&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 14 April 2010, at 16:39.</li>
+									<li id="privacy"><a href="Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":1134});
+} );</script></body><!-- Cached 20171116132926 -->
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/Multiple_Agents by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:46:59 GMT -->
+</html>

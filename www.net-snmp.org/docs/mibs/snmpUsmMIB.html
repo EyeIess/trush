@@ -1,0 +1,1483 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/docs/mibs/snmpUsmMIB.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:30:43 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../print1.css" />
+  </head>
+  <body background="../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../index.html">About</a><br />
+        
+
+        <a href="../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+
+        <a href="../readmefiles.html">Documentation</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../readmefiles.html"
+                  title="README files included with the package">README files</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../FAQ.html" 
+                  title="Frequently Asked Questions">FAQ</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../INSTALL.html" 
+                  title="Intall instructions for *nix systems">INSTALL</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../man/index.html"
+                  title="Man pages for utilities, daemons, api etc">Man pages</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="index.html"
+                  title="The MIB files distributed with Net-SNMP">MIBS</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../dev/agent/index.html"
+                  title="API documentation">API</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../../dev/projects.html">Development</a><br />
+        
+
+        <a href="../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+<h2>INTRODUCTION</h2>
+<ul>
+<p>
+This is a summary of information regarding objects below the <b>snmpUsmMIB</b>
+MIB object, which is defined within the <b>SNMP-USER-BASED-SM-MIB</b> MIB
+document as <b>.1.3.6.1.6.3.15</b>.
+</p>
+</ul>
+<h2>TABLE OF CONTENTS</h2>
+<ul>
+<h3><a href="#objects_Current">Current Objects</a></h3>
+<ul>
+<li><a href="#scalar_current">Scalars</a></li>
+  <li><a href="#usmUserTable">usmUserTable</a></li>
+</ul>
+<h3><a href="#objects_Deprecated">Deprecated Objects</a></h3>
+<ul>
+<li><a href="#scalar_notcurrent">Deprecated Scalars</a></li>
+</ul>
+<h3><a href="#notifications">Notifications</a></h3>
+<h3><a href="#textconventions">Textual Conventions</a></h3>
+<h3><a href="#treeview">Tree-based view</a></h3>
+</ul>
+<a name="objects_Current" />
+<a name="scalar_current" />
+<h2>SCALAR OBJECTS</h2>
+<ul>
+<table>
+<tr><th>Name</th><th>Type</th><th>Access</th><th>OID</th><th>Description</th></tr>
+  <tr>
+  <td>
+<a name="usmStatsUnsupportedSecLevels" />
+1
+<br /><b>usmStatsUnsupportedSecLevels</b>
+
+</td><td>
+  COUNTER
+
+  </td><td>ReadOnly</td>
+    <td>.1.3.6.1.6.3.15.1.1.1</td>
+<td>
+<pre>
+The total number of packets received by the SNMP
+engine which were dropped because they requested a
+securityLevel that was unknown to the SNMP engine
+or otherwise unavailable.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmStatsNotInTimeWindows" />
+2
+<br /><b>usmStatsNotInTimeWindows</b>
+
+</td><td>
+  COUNTER
+
+  </td><td>ReadOnly</td>
+    <td>.1.3.6.1.6.3.15.1.1.2</td>
+<td>
+<pre>
+The total number of packets received by the SNMP
+engine which were dropped because they appeared
+outside of the authoritative SNMP engine's window.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmStatsUnknownUserNames" />
+3
+<br /><b>usmStatsUnknownUserNames</b>
+
+</td><td>
+  COUNTER
+
+  </td><td>ReadOnly</td>
+    <td>.1.3.6.1.6.3.15.1.1.3</td>
+<td>
+<pre>
+The total number of packets received by the SNMP
+engine which were dropped because they referenced a
+user that was not known to the SNMP engine.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmStatsUnknownEngineIDs" />
+4
+<br /><b>usmStatsUnknownEngineIDs</b>
+
+</td><td>
+  COUNTER
+
+  </td><td>ReadOnly</td>
+    <td>.1.3.6.1.6.3.15.1.1.4</td>
+<td>
+<pre>
+The total number of packets received by the SNMP
+engine which were dropped because they referenced an
+snmpEngineID that was not known to the SNMP engine.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmStatsWrongDigests" />
+5
+<br /><b>usmStatsWrongDigests</b>
+
+</td><td>
+  COUNTER
+
+  </td><td>ReadOnly</td>
+    <td>.1.3.6.1.6.3.15.1.1.5</td>
+<td>
+<pre>
+The total number of packets received by the SNMP
+engine which were dropped because they didn't
+contain the expected digest value.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmStatsDecryptionErrors" />
+6
+<br /><b>usmStatsDecryptionErrors</b>
+
+</td><td>
+  COUNTER
+
+  </td><td>ReadOnly</td>
+    <td>.1.3.6.1.6.3.15.1.1.6</td>
+<td>
+<pre>
+The total number of packets received by the SNMP
+engine which were dropped because they could not be
+decrypted.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmUserSpinLock" />
+1
+<br /><b>usmUserSpinLock</b>
+
+</td><td>
+  INTEGER
+      <br />Legal values:
+        0 .. 2147483647
+ <br>
+ <a href="#TestAndIncr">TestAndIncr</a>
+
+  </td><td>ReadWrite</td>
+    <td>.1.3.6.1.6.3.15.1.2.1</td>
+<td>
+<p>
+Note: this object is based on the <a href="#TestAndIncr"> TestAndIncr TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+An advisory lock used to allow several cooperating
+Command Generator Applications to coordinate their
+use of facilities to alter secrets in the
+usmUserTable.
+                
+</pre>
+</td>
+  </tr>
+</table>
+</ul>
+
+<h2>TABLE OBJECTS</h2>
+<a name="usmUserTable" /><h3>Table usmUserTable</h3>
+<ul>
+  <table>
+  <tr><td class="label">Table Name</td><td>usmUserTable</td></tr>
+  <tr><td class="label">In MIB</td><td>SNMP-USER-BASED-SM-MIB</td></tr>
+  <tr><td class="label">Registered at OID</td><td>.1.3.6.1.6.3.15.1.2.2</td></tr>
+  <tr><td class="label">Table Description</td>
+<td>
+<pre>
+The table of users configured in the SNMP engine's
+Local Configuration Datastore (LCD).
+
+To create a new user (i.e., to instantiate a new
+conceptual row in this table), it is recommended to
+follow this procedure:
+
+  1)  GET(usmUserSpinLock.0) and save in sValue.
+
+  2)  SET(usmUserSpinLock.0=sValue,
+          usmUserCloneFrom=templateUser,
+          usmUserStatus=createAndWait)
+      You should use a template user to clone from
+      which has the proper auth/priv protocol defined.
+
+If the new user is to use privacy:
+
+  3)  generate the keyChange value based on the secret
+      privKey of the clone-from user and the secret key
+      to be used for the new user. Let us call this
+      pkcValue.
+  4)  GET(usmUserSpinLock.0) and save in sValue.
+  5)  SET(usmUserSpinLock.0=sValue,
+          usmUserPrivKeyChange=pkcValue
+          usmUserPublic=randomValue1)
+  6)  GET(usmUserPulic) and check it has randomValue1.
+      If not, repeat steps 4-6.
+
+If the new user will never use privacy:
+
+  7)  SET(usmUserPrivProtocol=usmNoPrivProtocol)
+
+If the new user is to use authentication:
+
+  8)  generate the keyChange value based on the secret
+      authKey of the clone-from user and the secret key
+      to be used for the new user. Let us call this
+      akcValue.
+  9)  GET(usmUserSpinLock.0) and save in sValue.
+  10) SET(usmUserSpinLock.0=sValue,
+          usmUserAuthKeyChange=akcValue
+          usmUserPublic=randomValue2)
+  11) GET(usmUserPulic) and check it has randomValue2.
+      If not, repeat steps 9-11.
+
+If the new user will never use authentication:
+
+  12) SET(usmUserAuthProtocol=usmNoAuthProtocol)
+
+Finally, activate the new user:
+
+  13) SET(usmUserStatus=active)
+
+The new user should now be available and ready to be
+used for SNMPv3 communication. Note however that access
+to MIB data must be provided via configuration of the
+SNMP-VIEW-BASED-ACM-MIB.
+
+The use of usmUserSpinlock is to avoid conflicts with
+another SNMP command generator application which may
+also be acting on the usmUserTable.
+                
+</pre>
+</td>
+</tr>
+<tr><td class="label"><a name="usmUserEntry" />Row Description</td>
+<td>
+<pre>
+A user configured in the SNMP engine's Local
+Configuration Datastore (LCD) for the User-based
+Security Model.
+                
+</pre>
+</td>
+</tr>
+  </table>
+
+  <h4>usmUserTable Indexes:</h4>
+
+<table>
+<tr class="label"><th>Name</th><th>Type</th><th>Access</th><th>Description</th></tr>
+  <tr>
+  <td>
+<a name="usmUserEngineID" />
+1
+<br /><b>usmUserEngineID</b>
+
+</td><td>
+  OCTETSTR
+      <br />Legal Lengths:
+        5 .. 32
+ <br>
+ <a href="#SnmpEngineID">SnmpEngineID</a>
+
+  </td><td>NoAccess</td>
+<td>
+<p>
+Note: this object is based on the <a href="#SnmpEngineID"> SnmpEngineID TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+An SNMP engine's administratively-unique identifier.
+In a simple agent, this value is always that agent's
+                 own snmpEngineID value.
+The value can also take the value of the snmpEngineID
+                 of a remote SNMP engine with which this user can
+                 communicate.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmUserName" />
+2
+<br /><b>usmUserName</b>
+
+</td><td>
+  OCTETSTR
+      <br />Legal Lengths:
+        1 .. 32
+ <br>
+ <a href="#SnmpAdminString">SnmpAdminString</a>
+
+  </td><td>NoAccess</td>
+<td>
+<p>
+Note: this object is based on the <a href="#SnmpAdminString"> SnmpAdminString TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+A human readable string representing the name of
+the user.
+
+This is the (User-based Security) Model dependent
+security ID.
+                
+</pre>
+</td>
+  </tr>
+</table>
+
+  <h4>Other usmUserTable Columns:</h4>
+<table>
+<tr class="label"><th>Name</th><th>Type</th><th>Access</th><th>Description</th></tr>
+  <tr>
+  <td>
+<a name="usmUserSecurityName" />
+3
+<br /><b>usmUserSecurityName</b>
+
+</td><td>
+  OCTETSTR
+      <br />Legal Lengths:
+        0 .. 255
+ <br>
+ <a href="#SnmpAdminString">SnmpAdminString</a>
+
+  </td><td>ReadOnly</td>
+<td>
+<p>
+Note: this object is based on the <a href="#SnmpAdminString"> SnmpAdminString TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+A human readable string representing the user in
+Security Model independent format.
+
+The default transformation of the User-based Security
+Model dependent security ID to the securityName and
+vice versa is the identity function so that the
+securityName is the same as the userName.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmUserCloneFrom" />
+4
+<br /><b>usmUserCloneFrom</b>
+
+</td><td>
+  OBJECTID
+ <br>
+ <a href="#RowPointer">RowPointer</a>
+
+  </td><td>Create</td>
+<td>
+<p>
+Note: this object is based on the <a href="#RowPointer"> RowPointer TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+A pointer to another conceptual row in this
+usmUserTable.  The user in this other conceptual
+row is called the clone-from user.
+
+When a new user is created (i.e., a new conceptual
+row is instantiated in this table), the privacy and
+authentication parameters of the new user must be
+cloned from its clone-from user. These parameters are:
+  - authentication protocol (usmUserAuthProtocol)
+  - privacy protocol (usmUserPrivProtocol)
+They will be copied regardless of what the current
+value is.
+
+Cloning also causes the initial values of the secret
+authentication key (authKey) and the secret encryption
+
+key (privKey) of the new user to be set to the same
+values as the corresponding secrets of the clone-from
+user to allow the KeyChange process to occur as
+required during user creation.
+
+The first time an instance of this object is set by
+a management operation (either at or after its
+instantiation), the cloning process is invoked.
+Subsequent writes are successful but invoke no
+action to be taken by the receiver.
+The cloning process fails with an 'inconsistentName'
+error if the conceptual row representing the
+clone-from user does not exist or is not in an active
+state when the cloning process is invoked.
+
+When this object is read, the ZeroDotZero OID
+is returned.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmUserAuthProtocol" />
+5
+<br /><b>usmUserAuthProtocol</b>
+
+</td><td>
+  OBJECTID
+ <br>
+ <a href="#AutonomousType">AutonomousType</a>
+
+  </td><td>Create</td>
+<td>
+<p>
+Note: this object is based on the <a href="#AutonomousType"> AutonomousType TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+An indication of whether messages sent on behalf of
+this user to/from the SNMP engine identified by
+usmUserEngineID, can be authenticated, and if so,
+the type of authentication protocol which is used.
+
+An instance of this object is created concurrently
+with the creation of any other object instance for
+the same user (i.e., as part of the processing of
+the set operation which creates the first object
+instance in the same conceptual row).
+
+If an initial set operation (i.e. at row creation time)
+tries to set a value for an unknown or unsupported
+protocol, then a 'wrongValue' error must be returned.
+
+The value will be overwritten/set when a set operation
+is performed on the corresponding instance of
+usmUserCloneFrom.
+
+Once instantiated, the value of such an instance of
+this object can only be changed via a set operation to
+the value of the usmNoAuthProtocol.
+
+If a set operation tries to change the value of an
+
+existing instance of this object to any value other
+than usmNoAuthProtocol, then an 'inconsistentValue'
+error must be returned.
+
+If a set operation tries to set the value to the
+usmNoAuthProtocol while the usmUserPrivProtocol value
+in the same row is not equal to usmNoPrivProtocol,
+then an 'inconsistentValue' error must be returned.
+That means that an SNMP command generator application
+must first ensure that the usmUserPrivProtocol is set
+to the usmNoPrivProtocol value before it can set
+the usmUserAuthProtocol value to usmNoAuthProtocol.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmUserAuthKeyChange" />
+6
+<br /><b>usmUserAuthKeyChange</b>
+
+</td><td>
+  OCTETSTR
+ <br>
+ <a href="#KeyChange">KeyChange</a>
+
+  </td><td>Create</td>
+<td>
+<p>
+Note: this object is based on the <a href="#KeyChange"> KeyChange TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+An object, which when modified, causes the secret
+authentication key used for messages sent on behalf
+of this user to/from the SNMP engine identified by
+usmUserEngineID, to be modified via a one-way
+function.
+
+The associated protocol is the usmUserAuthProtocol.
+The associated secret key is the user's secret
+authentication key (authKey). The associated hash
+algorithm is the algorithm used by the user's
+usmUserAuthProtocol.
+
+When creating a new user, it is an 'inconsistentName'
+error for a set operation to refer to this object
+unless it is previously or concurrently initialized
+through a set operation on the corresponding instance
+of usmUserCloneFrom.
+
+When the value of the corresponding usmUserAuthProtocol
+is usmNoAuthProtocol, then a set is successful, but
+effectively is a no-op.
+
+When this object is read, the zero-length (empty)
+string is returned.
+
+The recommended way to do a key change is as follows:
+
+  1) GET(usmUserSpinLock.0) and save in sValue.
+  2) generate the keyChange value based on the old
+     (existing) secret key and the new secret key,
+     let us call this kcValue.
+
+If you do the key change on behalf of another user:
+
+  3) SET(usmUserSpinLock.0=sValue,
+         usmUserAuthKeyChange=kcValue
+         usmUserPublic=randomValue)
+
+If you do the key change for yourself:
+
+  4) SET(usmUserSpinLock.0=sValue,
+         usmUserOwnAuthKeyChange=kcValue
+         usmUserPublic=randomValue)
+
+If you get a response with error-status of noError,
+then the SET succeeded and the new key is active.
+If you do not get a response, then you can issue a
+GET(usmUserPublic) and check if the value is equal
+to the randomValue you did send in the SET. If so, then
+the key change succeeded and the new key is active
+(probably the response got lost). If not, then the SET
+request probably never reached the target and so you
+can start over with the procedure above.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmUserOwnAuthKeyChange" />
+7
+<br /><b>usmUserOwnAuthKeyChange</b>
+
+</td><td>
+  OCTETSTR
+ <br>
+ <a href="#KeyChange">KeyChange</a>
+
+  </td><td>Create</td>
+<td>
+<p>
+Note: this object is based on the <a href="#KeyChange"> KeyChange TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+Behaves exactly as usmUserAuthKeyChange, with one
+notable difference: in order for the set operation
+to succeed, the usmUserName of the operation
+requester must match the usmUserName that
+indexes the row which is targeted by this
+operation.
+In addition, the USM security model must be
+used for this operation.
+
+The idea here is that access to this column can be
+public, since it will only allow a user to change
+his own secret authentication key (authKey).
+Note that this can only be done once the row is active.
+
+When a set is received and the usmUserName of the
+requester is not the same as the umsUserName that
+indexes the row which is targeted by this operation,
+then a 'noAccess' error must be returned.
+
+When a set is received and the security model in use
+is not USM, then a 'noAccess' error must be returned.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmUserPrivProtocol" />
+8
+<br /><b>usmUserPrivProtocol</b>
+
+</td><td>
+  OBJECTID
+ <br>
+ <a href="#AutonomousType">AutonomousType</a>
+
+  </td><td>Create</td>
+<td>
+<p>
+Note: this object is based on the <a href="#AutonomousType"> AutonomousType TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+An indication of whether messages sent on behalf of
+this user to/from the SNMP engine identified by
+usmUserEngineID, can be protected from disclosure,
+and if so, the type of privacy protocol which is used.
+
+An instance of this object is created concurrently
+with the creation of any other object instance for
+the same user (i.e., as part of the processing of
+the set operation which creates the first object
+instance in the same conceptual row).
+
+If an initial set operation (i.e. at row creation time)
+tries to set a value for an unknown or unsupported
+protocol, then a 'wrongValue' error must be returned.
+
+The value will be overwritten/set when a set operation
+is performed on the corresponding instance of
+usmUserCloneFrom.
+
+Once instantiated, the value of such an instance of
+this object can only be changed via a set operation to
+the value of the usmNoPrivProtocol.
+
+If a set operation tries to change the value of an
+existing instance of this object to any value other
+than usmNoPrivProtocol, then an 'inconsistentValue'
+error must be returned.
+
+Note that if any privacy protocol is used, then you
+must also use an authentication protocol. In other
+words, if usmUserPrivProtocol is set to anything else
+than usmNoPrivProtocol, then the corresponding instance
+of usmUserAuthProtocol cannot have a value of
+
+usmNoAuthProtocol. If it does, then an
+'inconsistentValue' error must be returned.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmUserPrivKeyChange" />
+9
+<br /><b>usmUserPrivKeyChange</b>
+
+</td><td>
+  OCTETSTR
+ <br>
+ <a href="#KeyChange">KeyChange</a>
+
+  </td><td>Create</td>
+<td>
+<p>
+Note: this object is based on the <a href="#KeyChange"> KeyChange TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+An object, which when modified, causes the secret
+encryption key used for messages sent on behalf
+of this user to/from the SNMP engine identified by
+usmUserEngineID, to be modified via a one-way
+function.
+
+The associated protocol is the usmUserPrivProtocol.
+The associated secret key is the user's secret
+privacy key (privKey). The associated hash
+algorithm is the algorithm used by the user's
+usmUserAuthProtocol.
+
+When creating a new user, it is an 'inconsistentName'
+error for a set operation to refer to this object
+unless it is previously or concurrently initialized
+through a set operation on the corresponding instance
+of usmUserCloneFrom.
+
+When the value of the corresponding usmUserPrivProtocol
+is usmNoPrivProtocol, then a set is successful, but
+effectively is a no-op.
+
+When this object is read, the zero-length (empty)
+string is returned.
+See the description clause of usmUserAuthKeyChange for
+a recommended procedure to do a key change.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmUserOwnPrivKeyChange" />
+10
+<br /><b>usmUserOwnPrivKeyChange</b>
+
+</td><td>
+  OCTETSTR
+ <br>
+ <a href="#KeyChange">KeyChange</a>
+
+  </td><td>Create</td>
+<td>
+<p>
+Note: this object is based on the <a href="#KeyChange"> KeyChange TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+Behaves exactly as usmUserPrivKeyChange, with one
+notable difference: in order for the Set operation
+to succeed, the usmUserName of the operation
+requester must match the usmUserName that indexes
+
+the row which is targeted by this operation.
+In addition, the USM security model must be
+used for this operation.
+
+The idea here is that access to this column can be
+public, since it will only allow a user to change
+his own secret privacy key (privKey).
+Note that this can only be done once the row is active.
+
+When a set is received and the usmUserName of the
+requester is not the same as the umsUserName that
+indexes the row which is targeted by this operation,
+then a 'noAccess' error must be returned.
+
+When a set is received and the security model in use
+is not USM, then a 'noAccess' error must be returned.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmUserPublic" />
+11
+<br /><b>usmUserPublic</b>
+
+</td><td>
+  OCTETSTR
+      <br />Legal Lengths:
+        0 .. 32
+
+  </td><td>Create</td>
+<td>
+<pre>
+A publicly-readable value which can be written as part
+of the procedure for changing a user's secret
+authentication and/or privacy key, and later read to
+determine whether the change of the secret was
+effected.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmUserStorageType" />
+12
+<br /><b>usmUserStorageType</b>
+
+</td><td>
+  INTEGER
+ <br>
+ <a href="#StorageType">StorageType</a>
+     <br>(ENUM list below)
+
+  </td><td>Create</td>
+<td>
+<p>
+Note: this object is based on the <a href="#StorageType"> StorageType TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+The storage type for this conceptual row.
+Conceptual rows having the value 'permanent' must
+                 allow write-access at a minimum to:
+- usmUserAuthKeyChange, usmUserOwnAuthKeyChange
+                   and usmUserPublic for a user who employs
+                   authentication, and
+                 - usmUserPrivKeyChange, usmUserOwnPrivKeyChange
+                   and usmUserPublic for a user who employs
+                   privacy.
+Note that any user who employs authentication or
+                 privacy must allow its secret(s) to be updated and
+                 thus cannot be 'readOnly'.
+If an initial set operation tries to set the value to
+                 'readOnly' for a user who employs authentication or
+                 privacy, then an 'inconsistentValue' error must be
+                 returned.  Note that if the value has been previously
+                 set (implicit or explicit) to any value, then the rules
+                 as defined in the StorageType Textual Convention apply.
+It is an implementation issue to decide if a SET for
+                 a readOnly or permanent row is accepted at all. In some
+                 contexts this may make sense, in others it may not. If
+                 a SET for a readOnly or permanent row is not accepted
+                 at all, then a 'wrongValue' error must be returned.
+                
+</pre>
+</td>
+  </tr>
+  <tr>
+  <td>
+<a name="usmUserStatus" />
+13
+<br /><b>usmUserStatus</b>
+
+</td><td>
+  INTEGER
+ <br>
+ <a href="#RowStatus">RowStatus</a>
+     <br>(ENUM list below)
+
+  </td><td>Create</td>
+<td>
+<p>
+Note: this object is based on the <a href="#RowStatus"> RowStatus TEXTUAL-CONVENTION</a>.
+</p>
+<pre>
+The status of this conceptual row.
+Until instances of all corresponding columns are
+                 appropriately configured, the value of the
+                 corresponding instance of the usmUserStatus column
+                 is 'notReady'.
+In particular, a newly created row for a user who
+                 employs authentication, cannot be made active until the
+                 corresponding usmUserCloneFrom and usmUserAuthKeyChange
+                 have been set.
+Further, a newly created row for a user who also
+                 employs privacy, cannot be made active until the
+                 usmUserPrivKeyChange has been set.
+The RowStatus TC [RFC2579] requires that this
+                 DESCRIPTION clause states under which circumstances
+                 other objects in this row can be modified:
+The value of this object has no effect on whether
+                 other objects in this conceptual row can be modified,
+                 except for usmUserOwnAuthKeyChange and
+                 usmUserOwnPrivKeyChange. For these 2 objects, the
+value of usmUserStatus MUST be active.
+                
+</pre>
+</td>
+  </tr>
+</table>
+</ul>
+<a name="objects_Deprecated" />
+  <hr />
+  <h1><font color="red">DEPRECATED OR OBSOLETE OR HISTORIC OBJECTS</font></h1>
+  <br>
+  <table class="deprecated"><tr><td>
+<a name="scalar_notcurrent" />
+<h2>SCALAR OBJECTS</h2>
+<ul>
+<table>
+<tr><th>Name</th><th>Type</th><th>Access</th><th>OID</th><th>Description</th></tr>
+</table>
+</ul>
+
+<h2>TABLE OBJECTS</h2>
+
+<br>
+  </table>
+<hr />
+<a name="notifications" />
+<h2>NOTIFICATIONS</h2>
+<ul>
+<p>
+</ul>
+
+
+<br>
+<hr />
+<a name="textconventions" />
+<h2>TEXTUAL CONVENTIONS</h2>
+<ul>
+<p>
+These TEXTUAL-CONVENTIONS are used in other parts of the document
+above.  They are SNMP's way of defining a datatype that is used
+repeatedly by other MIB objects.  Any implementation implementing
+objects that use one of these definitions must follow its DESCRIPTION
+clause as well as the DESCRIPTION clause of the object itself.
+</p>
+<table><tr class="label"><th>Name</th><th>Type</th><th>Description</th></tr>
+<tr><td><a name="KeyChange">KeyChange</td><td>OCTETSTR</td><td><pre>Every definition of an object with this syntax must identify
+a protocol P, a secret key K, and a hash algorithm H
+that produces output of L octets.
+
+The object's value is a manager-generated, partially-random
+value which, when modified, causes the value of the secret
+key K, to be modified via a one-way function.
+
+The value of an instance of this object is the concatenation
+of two components: first a 'random' component and then a
+'delta' component.
+
+The lengths of the random and delta components
+are given by the corresponding value of the protocol P;
+if P requires K to be a fixed length, the length of both the
+random and delta components is that fixed length; if P
+allows the length of K to be variable up to a particular
+maximum length, the length of the random component is that
+maximum length and the length of the delta component is any
+length less than or equal to that maximum length.
+For example, usmHMACMD5AuthProtocol requires K to be a fixed
+length of 16 octets and L - of 16 octets.
+usmHMACSHAAuthProtocol requires K to be a fixed length of
+20 octets and L - of 20 octets. Other protocols may define
+other sizes, as deemed appropriate.
+
+When a requester wants to change the old key K to a new
+key keyNew on a remote entity, the 'random' component is
+obtained from either a true random generator, or from a
+pseudorandom generator, and the 'delta' component is
+computed as follows:
+
+ - a temporary variable is initialized to the existing value
+   of K;
+ - if the length of the keyNew is greater than L octets,
+   then:
+    - the random component is appended to the value of the
+      temporary variable, and the result is input to the
+      the hash algorithm H to produce a digest value, and
+      the temporary variable is set to this digest value;
+    - the value of the temporary variable is XOR-ed with
+      the first (next) L-octets (16 octets in case of MD5)
+      of the keyNew to produce the first (next) L-octets
+      (16 octets in case of MD5) of the 'delta' component.
+    - the above two steps are repeated until the unused
+      portion of the keyNew component is L octets or less,
+ - the random component is appended to the value of the
+   temporary variable, and the result is input to the
+   hash algorithm H to produce a digest value;
+ - this digest value, truncated if necessary to be the same
+   length as the unused portion of the keyNew, is XOR-ed
+   with the unused portion of the keyNew to produce the
+   (final portion of the) 'delta' component.
+
+ For example, using MD5 as the hash algorithm H:
+
+    iterations = (lenOfDelta - 1)/16; /* integer division */
+    temp = keyOld;
+    for (i = 0; i < iterations; i++) {
+        temp = MD5 (temp || random);
+        delta[i*16 .. (i*16)+15] =
+               temp XOR keyNew[i*16 .. (i*16)+15];
+    }
+    temp = MD5 (temp || random);
+    delta[i*16 .. lenOfDelta-1] =
+           temp XOR keyNew[i*16 .. lenOfDelta-1];
+
+The 'random' and 'delta' components are then concatenated as
+described above, and the resulting octet string is sent to
+the recipient as the new value of an instance of this object.
+
+At the receiver side, when an instance of this object is set
+to a new value, then a new value of K is computed as follows:
+
+ - a temporary variable is initialized to the existing value
+   of K;
+ - if the length of the delta component is greater than L
+   octets, then:
+    - the random component is appended to the value of th</pre></td></tr>
+<tr><td><a name="TestAndIncr">TestAndIncr</td><td>INTEGER</td><td><pre>Represents integer-valued information used for atomic
+operations.  When the management protocol is used to specify
+that an object instance having this syntax is to be
+modified, the new value supplied via the management protocol
+must precisely match the value presently held by the
+instance.  If not, the management protocol set operation
+fails with an error of `inconsistentValue'.  Otherwise, if
+the current value is the maximum value of 2^31-1 (2147483647
+decimal), then the value held by the instance is wrapped to
+zero; otherwise, the value held by the instance is
+incremented by one.  (Note that regardless of whether the
+management protocol set operation succeeds, the variable-
+binding in the request and response PDUs are identical.)
+
+The value of the ACCESS clause for objects having this
+syntax is either `read-write' or `read-create'.  When an
+instance of a columnar object having this syntax is created,
+any value may be supplied via the management protocol.
+
+When the network management portion of the system is re-
+initialized, the value of every object instance having this
+syntax must either be incremented from its value prior to
+the re-initialization, or (if the value prior to the re-
+initialization is unknown) be set to a pseudo-randomly
+generated value.</pre></td></tr>
+<tr><td><a name="AutonomousType">AutonomousType</td><td>OBJECTID</td><td><pre>Represents an independently extensible type identification
+value.  It may, for example, indicate a particular sub-tree
+with further MIB definitions, or define a particular type of
+protocol or hardware.</pre></td></tr>
+<tr><td><a name="SnmpEngineID">SnmpEngineID</td><td>OCTETSTR</td><td><pre>An SNMP engine's administratively-unique identifier.
+Objects of this type are for identification, not for
+addressing, even though it is possible that an
+address may have been used in the generation of
+a specific value.
+
+The value for this object may not be all zeros or
+all 'ff'H or the empty (zero length) string.
+
+The initial value for this object may be configured
+via an operator console entry or via an algorithmic
+function.  In the latter case, the following
+example algorithm is recommended.
+
+In cases where there are multiple engines on the
+same system, the use of this algorithm is NOT
+appropriate, as it would result in all of those
+engines ending up with the same ID value.
+
+1) The very first bit is used to indicate how the
+   rest of the data is composed.
+
+   0 - as defined by enterprise using former methods
+       that existed before SNMPv3. See item 2 below.
+
+   1 - as defined by this architecture, see item 3
+       below.
+
+   Note that this allows existing uses of the
+   engineID (also known as AgentID [RFC1910]) to
+   co-exist with any new uses.
+
+2) The snmpEngineID has a length of 12 octets.
+
+   The first four octets are set to the binary
+   equivalent of the agent's SNMP management
+   private enterprise number as assigned by the
+   Internet Assigned Numbers Authority (IANA).
+   For example, if Acme Networks has been assigned
+   { enterprises 696 }, the first four octets would
+   be assigned '000002b8'H.
+
+   The remaining eight octets are determined via
+   one or more enterprise-specific methods. Such
+   methods must be designed so as to maximize the
+   possibility that the value of this object will
+   be unique in the agent's administrative domain.
+   For example, it may be the IP address of the SNMP
+   entity, or the MAC address of one of the
+   interfaces, with each address suitably padded
+   with random octets.  If multiple methods are
+   defined, then it is recommended that the first
+   octet indicate the method being used and the
+   remaining octets be a function of the method.
+
+3) The length of the octet string varies.
+
+   The first four octets are set to the binary
+   equivalent of the agent's SNMP management
+   private enterprise number as assigned by the
+   Internet Assigned Numbers Authority (IANA).
+   For example, if Acme Networks has been assigned
+   { enterprises 696 }, the first four octets would
+   be assigned '000002b8'H.
+
+   The very first bit is set to 1. For example, the
+   above value for Acme Networks now changes to be
+   '800002b8'H.
+
+   The fifth octet indicates how the rest (6th and
+   following octets) are formatted. The values for
+   the fifth octet are:
+
+     0     - reserved, unused.
+
+     1     - IPv4 address (4 octets)
+             lowest non-special IP address
+
+     2     - IPv6 address (16 octets)
+             lowest non-special IP address
+
+     3     - MAC address (6 octets)
+             lowest IEEE MAC address, canonical
+             order
+
+     4     - Text, administratively a</pre></td></tr>
+<tr><td><a name="StorageType">StorageType</td><td>INTEGER<table class="enums"><tr><th>Value</th><th>Label/Meaning</th></tr><tr><td>1</td><td>other</td></tr><tr><td>2</td><td>volatile</td></tr><tr><td>3</td><td>nonVolatile</td></tr><tr><td>4</td><td>permanent</td></tr><tr><td>5</td><td>readOnly</td></tr></table></td><td><pre>Describes the memory realization of a conceptual row.  A
+row which is volatile(2) is lost upon reboot.  A row which
+is either nonVolatile(3), permanent(4) or readOnly(5), is
+backed up by stable storage.  A row which is permanent(4)
+can be changed but not deleted.  A row which is readOnly(5)
+cannot be changed nor deleted.
+
+If the value of an object with this syntax is either
+permanent(4) or readOnly(5), it cannot be written.
+Conversely, if the value is either other(1), volatile(2) or
+nonVolatile(3), it cannot be modified to be permanent(4) or
+readOnly(5).  (All illegal modifications result in a
+'wrongValue' error.)
+
+Every usage of this textual convention is required to
+specify the columnar objects which a permanent(4) row must
+at a minimum allow to be writable.</pre></td></tr>
+<tr><td><a name="RowPointer">RowPointer</td><td>OBJECTID</td><td><pre>Represents a pointer to a conceptual row.  The value is the
+name of the instance of the first accessible columnar object
+in the conceptual row.
+
+For example, ifIndex.3 would point to the 3rd row in the
+ifTable (note that if ifIndex were not-accessible, then
+ifDescr.3 would be used instead).</pre></td></tr>
+<tr><td><a name="RowStatus">RowStatus</td><td>INTEGER<table class="enums"><tr><th>Value</th><th>Label/Meaning</th></tr><tr><td>1</td><td>active</td></tr><tr><td>2</td><td>notInService</td></tr><tr><td>3</td><td>notReady</td></tr><tr><td>4</td><td>createAndGo</td></tr><tr><td>5</td><td>createAndWait</td></tr><tr><td>6</td><td>destroy</td></tr></table></td><td><pre>The RowStatus textual convention is used to manage the
+creation and deletion of conceptual rows, and is used as the
+value of the SYNTAX clause for the status column of a
+conceptual row (as described in Section 7.7.1 of [2].)
+
+The status column has six defined values:
+
+     - `active', which indicates that the conceptual row is
+     available for use by the managed device;
+
+     - `notInService', which indicates that the conceptual
+     row exists in the agent, but is unavailable for use by
+     the managed device (see NOTE below); 'notInService' has
+     no implication regarding the internal consistency of
+     the row, availability of resources, or consistency with
+     the current state of the managed device;
+
+     - `notReady', which indicates that the conceptual row
+     exists in the agent, but is missing information
+     necessary in order to be available for use by the
+     managed device (i.e., one or more required columns in
+     the conceptual row have not been instanciated);
+
+     - `createAndGo', which is supplied by a management
+     station wishing to create a new instance of a
+     conceptual row and to have its status automatically set
+     to active, making it available for use by the managed
+     device;
+
+     - `createAndWait', which is supplied by a management
+     station wishing to create a new instance of a
+     conceptual row (but not make it available for use by
+     the managed device); and,
+     - `destroy', which is supplied by a management station
+     wishing to delete all of the instances associated with
+     an existing conceptual row.
+
+Whereas five of the six values (all except `notReady') may
+be specified in a management protocol set operation, only
+three values will be returned in response to a management
+protocol retrieval operation:  `notReady', `notInService' or
+`active'.  That is, when queried, an existing conceptual row
+has only three states:  it is either available for use by
+the managed device (the status column has value `active');
+it is not available for use by the managed device, though
+the agent has sufficient information to attempt to make it
+so (the status column has value `notInService'); or, it is
+not available for use by the managed device, and an attempt
+to make it so would fail because the agent has insufficient
+information (the state column has value `notReady').
+
+                         NOTE WELL
+
+     This textual convention may be used for a MIB table,
+     irrespective of whether the values of that table's
+     conceptual rows are able to be modified while it is
+     active, or whether its conceptual rows must be taken
+     out of service in order to be modified.  That is, it is
+     the responsibility of the DESCRIPTION clause of the
+     status column to specify whether the status column must
+     not be `active' in order for the value of some other
+     column of the same conceptual row to be modified.  If
+     such a specification is made, affected columns may be
+     changed by an SNMP set PDU if the RowStatus would not
+     be equal to `active' either immediately before or after
+     processing the PDU.  In other words, if the PDU also
+     contained a varbind that would change the RowStatus
+     value, the column in question may be changed if the
+     RowStatus was not equal to `active' as the PDU was
+     received, or if the varbind sets the status</pre></td></tr>
+<tr><td><a name="SnmpAdminString">SnmpAdminString</td><td>OCTETSTR</td><td><pre>An octet string containing administrative
+information, preferably in human-readable form.
+
+To facilitate internationalization, this
+information is represented using the ISO/IEC
+IS 10646-1 character set, encoded as an octet
+string using the UTF-8 transformation format
+described in [RFC2279].
+
+Since additional code points are added by
+amendments to the 10646 standard from time
+to time, implementations must be prepared to
+encounter any code point from 0x00000000 to
+0x7fffffff.  Byte sequences that do not
+correspond to the valid UTF-8 encoding of a
+code point or are outside this range are
+prohibited.
+
+The use of control codes should be avoided.
+
+When it is necessary to represent a newline,
+the control code sequence CR LF should be used.
+
+The use of leading or trailing white space should
+be avoided.
+
+For code points not directly supported by user
+interface hardware or software, an alternative
+means of entry and display, such as hexadecimal,
+may be provided.
+
+For information encoded in 7-bit US-ASCII,
+the UTF-8 encoding is identical to the
+US-ASCII encoding.
+
+UTF-8 may require multiple bytes to represent a
+single character / code point; thus the length
+of this object in octets may be different from
+the number of characters encoded.  Similarly,
+size constraints refer to the number of encoded
+octets, not the number of characters represented
+by an encoding.
+
+Note that when this TC is used for an object that
+is used or envisioned to be used as an index, then
+a SIZE restriction MUST be specified so that the
+number of sub-identifiers for any object instance
+does not exceed the limit of 128, as defined by
+[RFC3416].
+
+Note that the size of an SnmpAdminString object is
+measured in octets, not characters.
+                </pre></td></tr>
+</table></ul>
+
+<a name="treeview" />
+<h2>TREE VIEW</h2>
+<p>Tree view generated by running: <b>snmptranslate -Tp SNMP-USER-BASED-SM-MIB::snmpUsmMIB</b></p>
+<pre>
++--<a href="#snmpUsmMIB">snmpUsmMIB</a>(15)
+   |
+   +--<a href="#usmMIBObjects">usmMIBObjects</a>(1)
+   |  |
+   |  +--<a href="#usmStats">usmStats</a>(1)
+   |  |  |
+   |  |  +-- -R-- Counter   <a href="#usmStatsUnsupportedSecLevels">usmStatsUnsupportedSecLevels</a>(1)
+   |  |  +-- -R-- Counter   <a href="#usmStatsNotInTimeWindows">usmStatsNotInTimeWindows</a>(2)
+   |  |  +-- -R-- Counter   <a href="#usmStatsUnknownUserNames">usmStatsUnknownUserNames</a>(3)
+   |  |  +-- -R-- Counter   <a href="#usmStatsUnknownEngineIDs">usmStatsUnknownEngineIDs</a>(4)
+   |  |  +-- -R-- Counter   <a href="#usmStatsWrongDigests">usmStatsWrongDigests</a>(5)
+   |  |  +-- -R-- Counter   <a href="#usmStatsDecryptionErrors">usmStatsDecryptionErrors</a>(6)
+   |  |
+   |  +--<a href="#usmUser">usmUser</a>(2)
+   |     |
+   |     +-- -RW- INTEGER   <a href="#usmUserSpinLock">usmUserSpinLock</a>(1)
+   |     |        Textual Convention: <a href="#TestAndIncr">TestAndIncr</a>
+   |     |        Range: 0..2147483647
+   |     |
+   |     +--<a href="#usmUserTable">usmUserTable</a>(2)
+   |        |
+   |        +--<a href="#usmUserEntry">usmUserEntry</a>(1)
+   |           |  Index: usmUserEngineID, usmUserName
+   |           |
+   |           +-- ---- String    <a href="#usmUserEngineID">usmUserEngineID</a>(1)
+   |           |        Textual Convention: <a href="#SnmpEngineID">SnmpEngineID</a>
+   |           |        Size: 5..32
+   |           +-- ---- String    <a href="#usmUserName">usmUserName</a>(2)
+   |           |        Textual Convention: <a href="#SnmpAdminString">SnmpAdminString</a>
+   |           |        Size: 1..32
+   |           +-- -R-- String    <a href="#usmUserSecurityName">usmUserSecurityName</a>(3)
+   |           |        Textual Convention: <a href="#SnmpAdminString">SnmpAdminString</a>
+   |           |        Size: 0..255
+   |           +-- CR-- ObjID     <a href="#usmUserCloneFrom">usmUserCloneFrom</a>(4)
+   |           |        Textual Convention: <a href="#RowPointer">RowPointer</a>
+   |           +-- CR-- ObjID     <a href="#usmUserAuthProtocol">usmUserAuthProtocol</a>(5)
+   |           |        Textual Convention: <a href="#AutonomousType">AutonomousType</a>
+   |           +-- CR-- String    <a href="#usmUserAuthKeyChange">usmUserAuthKeyChange</a>(6)
+   |           |        Textual Convention: <a href="#KeyChange">KeyChange</a>
+   |           +-- CR-- String    <a href="#usmUserOwnAuthKeyChange">usmUserOwnAuthKeyChange</a>(7)
+   |           |        Textual Convention: <a href="#KeyChange">KeyChange</a>
+   |           +-- CR-- ObjID     <a href="#usmUserPrivProtocol">usmUserPrivProtocol</a>(8)
+   |           |        Textual Convention: <a href="#AutonomousType">AutonomousType</a>
+   |           +-- CR-- String    <a href="#usmUserPrivKeyChange">usmUserPrivKeyChange</a>(9)
+   |           |        Textual Convention: <a href="#KeyChange">KeyChange</a>
+   |           +-- CR-- String    <a href="#usmUserOwnPrivKeyChange">usmUserOwnPrivKeyChange</a>(10)
+   |           |        Textual Convention: <a href="#KeyChange">KeyChange</a>
+   |           +-- CR-- String    <a href="#usmUserPublic">usmUserPublic</a>(11)
+   |           |        Size: 0..32
+   |           +-- CR-- EnumVal   <a href="#usmUserStorageType">usmUserStorageType</a>(12)
+   |           |        Textual Convention: <a href="#StorageType">StorageType</a>
+   |           |        Values: other(1), volatile(2), nonVolatile(3), permanent(4), readOnly(5)
+   |           +-- CR-- EnumVal   <a href="#usmUserStatus">usmUserStatus</a>(13)
+   |                    Textual Convention: <a href="#RowStatus">RowStatus</a>
+   |                    Values: active(1), notInService(2), notReady(3), createAndGo(4), createAndWait(5), destroy(6)
+   |
+   +--<a href="#usmMIBConformance">usmMIBConformance</a>(2)
+      |
+      +--<a href="#usmMIBCompliances">usmMIBCompliances</a>(1)
+      |  |
+      |  +--<a href="#usmMIBCompliance">usmMIBCompliance</a>(1)
+      |
+      +--<a href="#usmMIBGroups">usmMIBGroups</a>(2)
+         |
+         +--<a href="#usmMIBBasicGroup">usmMIBBasicGroup</a>(1)
+</pre>
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/docs/mibs/snmpUsmMIB.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:30:43 GMT -->
+</html>
+
+
+

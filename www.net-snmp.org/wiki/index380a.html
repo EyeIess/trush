@@ -1,0 +1,238 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=BugBash-Patches&oldid=3590 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:28:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>BugBash-Patches - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"BugBash-Patches","wgTitle":"BugBash-Patches","wgCurRevisionId":3590,"wgRevisionId":3590,"wgArticleId":1938,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"BugBash-Patches","wgRelevantArticleId":1938,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-BugBash-Patches skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">BugBash-Patches</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"><div id="mw-revision-info">Revision as of 13:20, 15 October 2008 by <a href="http://www.net-snmp.org/wiki/index.php?title=User:Jsafranek&amp;action=edit&amp;redlink=1" class="new mw-userlink" title="User:Jsafranek (page does not exist)">Jsafranek</a> <span class="mw-usertoollinks">(<a href="http://www.net-snmp.org/wiki/index.php?title=User_talk:Jsafranek&amp;action=edit&amp;redlink=1" class="new" title="User talk:Jsafranek (page does not exist)">Talk</a> | <a href="http://www.net-snmp.org/wiki/index.php/Special:Contributions/Jsafranek" title="Special:Contributions/Jsafranek">contribs</a>)</span> <span class="comment">(<a href="#Agent_MIB_modules_-_system_related">→</a>‎<span dir="auto"><span class="autocomment">Agent MIB modules - system related</span></span>)</span></div><br />
+				<div id="mw-revision-nav">(<a href="http://www.net-snmp.org/wiki/index.php?title=BugBash-Patches&amp;diff=prev&amp;oldid=3590" title="BugBash-Patches">diff</a>) <a href="http://www.net-snmp.org/wiki/index.php?title=BugBash-Patches&amp;direction=prev&amp;oldid=3590" title="BugBash-Patches">← Older revision</a> | Latest revision (diff) | Newer revision → (diff)</div></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>This page provides a categorised summary of the outstanding entries
+in the <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/?group_id=12694&amp;atid=312694">Patches tracker</a>,
+which were submitted for consideration,
+but have not yet been either accepted or rejected.<br />
+</p><p>It does not include entries that have been discussed at one
+of the patch-related <a href="http://www.net-snmp.org/wiki/index.php/BugBash" title="BugBash">BugBash</a> meetings, and are still
+under consideration.  It does include all patches submitted
+up to 2008-10-13.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Library_issues"><span class="tocnumber">1</span> <span class="toctext">Library issues</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Perl"><span class="tocnumber">2</span> <span class="toctext">Perl</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Agent_Extensibility"><span class="tocnumber">3</span> <span class="toctext">Agent Extensibility</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Agent_Helpers"><span class="tocnumber">4</span> <span class="toctext">Agent Helpers</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Agent_MIB_modules_-_network_related"><span class="tocnumber">5</span> <span class="toctext">Agent MIB modules - network related</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Agent_MIB_modules_-_system_related"><span class="tocnumber">6</span> <span class="toctext">Agent MIB modules - system related</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Misc"><span class="tocnumber">7</span> <span class="toctext">Misc</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Library_issues">Library issues</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=2153756">2153756</a> <i>2008-10-08</i><br /> Fix src/dst madness for UDP</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=2003475">2003475</a> <i>2008-05-08</i><br /> ksm_process_in_msg output disregarded--no securityEngineID</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=1627049">1627049</a> <i>2007-01-03</i><br /> netsnmp api extension to deal with large file handles</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=724925">724925</a> <i>2003-04-21</i><br /> cleanup memory</li></ul>
+<h2><span class="mw-headline" id="Perl">Perl</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=1960079">1960079</a> <i>2008-05-08</i><br /> Some VarBinds missing from Perl BULKWALK</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=1956193">1956193</a> <i>2008-05-02</i><br /> Thread-Safe patch for Perl SNMP</li></ul>
+<h2><span class="mw-headline" id="Agent_Extensibility">Agent Extensibility</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=1964432">1964432</a> <i>2008-05-15</i><br /> parsing problems in SMUX on 64bits platform</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=1838900">1838900</a> <i>2007-11-26</i><br /> Add support for multi-threaded event driven sub-agents.</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=1657741">1657741</a> <i>2007-02-11</i><br /> use counter64 and integer64 on pass or pass_persist</li></ul>
+<h2><span class="mw-headline" id="Agent_Helpers">Agent Helpers</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=1779765">1779765</a> <i>2007-08-22</i><br /> Memory leak when unregistering tables</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=1756936">1756936</a> <i>2007-07-19</i><br /> netsnmp_set_row_column() patch to v5.3.1</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=1550730">1550730</a> <i>2006-09-01</i><br /> Error in table_iterator.c</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=1521121">1521121</a> <i>2006-07-12</i><br /> Full state machine for baby-steps flow.</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=1041042">1041042</a> <i>2004-10-05</i><br /> snmpd.conf token for -I (module init)&#160;: RFE 741944</li></ul>
+<h2><span class="mw-headline" id="Agent_MIB_modules_-_network_related">Agent MIB modules - network related</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=2082726">2082726</a>	 <i>2008-08-29</i><br /> fix 10GigE overflow</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=2053273">2053273</a>	 <i>2008-08-15</i><br /> Etherlike-Mib Module implementation patch</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=2012404">2012404</a> <i>2008-05-08</i><br /> 5.4.x on Solaris: Interfaces limited to 10</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=2012402">2012402</a> <i>2008-05-08</i><br /> Missing VLAN interfaces on solaris 10</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=1513191">1513191</a> <i>2006-06-27</i><br /> prevent duplicate iftable entries #2</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=812459">812459</a> <i>2003-09-25</i><br /> 802.11 MIB Support</li></ul>
+<h2><span class="mw-headline" id="Agent_MIB_modules_-_system_related">Agent MIB modules - system related</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=2162652">2162652</a>	 <i>2008-10-13</i><br /> skipNFSInHostResources can skip non-NFS resources</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=2119725">2119725</a>	 <i>2008-09-19</i><br /> skipNFSInHostResources break hrStorageTable (some platforms)</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=1997499">1997499</a> <i>2008-05-08</i><br /> "proc" - check processes that should <b>not</b> be running</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=1901764">1901764</a> <i>2008-02-25</i><br /> logmatch patch to support files that change based on date</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=1779503">1779503</a> <i>2007-08-22</i><br /> snmpCommunityTable implementation</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=1523452">1523452</a> <i>2006-07-16</i><br /> dsk(Total|Avail|Used)64 oids for 2Tb+ disk arrays</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=2088726">2088726</a>	 <i>2008-09-02</i><br /> UCD-SNMP-MIB::memAvailSwap.0 returns -2 value</li></ul>
+<h2><span class="mw-headline" id="Misc">Misc</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=2136437">2136437</a>	 <i>2008-09-29</i><br /> mib2c: make _FLAG define in the_oids.h more friendly</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;atid=312694&amp;group_id=12694&amp;aid=2124288">2124288</a>	 <i>2008-09-23</i><br /> setting the usmUserPrivProtocol at the creation time fails</li></ul>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514191850
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.008 seconds
+Real time usage: 0.009 seconds
+Preprocessor visited node count: 27/1000000
+Preprocessor generated node count: 32/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php?title=BugBash-Patches&amp;oldid=3590">http://www.net-snmp.org/wiki/index.php?title=BugBash-Patches&amp;oldid=3590</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/BugBash-Patches" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="http://www.net-snmp.org/wiki/index.php?title=Talk:BugBash-Patches&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="http://www.net-snmp.org/wiki/index.php?title=BugBash-Patches&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=BugBash-Patches&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=BugBash-Patches&amp;returntoquery=oldid%3D3590&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=BugBash-Patches&amp;returntoquery=oldid%3D3590" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/BugBash-Patches" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/BugBash-Patches" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="http://www.net-snmp.org/wiki/index.php?title=BugBash-Patches&amp;oldid=3590&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="http://www.net-snmp.org/wiki/index.php?title=BugBash-Patches&amp;oldid=3590" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=BugBash-Patches&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 15 October 2008, at 13:20.</li>
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":180});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=BugBash-Patches&oldid=3590 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:28:35 GMT -->
+</html>

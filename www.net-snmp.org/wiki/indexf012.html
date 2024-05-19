@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Git_For_Developers&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:23:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>View source for Git For Developers - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Git_For_Developers","wgTitle":"Git For Developers","wgCurRevisionId":5647,"wgRevisionId":0,"wgArticleId":2194,"wgIsArticle":!1,"wgIsRedirect":!1,"wgAction":"edit","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!0,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Git_For_Developers","wgRelevantArticleId":2194,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Git_For_Developers skin-monobook action-edit">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">View source for Git For Developers</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub">← <a href="http://www.net-snmp.org/wiki/index.php/Git_For_Developers" title="Git For Developers">Git For Developers</a></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text"><p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://www.net-snmp.org/wiki/index.php?title=Net-SNMP_Wiki:Users&amp;action=edit&amp;redlink=1" class="new" title="Net-SNMP Wiki:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<hr />
+<p>You can view and copy the source of this page.
+</p><textarea readonly="" accesskey="," id="wpTextbox1" cols="80" rows="25" style="" lang="en" dir="ltr" name="wpTextbox1">[[Git]] is a distributed version control system.  This page provides information for developers on how we manage our sources within git.
+
+== Public Repo ==
+This page is mean for the Net-SNMP development team. If you're looking for the page on the read-only git repo available to the general public, see the [[Git]] page.
+
+== Setup ==
+
+  git clone ssh://USERNAME@git.code.sf.net/p/net-snmp/code
+
+(This will retrieve the source code for the project. To obtain the content of the Net-SNMP website, replace ''code'' with ''htdocs'')
+
+A variation of this is to use ssh only to push changes and the git protocol to pull, this is achived by
+
+  git clone git://git.code.sf.net/p/net-snmp/code
+  cd code
+  git config remote.origin.pushurl ssh://USERNAME@git.code.sf.net/p/net-snmp/code
+
+
+Make sure your email address and name are correct:
+
+  git config user.email "''YOURSFACCOUNTNAME''@users.sourceforge.net"
+  git config user.name "''YOUR NAME''"
+
+== Git workflows ==
+
+The first link below should be read before any code is checked in.  Specifically, it describes the one important aspect: '''always commit to the lowest branch you want the patch to apply to!'''
+
+* First and foremost, read Net-SNMP's [[Git Workflow]]
+* Then, consider using the [[Git Branch Management]] macros for performing the routine tasks (branch merging, etc).
+* [http://www.kernel.org/pub/software/scm/git/docs/gitworkflows.html The gitworkflows manual page] is similar to ours
+* [http://nvie.com/img/2009/12/Screen-shot-2009-12-24-at-11.32.03.png A good diagram] showing another similar workflow pattern.
+
+=== Making changes ===
+
+This is where you type ''vi'' or ''emacs'' or if you're a real developer who likes to get dirty ''perl -i -p -e ...''
+
+=== Checking out the right branch ===
+
+git maintains all the code in a single directory, and lets you switch between the branches in the same directory.  This is very very different than SVN and other repository systems, but most people find once they let go of the idea that they need separate directories, they're happier in the long run.
+
+The branch may not exist yet in your local repository (run ''git branch -a'' to list all the branches known, including the remote ones).  To start, simply check it out:
+
+  # '''git checkout V5-4-patches'''
+  Branch V5-5-patches set up to track remote branch V5-5-patches from origin.
+  Switched to a new branch 'V5-5-patches'
+
+(and now 'git branch' without the '-a' will list it as a known local branch).
+
+=== Moving changes to a different branch ===
+
+If you have changes in the local repository already and want to apply them (or test them) against a different branch, the easiest way to do this is with ''stash'' and ''pop'':
+
+  # '''git checkout V5-6-patches'''
+  error: Your local changes to the following files would be overwritten by checkout:
+          NEWS
+  Please, commit your changes or stash them before you can switch branches.
+  Aborting
+  
+  # '''git stash'''
+  Saved working directory and index state WIP on V5-5-patches: 6a5e5a6 Merge branch 'V5-4-patches' into V5-5-patches
+  HEAD is now at 6a5e5a6 Merge branch 'V5-4-patches' into V5-5-patches
+  
+  # '''git checkout V5-6-patches'''
+  Branch V5-6-patches set up to track remote branch V5-6-patches from origin.
+  Switched to a new branch 'V5-6-patches'
+  
+  # '''git stash pop'''
+  Auto-merging NEWS
+  # On branch V5-6-patches
+  # Changes not staged for commit:
+  #   (use "git add &lt;file>..." to update what will be committed)
+  #   (use "git checkout -- &lt;file>..." to discard changes in working directory)
+  #
+  #       modified:   NEWS
+  #
+  no changes added to commit (use "git add" and/or "git commit -a")
+  Dropped refs/stash@{0} (102700302cd0a9db42b1669105291bb92fe807e9)
+
+=== Committing the changes ===
+
+  # git commit -m "commit message" ''FILES''
+
+Or if you want to commit everything in a directory and down, use a directory name instead of ''FILES''.
+
+Or if you want to commit everything anywhere in the repo, use the ''-a'' switch.
+
+'''NOTE:''' this only commits them to your local copy of the repository.  This is different than [[SVN]], if you're more familiar with SVN.  Next you need to ''push'' them to the master repository:
+
+=== Pulling the latest changes from the upstream ===
+
+Whether or not you've modified files locally and checked in the changes to your local repository, you'll need to occasionally pull down any changes that others have made upstream.  You do this with a ''pull''.  The --rebase option means rather than treat your development as a parallel set, try and apply your resulting patches to the end of the pulled branch instead of merging them.  This tends to keep a cleaner history tree.
+
+  # git pull --rebase origin master
+
+Assuming you followed the instructions above, and didn't cloning from somewhere else first, you should be able to shorten this to:
+
+  # git pull --rebase
+
+This will merge any changes you've made with any that others have made.  If something goes wrong, git will complain about conflicts and you'll need to resolve those either manually or using ''git mergetool''.  That's a longer subject for another lesson: [[Git Merging]].
+
+You may also wish to pull all the remote branches:
+
+  # git pull --all
+
+=== Reviewing local commits ===
+
+The most effective way to use git is to commit changes to the local tree as multiple small changes. That makes it easy to edit or revert any local changes if necessary. Once the local changes have been tested and before pushing these upstream, review the local changes and rearrange these if necessary. Try to make sure that any contributed change at least compiles such that the tree remains bisectable. One way to edit local commits is via the git rebase command. That command does not only allow to change the description of each commit, to change the order of commits, to squash multiple commits together but also to leave out some commits. Of course, if any changes have been made these have to be retested. The rebase command can be invoked as follows when working on the master branch:
+
+   # git rebase --interactive origin/master
+
+=== Pushing the changes upstream ===
+
+Once you're sure your commits are safe themselves and you've updated your repo with the latest upstream you can push your changes upstream to the master repository on sourceforge:
+
+  # git push origin master
+
+Assuming you followed the instructions above, and didn't cloning from somewhere else first, you should be able to shorten this to:
+
+  # git push
+
+And you're done!
+
+=== Notes on the htdocs repository ===
+
+The ''htdocs'' module, which contains the Net-SNMP website, is only synchronized from the git repository once an hour.  It may take up to an hour before the changes take effect on the website.
+
+== Creating tags and branches ==
+
+=== Tagging ===
+
+Tags are simply a symbolic way of remembering "a point in time" that is easier than the sha1 hash that is more frequently seen.
+
+  git tag my-really-super-feature-works
+
+for example will create the above tag.
+
+'''XXX: discuss annotated/signed/etc tags'''
+
+=== Pushing tags ===
+
+By default, ''git push'' doesn't push tags.  IE, it *only* pushes code.  If you've created a tag and you want it pushed upstream, you'll need to push it manually:
+
+  git push origin ''TAGNAME''
+
+Or you can push '''all your tags''':
+
+  git push --tags
+
+Note: Please don't push personal tags...  Use the individual push instead if you're creating helpful personal tags.
+
+[[Category:Git]]
+</textarea><div class="templatesUsed"></div><p id="mw-returnto">Return to <a href="http://www.net-snmp.org/wiki/index.php/Git_For_Developers" title="Git For Developers">Git For Developers</a>.</p>
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php/Git_For_Developers">http://www.net-snmp.org/wiki/index.php/Git_For_Developers</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/Git_For_Developers" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="http://www.net-snmp.org/wiki/index.php?title=Talk:Git_For_Developers&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource" class="selected"><a href="http://www.net-snmp.org/wiki/index.php?title=Git_For_Developers&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=Git_For_Developers&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=Git+For+Developers&amp;returntoquery=action%3Dedit&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=Git+For+Developers&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/Git_For_Developers" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/Git_For_Developers" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=Git_For_Developers&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.edit.collapsibleFooter","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":146});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Git_For_Developers&action=edit by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:23:27 GMT -->
+</html>

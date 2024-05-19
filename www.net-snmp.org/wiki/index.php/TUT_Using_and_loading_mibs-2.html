@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/TUT:Using_and_loading_mibs by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:27:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>TUT:Using and loading mibs - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"TUT:Using_and_loading_mibs","wgTitle":"TUT:Using and loading mibs","wgCurRevisionId":3897,"wgRevisionId":3897,"wgArticleId":1997,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"TUT:Using_and_loading_mibs","wgRelevantArticleId":1997,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="../load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="../load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<link rel="shortcut icon" href="../../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="../opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="../api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="../apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-TUT_Using_and_loading_mibs skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">TUT:Using and loading mibs</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>NET-SNMP-TUTORIAL-MIB DEFINITIONS&#160;::= BEGIN
+</p><p>-- A Comment!
+</p><p>-- IMPORTS: Include definitions from other mibs here, which is always
+-- the first item in a MIB file.
+IMPORTS
+	netSnmpExamples		              FROM NET-SNMP-EXAMPLES-MIB
+	OBJECT-TYPE, Integer32,
+	MODULE-IDENTITY                       FROM SNMPv2-SMI
+	MODULE-COMPLIANCE, OBJECT-GROUP       FROM SNMPv2-CONF;
+</p><p>--
+-- A brief description and update information about this mib.
+--
+netSnmpTutorialMIB MODULE-IDENTITY
+</p>
+<pre>   LAST-UPDATED "200205290000Z"            -- 29 May 2002, midnight
+   ORGANIZATION "net-snmp"
+   CONTACT-INFO "postal:   Wes Hardaker
+                           P.O. Box 382
+                           Davis CA  95617
+</pre>
+<p>		  email:    net-snmp-coders@lists.sourceforge.net
+</p>
+<pre>                "
+   DESCRIPTION  "A simple mib for demonstration purposes.
+                "
+  &#160;::= { netSnmpExamples 4 }
+</pre>
+<p>-- Define typical mib nodes, like where the objects are going to lie.
+-- we'll prefix everything in this mib with nst (net snmp tutorial)
+nstMIBObjects     OBJECT IDENTIFIER&#160;::= { netSnmpTutorialMIB 1 }
+nstMIBConformance OBJECT IDENTIFIER&#160;::= { netSnmpTutorialMIB 2 }
+</p><p><br />
+-- define 3 objects, which will all be implemented in different ways
+-- within the tutorial.
+</p><p>nstAgentModules   OBJECT IDENTIFIER&#160;::= { nstMIBObjects 1 }
+</p><p><br />
+nstAgentModuleObject OBJECT-TYPE
+</p>
+<pre>   SYNTAX      Integer32
+   MAX-ACCESS  read-write
+   STATUS      current
+   DESCRIPTION
+</pre>
+<p>	"This is an object that simply supports a writable integer
+	 when compiled into the agent.  See
+	 <a rel="nofollow" class="external free" href="Tutorials.html">http://www.net-snmp.org/tutorial-5/toolkit/XXX</a> for further
+	 implementation details."
+</p>
+<pre>   DEFVAL { 1 }
+  &#160;::= { nstAgentModules 1 }
+</pre>
+<p>nstAgentSubagentObject OBJECT-TYPE
+</p>
+<pre>   SYNTAX      Integer32
+   MAX-ACCESS  read-write
+   STATUS      current
+   DESCRIPTION
+</pre>
+<p>	"This is an object that simply supports a writable integer
+	 when attached to the agent.  The object should be accessible
+	 when the agentx subagent containing this object is attached.
+	 See <a rel="nofollow" class="external free" href="Tutorials.html">http://www.net-snmp.org/tutorial-5/toolkit/XXX</a> for
+	 further implementation details."
+</p>
+<pre>   DEFVAL { 2 }
+  &#160;::= { nstAgentModules 2 }
+</pre>
+<p>nstAgentPluginObject OBJECT-TYPE
+</p>
+<pre>   SYNTAX      Integer32
+   MAX-ACCESS  read-write
+   STATUS      current
+   DESCRIPTION
+</pre>
+<p>	"This is an object that simply supports a writable integer
+	 when attached to the agent.  This object should be accessible
+	 when the dynamic plugin has been loaded into the agent.  See
+	 <a rel="nofollow" class="external free" href="Tutorials.html">http://www.net-snmp.org/tutorial-5/toolkit/XXX</a> for further
+	 implementation details."
+</p>
+<pre>   DEFVAL { 3 }
+  &#160;::= { nstAgentModules 3 }
+</pre>
+<p>--
+-- The above definitions produce a section of the mib tree that looks
+-- like this (including our parent node, printed using the
+-- snmptranslate command):
+--
+--
+--&#160;% snmptranslate -M+. -mNET-SNMP-TUTORIAL-MIB -Tp -IR netSnmpTutorialMIB
+-- +-netSnmpTutorialMIB(4)
+--   |
+--   +-nstMIBObjects(1)
+--   | |
+--   | +-nstAgentModules(1)
+--   |   |
+--   |   +- -RW- Integer32 nstAgentModuleObject(1)
+--   |   +- -RW- Integer32 nstAgentSubagentObject(2)
+--   |   +- -RW- Integer32 nstAgentPluginObject(3)
+--   |
+--   +-nstMIBConformance(2)
+</p><p><br />
+-- You can then use the snmptranslate command to get the numerical or
+-- textual OID representation of any piece of the tree:
+</p><p><br />
+-- Getting a OID:
+--  &#160;% snmptranslate -M+. -mNET-SNMP-TUTORIAL-MIB -IR nstSSSecondsSinceChanged
+--   .1.3.6.1.4.1.2021.13.4242.1.1.2
+</p><p><br />
+-- Getting a textual OID:
+--  &#160;% snmptranslate -On -M+. -mNET-SNMP-TUTORIAL-MIB -IR nstSSSecondsSinceChanged
+--   enterprises.ucdavis.ucdExperimental.netSnmpTutorialMIB.nstMIBObjects.nstScalarSet.nstSSSecondsSinceChanged
+</p><p><br />
+-- Getting a description:
+--  &#160;% snmptranslate -Td -M+. -mNET-SNMP-TUTORIAL-MIB -IR nstSSSecondsSinceChanged 
+--   .1.3.6.1.4.1.2021.13.4242.1.1.2
+--   SYNTAX  TimeTicks
+--   UNITS   "1/100th Seconds"
+--   MAX-ACCESS      read-only
+--   STATUS  current
+--   DESCRIPTION     "This object indicates the number of 1/100th seconds since the
+--           nstSSSimpleString object has changed.  If it is has never been
+--           modified, it will be the time passed since the start of the
+--           agent."
+</p><p><br />
+</p><p>-- END:  Don't forget this!
+END
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20171116014331
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.034 seconds
+Real time usage: 0.039 seconds
+Preprocessor visited node count: 1/1000000
+Preprocessor generated node count: 4/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 1/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+
+<!-- Saved in parser cache with key n12694_wikidb:pcache:idhash:1997-0!*!*!*!*!*!* and timestamp 20171116014331 and revision id 3897
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="../index801f.html?title=TUT:Using_and_loading_mibs&amp;oldid=3897">http://www.net-snmp.org/wiki/index.php?title=TUT:Using_and_loading_mibs&amp;oldid=3897</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="TUT_Using_and_loading_mibs-2.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="Talk_TUT_Using_and_loading_mibs-2.html?title=Talk:TUT:Using_and_loading_mibs&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="../index80a4-2.html?title=TUT:Using_and_loading_mibs&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="../indexf957.html?title=TUT:Using_and_loading_mibs&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="../index268a.html?title=Special:UserLogin&amp;returnto=TUT%3AUsing+and+loading+mibs&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="../indexcfbc.html?title=Special:UserLogin&amp;returnto=TUT%3AUsing+and+loading+mibs" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/TUT_Using_and_loading_mibs-2.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/TUT_Using_and_loading_mibs-2.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="../index9143.html?title=TUT:Using_and_loading_mibs&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="../index801f.html?title=TUT:Using_and_loading_mibs&amp;oldid=3897" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="../index6bbe.html?title=TUT:Using_and_loading_mibs&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 15 June 2009, at 11:57.</li>
+									<li id="privacy"><a href="Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":979});
+} );</script></body><!-- Cached 20171116014331 -->
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/TUT:Using_and_loading_mibs by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:27:11 GMT -->
+</html>

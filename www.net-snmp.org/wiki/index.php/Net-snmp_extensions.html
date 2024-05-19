@@ -1,0 +1,238 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/Net-snmp_extensions by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:05:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Net-snmp extensions - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Net-snmp_extensions","wgTitle":"Net-snmp extensions","wgCurRevisionId":5892,"wgRevisionId":5892,"wgArticleId":1404,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Net-snmp_extensions","wgRelevantArticleId":1404,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="../load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="../load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<link rel="shortcut icon" href="../../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="../opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://net-snmp.sourceforge.net/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="../apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Net-snmp_extensions skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Net-snmp extensions</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>Here are some links to net-snmp extensions and net-snmp-based software:
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#C_modules"><span class="tocnumber">1</span> <span class="toctext">C modules</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#dlmod_modules"><span class="tocnumber">2</span> <span class="toctext">dlmod modules</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#AgentX"><span class="tocnumber">3</span> <span class="toctext">AgentX</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Perl_sub-agent"><span class="tocnumber">4</span> <span class="toctext">Perl sub-agent</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#pass_scripts"><span class="tocnumber">5</span> <span class="toctext">pass scripts</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#pass_persist_scripts"><span class="tocnumber">6</span> <span class="toctext">pass persist scripts</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#exec_.2F_extend_scripts"><span class="tocnumber">7</span> <span class="toctext">exec / extend scripts</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#proxy"><span class="tocnumber">8</span> <span class="toctext">proxy</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#other"><span class="tocnumber">9</span> <span class="toctext">other</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="C_modules">C modules</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://pgfoundry.org/projects/pgsnmpd">SNMP agent for PostgreSQL</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.liacs.nl/~herbertb/projects/studprojects/tmoerlan/">802.11 interface</a>: Net-SNMP mib modules in C (Leiden Institute of Advanced Computer Science, NL)</li></ul>
+<h2><span class="mw-headline" id="dlmod_modules">dlmod modules</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://mod-apache-snmp.sourceforge.net/english/docs.htm">mod-apache-snmp</a>: monitor Apache2 with SNMP (implementing APACHE2-MIB)</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/projects/apachestatistics">mod_statistics</a>: different approach monitoring Apache2 (expanding APACHE2-MIB)</li>
+<li> <a rel="nofollow" class="external text" href="http://www.ibr.cs.tu-bs.de/projects/jasmin/README.html">Jasmin</a>: an implementation of the IETF Script MIB (RFC3165) for Java as the scripting language</li>
+<li> <a rel="nofollow" class="external text" href="http://savannah.nongnu.org/projects/ramon/">Ramon</a>: a RMON2 Network Monitoring Agent (RFC-2021)</li>
+<li> <a rel="nofollow" class="external text" href="http://search.hp.com/query.html?lang=eng&amp;qp=%2Burl%3Asupport&amp;qt=Insight+Management+Agents&amp;la=en&amp;hps=Support&amp;ctry=us&amp;submit.x=0&amp;submit.y=0&amp;hpn=return+to+Support&amp;hpl=1&amp;hpa=http%3A//wwss1pro.compaq.com/support/contact_compaq/index.asp">HP Insight Management Agents for Servers</a>: dlmod module implementing HP private MIBs for HP servers</li>
+<li> <a rel="nofollow" class="external text" href="http://kb.linuxvirtualserver.org/wiki/Net-SNMP-LVS-Module">Net-SNMP module for LVS</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.gkminix.de/software/swraid.tar.gz">Linux software RAID monitoring</a></li></ul>
+<h2><span class="mw-headline" id="AgentX">AgentX</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://www.vmware.com/support/esx2/doc/esx20admin_snmp_server.html">VMware ESX server 2.0 SNMP agent</a> (using AgentX, commercial)</li>
+<li> <a rel="nofollow" class="external text" href="http://www.openhpi.org/">OpenHPI SNMP Subagent</a> (AgentX, implemented based on mib2c.array-user.conf)</li>
+<li> <a rel="nofollow" class="external text" href="http://www.macdee.net/perl/nfsstats/">Net-SNMP Subagent for NFSv3 stats</a> (AgentX, implemented in Perl)</li>
+<li> <a rel="nofollow" class="external text" href="http://github.com/rixed/guile-agentx">agentX implementation for GNU Guile</a> (scheme subagent)</li>
+<li> <a rel="nofollow" class="external text" href="https://github.com/sergevs/net-snmp-subagent-shell/wiki">Net-SNMP subagent, can be used/configured to provide arbitrary data via SNMP</a> (AgentX, support MIB, implemented in Perl)</li></ul>
+<h2><span class="mw-headline" id="Perl_sub-agent">Perl sub-agent</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://mysqldump.azundris.com/archives/63-Sysadmins-Nightly-Mental-Pain-SNMP.html">MySQL monitoring</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.l3jane.net/wiki/factory:b9agent_en">Bind9 Statistics (New Format)</a></li>
+<li> <a rel="nofollow" class="external text" href="http://github.com/jirutka/apcupsd-snmp">APC UPS monitoring</a> for UPSes without built-in SNMP support</li></ul>
+<h2><span class="mw-headline" id="pass_scripts">pass scripts</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://www.bayour.com/bacula-snmp/">Bacula SNMP subagent</a>: perl-based net-snmp "pass" extension for the Bacula backup tool</li></ul>
+<h2><span class="mw-headline" id="pass_persist_scripts">pass persist scripts</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://sourceforge.net/mailarchive/forum.php?thread_id=30126723&amp;forum_id=4959">Solaris kstat.pl</a> (by Jean-Sebastien Morisset)</li>
+<li> <a rel="nofollow" class="external text" href="http://netilium.org/~mad/technotes/postfixstat/">Postfix Mail stats</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.ossp.org/pkg/tool/snmpdx/">OSSP snmpdx</a> (framework for Perl-based agent extensions using pass/pass_persist)</li>
+<li> <a rel="nofollow" class="external text" href="http://dreness.com/wikimedia/index.php?title=Net_SNMP">Python pass persist script</a></li></ul>
+<h2><span class="mw-headline" id="exec_.2F_extend_scripts">exec / extend scripts</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://www.packetmischief.ca/network/monitoring/bind9/">BIND9 statistics</a></li>
+<li> <a rel="nofollow" class="external text" href="http://forums.cacti.net/about12742.html">Linux Disk IO</a></li>
+<li> <a rel="nofollow" class="external text" href="http://sysadvent.blogspot.com/2008/12/day-4-extending-net-snmps-snmpd.html">Extending Net-SNMP's snmpd</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.logix.cz/michal/devel/nagios/">Nagios SNMP tools</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.adventuresinoss.com/?p=1147">The Many Uses of Net-SNMP</a></li></ul>
+<h2><span class="mw-headline" id="proxy">proxy</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://www.squid-cache.org/SNMP/">Squid SNMP support</a>: using "proxy" (what else, it's Squid&#160;;-))</li>
+<li> <a rel="nofollow" class="external text" href="http://www.kilala.nl/Sysadmin/SNMP-sun.php">Combining Net-SNMP and SUNWmasf on Solaris</a></li></ul>
+<h2><span class="mw-headline" id="other">other</span></h2>
+<ul><li> <a rel="nofollow" class="external text" href="http://luasnmp.luaforge.net/">LuaSNMP</a> Lua bindings for net-snmp (client apps)</li></ul>
+
+<!-- 
+NewPP limit report
+Cached time: 20171115084014
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.119 seconds
+Real time usage: 0.121 seconds
+Preprocessor visited node count: 35/1000000
+Preprocessor generated node count: 40/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+
+<!-- Saved in parser cache with key n12694_wikidb:pcache:idhash:1404-0!*!*!!en!*!* and timestamp 20171115084014 and revision id 5892
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://net-snmp.sourceforge.net/wiki/index.php?title=Net-snmp_extensions&amp;oldid=5892">http://net-snmp.sourceforge.net/wiki/index.php?title=Net-snmp_extensions&amp;oldid=5892</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="Net-snmp_extensions.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="Talk_Net-snmp_extensions.html?title=Talk:Net-snmp_extensions&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="../indexd999.html?title=Net-snmp_extensions&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="../index764d.html?title=Net-snmp_extensions&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="../index09b7.html?title=Special:UserLogin&amp;returnto=Net-snmp+extensions&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="../index7aa6.html?title=Special:UserLogin&amp;returnto=Net-snmp+extensions" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Net-snmp_extensions.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Net-snmp_extensions.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="../indexf9d8.html?title=Net-snmp_extensions&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="../index73d4.html?title=Net-snmp_extensions&amp;oldid=5892" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="../indexb10b.html?title=Net-snmp_extensions&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 15 July 2015, at 03:22.</li>
+									<li id="privacy"><a href="Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":838});
+} );</script></body><!-- Cached 20171116023608 -->
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/Net-snmp_extensions by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:05:20 GMT -->
+</html>

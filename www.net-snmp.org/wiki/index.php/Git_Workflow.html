@@ -1,0 +1,438 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/Git_Workflow by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:22:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Git Workflow - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Git_Workflow","wgTitle":"Git Workflow","wgCurRevisionId":5509,"wgRevisionId":5509,"wgArticleId":2143,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Git"],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Git_Workflow","wgRelevantArticleId":2143,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="../load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="../load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<link rel="shortcut icon" href="../../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="../opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://net-snmp.sourceforge.net/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="../apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Git_Workflow skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Git Workflow</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>This page describes the Net-SNMP <a href="Git.html" title="Git">Git</a> Workflow.  Using the contents of this page, users should be able to learn how to create patches and developers can learn how to manage changes to the Net-SNMP Git Tree.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Policy_Overview"><span class="tocnumber">1</span> <span class="toctext">Policy Overview</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#This_is_mostly_automated.21"><span class="tocnumber">2</span> <span class="toctext">This is mostly automated!</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Managing_patches_in_the_Git_Tree"><span class="tocnumber">3</span> <span class="toctext">Managing patches in the Git Tree</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Applying_Patch_.231"><span class="tocnumber">3.1</span> <span class="toctext">Applying Patch #1</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Merging_the_patch_upward"><span class="tocnumber">3.2</span> <span class="toctext">Merging the patch upward</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Merging_forward_again"><span class="tocnumber">3.3</span> <span class="toctext">Merging forward again</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Adding_in_pain:_patches_and_commits_everywhere"><span class="tocnumber">3.4</span> <span class="toctext">Adding in pain: patches and commits everywhere</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Worry_not_about_the_pain"><span class="tocnumber">3.5</span> <span class="toctext">Worry not about the pain</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#The_complete_merge_many_points_later"><span class="tocnumber">3.6</span> <span class="toctext">The complete merge many points later</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Tagging_Releases"><span class="tocnumber">3.7</span> <span class="toctext">Tagging Releases</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Feature_Tracking"><span class="tocnumber">4</span> <span class="toctext">Feature Tracking</span></a>
+<ul>
+<li class="toclevel-2 tocsection-12"><a href="#Reducing_the_diagram_a_bit"><span class="tocnumber">4.1</span> <span class="toctext">Reducing the diagram a bit</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Creating_a_branch"><span class="tocnumber">4.2</span> <span class="toctext">Creating a branch</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Development"><span class="tocnumber">4.3</span> <span class="toctext">Development</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Master_will_of_course_move_along_too"><span class="tocnumber">4.4</span> <span class="toctext">Master will of course move along too</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Eventually.2C_we.27ll_merge_our_feature_in"><span class="tocnumber">4.5</span> <span class="toctext">Eventually, we'll merge our feature in</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Options_for_merging_feature2"><span class="tocnumber">4.6</span> <span class="toctext">Options for merging feature2</span></a>
+<ul>
+<li class="toclevel-3 tocsection-18"><a href="#Option1:_merge_from_where_you_were"><span class="tocnumber">4.6.1</span> <span class="toctext">Option1: merge from where you were</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="#Option2:_rebase_first_and_then_merge"><span class="tocnumber">4.6.2</span> <span class="toctext">Option2: rebase first and then merge</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-20"><a href="#More_work_on_existing_features"><span class="tocnumber">4.7</span> <span class="toctext">More work on existing features</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#Complex_Patches_on_Other_Branches"><span class="tocnumber">4.8</span> <span class="toctext">Complex Patches on Other Branches</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-22"><a href="#Other_Questions.2C_Answers_and_HowTos"><span class="tocnumber">5</span> <span class="toctext">Other Questions, Answers and HowTos</span></a>
+<ul>
+<li class="toclevel-2 tocsection-23"><a href="#Who.27s_in_charge_of_merging_upward.3F"><span class="tocnumber">5.1</span> <span class="toctext">Who's in charge of merging upward?</span></a></li>
+<li class="toclevel-2 tocsection-24"><a href="#Getting_unstuck"><span class="tocnumber">5.2</span> <span class="toctext">Getting unstuck</span></a></li>
+<li class="toclevel-2 tocsection-25"><a href="#Figuring_out_which_branch_to_apply_to"><span class="tocnumber">5.3</span> <span class="toctext">Figuring out which branch to apply to</span></a></li>
+<li class="toclevel-2 tocsection-26"><a href="#Shouldn.27t_we_create_scripts_to_automate_much_of_this.3F"><span class="tocnumber">5.4</span> <span class="toctext">Shouldn't we create scripts to automate much of this?</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Policy_Overview">Policy Overview</span></h2>
+<p>These will likely make more sense <b>after</b> you've read the sections and examples below this.
+</p>
+<ol><li> Patches should always be applied to the earliest branch it's expected to be included into.</li>
+<li> Branches should be <i>merged</i> upward into the branch above it.  IE, V5-4-patches would be occasionally merged into V5-5-patches.
+<ul><li> Changes in V5-4-patches that shouldn't go into V5-5-patches may need to be reverted by hand, but they should be rare.</li></ul></li>
+<li> New features or complex bug fixes should go into their own branch, derived off of the earliest branch they should be applied against.
+<ul><li> If a decision changes with respect to which branch it should eventually be merged into, use <i>git rebase</i> to move it's root.</li>
+<li> Once stable itself, the completed feature or bug fix branch should be merged into the appropriate tree.</li></ul></li>
+<li> New feature branches should always be based off of the <i>master</i> branch
+<ul><li> features that require other new features that haven't been merged themselves may need to root off of the other feature until they get merged into the master.</li></ul></li></ol>
+<h2><span class="mw-headline" id="This_is_mostly_automated.21">This is mostly automated!</span></h2>
+<p>Much of the work below is actually automated and is here mostly for your education.  See the <a href="Git_Branch_Management.html" title="Git Branch Management">Git Branch Management</a> page for a page that describes the shell functions you should really consider using.
+</p>
+<h2><span class="mw-headline" id="Managing_patches_in_the_Git_Tree">Managing patches in the Git Tree</span></h2>
+<p>First off, lets start by looking at what the SVN tree looks like at the time it changed to Git.  In SVN, patches were applied to all the branches at once so the tree is very "branchey", but with no merges.
+</p>
+<pre> # git clone <i>net-snmp-git-url-here</i> net-snmp.git
+ # cd net-snmp.git
+</pre>
+<p><a href="File_Git-Workflow-T0.html" class="image" title="0-day Git Tree"><img alt="0-day Git Tree" src="../images/thumb/e/e7/Git-Workflow-T0.png/400px-Git-Workflow-T0.png" width="400" height="365" /></a>
+</p>
+<h3><span class="mw-headline" id="Applying_Patch_.231">Applying Patch #1</span></h3>
+<p>In SVN developers were encouraged to commit fixes to all the branches at once.  This will be a major change when switching to Git.  Patches should be applied to the earliest branch they're relevant for.  Note that git makes it easy to switch branches with a current change still in place, see below in section <a href="#Figuring_out_which_branch_to_apply_to">#Figuring_out_which_branch_to_apply_to</a> of this page.
+</p><p>In this example, we're applying patch <i>p1</i> to an early branch:
+</p>
+<pre> # git checkout V5-3-patches
+ # patch &lt; p1
+ # git commit -m "p1" -a
+</pre>
+<p><i>Note: I switched to the 5.3 patches code in the <b>same directory</b> as the master; ie I didn't change directories anywhere</i>
+</p><p><a href="File_Git-Workflow-T1.html" class="image" title="After p1"><img alt="After p1" src="../images/thumb/6/6b/Git-Workflow-T1.png/400px-Git-Workflow-T1.png" width="400" height="335" /></a>
+</p><p>Note that, unlike SVN, we are <b>only</b> applying it manually to the earliest tree.  This is a difference from how we dealt with things in SVN.
+</p>
+<h3><span class="mw-headline" id="Merging_the_patch_upward">Merging the patch upward</span></h3>
+<p>To get the patch to move into the later releases, you merge the full branch into the later-versioned tree:
+</p>
+<pre> # git checkout V5-4-patches
+ # git merge --log V5-3-patches
+</pre>
+<p><a href="File_Git-Workflow-T2.html" class="image" title="After p1 upward1"><img alt="After p1 upward1" src="../images/thumb/c/cf/Git-Workflow-T2.png/400px-Git-Workflow-T2.png" width="400" height="286" srcset="/wiki/images/thumb/c/cf/Git-Workflow-T2.png/800px-Git-Workflow-T2.png 2x" /></a>
+</p><p>This creates a new commit point in the later tree with the merged code contained into the later versioned tree.  This is done automatically when running 'git merge' and is very easy to do.  Unless, of course, there are conflicts.  But that's for a later discussion.
+</p>
+<h3><span class="mw-headline" id="Merging_forward_again">Merging forward again</span></h3>
+<p>Then, of course, that change will continue to propagate up through the patch trees:
+</p>
+<pre> # git checkout V5-5-patches
+ # git merge --log V5-4-patches
+</pre>
+<p><a href="File_Git-Workflow-T3.html" class="image" title="After p1 upward2"><img alt="After p1 upward2" src="../images/thumb/a/af/Git-Workflow-T3.png/400px-Git-Workflow-T3.png" width="400" height="272" srcset="/wiki/images/thumb/a/af/Git-Workflow-T3.png/800px-Git-Workflow-T3.png 2x" /></a>
+</p>
+<h3><span class="mw-headline" id="Adding_in_pain:_patches_and_commits_everywhere">Adding in pain: patches and commits everywhere</span></h3>
+<p>With many active developers working on a code base, you may end up with multiple commits and patches all over the place.  That's just fine.  There is no requirement that these patches get merged immediately upward.  In fact, most of the time there probably isn't a good reason to do so.
+</p>
+<pre> # git checkout V5-3-patches
+ # patch &lt; p2
+ # git commit -m "applied p2" -a
+ # git checkout V5-4-patches
+ # # edit code to produce changes resulting in p3
+ # git commit -m "fixed something" -a
+ # ...
+ # git commit -m "done messing around after applying p5 to 5.4 tree" -a
+</pre>
+<p><a href="File_Git-Workflow-T4.html" class="image" title="After p4"><img alt="After p4" src="../images/thumb/d/d8/Git-Workflow-T4.png/400px-Git-Workflow-T4.png" width="400" height="318" /></a>
+</p><p><br />
+</p>
+<h3><span class="mw-headline" id="Worry_not_about_the_pain">Worry not about the pain</span></h3>
+<p>Git does a good job of not letting you have to think too much of the pain.  It carefully merges the branches in a way that is generally perceived to be much better than SVN or CVS, if you're used to merge philosophies from those tools.  It's even ok to merge some things before others.  They'll all get upstream eventually.
+</p><p>Merging V5-4 forward to V5-6 *before* V5-3 gets upward merged:
+</p>
+<pre> # git checkout V5-5-patches
+ # git merge --log V5-4-patches
+ # git checkout V5-6-patches
+ # git merge --log V5-5-patches
+</pre>
+<p><a href="File_Git-Workflow-T6.html" class="image" title="After 2 merges"><img alt="After 2 merges" src="../images/thumb/1/10/Git-Workflow-T6.png/400px-Git-Workflow-T6.png" width="400" height="277" srcset="/wiki/images/thumb/1/10/Git-Workflow-T6.png/800px-Git-Workflow-T6.png 2x" /></a>
+</p>
+<h3><span class="mw-headline" id="The_complete_merge_many_points_later">The complete merge many points later</span></h3>
+<p>Eventually, everything will end up moving forward properly.  Sometimes this will be in groups, sometimes as single patches.
+</p>
+<pre> # git checkout V5-4-patches
+ # git merge --log V5-3-patches
+ # git checkout V5-5-patches
+ # git merge --log V5-4-patches
+ # git checkout V5-6-patches
+ # git merge --log V5-5-patches
+ # git checkout master
+ # git merge --log V5-6-patches
+</pre>
+<p><a href="File_Git-Workflow-T7.html" class="image" title="After all merges"><img alt="After all merges" src="../images/thumb/7/7e/Git-Workflow-T7.png/400px-Git-Workflow-T7.png" width="400" height="319" /></a>
+</p>
+<h3><span class="mw-headline" id="Tagging_Releases">Tagging Releases</span></h3>
+<p>Of course, git has <b>real tags</b> (unlike SVN), so tagging is simple and adding a new 5.3.4 should leave the desired results.  A new tag:
+</p>
+<pre> # git checkout V5-3-patches
+ # git tag Ext-5-3-4
+</pre>
+<p><a href="File_Git-Workflow-T8.html" class="image" title="After 5.3.4"><img alt="After 5.3.4" src="../images/thumb/7/7d/Git-Workflow-T8.png/400px-Git-Workflow-T8.png" width="400" height="311" /></a>
+</p>
+<h2><span class="mw-headline" id="Feature_Tracking">Feature Tracking</span></h2>
+<p>Features and complex patches should generally be developed in their own trees.  If they're worked on independently, they may never even be seen by other people.  Or if people or working together on something, it may be critical that feature trees are pushed to the public repo.  In the end, branches may or may not exist beyond your local git repo.
+</p><p>Lets assume we're working on two new features.  They're complex enough that they deserve they're own tracking branch.  Why? Because it lets you carefully track you work and make incremental improvements, including bugs, and know you haven't affected other people's critical work (the main branches).  Branches in git are very very cheap.  So use them.  A lot.  Cause if you don't like them later, they're just as easy to delete!
+</p>
+<h3><span class="mw-headline" id="Reducing_the_diagram_a_bit">Reducing the diagram a bit</span></h3>
+<p>Lets take the V5.6 and master branches from the previous diagram and limit ourselves to just thinking about that part of the tree.
+</p><p><a href="File_Git-Workflow-F0.html" class="image" title="cropping"><img alt="cropping" src="../images/thumb/3/38/Git-Workflow-F0.png/400px-Git-Workflow-F0.png" width="400" height="309" /></a>
+</p>
+<h3><span class="mw-headline" id="Creating_a_branch">Creating a branch</span></h3>
+<p>The first thing you should do, of course, is create the branch(es).  We'll assume they're created at the same time, but that's admittedly unusual.
+</p>
+<pre> # git checkout master
+ # git branch feature1
+ # git branch feature2
+</pre>
+<p><a href="File_Git-Workflow-F1.html" class="image" title="branching"><img alt="branching" src="../images/thumb/0/05/Git-Workflow-F1.png/400px-Git-Workflow-F1.png" width="400" height="244" srcset="/wiki/images/thumb/0/05/Git-Workflow-F1.png/800px-Git-Workflow-F1.png 2x" /></a>
+</p>
+<h3><span class="mw-headline" id="Development">Development</span></h3>
+<p>Work will continue along these branches and patches will be applied to those trees:
+</p>
+<pre> # git checkout feature1
+ # # edit stuff to create pf1.1
+ # git commit -m "step one toward working on feature 1; may not work yet"
+ # # edit stuff to create pf1.2
+ # git commit -m "Yay, it works now after some bugs were squashed"
+ # git checkout feature2
+ # # edit stuff to create pf2.1
+ # git commit -m "minimally functioning feature2"
+</pre>
+<p><a href="File_Git-Workflow-F2.html" class="image" title="development"><img alt="development" src="../images/thumb/8/88/Git-Workflow-F2.png/400px-Git-Workflow-F2.png" width="400" height="409" /></a>
+</p>
+<h3><span class="mw-headline" id="Master_will_of_course_move_along_too">Master will of course move along too</span></h3>
+<p>Of course, someone may put small changes in the master trunk (or big changes compressed from private branches):
+</p>
+<pre> # git checkout master
+ # # edit something that is now completely different
+ # git commit -m "small feature description"
+</pre>
+<p><a href="File_Git-Workflow-F3.html" class="image" title="changes in the master branch"><img alt="changes in the master branch" src="../images/thumb/1/1f/Git-Workflow-F3.png/400px-Git-Workflow-F3.png" width="400" height="411" /></a>
+</p>
+<h3><span class="mw-headline" id="Eventually.2C_we.27ll_merge_our_feature_in">Eventually, we'll merge our feature in</span></h3>
+<p>Starting with merging feature1 back into the trunk is easy!  Git takes care of the complexities.
+</p>
+<pre> # git merge --log feature1
+</pre>
+<p><a href="File_Git-Workflow-F4.html" class="image" title="merge of feature1"><img alt="merge of feature1" src="../images/thumb/a/ac/Git-Workflow-F4.png/400px-Git-Workflow-F4.png" width="400" height="441" /></a>
+</p>
+<h3><span class="mw-headline" id="Options_for_merging_feature2">Options for merging feature2</span></h3>
+<p>There are multiple ways we can do merge operations to get the features into the master branch.  (these could have been done with feature1 as well.)
+</p>
+<h4><span class="mw-headline" id="Option1:_merge_from_where_you_were">Option1: merge from where you were</span></h4>
+<p>If you do a merge just like with feature1, it should work and pull in only the new changes:
+</p>
+<pre> # git merge --log feature2
+</pre>
+<p><a href="File_Git-Workflow-F5.1.html" class="image" title="merge from here"><img alt="merge from here" src="../images/thumb/4/41/Git-Workflow-F5.1.png/400px-Git-Workflow-F5.1.png" width="400" height="476" /></a>
+</p>
+<h4><span class="mw-headline" id="Option2:_rebase_first_and_then_merge">Option2: rebase first and then merge</span></h4>
+<p>I think of rebasing as "take my entire patch set from where I started this branch from and apply them incrementally somewhere else".
+It's a very useful operation, and many people prefer to rebase their trees before merging.  It's not required, but it tends to make the tree more linear and readable.
+</p>
+<pre> # git checkout feature2
+ # git rebase master
+ # git checkout master
+ # git merge --log feature2
+</pre>
+<p><a href="File_Git-Workflow-F5.2.html" class="image" title="merge from there"><img alt="merge from there" src="../images/thumb/1/13/Git-Workflow-F5.2.png/400px-Git-Workflow-F5.2.png" width="400" height="522" /></a>
+</p><p>In many cases you may need to rebase in order to pick up the changes from other work that you suddenly decided you wanted to depend on.
+</p>
+<h3><span class="mw-headline" id="More_work_on_existing_features">More work on existing features</span></h3>
+<p>Many times a feature was simply at a good stable point to merge to the master branch and a merge is done.  But the feature isn't done (or is a long work in progress), so work can simple continue on it and another merge later will take place to pull in the latest incremental <b>stable</b> improvements to the feature.
+</p>
+<pre> # git checkout feature2
+ # # more editing
+ # git commit -m "Feature2 is now super super cool"
+ # git checkout master
+ # git merge --log feature2
+</pre>
+<p><a href="File_Git-Workflow-F5.3.html" class="image" title="feature creep"><img alt="feature creep" src="../images/thumb/d/d9/Git-Workflow-F5.3.png/400px-Git-Workflow-F5.3.png" width="400" height="529" /></a>
+</p>
+<h3><span class="mw-headline" id="Complex_Patches_on_Other_Branches">Complex Patches on Other Branches</span></h3>
+<p>Of course, patch branches shouldn't have features merged in.  But complex patches and fixes can be handled in the same way as the above, but using the patch branch in question instead of using the master branch.
+</p><p>And what's really cool?  If you realize that you need to apply the patch to an earlier release (or later) than you were thinking, <i>git rebase</i> can actually <b>move</b> the entire branch to a different part of the tree!!!
+</p>
+<h2><span class="mw-headline" id="Other_Questions.2C_Answers_and_HowTos">Other Questions, Answers and HowTos</span></h2>
+<h3><span class="mw-headline" id="Who.27s_in_charge_of_merging_upward.3F">Who's in charge of merging upward?</span></h3>
+<p>Generally speaking, anyone can merge branches upward.  EG, anyone can perform a merge from V5-3-patches to V5-4-patches.  Generally, we'll need to assign someone to make sure these upward merges happen on a regular basis.  A discussion about this will need to happen in an admin meeting.
+</p><p><b>Exception:</b> When a branch is frozen during a release cycle for it, only the branch manager should be merging upward into that branch from the lower branches.  A branch manager may not have received enough positive votes for some operations and thus may need to <i>git cherry-pick</i> only certain patches to be merged until after the release.
+</p><p>Generally, we shouldn't be merging from V5-2-patches all the way straight to V5-4-patches, but in theory it should actually work just fine if it needs to be done at some point.
+</p>
+<h3><span class="mw-headline" id="Getting_unstuck">Getting unstuck</span></h3>
+<p>If a merge fails miserably, it is always possible run <i>git merge --abort</i> to reset your working tree back into an unmerged state in order to get help from the people that have conflicting patches between the trees.
+</p>
+<h3><span class="mw-headline" id="Figuring_out_which_branch_to_apply_to">Figuring out which branch to apply to</span></h3>
+<p>git provides the ability to quickly take a working directory, with active changes, and switch the changes to a different branch.  This is really helpful when working on patches or code.  It lets you actually try your patch on master, for example, and then realize it actually needs to be applied to V5-6-patches.  IE, this works just fine:
+</p>
+<pre>
+# git checkout master
+# patch &lt; something.patch
+# git checkout V5-6-patches
+# git commit -m "applying a patch to fix Wes' broken code"
+# git checkout master
+# git merge --log V5-6-patches
+</pre>
+<p>Note that the code was changed <b>while master was checked out</b> and we switched the current directory to the 5.6 tree and committed the patch to that instead!  In SVN, we would have had to change to a different directory instead and applied the patch there.  With Git, it basically reverted the code in the current directory to the 5.6 tree and reapplied the patch leaving you with a patched 5.6 instead!
+</p><p>If you need to work on multiple lines of code at once (we all do frequently), simply git clone your repository into another directory so you can have multiple copies.  You can have both of these directories working on master at the same time if you like or simple use them as needed.  Do try and work under a single directory and switch back and forth a few times to see how powerful this concept is though.
+</p>
+<h3><span class="mw-headline" id="Shouldn.27t_we_create_scripts_to_automate_much_of_this.3F">Shouldn't we create scripts to automate much of this?</span></h3>
+<p>I mean, come on...  merging that many branches upward is a lot of typing!
+</p>
+<dl><dd> Yes, Virginia, we <a href="Git_Branch_Management.html" title="Git Branch Management">have scripts to help automate frequent tasks like merging between multiple branches</a>.</dd></dl>
+
+<!-- 
+NewPP limit report
+Cached time: 20171116095908
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 1.031 seconds
+Real time usage: 1.620 seconds
+Preprocessor visited node count: 112/1000000
+Preprocessor generated node count: 128/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+
+<!-- Saved in parser cache with key n12694_wikidb:pcache:idhash:2143-0!*!0!!en!5!* and timestamp 20171116095906 and revision id 5509
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://net-snmp.sourceforge.net/wiki/index.php?title=Git_Workflow&amp;oldid=5509">http://net-snmp.sourceforge.net/wiki/index.php?title=Git_Workflow&amp;oldid=5509</a>"</div>
+					<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="Special_Categories.html" title="Special:Categories">Category</a>: <ul><li><a href="Category_Git.html" title="Category:Git">Git</a></li></ul></div></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="Git_Workflow.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="Talk_Git_Workflow.html?title=Talk:Git_Workflow&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="../indexd587.html?title=Git_Workflow&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="../index634a.html?title=Git_Workflow&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="../index561f.html?title=Special:UserLogin&amp;returnto=Git+Workflow&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="../index0545.html?title=Special:UserLogin&amp;returnto=Git+Workflow" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Git_Workflow.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Git_Workflow.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="../index74a7.html?title=Git_Workflow&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="../index2387.html?title=Git_Workflow&amp;oldid=5509" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="../indexb812.html?title=Git_Workflow&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 5 March 2012, at 19:20.</li>
+									<li id="privacy"><a href="Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":3669});
+} );</script></body><!-- Cached 20171116205418 -->
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/Git_Workflow by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:23:17 GMT -->
+</html>

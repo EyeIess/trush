@@ -1,0 +1,236 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/FAQ:Applications_25 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:53:25 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>FAQ:Applications 25 - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"FAQ:Applications_25","wgTitle":"FAQ:Applications 25","wgCurRevisionId":3850,"wgRevisionId":3850,"wgArticleId":1590,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"FAQ:Applications_25","wgRelevantArticleId":1590,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="../load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="../load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<link rel="shortcut icon" href="../../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="../opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="../api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="../apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-FAQ_Applications_25 skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">FAQ:Applications 25</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><h1><span class="mw-headline" id="How_can_I_monitor_my_systems_.28disk.2C_memory.2C_etc.29.3F">How can I monitor my systems (disk, memory, etc)?</span></h1>
+<p>In general, the Net-SNMP suite consists of relatively low-level
+tools, and there is nothing included that is designed for high-level,
+long-term monitoring of trends in network traffic, disk or memory
+usage, etc.
+</p><p>There are a number of packages available that are designed for this
+purpose.  Two of the most widely used are MRTG (<a rel="nofollow" class="external free" href="http://www.mrtg.org/">http://www.mrtg.org/</a>)
+and RRDtool (<a rel="nofollow" class="external free" href="http://oss.oetiker.ch/rrdtool/">http://oss.oetiker.ch/rrdtool/</a>).  There are also several
+frontends built on top of RRDtool, including Cacti (<a rel="nofollow" class="external free" href="http://www.cacti.net/">http://www.cacti.net/</a>)
+and Cricket (<a rel="nofollow" class="external free" href="http://cricket.sourceforge.net/">http://cricket.sourceforge.net/</a>).  There are details of
+how to set up Cricket to monitor some of the UCD extensions at
+<a rel="nofollow" class="external free" href="http://www.afn.org/~jam/software/cricket/">http://www.afn.org/~jam/software/cricket/</a>
+</p><p>We have also set up a page that describes in detail how MRTG
+can be set up to monitor disk, memory and cpu activity at
+<a rel="nofollow" class="external free" href="Tutorials.html">http://www.net-snmp.org/tutorial-5/mrtg/index.html</a>
+</p><p>There is also a web-based network configuration system "Net-Policy",
+based upon SNMP.  This is not strictly connected to the Net-SNMP project,
+but a number of the core developers are also involved with that system.
+See <a rel="nofollow" class="external free" href="http://net-policy.sourceforge.net/">http://net-policy.sourceforge.net</a> for more details.
+</p>
+<pre>   <a href="FAQ_Applications.html" title="FAQ:Applications">FAQ:Applications</a>
+   
+</pre>
+<ol><li> <a href="FAQ_Applications_01.html" title="FAQ:Applications 01">How do I add a MIB?</a></li>
+<li> <a href="FAQ_Applications_02.html" title="FAQ:Applications 02">How do I add a MIB to the tools?</a></li>
+<li> <a href="FAQ_Applications_03.html" title="FAQ:Applications 03">Why can't I see anything from the agent?</a></li>
+<li> <a href="FAQ_Applications_04.html" title="FAQ:Applications 04">Why doesn't the agent respond?</a></li>
+<li> <a href="FAQ_Applications_05.html" title="FAQ:Applications 05">I can see the system group, but nothing else.  Why?</a></li>
+<li> <a href="FAQ_Applications_06.html" title="FAQ:Applications 06">Why can't I see values in the <i>&lt;ENTERPRISE&gt;</i> tree?</a></li>
+<li> <a href="FAQ_Applications_07.html" title="FAQ:Applications 07">The agent worked for a while, then stopped responding.  Why?</a></li>
+<li> <a href="FAQ_Applications_08.html" title="FAQ:Applications 08">Requesting an object fails with "Unknown Object Identifier"  Why?</a></li>
+<li> <a href="FAQ_Applications_09.html" title="FAQ:Applications 09">Why do I get "noSuchName" when asking for "sysUpTime" (or similar)?</a></li>
+<li> <a href="FAQ_Applications_10.html" title="FAQ:Applications 10">Why do I sometimes get "End of MIB" when walking a tree, and sometimes not?</a></li>
+<li> <a href="FAQ_Applications_11.html" title="FAQ:Applications 11">How do I use SNMPv3?</a></li>
+<li> <a href="FAQ_Applications_12.html" title="FAQ:Applications 12">Why can't I set any variables in the MIB?</a></li>
+<li> <a href="FAQ_Applications_13.html" title="FAQ:Applications 13">Variables seem to disappear when I try to set them.  Why?</a></li>
+<li> <a href="FAQ_Applications_14.html" title="FAQ:Applications 14">Why can't I change sysLocation (or sysContact)?</a></li>
+<li> <a href="FAQ_Applications_15.html" title="FAQ:Applications 15">I get an error when trying to set a negative value - why?</a></li>
+<li> <a href="FAQ_Applications_16.html" title="FAQ:Applications 16">I get an error when trying to query a string-indexed table value - why?</a></li>
+<li> <a href="FAQ_Applications_17.html" title="FAQ:Applications 17">How should I specify string-index table values?</a></li>
+<li> <a href="FAQ_Applications_18.html" title="FAQ:Applications 18">How do I send traps and notifications?</a></li>
+<li> <a href="FAQ_Applications_19.html" title="FAQ:Applications 19">How do I receive traps and notifications?</a></li>
+<li> <a href="FAQ_Applications_20.html" title="FAQ:Applications 20">How do I receive SNNMPv1 traps?</a></li>
+<li> <a href="FAQ_Applications_21.html" title="FAQ:Applications 21">Why don't I receive incoming traps?</a></li>
+<li> <a href="FAQ_Applications_22.html" title="FAQ:Applications 22">My traphandler script doesn't work when run like this - why not?</a></li>
+<li> <a href="FAQ_Applications_23.html" title="FAQ:Applications 23">How can the agent receive traps and notifications?</a></li>
+<li> <a href="FAQ_Applications_24.html" title="FAQ:Applications 24">How big can an SNMP request (or reply) be?</a></li>
+<li> <strong class="selflink">How can I monitor my systems (disk, memory, etc)?</strong></li>
+<li> <a href="FAQ_Applications_26.html" title="FAQ:Applications 26">Applications complain about entries in your example 'snmp.conf' file.  Why?</a></li>
+<li> <a href="FAQ_Applications_27.html" title="FAQ:Applications 27">OK, what should I put in snmp.conf?</a></li>
+<li> <a href="FAQ_Applications_28.html" title="FAQ:Applications 28">How do I specify IPv6 addresses in tools command line arguments?</a></li></ol>
+
+<!-- 
+NewPP limit report
+Cached time: 20171116232157
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.130 seconds
+Real time usage: 0.143 seconds
+Preprocessor visited node count: 6/1000000
+Preprocessor generated node count: 32/1000000
+Post‐expand include size: 3223/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   26.235      1 - -total
+ 51.68%   13.558      1 - Template:FAQ:Applications
+ 46.30%   12.146      1 - Template:FAQ:Applications_23
+-->
+
+<!-- Saved in parser cache with key n12694_wikidb:pcache:idhash:1590-0!*!0!*!*!*!* and timestamp 20171116232157 and revision id 3850
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="../indexe907.html?title=FAQ:Applications_25&amp;oldid=3850">http://www.net-snmp.org/wiki/index.php?title=FAQ:Applications_25&amp;oldid=3850</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="FAQ_Applications_25.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="Talk_FAQ_Applications_25.html?title=Talk:FAQ:Applications_25&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="../index6614.html?title=FAQ:Applications_25&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="../index25c8.html?title=FAQ:Applications_25&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="../indexb1c0.html?title=Special:UserLogin&amp;returnto=FAQ%3AApplications+25&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="../indexfc0f.html?title=Special:UserLogin&amp;returnto=FAQ%3AApplications+25" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/FAQ_Applications_25.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/FAQ_Applications_25.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="../indexb8df.html?title=FAQ:Applications_25&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="../indexe907.html?title=FAQ:Applications_25&amp;oldid=3850" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="../index946c.html?title=FAQ:Applications_25&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 28 May 2009, at 11:19.</li>
+									<li id="privacy"><a href="Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":1137});
+} );</script></body><!-- Cached 20171116232158 -->
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/FAQ:Applications_25 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:53:30 GMT -->
+</html>

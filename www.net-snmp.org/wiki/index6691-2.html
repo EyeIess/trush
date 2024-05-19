@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=MFD:ifTable:Testing&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:21:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>MFD:ifTable:Testing - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"MFD:ifTable:Testing","wgTitle":"MFD:ifTable:Testing","wgCurRevisionId":5163,"wgRevisionId":5163,"wgArticleId":2241,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"MFD:ifTable:Testing","wgRelevantArticleId":2241,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load531d.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;printable=1&amp;skin=monobook" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="loadf198.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-MFD_ifTable_Testing skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">MFD:ifTable:Testing</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div align="right" style="float: right; width: 20em; border-color: black; border-style: solid; border-width: 1px; margin-left: 10px;">
+<table style="width: 100%;">
+
+<tr style="font-size: 1.2em;" bgcolor="#ddd">
+<td colspan="2" style="text-align: center;"> MFD Tutorial
+</td></tr>
+<tr style="text-align: left;">
+<td>
+<ul><li> <a href="index.php/MIB_for_Dummies.html" title="MIB for Dummies">MIB for Dummies</a></li>
+<li> <a href="index.php/MFD_IF-MIB.html" title="MFD:IF-MIB">MFD:IF-MIB</a></li>
+<li> <a href="index.php/MFD_ifTable.html" title="MFD:ifTable">MFD:ifTable</a>
+<ul><li> <a href="index.php/MFD_ifTable_mib2c.html" title="MFD:ifTable:mib2c">MFD:ifTable:mib2c‎</a></li>
+<li> <a href="index.php/MFD_ifTable_Data_Structures.html" title="MFD:ifTable:Data Structures">MFD:ifTable:Data Structures</a></li>
+<li> <a href="index.php/MFD_ifTable_Data_Access.html" title="MFD:ifTable:Data Access">MFD:ifTable:Data Access</a></li>
+<li> <a href="index.php/MFD_ifTable_Get_Data.html" title="MFD:ifTable:Get Data">MFD:ifTable:Get Data</a></li>
+<li> <strong class="selflink">MFD:ifTable:Testing</strong></li></ul></li>
+<li> <a href="index.php/MFD_ifXTable.html" title="MFD:ifXTable">MFD:ifXTable</a>
+<ul><li> <a href="index.php/MFD_ifXTable_mib2c.html" title="MFD:ifXTable:mib2c">MFD:ifXTable:mib2c‎</a></li>
+<li> <a href="index.php/MFD_ifXTable_Data_Structures.html" title="MFD:ifXTable:Data Structures">MFD:ifXTable:Data Structures</a></li>
+<li> <a href="index.php/MFD_ifXTable_Data_Access.html" title="MFD:ifXTable:Data Access">MFD:ifXTable:Data Access</a></li>
+<li> <a href="index.php/MFD_ifXTable_Get_Data.html" title="MFD:ifXTable:Get Data">MFD:ifXTable:Get Data</a></li>
+<li> <a href="index.php/MFD_ifXTable_Testing_Gets.html?title=MFD:ifXTable:Testing_Gets&amp;action=edit&amp;redlink=1" class="new" title="MFD:ifXTable:Testing Gets (page does not exist)">MFD:ifXTable:Testing Gets</a></li>
+<li> <a href="index.php/MFD_ifXTable_Set_Data.html?title=MFD:ifXTable:Set_Data&amp;action=edit&amp;redlink=1" class="new" title="MFD:ifXTable:Set Data (page does not exist)">MFD:ifXTable:Set Data</a></li>
+<li> <a href="index.php/MFD_ifXTable_Testing_Sets.html?title=MFD:ifXTable:Testing_Sets&amp;action=edit&amp;redlink=1" class="new" title="MFD:ifXTable:Testing Sets (page does not exist)">MFD:ifXTable:Testing Sets</a></li></ul></li></ul>
+</td></tr></table>
+</div>
+<h2><span class="mw-headline" id="MFD_:_ifTable_testing">MFD&#160;: ifTable testing</span></h2>
+<p>If you have not been compiling as you went along, try and compile
+now.
+</p>
+<table><tr><td width="20"></td><td><code>$</code></td><td bgcolor="CCCCCC">
+<pre><font color="blue">make -f ifTable_Makefile</font>
+</pre>
+</td></tr>
+</table>
+<p>After running make, you should have an executable named
+<i>ifTable</i>. 
+</p>
+<h3><span class="mw-headline" id="Starting_the_agent">Starting the agent</span></h3>
+<p>You can run the <i>ifTable</i> agent as a regular SNMP agent,
+or as an AgentX sub-agent. The default is to run as a sub-agent. While
+testing, the <i>-f</i> (do not fork into background) and <i>-L</i> (log
+to stderr) options are recommended.
+</p>
+<table><tr>
+<td width="20"></td>
+<td>AgentX Sub-agent:</td>
+<td bgcolor="CCCCCC"><font color="blue">ifTable -f -L</font></td>
+</tr><tr>
+<td></td>
+<td>Standard SNMP Agent:</td>
+<td bgcolor="CCCCCC"><font color="blue">ifTable -M -f -L [udp[:port]]</font></td>
+</table>
+<p>Note that running the sub-agent application as a master agent
+will runwithout any access control. All SNMPv1 and SNMPv2c
+requests will be accepted, regardless of the community string.
+</p><p>For that reason, when testing I run as a regular user (not root), 
+and only bind to the localhost interface, like so:
+</p>
+<table><tr><td width="20"></td><td bgcolor="CCCCCC">
+<pre>$<font color="blue">./ifTable -f -L -DifTable -M localhost:1161</font>
+2004-04-21 21:51:47 ifTable:init_ifTable: Registering ifTable as a mibs-for-dummies table.
+2004-04-21 21:51:48 ifTable: using linux 2.2 kernel /proc/net/dev
+</pre>
+            </td></tr></table>
+<h4><span class="mw-headline" id="Querying_the_agent">Querying the agent</span></h4>
+<p>A simple <i>snmpwalk</i> will quickly test the module:
+</p>
+<table><tr><td width="20"></td><td bgcolor="CCCCCC">
+<pre>$<font color="blue">snmpwalk -v1 localhost:1161 ifTable</font>
+IF-MIB::ifIndex.1 = INTEGER: 1
+IF-MIB::ifIndex.2 = INTEGER: 2
+IF-MIB::ifIndex.3 = INTEGER: 3
+IF-MIB::ifDescr.1 = STRING: 
+IF-MIB::ifDescr.2 = STRING: 
+IF-MIB::ifDescr.3 = STRING: 
+IF-MIB::ifType.1 = INTEGER: softwareLoopback(24)
+IF-MIB::ifType.2 = INTEGER: ethernetCsmacd(6)
+IF-MIB::ifType.3 = INTEGER: tunnel(131)
+IF-MIB::ifPhysAddress.1 = STRING: 0:0:0:0:0:0
+IF-MIB::ifPhysAddress.2 = STRING: 0:30:65:cd:a3:c8
+IF-MIB::ifPhysAddress.3 = STRING: 0:0:0:0:0:0
+IF-MIB::ifInOctets.1 = Counter32: 51368348
+IF-MIB::ifInOctets.2 = Counter32: 2666605618
+IF-MIB::ifInOctets.3 = Counter32: 0
+IF-MIB::ifInUcastPkts.1 = Counter32: 415774
+IF-MIB::ifInUcastPkts.2 = Counter32: 13971039
+IF-MIB::ifInUcastPkts.3 = Counter32: 0
+IF-MIB::ifInDiscards.1 = Counter32: 0
+IF-MIB::ifInDiscards.2 = Counter32: 0
+IF-MIB::ifInDiscards.3 = Counter32: 0
+IF-MIB::ifInErrors.1 = Counter32: 0
+IF-MIB::ifInErrors.2 = Counter32: 0
+IF-MIB::ifInErrors.3 = Counter32: 0
+IF-MIB::ifOutOctets.1 = Counter32: 51370076
+IF-MIB::ifOutOctets.2 = Counter32: 879325033
+IF-MIB::ifOutOctets.3 = Counter32: 0
+IF-MIB::ifOutUcastPkts.1 = Counter32: 415798
+IF-MIB::ifOutUcastPkts.2 = Counter32: 8046959
+IF-MIB::ifOutUcastPkts.3 = Counter32: 0
+IF-MIB::ifOutDiscards.1 = Counter32: 0
+IF-MIB::ifOutDiscards.2 = Counter32: 0
+IF-MIB::ifOutDiscards.3 = Counter32: 0
+IF-MIB::ifOutErrors.1 = Counter32: 0
+IF-MIB::ifOutErrors.2 = Counter32: 0
+IF-MIB::ifOutErrors.3 = Counter32: 0
+IF-MIB::ifSpecific.3 = No more variables left in this MIB View (It is past the end of the MIB tree)
+</pre>
+ </td></tr></table>
+<p>If you ran the agent with debugging, you should see something
+like this:
+</p>
+<table><tr><td width="20"></td><td bgcolor="CCCCCC">
+<pre>$<font color="blue">./ifTable -f -L -DifTable -M localhost:1161</font>
+2004-04-21 21:51:47 ifTable:init_ifTable: Registering ifTable as a mibs-for-dummies table.
+2004-04-21 21:51:48 ifTable: using linux 2.2 kernel /proc/net/dev
+</pre>
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514185815
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.016 seconds
+Real time usage: 0.020 seconds
+Preprocessor visited node count: 32/1000000
+Preprocessor generated node count: 62/1000000
+Post‐expand include size: 770/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    3.290      1 - Template:MFDTutorial
+100.00%    3.290      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="index74e6.html?title=MFD:ifTable:Testing&amp;oldid=5163">http://www.net-snmp.org/wiki/index.php?title=MFD:ifTable:Testing&amp;oldid=5163</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="index.php/MFD_ifTable_Testing.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="index.php/Talk_MFD_ifTable_Testing.html?title=Talk:MFD:ifTable:Testing&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="index7b8e.html?title=MFD:ifTable:Testing&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="index4659.html?title=MFD:ifTable:Testing&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="index35b7.html?title=Special:UserLogin&amp;returnto=MFD%3AifTable%3ATesting&amp;returntoquery=printable%3Dyes&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="indexaacf.html?title=Special:UserLogin&amp;returnto=MFD%3AifTable%3ATesting&amp;returntoquery=printable%3Dyes" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="index.php/Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="index.php/Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="index.php/Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="index.php/FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="index.php/Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="index.php/Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="index.php/Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="index.php/Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="index.php/Special_WhatLinksHere/MFD_ifTable_Testing.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="index.php/Special_RecentChangesLinked/MFD_ifTable_Testing.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="index.php/Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-permalink"><a href="index74e6.html?title=MFD:ifTable:Testing&amp;oldid=5163" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="index56a9.html?title=MFD:ifTable:Testing&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 13 July 2011, at 17:48.</li>
+									<li id="privacy"><a href="index.php/Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="index.php/Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="index.php/Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":162});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=MFD:ifTable:Testing&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:21:12 GMT -->
+</html>

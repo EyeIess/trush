@@ -1,0 +1,314 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-5/commands/snmptranslate.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:45:45 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../../../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../../../print1.css" />
+  </head>
+  <body background="../../../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../../../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../../../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../../../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../../../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../../../index.html">About</a><br />
+        
+
+        <a href="../../../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../../../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="../index.html"
+                  title="Net-SNMP v5 tutorial">Version 5.x</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../../tutorial-4/index.html"
+                  title="UCD-SNMP v4 tutorial">Version 4.x</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../../../docs/readmefiles.html">Documentation</a><br />
+        
+
+        <a href="../../../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../../../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../../../dev/projects.html">Development</a><br />
+        
+
+        <a href="../../../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>NET-SNMP Tutorial -- snmptranslate</title>
+  </head>
+
+  <body>
+    <h1>NET-SNMP Tutorial -- snmptranslate</h1>
+    <p>
+      The <b>snmptranslate</b> tool is a very powerful tool that
+      allows you to browse the MIB tree in various ways from the
+      command line.
+    <p>
+      In its simplest form, it merely looks up an OID and spits it
+      back out in textual form:
+<pre>
+<ul>
+% <b>snmptranslate .1.3.6.1.2.1.1.3.0</b>
+SNMPv2-MIB::sysUpTime.0
+</ul>
+</pre>
+    <p>
+      It can also translate into numerical results as well, by adding
+      the -On flag to its options
+<pre>
+<ul>
+% <b>snmptranslate -On SNMPv2-MIB::system.sysUpTime.0</b>
+.1.3.6.1.2.1.1.3.0
+</ul>
+</pre>
+    <p>
+      Note that the argument passed can describe a OID in any fashion, 
+      and the -On flag merely toggles which type of output is
+      displayed:
+
+<pre>
+<ul>
+% <b>snmptranslate .iso.3.6.1.private.enterprises.2021.2.1.prNames.0</b>
+NET-SNMP-MIB::prNames.0
+% <b>snmptranslate -On .iso.3.6.1.private.enterprises.2021.2.1.prNames.0</b>
+.1.3.6.1.4.1.2021.2.1.2.0
+</ul>
+</pre>
+    <p>
+      Note how the oid was abbreviated for you?  You can change this
+      behaviour as well with -Of:
+<pre>
+<ul>
+% <b>snmptranslate -Of .iso.3.6.1.private.enterprises.2021.2.1.prNames.0</b>
+.iso.org.dod.internet.private.enterprises.ucdavis.procTable.prEntry.prNames.0
+</ul>
+</pre>
+    <p>
+      The problem with the above commands is that you have to remember
+      the entire OID for what you're looking for.  Now, we wouldn't be
+      a very good package if we didn't provide some sort of random-access
+      lookup function right?  Well, the good news is that we do.
+      <i>-IR</i> nicely does this for us, and searches the MIB tree
+      for the node you want:
+<pre>
+<ul>
+% <b>snmptranslate sysUpTime.0</b>
+Invalid object identifier: sysUpTime.0
+% <b>snmptranslate -IR sysUpTime.0</b>
+SNMPv2-MIB::sysUpTime.0
+</ul>
+</pre>
+    <p> Finally, it'll even try to do regex pattern matching to find
+    the exact node you want given only a piece of its name by using
+    the -Ib (best match) option:
+<pre>
+<ul>
+% <b>snmptranslate -Ib 'sys.*ime'</b>
+system.sysUpTime
+</pre>
+</ul>
+    <p> To get a list of all the nodes that match a given pattern, use 
+    the -TB flag:
+
+<pre>
+<ul>
+% <b>snmptranslate -TB 'vacm.*table'</b>
+SNMP-VIEW-BASED-ACM-MIB::vacmViewTreeFamilyTable
+SNMP-VIEW-BASED-ACM-MIB::vacmAccessTable
+SNMP-VIEW-BASED-ACM-MIB::vacmSecurityToGroupTable
+SNMP-VIEW-BASED-ACM-MIB::vacmContextTable
+</pre>
+</ul>
+    <p> To get extended information about a mib node, use the -Td
+    (description) flag:
+<pre>
+<ul>
+% <b>snmptranslate -On -Td -Ib 'sys.*ime'</b>
+.1.3.6.1.2.1.1.3
+sysUpTime OBJECT-TYPE
+  -- FROM	SNMPv2-MIB, RFC1213-MIB
+  SYNTAX	TimeTicks
+  MAX-ACCESS	read-only
+  STATUS	current
+  DESCRIPTION	"The time (in hundredths of a second) since the network
+            management portion of the system was last re-initialized."
+::= { iso(1) org(3) dod(6) internet(1) mgmt(2) mib-2(1) system(1) 3 }
+</ul>
+</pre>
+    <p> Finally, last but certainly not least, if you want a pretty
+    diagram of a section of the mib tree, check out the -Tp flag:
+<pre>
+<ul>
+% <b>snmptranslate -Tp -IR system</b>
++--system(1)
+   |
+   +-- -R-- String    sysDescr(1)
+   |        Textual Convention: DisplayString
+   +-- -R-- ObjID     sysObjectID(2)
+   +-- -R-- TimeTicks sysUpTime(3)
+   +-- -RW- String    sysContact(4)
+   |        Textual Convention: DisplayString
+   +-- -RW- String    sysName(5)
+   |        Textual Convention: DisplayString
+   +-- -RW- String    sysLocation(6)
+   |        Textual Convention: DisplayString
+   +-- -R-- Integer   sysServices(7)
+   +-- -R-- TimeTicks sysORLastChange(8)
+   |        Textual Convention: TimeStamp
+   |
+   +--sysORTable(9)
+      |
+      +--sysOREntry(1)
+         |
+         +-- ---- Integer   sysORIndex(1)
+         +-- -R-- ObjID     sysORID(2)
+         +-- -R-- String    sysORDescr(3)
+         |        Textual Convention: DisplayString
+         +-- -R-- TimeTicks sysORUpTime(4)
+                  Textual Convention: TimeStamp
+</ul>
+</pre>
+    <p> As a homework assignment, we'll leave it up to you to run
+    <i>snmptranslate -Tp</i> without an oid argument, which prints the
+    known MIB tree in its entirety.
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../../../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/tutorial/tutorial-5/commands/snmptranslate.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:45:45 GMT -->
+</html>
+
+
+

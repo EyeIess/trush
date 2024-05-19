@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/TUT:Writing_a_Subagent by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:01:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>TUT:Writing a Subagent - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"TUT:Writing_a_Subagent","wgTitle":"TUT:Writing a Subagent","wgCurRevisionId":5770,"wgRevisionId":5770,"wgArticleId":1754,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"TUT:Writing_a_Subagent","wgRelevantArticleId":1754,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="../load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="../load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<link rel="shortcut icon" href="../../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="../opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://net-snmp.sourceforge.io/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="../apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-TUT_Writing_a_Subagent skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">TUT:Writing a Subagent</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>First off, you need to write a mib module first before you can do this part of the tutorial. We assume you have read and completed the <a href="TUT_Writing_a_MIB_Module.html" title="TUT:Writing a MIB Module"> mib module portion</a> of the toolkit tutorial. The AgentX library support we offer provides an easy-to-use interface that allows the same mib module API to be used in either the core agent or in a agentx subagent, and thus your code can be designed to operate in either mode [no re-writing required!]. 
+</p><p>When you're first testing your code, we do recommend compiling it directly into the main agent even if you're going to use AgentX later. Compiling it directly into the master agent often makes debugging a little bit easier and takes the AgentX protocol out of the mix just to be sure. Once it's working right in the master agent, then it's easy to simply remove the support from the master agent and make a subagent instead [and, again, the nifty thing is that the mib API code doesn't need to change] 
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Building_and_testing_example_subagent"><span class="tocnumber">1</span> <span class="toctext">Building and testing example subagent</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Get_the_code"><span class="tocnumber">1.1</span> <span class="toctext">Get the code</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Build_the_subagent"><span class="tocnumber">1.2</span> <span class="toctext">Build the subagent</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Start_the_master_agent"><span class="tocnumber">1.3</span> <span class="toctext">Start the master agent</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#Running_master_agent_as_non-root"><span class="tocnumber">1.3.1</span> <span class="toctext">Running master agent as non-root</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="#Configuring_an_existing_agent_as_a_master_agent"><span class="tocnumber">1.3.2</span> <span class="toctext">Configuring an existing agent as a master agent</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-7"><a href="#Test_object_without_subagent"><span class="tocnumber">1.4</span> <span class="toctext">Test object without subagent</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Start_the_subagent"><span class="tocnumber">1.5</span> <span class="toctext">Start the subagent</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="#Unprivileged_subagent"><span class="tocnumber">1.5.1</span> <span class="toctext">Unprivileged subagent</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#subagent_as_root"><span class="tocnumber">1.5.2</span> <span class="toctext">subagent as root</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-11"><a href="#Test_object_with_subagent"><span class="tocnumber">1.6</span> <span class="toctext">Test object with subagent</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#Instrumenting_your_own_code_with_agentx_subagent_support"><span class="tocnumber">2</span> <span class="toctext">Instrumenting your own code with agentx subagent support</span></a>
+<ul>
+<li class="toclevel-2 tocsection-13"><a href="#Beginner_Tips"><span class="tocnumber">2.1</span> <span class="toctext">Beginner Tips</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Debugging_Tips"><span class="tocnumber">2.2</span> <span class="toctext">Debugging Tips</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Tutorial_Sections"><span class="tocnumber">3</span> <span class="toctext">Tutorial Sections</span></a>
+<ul>
+<li class="toclevel-2"><a href="#About_the_SNMP_Protocol"><span class="tocnumber">3.1</span> <span class="toctext">About the SNMP Protocol</span></a></li>
+<li class="toclevel-2"><a href="#Net-SNMP_Command_Line_Applications"><span class="tocnumber">3.2</span> <span class="toctext">Net-SNMP Command Line Applications</span></a></li>
+<li class="toclevel-2"><a href="#Application_Configuration"><span class="tocnumber">3.3</span> <span class="toctext">Application Configuration</span></a></li>
+<li class="toclevel-2"><a href="#Net-SNMP_Daemons"><span class="tocnumber">3.4</span> <span class="toctext">Net-SNMP Daemons</span></a></li>
+<li class="toclevel-2"><a href="#Coding_Tutorials"><span class="tocnumber">3.5</span> <span class="toctext">Coding Tutorials</span></a></li>
+<li class="toclevel-2"><a href="#Debugging_SNMP_Applications_and_Agents"><span class="tocnumber">3.6</span> <span class="toctext">Debugging SNMP Applications and Agents</span></a></li>
+<li class="toclevel-2"><a href="#Operating_System_Specific_Tutorials"><span class="tocnumber">3.7</span> <span class="toctext">Operating System Specific Tutorials</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Building_and_testing_example_subagent">Building and testing example subagent</span></h2>
+<h3><span class="mw-headline" id="Get_the_code">Get the code</span></h3>
+<p>For example purposes, we'll refer to some example MIB objects and code: the <a rel="nofollow" class="external text" href="../../tutorial/tutorial-5/toolkit/mib_module/NET-SNMP-TUTORIAL-MIB.txt">NET-SNMP-TUTORIAL-MIB</a> MIB, and the <a rel="nofollow" class="external text" href="../../tutorial/tutorial-5/toolkit/demon/nstAgentSubagentObject.c">example mib module</a> and it's <a rel="nofollow" class="external text" href="../../tutorial/tutorial-5/toolkit/demon/nstAgentSubagentObject.h">header file</a>. 
+</p>
+<h3><span class="mw-headline" id="Build_the_subagent">Build the subagent</span></h3>
+<p>There are two ways to compile a mib module into a subagent. You can do it yourself, described in detail below, or you can take your mib module and attempt to make a quick-and-dirty subagent automatically using the net-snmp-config script: 
+</p>
+<dl><dd><i>ignore the warnings that the script generates due to un-prototyped init_ functions</i></dd></dl>
+<pre>&#160;%  <b>net-snmp-config --compile-subagent mysubagent nstAgentSubagentObject.c</b>
+ generating the tmporary code file: netsnmptmp.12259.c
+ checking for init_nstAgentSubagentObject in nstAgentSubagentObject.c
+ init_nstAgentSubagentObject(void)
+ running: gcc  -Dlinux -I. -I/usr/local/include -o nstAgentSubagentObject netsnmptmp.12259.c  nstAgentSubagentObject.c -L/usr/local/lib  -lnetsnmpagent -lnetsnmphelpers -lnetsnmpmibs -lnetsnmp
+ netsnmptmp.12259.c: In function `main':
+ netsnmptmp.12259.c:26: warning: implicit declaration of function `init_nstAgentSubagentObject'
+ removing the tmporary code file: netsnmptmp.12259.c
+ subagent program nstAgentSubagentObject created
+</pre>
+<p>If all goes well, this should have produced a mysubagent binary file (like the script output above chose).
+</p>
+<h3><span class="mw-headline" id="Start_the_master_agent">Start the master agent</span></h3>
+<p>You can then start the snmpd master agent (if you didn't do so in the previous example and then start your subagent test it's results. 
+</p>
+<h4><span class="mw-headline" id="Running_master_agent_as_non-root">Running master agent as non-root</span></h4>
+<p>You can run a test agent on a non-privileged port for test purposes:
+</p>
+<pre>&#160;% <b>snmpd -f -Lo -C --rwcommunity=public --master=agentx --agentXSocket=tcp:localhost:1705 udp:1161</b>
+</pre>
+<h4><span class="mw-headline" id="Configuring_an_existing_agent_as_a_master_agent">Configuring an existing agent as a master agent</span></h4>
+<p>When you run the net-snmp snmpd master agent, in your snmpd.conf file you must put a line that says "master agentx" to turn on the AgentX master agent support. If you haven't done this you'll have to stop the agent, add the configuration line, and restart the snmpd master agent before the below example will work. [note that the previous example didn't have you did this, since it wasn't relying on AgentX support] 
+</p>
+<h3><span class="mw-headline" id="Test_object_without_subagent">Test object without subagent</span></h3>
+<p><i>before you start the subagent, you should get an error</i>
+</p>
+<pre>&#160;% <b>snmpget localhost NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0</b>
+ NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0 = No Such Object available on this agent at this OID
+</pre>
+<h3><span class="mw-headline" id="Start_the_subagent">Start the subagent</span></h3>
+<p><i>Start the subagent, which should attach to the master and offer the mib data in question</i>
+</p>
+<h4><span class="mw-headline" id="Unprivileged_subagent">Unprivileged subagent</span></h4>
+<p>If you ran your  master agent unprivilidged, you need to do the same with the subagent.
+</p>
+<pre>&#160;% <b>./mysubagent -f -Lo -x  tcp:localhost:1705</b>
+</pre>
+<h4><span class="mw-headline" id="subagent_as_root">subagent as root</span></h4>
+<pre>&#160;% <b>./mysubagent</b>
+</pre>
+<h3><span class="mw-headline" id="Test_object_with_subagent">Test object with subagent</span></h3>
+<p>now the request should return valid data
+</p>
+<pre>&#160;% <b>snmpget localhost NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0</b>
+ NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0 = INTEGER: 2
+ 
+&#160;% <b>snmpget localhost NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0</b>
+ NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0 = INTEGER: 2
+ 
+&#160;% <b>snmpset localhost NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0 = 5</b>
+ NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0 = INTEGER: 5
+ 
+&#160;% <b>snmpget localhost NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0</b>
+ NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0 = INTEGER: 5
+   
+</pre>
+<h2><span class="mw-headline" id="Instrumenting_your_own_code_with_agentx_subagent_support">Instrumenting your own code with agentx subagent support</span></h2>
+<p>It's probably more likely that you want to compile in your new code into a previously existing application, and the auto-building of the subagent using the net-snmp-config command isn't appropriate. 
+</p><p>Lets take the previous example and implement it in our own process which attaches to the master agent using the AgentX protocol. This is easier than you might think, as we provide libraries to do the work for you. We merely compile it ourselves this time, outside the main net-snmp package and put a main() wrapper around it. Functionally, this is all the net-snmp-config --compile-subagent script is doing for you above. 
+</p><p>First, the example files you'll need: 
+</p><p>Here are the files discussed in this example so you can download them: 
+</p>
+<table cellspacing="0" border="1" style="background-color: #ccf; margin-left: 50px;">
+<tr>
+<th> File
+</th>
+<th> Description
+</th></tr>
+<tr>
+<td> <a rel="nofollow" class="external text" href="../../tutorial/tutorial-5/toolkit/demoapp/Makefile">Makefile</a> </td>
+<td> A simple makefile used to build the projects
+</td></tr>
+<tr>
+<td> <a rel="nofollow" class="external text" href="../../tutorial/tutorial-5/toolkit/mib_module/NET-SNMP-TUTORIAL-MIB.txt">NET-SNMP-TUTORIAL-MIB.txt</a> </td>
+<td> The MIB we'll be writing code for in the various pieces of the agent extension tutorial
+</td></tr>
+<tr>
+<td> <a rel="nofollow" class="external text" href="../../tutorial/tutorial-5/toolkit/demon/example-demon.c">example-demon.c</a> </td>
+<td> The C code file containing "main" and net-snmp initialization
+</td></tr>
+<tr>
+<td> <a rel="nofollow" class="external text" href="../../tutorial/tutorial-5/toolkit/demon/nstAgentSubagentObject.c">nstAgentSubagentObject.c</a> </td>
+<td> The nstAgentSubagentObject.c mib C code file
+</td></tr>
+<tr>
+<td> <a rel="nofollow" class="external text" href="../../tutorial/tutorial-5/toolkit/demon/nstAgentSubagentObject.h">nstAgentSubagentObject.h</a> </td>
+<td> The nstAgentSubagentObject.h mib code header file
+</td></tr></table>
+<p>Build the example demon using the Makefile, as shown below. Note that to compile it, the Makefile uses the net-snmp-config command to generate a list of needed compilation flags and compilation libraries. You might run the following commands in a shell to see what type of output they provide: 
+</p>
+<pre>&#160;% make example-demon
+ gcc -I. `net-snmp-config --cflags`   -c -o example-demon.o example-demon.c
+ gcc -I. `net-snmp-config --cflags`   -c -o nstAgentSubagentObject.o nstAgentSubagentObject.c
+ gcc -o example-demon example-demon.o nstAgentSubagentObject.o  `net-snmp-config --agent-libs`
+</pre>
+<p>Then, fire up the net-snmp snmpd master agent if you haven't yet. In your snmpd.conf file you must put a line that says "master agentx" to turn on the master agent support, so do this before running snmpd. If you have the mysubagent application shown above still running, make sure you kill it first as this subagent will conflict with that one. 
+</p><p>You should then be able to run your new program (example-demon) and access the data housed within it. A good test is to do is to ensure that you can't access your data before starting it, and that you can after starting it. An example of all of this is shown below (which looks almost exactly like the above "auto-built" example): 
+</p><p><i>before you start the subagent, you should get an error</i>
+</p>
+<pre>&#160;% <b>snmpget localhost NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0</b>
+ NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0 = No Such Object available on this agent at this OID
+</pre>
+<p><i>Start the subagent [as root], which should attach to the master and offer the mib data in question</i>
+</p>
+<pre>&#160;% <b>./example-demon &amp;</b>
+</pre>
+<p><i>now the request should return valid data</i>
+</p>
+<pre>&#160;% <b>snmpget localhost NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0</b>
+ NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0 = INTEGER: 2
+ 
+&#160;% <b>snmpget localhost NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0</b>
+ NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0 = INTEGER: 2
+ 
+&#160;% <b>snmpset localhost NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0 = 5</b>
+ NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0 = INTEGER: 5
+ 
+&#160;% <b>snmpget localhost NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0</b>
+ NET-SNMP-TUTORIAL-MIB::nstAgentSubagentObject.0 = INTEGER: 5
+   
+</pre>
+<h3><span class="mw-headline" id="Beginner_Tips">Beginner Tips</span></h3>
+<p>For all those of you that have just installed net-SMNP note that with the default snmpd.conf snmpget will keep giving you messages like
+</p><p><b>NET-SNMP-TUTORIAL-MIB::nstAgentModuleObject = No Such Object available on this agent at this OID</b>
+</p><p>That's because the public community is restricted to <b>.iso.org.dod.internet.mgmt.mib-2.system</b> sub-tree. To grant access to the whole iso tree you should edit the 
+snmpd.conf file (typically found at /etc/snmp).
+</p><p><i>Locate and comment the following line.</i>
+</p>
+<pre> com2sec paranoid  default         public
+</pre>
+<p><i>Uncomment the two following lines.</i>
+</p>
+<pre> com2sec readonly  default         public
+ com2sec readwrite default         private
+</pre>
+<p><i>Make sure you have the following lines</i>
+</p>
+<pre> rocommunity public
+ rwcommunity private
+</pre>
+<p>Furthermore when using snmpget or snmpset you should use the -c &lt;communityname&gt; option, with 'public' for read only access and 'private' for read write access along with the -v1 or -v2c options.
+</p><p>These tips are just for making this tutorial work easily and with minimal changes to snmpd.conf. They provide really poor security and must be changed to suitable settings for a real-world subagent.
+</p>
+<h3><span class="mw-headline" id="Debugging_Tips">Debugging Tips</span></h3>
+<p>If you're having problems, it's helpful to pass -Dagentx on the command line to the snmpd master agent to get it to spew out a bunch of debugging information about it's agentx transactions. Note that normally the agent will print this debugging information to it's normal log file, so you might add the -f and -L flags to make it print to the screen
+</p>
+<h2><span class="mw-headline" id="Tutorial_Sections">Tutorial Sections</span></h2>
+<h3><span class="mw-headline" id="About_the_SNMP_Protocol">About the SNMP Protocol</span></h3>
+<p>These tutorial links talk about SNMP generically and how the protocol itself works.  They are good introductory reading material and the concepts are important to understand before diving into the later tutorials about Net-SNMP itself.
+</p>
+<ul><li> <a href="TUT_SNMP.html" title="TUT:SNMP"> How SNMP Works</a>: About the protocol itself (GETs, GETNEXTs, etc)</li>
+<li> <a href="TUT_MIBs.html" title="TUT:MIBs"> What data is in SNMP</a>: All about SNMP <i>Management Information Bases</i> (MIBs)</li>
+<li> <a href="TUT_Security.html" title="TUT:Security"> Securing SNMP</a>: How to use the SNMP protocol securely</li></ul>
+<h3><span class="mw-headline" id="Net-SNMP_Command_Line_Applications">Net-SNMP Command Line Applications</span></h3>
+<p>These tutorial pages discuss the command line tools provided in the Net-SNMP suite of tools.  Nearly all the example commands in these tutorials works if you try it yourself, as they're all examples that talk to our online Net-SNMP test agent.  Given them a shot!
+</p>
+<ul><li> <a href="TUT_snmptranslate.html" title="TUT:snmptranslate"> snmptranslate</a>: learning about the MIB tree.</li>
+<li> <a href="TUT_snmpget.html" title="TUT:snmpget"> snmpget</a>: retrieving data from a host.</li>
+<li> <a href="TUT_snmpgetnext.html" title="TUT:snmpgetnext"> snmpgetnext</a>: retrieving unknown indexed data.</li>
+<li> <a href="TUT_snmpwalk.html" title="TUT:snmpwalk"> snmpwalk</a>: retrieving lots of data at once!</li>
+<li> <a href="TUT_snmptable.html" title="TUT:snmptable"> snmptable</a>: displaying a table.</li>
+<li> <a href="TUT_snmpset.html" title="TUT:snmpset"> snmpset</a>: peforming write operations.</li>
+<li> <a href="TUT_snmpbulkget.html" title="TUT:snmpbulkget"> snmpbulkget</a>: communicates with a network entity using SNMP GETBULK request</li>
+<li> <a href="TUT_snmpbulkwalk.html" title="TUT:snmpbulkwalk"> snmpbulkwalk</a>: retrieve a sub-tree of management values using SNMP GETBULK requests.</li>
+<li> <a href="TUT_snmptrap.html" title="TUT:snmptrap"> snmptrap</a>: Sending and receiving traps, and acting upon them. 
+<ul><li> <a href="TUT_snmptrap_SNMPv3.html" title="TUT:snmptrap SNMPv3"> Traps/informs with SNMPv3/USM</a>: Sending and receiving SNMPv3/USM TRAPs and INFORMs</li>
+<li> <a href="TUT_agentxtrap.html" title="TUT:agentxtrap"> Sending Traps/Informs via AgentX</a>: Sending notifications from the command line through snmpd </li></ul></li>
+<li> Common command line options: 
+<ul><li> <a href="TUT_Using_and_loading_MIBS.html" title="TUT:Using and loading MIBS"> Using and loading MIBS</a></li>
+<li> <a href="TUT_SNMPv3_Options.html" title="TUT:SNMPv3 Options"> SNMPv3/USM Options</a></li>
+<li> <a href="TUT_Using_TLS.html" title="TUT:Using TLS"> Using SNMPv3 over TLS and DTLS</a></li>
+<li> <a href="TUT_Customized_Output_Formats.html" title="TUT:Customized Output Formats"> Customized Output Formats</a></li></ul></li>
+<li> <a href="TUT_mib2c_config_files.html" title="TUT:mib2c config files"> Writing mib2c config files </a></li></ul>
+<h3><span class="mw-headline" id="Application_Configuration">Application Configuration</span></h3>
+<p>All of our applications support configuration to allow you to customize how they behave.
+</p>
+<ul><li> <a href="TUT_Configuring_Net-SNMP_Applications.html" title="TUT:Configuring Net-SNMP Applications"> Configuration files for Net-SNMP applications</a></li></ul>
+<h3><span class="mw-headline" id="Net-SNMP_Daemons">Net-SNMP Daemons</span></h3>
+<p>Net-SNMP comes with two long-running daemons: a SNMP agent (<i><a href="Snmpd.html" title="Snmpd">snmpd</a></i>) for responding to management requests and a notification receiver (<i><a href="Snmptrapd.html" title="Snmptrapd">snmptrapd</a></i>) for receiving SNMP notifications.
+</p>
+<ul><li> SNMP Agent (snmpd) Configuration
+<ul><li> <a href="TUT_snmpd_configuration.html" title="TUT:snmpd configuration">Configuration Basics</a></li>
+<li> <a href="Vacm.html" title="Vacm"> Access Control (VACM)</a></li>
+<li> <a href="Snmpconf.html" title="Snmpconf">snmpconf</a></li></ul></li>
+<li> SNMP Notification Receiver (snmptrapd)
+<ul><li> <a href="TUT_Configuring_snmptrapd.html" title="TUT:Configuring snmptrapd">Configuring snmptrapd</a></li>
+<li> <a href="TUT_Configuring_snmptrapd_to_receive_SNMPv3_notifications.html" title="TUT:Configuring snmptrapd to receive SNMPv3 notifications">Configuring SNMPv3 notifications</a></li>
+<li> <a href="TUT_Configuring_snmptrapd_to_parse_MIBS_from_3rd_party_Vendors.html" title="TUT:Configuring snmptrapd to parse MIBS from 3rd party Vendors">Configuring snmptrapd to understand vendor-specific MIBS (Cisco)</a></li></ul></li>
+<li> Agent Monitoring
+<ul><li> <a href="TUT_DisMan_Monitoring.html" title="TUT:DisMan Monitoring">DisMan Monitoring</a></li>
+<li> <a href="TUT_MRTG.html" title="TUT:MRTG">Monitoring with MRTG</a></li></ul></li></ul>
+<h3><span class="mw-headline" id="Coding_Tutorials">Coding Tutorials</span></h3>
+<p>Net-SNMP comes with a highly flexible and extensible API.  The API allows you to create your own commands, add extensions to the agent to support your own <a href="MIB.html" title="MIB">MIBs</a> and perform specialized processing of notifications.
+</p>
+<ul><li> Client / Manager Coding Tutorials
+<ul><li> <a href="TUT_Simple_Application.html" title="TUT:Simple Application">Writing a simple application</a></li>
+<li> <a href="TUT_Simple_Async_Application.html" title="TUT:Simple Async Application">Writing a simple asynchronous application</a></li></ul></li>
+<li> Agent Coding Tutorials
+<ul><li> The <a href="Agent_Architecture.html" title="Agent Architecture">Agent Architecture</a> page might be worth reading before or after the agent coding tutorials, and describes how the <a href="Agent_Helpers.html" title="Agent Helpers">Agent Helpers</a> work under the hood.</li>
+<li> <a href="TUT_Writing_a_MIB_Module.html" title="TUT:Writing a MIB Module"> Writing a mib module</a> to serve information described by an SNMP MIB, and how to compile it into the net-snmp snmpd agent.</li>
+<li> <a href="TUT_Writing_a_Dynamically_Loadable_Object.html" title="TUT:Writing a Dynamically Loadable Object"> Writing a Dynamically Loadable Object</a> that can be loaded into the SNMP agent.</li>
+<li> <strong class="selflink"> Writing a Subagent</strong> that can be run to attach to the snmpd master agent.</li>
+<li> <a href="Tut_Extending_snmpd_using_perl.html" title="Tut:Extending snmpd using perl"> Writing a perl plugin to extend the agent</a> using the NetSNMP::agent module.</li>
+<li> <a href="Tut_Extending_snmpd_using_shell_scripts.html" title="Tut:Extending snmpd using shell scripts"> Writing shell scripts to extend the agent</a></li>
+<li> Using mib2c to help write an agent code template for you
+<ul><li> <a href="TUT_mib2c_General_Overview.html" title="TUT:mib2c General Overview"> General mib2c Overview</a></li>
+<li> <a href="TUT_mib2c-update.html" title="TUT:mib2c-update"> Using the mib2c-update script to <i>recode</i> your code</a></li>
+<li> <a rel="nofollow" class="external text" href="../../tutorial/tutorial-5/toolkit/mfd/index.html">mib2c.mfd.conf tutorial</a></li></ul></li></ul></li>
+<li> <a href="TUT_Header_files.html" title="TUT:Header files">Header files and autoconf</a></li></ul>
+<h3><span class="mw-headline" id="Debugging_SNMP_Applications_and_Agents">Debugging SNMP Applications and Agents</span></h3>
+<p>All our tools and applications have extensive debugging output.  These tutorials talk about how the debugging system works and how you can add your own debugging statements to you code:
+</p>
+<ul><li> <a href="Debugging_output.html" title="Debugging output"> Debugging output printed using the -D command line option</a>
+<ul><li> <a href="DEBUGMSG.html" title="DEBUGMSG"> Putting DEBUGMSG tokens in your code</a></li></ul></li>
+<li> <a href="Debugging_packet_traces.html?title=Debugging_packet_traces&amp;action=edit&amp;redlink=1" class="new" title="Debugging packet traces (page does not exist)"> Using -Ddump to display packet breakdowns</a></li>
+<li> <a href="Debugger.html" title="Debugger">Debugging using GDB</a></li></ul>
+<h3><span class="mw-headline" id="Operating_System_Specific_Tutorials">Operating System Specific Tutorials</span></h3>
+<ul><li> Building With Visual Studio 2005 Express
+<ul><li> <a href="Using_the_command_line_and_nmake.html" title="Using the command line and nmake">Using the command line and nmake</a></li></ul></li>
+<li> Building Net-SNMP 64-bit with Visual C++ 2010 Express
+<ul><li> <a href="Using_the_command_line_and_nmake_(VC%2b%2b_2010_Express).html" title="Using the command line and nmake (VC++ 2010 Express)">Using the command line and nmake (VC++ 2010 Express)</a></li></ul></li>
+<li> <a href="Net-Snmp_on_Ubuntu.html" title="Net-Snmp on Ubuntu">Net-Snmp on Ubuntu</a></li>
+<li> <a href="Net-SNMP_and_lm-sensors_on_Ubuntu_10.html" title="Net-SNMP and lm-sensors on Ubuntu 10.04">Net-SNMP and lm-sensors on Ubuntu 10.04</a></li>
+<li> Net-SNMP for windows:
+<ul><li> How to install: <a rel="nofollow" class="external autonumber" href="http://www.netadmintools.com/art487.html">[1]</a></li>
+<li> How to configure: <a rel="nofollow" class="external autonumber" href="http://www.netadmintools.com/art488.html">[2]</a></li></ul></li></ul>
+
+<!-- 
+NewPP limit report
+Cached time: 20230912061440
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.031 seconds
+Real time usage: 0.037 seconds
+Preprocessor visited node count: 71/1000000
+Preprocessor generated node count: 102/1000000
+Post‐expand include size: 6434/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    7.858      1 - -total
+ 55.78%    4.383      1 - Template:TUT:File-Table-Top-and-basics
+ 41.96%    3.297      1 - Template:TUT:LIST
+ 26.35%    2.071      1 - Template:TUT:File-Table-Top
+-->
+
+<!-- Saved in parser cache with key n12694_wikidb:pcache:idhash:1754-0!*!0!!en!*!* and timestamp 20230912061440 and revision id 5770
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="https://net-snmp.sourceforge.io/wiki/index.php?title=TUT:Writing_a_Subagent&amp;oldid=5770">https://net-snmp.sourceforge.io/wiki/index.php?title=TUT:Writing_a_Subagent&amp;oldid=5770</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="TUT_Writing_a_Subagent.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="Talk_TUT_Writing_a_Subagent.html?title=Talk:TUT:Writing_a_Subagent&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="../indexd69a.html?title=TUT:Writing_a_Subagent&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="../indexacba.html?title=TUT:Writing_a_Subagent&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="../index9bf3.html?title=Special:UserLogin&amp;returnto=TUT%3AWriting+a+Subagent&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="../index7618.html?title=Special:UserLogin&amp;returnto=TUT%3AWriting+a+Subagent" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/TUT_Writing_a_Subagent.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/TUT_Writing_a_Subagent.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="../indexa269.html?title=TUT:Writing_a_Subagent&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="../indexf3ad.html?title=TUT:Writing_a_Subagent&amp;oldid=5770" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="../indexbbdb.html?title=TUT:Writing_a_Subagent&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 21 March 2014, at 12:07.</li>
+									<li id="privacy"><a href="Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":172});
+} );</script></body><!-- Cached 20230912061440 -->
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/TUT:Writing_a_Subagent by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:01:36 GMT -->
+</html>

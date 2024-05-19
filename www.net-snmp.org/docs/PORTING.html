@@ -1,0 +1,296 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+<!-- Mirrored from www.net-snmp.org/docs/PORTING.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:04:43 GMT -->
+<head>
+    <title>Net-SNMP</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    
+    <meta name="description" content="Net-SNMP" />
+
+    <meta name="author" content="Alex Burger" />
+
+    <meta name="Rating" content="General" />
+
+    <meta name="Keywords" content="net-snmp,ucd-snmp,netsnmp,ucdsnmp,snmp,snmp trap,trap,trap receiver,alert,network alert,network trouble,network downtime,snmp.conf,snmpd.conf,snmptrapd.conf,agentx.conf" />
+    <link rel="StyleSheet" type="text/css" href="../layout1.css" />
+    <link rel="StyleSheet" media="print,projection" type="text/css" href="../print1.css" />
+  </head>
+  <body background="../images/net-snmp-bg2.jpg">
+   
+    <div id="Header">
+      <!-- slogan -->
+      <div class="HeaderSmall" align="right"><br /><br /><i>Current release: 5.9.2</i></div>
+    </div>
+
+    <div id="HeaderMap">
+      <map name="logo" id="logo">
+        <area alt="Logo" shape="rect" coords="0,0,2000,40" href="../logo.html" title="Click here for details about the original Net-SNMP / UCD-SNMP logo"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="100%" height="40" border="0" src="../images/blank3.gif" alt="Logo" usemap="#logo"/> <br />
+    </div>
+
+    <div id="Header2">
+      <map name="homepage" id="homepage">
+        <area alt="Home page" shape="rect" coords="0,0,130,30" href="../index.html"></area>
+      </map>
+      <img align="left" vspace="0" hspace="0" width="130" height="30" border="0" src="../images/logos/logo1_65_tr_small.gif" alt="Net-SNMP" usemap="#homepage"/> <br />
+    </div>
+
+    
+    <div id="LeftSide">
+      <div id="skip"><a href="#Content">skip to page content</a><br /><br /></div>
+      <div id="Menu">
+
+        <!-- <a href="/" >Home</a><br /> -->
+
+        <a href="../index.html">About</a><br />
+        
+
+        <a href="../download.html" title="Download Net-SNMP binaries and source code">Download</a><br />
+
+        <a href="../wiki/index.php/Tutorials.html" >Tutorials</a><br />
+        
+
+        <a href="readmefiles.html">Documentation</a><br />
+        
+        <div id = "MenuSub">
+          <table>
+            <tr><td>&nbsp;&middot;</td><td><a href="readmefiles.html"
+                  title="README files included with the package">README files</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="FAQ.html" 
+                  title="Frequently Asked Questions">FAQ</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="INSTALL.html" 
+                  title="Intall instructions for *nix systems">INSTALL</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="man/index.html"
+                  title="Man pages for utilities, daemons, api etc">Man pages</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="mibs/index.html"
+                  title="The MIB files distributed with Net-SNMP">MIBS</a></td></tr>
+            <tr><td>&nbsp;&middot;</td><td><a href="../dev/agent/index.html"
+                  title="API documentation">API</a></td></tr>
+          </table>
+        </div>
+        
+
+        <a href="../wiki/index.html" title="Net-SNMP Wiki">Wiki</a><br />
+
+        <a href="../support/contacts.html" >Support</a><br />
+        
+
+        <a href="../dev/projects.html">Development</a><br />
+        
+
+        <a href="../related.html" title="Links to Net-SNMP related information and software">Related Info/SW</a><br />
+
+        <br />
+      </div>
+      <br />
+
+      <div id="ListSearch">
+          <form method="post" action="http://sourceforge.net/search/">
+          <span class="small">Archive Search:</span>
+       
+          <select name="forum_id">
+            <option value="4959">Users</option>
+            <option value="7152">Coders</option>
+            <option value="12455">Announce</option>
+            <option value="7153">Bugs</option>
+            <option value="7151">Patches</option>
+            <option value="33108">SVN (named "CVS")</option>
+          </select>
+       
+          <input type="hidden" name="type_of_search" value="mlists" />
+          <input type="hidden" name="group_id" value="12694" />
+          <input type="text" name="words" size=15 id="Words" value="" /><br />
+          <input type="submit" name="Search" value="Search" /><br />
+          <input type="checkbox" name="exact" value="1" checked />
+          <span id="Label">Require all words?</span>   
+        </form>
+      </div>
+      <br />
+
+      <div id="SiteSearch">
+          <form method=GET action="http://www.google.com/search">
+          <span class="small">Site Search:</span>
+          
+          <input type=hidden name=ie value=UTF-8>
+          <input type=hidden name=oe value=UTF-8>
+          <input type="text" name=q size=15 maxlength=255 value="" /><br />
+          <input type=hidden name=sitesearch value="www.net-snmp.org">
+          <input type=submit name=btnG VALUE="Google Search">
+          <a href="http://www.google.com/">
+            <img src="../../www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="absmiddle"></A>
+
+        </form>
+      </div>
+
+
+      
+      <div id="MenuSFLogo">
+        <a href="http://www.sourceforge.net/projects/net-snmp" target="sourceforge" title="Net-SNMP SourceForge project page"> <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=12694&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Net-SNMP Project" /></a>
+        
+      </div>
+  </div>
+    
+  <div id="Content">
+
+
+<!-- CONTENT START -->
+
+<p class="SectionTitle">
+PORTING
+</p>
+
+<pre>
+--- INTRODUCTION
+
+Just a quick note on porting and sending me patches:
+
+First off, you probably should subscribe to
+net-snmp-coders@lists.sourceforge.net by sending a message to
+net-snmp-coders-request@lists.sourceforge.net with a subject line of
+subscribe.  This is a mailing list to discuss all oft the coding
+aspects of the project.
+
+Additionally, you should probably be developing against the latest
+snapshot of the source code, which can be obtained through the
+net-snmp cvs server.  Details can be found at
+http://www.net-snmp.org/cvs/.
+
+If you send patches to us, it would greatly help us if you sent them
+to us based on the current checked out copy from CVS.  To do this,
+send us the output of "cvs diff -u" run in the top level net-snmp
+source tree after you have modified the files that will fix the
+problem or add the feature you're submitting the patch for.
+
+Quite a while back I started using the GNU autoconf testing suite to
+greatly enhance portability.  Because of this porting to new
+architectures is much easier than before.  However, new people porting
+the package to new architectures rarely take advantage of this setup
+and send me patches with lots of '#ifdef ARCH' type C code in it.  Let
+me say up front, I *hate* this type of coding now (even though I used
+to use it a lot).  What is better is to check for the necessary
+functionality using the configure script and then use the results of
+those tests.
+
+To do this, you need to install the GNU 'autoconf' package which also
+requires the GNU 'm4' (gm4) package as well.  This double installation
+is extremely easy and shouldn't take you more than 15 minutes max.
+After that, modify the configure.in and acconfig.h files as needed
+instead of modifying the config.h or configure files directly.  The
+Makefile will re-produce these files from the first two.
+
+Worst case: Don't put in #ifdef architecture style statements.
+Rather, create a new define in the s/ and m/ system specific header
+files and use those defines to test against in the C code.  This
+should only be done for things that can't be checked using configure
+though.
+
+Some autoconf examples:
+
+--- HEADER FILES
+
+In configure.in:
+  AC_CHECK_HEADERS(headdir/header.h)
+
+Then in your source code:
+  #ifdef HAVE_HEADDIR_HEADER_H
+    #include <headdir/header.h>
+  #ENDIF
+
+--- LIBRARY ROUTIENS
+
+In configure.in:
+  AC_CHECK_LIB(libexample, example_function)
+
+Thats it.  The Makefiles will automatically link against -llibexample
+if example_function is found in the library.
+
+--- FUNCTION CHECKS
+
+In configure.in:
+  AC_CHECK_FUNCS(example_function)
+
+In source code:
+  #ifdef HAVE_EXAMPLE_FUNCTION
+    /* use it */
+  #endif
+
+--- STRUCTURE MEMBER CHECKS
+
+In configure.in:
+  AC_CHECK_MEMBERS([struct STRUCTURE.MEMBER],,,[[
+#include lines
+]])
+                           ^^^^^^^^^ ^^^^^^  (change)
+
+In source code:
+  #ifdef HAVE_STRUCT_STRUCTURE_MEMBER
+    /* use it */
+  #endif
+
+--- READ THE MANUAL
+
+The GNU autoconf info files are extremely well written and easy to
+follow.  Please check them out.
+
+I'd be happy to help you through anything you don't understand or
+through more complex examples (eg, checking for structure parts or
+existance).  I'd be far less happy to get patches ignoring the above
+request.  If you simple can't abide by this, please send the patches
+anyway, but it'll just take me longer to get them applied.
+
+Submit the patch to http://www.net-snmp.org/patches/.
+Please include what version of the net-snmp package it was applied to
+and state the arcitectures you have tested it on.
+
+Thanks a lot for the consideration,
+Wes
+
+</pre>
+
+<br />
+<!-- CONTENT END -->
+<br />
+<div id="w3Valid" class="w3Valid">
+<p>
+<!-- 
+<a href="http://validator.w3.org/check/referer">
+  <img src="/images/valid-xhtml10.png" style="border:0"
+  alt="Valid XHTML 1.0!" height="31" width="88"/></a>
+-->
+<a href="../../jigsaw.w3.org/css-validator/validator6472.html?uri=http://www.net-snmp.org/layout1.css">
+  <img style="border:0;width:88px;height:31px"
+  src="../images/vcss.png" 
+       alt="Valid CSS!" />
+ </a>
+</p>
+</div> <!-- w3Valid /div -->
+</div> <!-- CONTENT END /div -->
+
+<div id="ModificationDate" class="ModificationDate">
+  <hr />
+
+<!-- MODIFICATION DATE START -->
+
+<p>Last modified: Wednesday, 01-Aug-2018 04:41:28 UTC<br/>
+For questions regarding web content and site functionality, please write to the <a href="mailto:net-snmp-users@lists.sourceforge.net">net-snmp-users mail list</a>.</p>
+
+<!-- MODIFICATION DATE END -->
+
+</div>
+
+</body>
+
+
+<!-- Mirrored from www.net-snmp.org/docs/PORTING.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:04:43 GMT -->
+</html>
+
+
+

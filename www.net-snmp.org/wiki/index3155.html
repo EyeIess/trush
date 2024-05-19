@@ -1,0 +1,774 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Containers&oldid=5283 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:35:20 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Containers - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Containers","wgTitle":"Containers","wgCurRevisionId":5283,"wgRevisionId":5283,"wgArticleId":1703,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Containers","wgRelevantArticleId":1703,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="http://www.net-snmp.org/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.net-snmp.org/wiki/opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.net-snmp.org/wiki/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="http://www.net-snmp.org/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Containers skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Containers</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"><div id="mw-revision-info">Revision as of 20:58, 3 August 2011 by <a href="http://www.net-snmp.org/wiki/index.php/User:Wes" title="User:Wes" class="mw-userlink">Wes</a> <span class="mw-usertoollinks">(<a href="http://www.net-snmp.org/wiki/index.php/User_talk:Wes" title="User talk:Wes">Talk</a> | <a href="http://www.net-snmp.org/wiki/index.php/Special:Contributions/Wes" title="Special:Contributions/Wes">contribs</a>)</span> <span class="comment">(<a href="#Introduction">→</a>‎<span dir="auto"><span class="autocomment">Introduction</span></span>)</span></div><br />
+				<div id="mw-revision-nav">(<a href="http://www.net-snmp.org/wiki/index.php?title=Containers&amp;diff=prev&amp;oldid=5283" title="Containers">diff</a>) <a href="http://www.net-snmp.org/wiki/index.php?title=Containers&amp;direction=prev&amp;oldid=5283" title="Containers">← Older revision</a> | Latest revision (diff) | Newer revision → (diff)</div></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>Some (incomplete) ramblings about netsnmp_containers...
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Types_of_Containers"><span class="tocnumber">2</span> <span class="toctext">Types of Containers</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Getting_a_Container"><span class="tocnumber">3</span> <span class="toctext">Getting a Container</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#MIB_indexes_vs_Container_indexes"><span class="tocnumber">4</span> <span class="toctext">MIB indexes vs Container indexes</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Comparison_routines"><span class="tocnumber">5</span> <span class="toctext">Comparison routines</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Subcontainers"><span class="tocnumber">6</span> <span class="toctext">Subcontainers</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Secondary_Indexes"><span class="tocnumber">6.1</span> <span class="toctext">Secondary Indexes</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Sub-sets"><span class="tocnumber">6.2</span> <span class="toctext">Sub-sets</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Container_Operations"><span class="tocnumber">7</span> <span class="toctext">Container Operations</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#Creating_a_container"><span class="tocnumber">7.1</span> <span class="toctext">Creating a container</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Adding_and_removing_data"><span class="tocnumber">7.2</span> <span class="toctext">Adding and removing data</span></a>
+<ul>
+<li class="toclevel-3 tocsection-12"><a href="#CONTAINER_INSERT"><span class="tocnumber">7.2.1</span> <span class="toctext">CONTAINER_INSERT</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#CONTAINER_REMOVE"><span class="tocnumber">7.2.2</span> <span class="toctext">CONTAINER_REMOVE</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#CONTAINER_CLEAR"><span class="tocnumber">7.2.3</span> <span class="toctext">CONTAINER_CLEAR</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-15"><a href="#Finding_data_in_a_container"><span class="tocnumber">7.3</span> <span class="toctext">Finding data in a container</span></a>
+<ul>
+<li class="toclevel-3 tocsection-16"><a href="#CONTAINER_FIND"><span class="tocnumber">7.3.1</span> <span class="toctext">CONTAINER_FIND</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-17"><a href="#Iterating_over_items_in_a_container"><span class="tocnumber">7.4</span> <span class="toctext">Iterating over items in a container</span></a>
+<ul>
+<li class="toclevel-3 tocsection-18"><a href="#CONTAINER_FOR_EACH"><span class="tocnumber">7.4.1</span> <span class="toctext">CONTAINER_FOR_EACH</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="#CONTAINER_ITERATOR.28x.29"><span class="tocnumber">7.4.2</span> <span class="toctext">CONTAINER_ITERATOR(x)</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="#CONTAINER_FIRST_and_CONTAINER_NEXT"><span class="tocnumber">7.4.3</span> <span class="toctext">CONTAINER_FIRST and CONTAINER_NEXT</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="#Which_method_to_choose.3F"><span class="tocnumber">7.4.4</span> <span class="toctext">Which method to choose?</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-22"><a href="#Miscellaneous_operations"><span class="tocnumber">7.5</span> <span class="toctext">Miscellaneous operations</span></a>
+<ul>
+<li class="toclevel-3 tocsection-23"><a href="#CONTAINER_SIZE"><span class="tocnumber">7.5.1</span> <span class="toctext">CONTAINER_SIZE</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-24"><a href="#Releasing_a_container"><span class="tocnumber">7.6</span> <span class="toctext">Releasing a container</span></a>
+<ul>
+<li class="toclevel-3 tocsection-25"><a href="#CONTAINER_FREE"><span class="tocnumber">7.6.1</span> <span class="toctext">CONTAINER_FREE</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-26"><a href="#Advanced_topics"><span class="tocnumber">7.7</span> <span class="toctext">Advanced topics</span></a>
+<ul>
+<li class="toclevel-3 tocsection-27"><a href="#CONTAINER_SET_OPTIONS_and_CONTAINER_CHECK_OPTION"><span class="tocnumber">7.7.1</span> <span class="toctext">CONTAINER_SET_OPTIONS and CONTAINER_CHECK_OPTION</span></a></li>
+<li class="toclevel-3 tocsection-28"><a href="#CONTAINER_GET_SUBSET"><span class="tocnumber">7.7.2</span> <span class="toctext">CONTAINER_GET_SUBSET</span></a></li>
+<li class="toclevel-3 tocsection-29"><a href="#CONTAINER_COMPARE.28x.2Cl.2Cr.29"><span class="tocnumber">7.7.3</span> <span class="toctext">CONTAINER_COMPARE(x,l,r)</span></a></li>
+<li class="toclevel-3 tocsection-30"><a href="#Shared_Container.2Fcache"><span class="tocnumber">7.7.4</span> <span class="toctext">Shared Container/cache</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-31"><a href="#Generic_Container_Examples"><span class="tocnumber">8</span> <span class="toctext">Generic Container Examples</span></a>
+<ul>
+<li class="toclevel-2 tocsection-32"><a href="#A_generic_.22store_some_strings.22_example"><span class="tocnumber">8.1</span> <span class="toctext">A generic "store some strings" example</span></a></li>
+<li class="toclevel-2 tocsection-33"><a href="#Storing_Key.2FValue_pairs"><span class="tocnumber">8.2</span> <span class="toctext">Storing Key/Value pairs</span></a></li>
+<li class="toclevel-2 tocsection-34"><a href="#A_more_SNMP-ish_Example"><span class="tocnumber">8.3</span> <span class="toctext">A more SNMP-ish Example</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Introduction">Introduction</span></h2>
+<p>Containers are a generic data interface,
+similar to a database. Like a database, you use an index (aka key) to access
+and sort the data. Containers use a compare function provided by the user to
+determine the sort order. The function is called with a pointer to two data
+items, and must return a value indicating which of the two has the lesser index
+value.
+</p><p>Are you a power user?  Jump straight to the <a href="#Generic_Container_Examples">examples</a> for some easy-to-read code showing how easy it use to use containers.
+</p>
+<h2><span class="mw-headline" id="Types_of_Containers">Types of Containers</span></h2>
+<p>There are several base types of containers:
+</p>
+<ul><li>sorted_singly_linked_list</li>
+<li>unsorted_singly_linked_list</li>
+<li>lifo (a last in, first out stack)</li>
+<li>fifo (a first in, first out stack)</li>
+<li>binary_array</li>
+<li>null (for testing)</li></ul>
+<p>Some of these have aliases:
+</p>
+<ul><li>table_container (binary_array)</li>
+<li>linked_list (sorted_singly_linked_list)</li>
+<li>ssll_container (sorted_singly_linked_list)</li></ul>
+<p>Some types also come with a comparison routine other than the usual OID index:
+</p>
+<ul><li>string or string:binary_array (binary_array with a string comparison function)</li></ul>
+<pre>Developer Tip:
+ New types are registered via netsnmp_container_register() and netsnmp_container_register_with_compare().
+</pre>
+<h2><span class="mw-headline" id="Getting_a_Container">Getting a Container</span></h2>
+<p>To get a container of a particular type,
+</p>
+<pre>netsnmp_container_find("type1:type2");
+</pre>
+<p>This will search for a container of "type1", and if not found, of "type2". It is a good idea to specify a custom name each time that you use a container. In the future, it will be possible to specify that certain tokens should map to certain container types. For example, say you are using a container while implementing the XyzWidgetMib, and you wanted to use a linked list, you could create your container like so:
+</p>
+<pre>container = netsnmp_container_find("XyzWidgetMib:linked_list");
+</pre>
+<p>This would look for an XyzWidgetMib container (which doesn't exist), and then default to using a linked list container. Once implemented, a configure option will allow you to alias XyzWidgetMib to an existing container type (e.g. a binary array), allowing the runtime-configuration to change the container type to a binary array, should the linked list perform poorly with a large data set.
+</p>
+<h2><span class="mw-headline" id="MIB_indexes_vs_Container_indexes">MIB indexes vs Container indexes</span></h2>
+<p>SNMP tables have one or more indexes. A table index may have multiple components which,
+taken together, uniquely identify a row.  All of the MIB
+indexes, taken together, are the primary container index. Even if a MIB table
+has a dozen indexes, the container only has one.
+</p><p>To clarify futher, here's an example. Let's say we are creating a SNMP
+interface to a hotel reservation system. The (simplified) table looks like
+this:
+</p><p>guestTable
+</p>
+<pre> guestEntry INDEX { building, room }
+   building INTEGER
+   room     INTEGER
+   name     STRING
+</pre>
+<p>So, the MIB has two indexes, the building and room numbers. The primary MIB
+index is the building, and the secondary MIB index is the room.  However, the
+primary index of the container will be the combined table index OIDs (building.room).
+</p>
+<h2><span class="mw-headline" id="Comparison_routines">Comparison routines</span></h2>
+<p>The default compare routine for containers assumes that the data record's first
+component is a netsnmp_index, so when using an OID as a key, you don't need to provide a comparison
+routine. If you wanted to provide your own compare routine, the primary container index compare
+function might look something like this:
+</p>
+<pre> int
+ _compare_room(guestTable *lh_guest, guestTable *rh_guests)
+ {
+   /* compare building, then room */
+   if(lh_guest-&gt;building == rh_guest-&gt;building) {
+       if(lh_guest-&gt;room == rh_guest-&gt;room)
+          return 0;
+       else {
+          if(lh_guest-&gt;room &lt; rh_guest-&gt;room)
+             return -1;
+          else
+             return 1;
+       }
+   }
+   else {
+      if(lh_guest-&gt;building &lt; rh_guest-&gt;building)
+        return -1;
+      else
+        return 1;
+   }
+ }
+</pre>
+<p>So we now have a container with the guest data, and we can look up
+data by building and room number. 
+</p>
+<pre>netsnmp_container *
+netsnmp_hotel_container_init(void)
+{
+    netsnmp_container *container;
+
+    // default to a table_container if no 'guest room' container is found
+    container = netsnmp_container_find("guest room:table_container");
+    if (NULL == container)
+        return NULL;
+    container-&gt;container_name = strdup("room container");
+
+    // use our custom ordering routine
+    container-&gt;compare = (netsnmp_container_compare*)_compare_room;
+
+    return container;
+}
+</pre>
+<h2><span class="mw-headline" id="Subcontainers">Subcontainers</span></h2>
+<p>A container can have a sub-container. There are two types of sub-containers: secondary indexes, and subsets.
+</p>
+<h3><span class="mw-headline" id="Secondary_Indexes">Secondary Indexes</span></h3>
+<p>So we now have a container with the guest data, and we can look up
+data by building and room number. What if our application now needs to generate
+a guest report, but sorted by name? We have the data, but in the wrong sort
+order. This is where you would use a secondary index to the container. The new
+compare might look like this:
+</p>
+<pre>int
+_compare_names(guestTable *lh_guest, guestTable *rh_guests)
+{
+   /* compare name, then building and room */
+   int rc = strcmp(lh_guest-&gt;name,rh_guest-&gt;name);
+   if(rc&#160;!= 0)
+      return rc;
+
+   return _compare_rooms(lh_guest, rh_guest); // defined above
+}
+</pre>
+<p>Setting up the container with two indexes would look something like this:
+</p>
+<pre>netsnmp_container *
+netsnmp_hotel_container_init(void)
+{
+    netsnmp_container *container1, *container2;
+
+    /** create 2 containers */
+    container1 = netsnmp_container_find("guest room:table_container");
+    if (NULL == container1)
+        return NULL;
+    container1-&gt;container_name = strdup("room container");
+
+    container2 = netsnmp_container_find("guest name:table_container");
+    if (NULL == container2) {
+        CONTAINER_FREE(container1);
+        return NULL;
+    }
+    container2-&gt;container_name = strdup("guest container");
+    container2-&gt;compare = (netsnmp_container_compare*) _compare_name;
+
+    /** add secondary index to container */
+    netsnmp_container_add_index(container1, container2);
+
+    return container1;
+}
+</pre>
+<h3><span class="mw-headline" id="Sub-sets">Sub-sets</span></h3>
+<p>Sometimes, it can be useful to access a sub-set of a data set. For example, if you have a container of all the IP addresses for some system, it might be useful to be able to work with only the IPv4 addresses, without having to iterate over all the addresses and ignore the IPv6 (or other) addresses. This can be done with a secondary index with a filter (only available in more recent releases). The secondary index container would share the same sort function as the primary container, but the secondary container would have a filter function which would filter out inserts of IPv6 addresses.
+</p>
+<pre>int
+_ipv4_only_filter(struct netsnmp_container_s *, const void *data) {
+   struct my_datatype *my_data = (struct my_datatype*) data;
+
+   /** return 1 to filter data, 0 to allow */
+   if (my_data-&gt;type == IPv6)
+      return 1;
+
+   return 0;
+}
+</pre>
+<h2><span class="mw-headline" id="Container_Operations">Container Operations</span></h2>
+<p>Several functions are provided for easy use of containers. These functions should be used is almost all cases, since they do the 'right' thing for special cases such as insert filters and subcontainers.
+</p>
+<h3><span class="mw-headline" id="Creating_a_container">Creating a container</span></h3>
+<h3><span class="mw-headline" id="Adding_and_removing_data">Adding and removing data</span></h3>
+<h4><span class="mw-headline" id="CONTAINER_INSERT">CONTAINER_INSERT</span></h4>
+<p>The container insert function inserts an item into a container. Note that an insert_filter may prevent some items from being inserted into the container or sub-containers.
+</p>
+<pre> CONTAINER_INSERT(thecontainer, thedata);
+</pre>
+<h4><span class="mw-headline" id="CONTAINER_REMOVE">CONTAINER_REMOVE</span></h4>
+<p>The container remove function removes an item from a container. It <b>does not</b> free the item. 
+</p>
+<h4><span class="mw-headline" id="CONTAINER_CLEAR">CONTAINER_CLEAR</span></h4>
+<pre>CONTAINER_CLEAR(container, callback, context)
+</pre>
+<p>The container clear function is a special function that is optimized for clearing a container. It is effectively the same as iterating over the container and calling CONTAINER_REMOVE for each item, calling the specified callback function as you go. The context parameter is for you use, and is also passed to the callback function. Pass NULL if you don't need any context. If you simple need to free the pointer stored for each item, use <i>netsnmp_container_simple_free</i> as the callback. If your structure has additional memory allocated, or you need to perform some action for each item to release other resources, you will have to provide a custom callback function.
+</p>
+<pre>/* clear a container that only needs a simple free() call on each item. */
+CONTAINER_CLEAR(container,
+                (netsnmp_container_obj_func*)netsnmp_container_simple_free,
+                 NULL);
+
+/*
+ * here is an example of a function that could be passed for a more
+ * complex free
+ */
+static void 
+_complex_free(void *data, void *context)
+{
+    struct mystruct *mydata = (struct mystruct *)data;
+
+    if (data == NULL)
+	return;
+    free(mydata-&gt;some_ptr);
+    free(mydata);
+ }
+</pre>
+<h3><span class="mw-headline" id="Finding_data_in_a_container">Finding data in a container</span></h3>
+<h4><span class="mw-headline" id="CONTAINER_FIND">CONTAINER_FIND</span></h4>
+<p>CONTAINER_FIND searches for data in a given container.  You must pass in a data object with the index object filled out and it will return the object in the container matching that index set.
+</p>
+<pre> data = CONTAINER_FIND(container, template_index);
+</pre>
+<h3><span class="mw-headline" id="Iterating_over_items_in_a_container">Iterating over items in a container</span></h3>
+<p>There are 3 methods available for iterating over items in a container;
+</p>
+<h4><span class="mw-headline" id="CONTAINER_FOR_EACH">CONTAINER_FOR_EACH</span></h4>
+<p>You can define a callback function and pass it to <code>CONTAINER_FOR_EACH</code>, like so:
+</p>
+<pre>void my_callback(void *data, void* context) {
+   printf("callback for data&#160;%x and context&#160;%x\n", data, context);
+}
+
+int main(int argc, char **argv) {
+   void              *my_context = 0xdeadbeef;
+   netsnmp_container *c = netsnmp_container_find("binary_array");
+
+   /* for each data element in the container, run my_callback on it */
+   CONTAINER_FOR_EACH(c, my_callback, my_context);
+}
+</pre>
+<p>The function <code>my_callback</code> will be called for each data item in the container.
+</p>
+<h4><span class="mw-headline" id="CONTAINER_ITERATOR.28x.29">CONTAINER_ITERATOR(x)</span></h4>
+<p>Some containers support iterating over the contents, like so:
+</p>
+<pre>netsnmp_container *c = get_my_container();
+netsnmp_iterator  *it;
+void *data;
+
+it = CONTAINER_ITERATOR(c);
+if (NULL == it)
+   return -1;
+for( data = ITERATOR_FIRST(it); data&#160;; data = ITERATOR_NEXT(it) {
+   printf("data&#160;%x\n", data);
+}
+ITERATOR_RELEASE(it);
+</pre>
+<h4><span class="mw-headline" id="CONTAINER_FIRST_and_CONTAINER_NEXT">CONTAINER_FIRST and CONTAINER_NEXT</span></h4>
+<p>You can use <code>CONTAINER_FIRST</code> and <code>CONTAINER_NEXT</code> to iterate over a container:
+</p>
+<pre>netsnmp_container *c = netsnmp_container_find("binary_array");
+void              *data;
+
+for( data = CONTAINER_FIRST(c); data; data = CONTAINER_NEXT(c, data)) {
+   printf("data&#160;%x\n", data);
+}
+</pre>
+<p>The disadvantage of this is that <code>CONTAINER_NEXT</code> does a search to find the previous item before it can return the next item. This is pretty inefficient, thus this method is not recommended.
+</p>
+<h4><span class="mw-headline" id="Which_method_to_choose.3F">Which method to choose?</span></h4>
+<p>As mentioned above, <code>CONTAINER_FIRST</code> and <code>CONTAINER_NEXT</code> should only be used for really small containers where performance isn't important. The decision between the <code>CONTAINER_FOR_EACH</code> and <code>CONTAINER_ITERATOR</code> methods is largely one of style. <code>CONTAINER_ITERATOR</code> is easy to read, and looks like a traditional loop over a linked list. <code>CONTAINER_FOR_EACH</code> offers a better opportunity for reuse, allowing a callback to be applied to multiple containers, in different places in the code, using the context to differentiate as needed.
+</p>
+<h3><span class="mw-headline" id="Miscellaneous_operations">Miscellaneous operations</span></h3>
+<h4><span class="mw-headline" id="CONTAINER_SIZE">CONTAINER_SIZE</span></h4>
+<p>This function returns the number of items currently in the container.
+</p><p><br />
+</p>
+<h3><span class="mw-headline" id="Releasing_a_container">Releasing a container</span></h3>
+<h4><span class="mw-headline" id="CONTAINER_FREE">CONTAINER_FREE</span></h4>
+<p>The container free function releases internal resources used by the container and frees the container itself. It <b>does not</b> release the memory used by any items contained within the container. You must use either the CONTAINER_REMOVE or CONTAINER_CLEAR functions to release resources used by the items in the container before calling CONTAINER_FREE.
+</p>
+<h3><span class="mw-headline" id="Advanced_topics">Advanced topics</span></h3>
+<h4><span class="mw-headline" id="CONTAINER_SET_OPTIONS_and_CONTAINER_CHECK_OPTION">CONTAINER_SET_OPTIONS and CONTAINER_CHECK_OPTION</span></h4>
+<p><code>CONTAINER_SET_OPTIONS</code> copies the specified flags to the container options. It DOES NOT OR the flags with existing flags, so it allows one to overwrite existing flags. Unfortunately, there doesn't seem to be a way to get the existing flags, making addition of a single flag difficult.
+</p><p><code>CONTAINER_CHECK_OPTION</code> returns 1 if the specified flags are set, or 0 if they are not set.
+</p>
+<h4><span class="mw-headline" id="CONTAINER_GET_SUBSET">CONTAINER_GET_SUBSET</span></h4>
+<p>Note: get subset returns allocated memory (netsnmp_void_array). User is responsible for releasing this memory (free(array-&gt;array), free(array)). <b>DO NOT FREE ELEMENTS OF THE ARRAY</b>, because they are the same pointers stored in the container.
+</p>
+<h4><span class="mw-headline" id="CONTAINER_COMPARE.28x.2Cl.2Cr.29">CONTAINER_COMPARE(x,l,r)</span></h4>
+<p>tbd
+</p><p><br />
+</p>
+<h4><span class="mw-headline" id="Shared_Container.2Fcache">Shared Container/cache</span></h4>
+<p>Often multiple MIB implementations will need to use the same data. Instead of having redundant copies of the data, they can use the same container. This example code is based on the ifTable/ifXTable code, and uses the cache helper as well.
+</p>
+<pre>/** ifXTable uses the same cache (and thus container) as ifTable */
+if_ctx-&gt;cache =
+    netsnmp_cache_find_by_oid(ifTable_oid, ifTable_oid_size);
+if (NULL&#160;!= if_ctx-&gt;cache) {
+    if_ctx-&gt;container = (netsnmp_container *) if_ctx-&gt;cache-&gt;magic;
+</pre>
+<h2><span class="mw-headline" id="Generic_Container_Examples">Generic Container Examples</span></h2>
+<p>The following examples show a few ways to use containers, starting with the most simple application and progressing slightly as we go along.
+</p>
+<h3><span class="mw-headline" id="A_generic_.22store_some_strings.22_example">A generic "store some strings" example</span></h3>
+<p>Although designed for usage in Net-SNMP, containers can really be used as arbitrary storage of "stuff".  In this example, we simply store a list of strings and then iterate over them later:
+</p>
+<pre> #include &lt;net-snmp/net-snmp-config.h&gt;
+ #include &lt;net-snmp/library/container.h&gt;
+
+ #include &lt;stdio.h&gt;
+
+ void do_something(void *data, void *context) {
+     char *prefix   = (char *) context;
+     char *mystring = (char *) data;
+      
+     printf("%s:&#160;%s\n", prefix, mystring);
+ }
+
+ int
+ main() {
+
+     netsnmp_container *container;
+
+     init_snmp("container-test");
+
+     container = netsnmp_container_find("fifo");
+     container-&gt;compare = (netsnmp_container_compare*) strcmp;
+
+     CONTAINER_INSERT(container, "foo");
+     CONTAINER_INSERT(container, "bar");
+     CONTAINER_INSERT(container, "baz");
+
+     CONTAINER_FOR_EACH(container, do_something, "a contained item");
+ }
+</pre>
+<p>Compile and run it:
+</p>
+<pre> # cc -o container-test container-test.c -lnetsnmp
+ # ./container-test
+ a contained item: foo
+ a contained item: bar
+ a contained item: baz
+</pre>
+<p>And if you change the container type from <i>"fifo"</i> to <i>"lifo"</i> and re-run it, you'll get a list in the opposite order:
+</p>
+<pre> # cc -o container-test container-test.c -lnetsnmp
+ # ./container-test
+ a contained item: baz
+ a contained item: bar
+ a contained item: foo
+</pre>
+<p>And of course, the list can be sorted by changing the container type from <i>"fifo"</i> to <i>"sorted_singly_linked_list"</i> or the faster <i>"binary_array"</i>
+</p>
+<pre> # cc -o container-test container-test.c -lnetsnmp
+ # ./container-test
+ a contained item: bar
+ a contained item: baz
+ a contained item: foo
+</pre>
+<h3><span class="mw-headline" id="Storing_Key.2FValue_pairs">Storing Key/Value pairs</span></h3>
+<p>Here's some code that creates some key/value pairs and stores them in a sorted array (by key value):
+</p>
+<pre> #include &lt;net-snmp/net-snmp-config.h&gt;
+ #include &lt;net-snmp/library/container.h&gt;
+ #include &lt;net-snmp/library/tools.h&gt;
+
+ #include &lt;stdio.h&gt;
+ #include &lt;malloc.h&gt;
+
+ struct my_hash_entry {
+    char *key;
+    char *value;
+ };
+
+ void do_something(void *data, void *context) {
+     struct my_hash_entry *entry = data;
+     
+     printf("%10s:&#160;%s\n", entry-&gt;key, entry-&gt;value);
+ }
+
+ int my_key_compare(struct my_hash_entry *left, struct my_hash_entry *right) {
+     return strcmp(left-&gt;key, right-&gt;key);
+ }
+
+ struct my_hash_entry *
+ create_hash_entry(char *key, char *value) {
+     struct my_hash_entry *entry = SNMP_MALLOC_STRUCT(my_hash_entry);
+     entry-&gt;key = strdup(key);
+     entry-&gt;value = strdup(value);
+     return entry;
+ }
+
+ int
+ main() {
+
+     netsnmp_container *container;
+
+     init_snmp("container-test");
+
+     container = netsnmp_container_find("binary_array");
+     container-&gt;compare = (netsnmp_container_compare*) my_key_compare;
+
+     CONTAINER_INSERT(container, create_hash_entry("pizza",   "yummy"));
+     CONTAINER_INSERT(container, create_hash_entry("veggies", "ehhhh"));
+     CONTAINER_INSERT(container, create_hash_entry("donuts",  "mmmmmmmmmm"));
+
+     CONTAINER_FOR_EACH(container, do_something, NULL);
+ }
+</pre>
+<p>And compiling and running it we get:
+</p>
+<pre> # cc -g -o container-test container-test.c -lnetsnmp
+ # ./container-test
+     donuts: mmmmmmmmmm
+      pizza: yummy
+    veggies: ehhhh
+</pre>
+<h3><span class="mw-headline" id="A_more_SNMP-ish_Example">A more SNMP-ish Example</span></h3>
+<p>The following code demonstrates how containers can be used to store arbitrary data indexed by an OID using the container system. You can also see a 
+</p>
+<pre> /*
+  * This code takes the approach of using a standard binary_array
+  * container with a default index type of an OID.  We'll pretend, for
+  * this example, that a standards body ("ice cream eaters anonymous")
+  * has defined the following standardized OID to flavor mappings:
+  *
+  * .1.2.3      chocolate
+  * .1.3.4.5    vanilla
+  * .1.2        strawberry
+  *
+  * We'll create a database of these flavors indexed by their
+  * standardized OID assignments and store the name of the flavor and
+  * the number of votes it received in a popularity contest.
+  *
+  * Compile this file using:
+  *
+  *   cc -g -o container_test container_test.c -lnetsnmp
+  *
+  * And test it by running: ./container_test
+  */
+ 
+ #include &lt;net-snmp/net-snmp-config.h&gt;
+ 
+ #include &lt;net-snmp/net-snmp-includes.h&gt;
+ #include &lt;net-snmp/library/container.h&gt;
+ 
+ /* our bogus data structure; self defined. */
+ typedef struct my_data_s {
+ 
+    /* This *MUST* be first in the structure */
+    netsnmp_index oid_index;
+ 
+    /* We don't have OIDs longer than 4, so we'll just use a short buffer */
+    oid           oid_buf[4];
+ 
+    /* And the data we want to store */
+    char          ice_cream_flavor[128];
+    int           votes;
+ } my_data;
+ 
+ int
+ main() {
+ 
+     netsnmp_container *test;
+     my_data *data;
+     my_data index_template;
+ 
+     /* required to bootstrap the container system */
+     init_snmp("container_test");
+     
+     /* create our container */
+     test = netsnmp_container_find("binary_array");
+ 
+     /* create our first entry; malloced for handing to the system */
+     data = SNMP_MALLOC_TYPEDEF(my_data);
+     data-&gt;oid_index.oids = data-&gt;oid_buf;
+     data-&gt;oid_buf[0] = 1;  /* lets pretend .1.2.3 is standard for chocolate */
+     data-&gt;oid_buf[1] = 2;
+     data-&gt;oid_buf[2] = 3;
+     data-&gt;oid_index.len = 3;
+     strcpy(data-&gt;ice_cream_flavor, "chocolate");
+     data-&gt;votes = 42;
+     CONTAINER_INSERT(test, data);
+ 
+     /* create and add our second entry: vanilla */
+     data = SNMP_MALLOC_TYPEDEF(my_data);
+     data-&gt;oid_index.oids = data-&gt;oid_buf;
+     data-&gt;oid_buf[0] = 1;  /* lets pretend .1.3.4.5 is standard for vanilla */
+     data-&gt;oid_buf[1] = 3;
+     data-&gt;oid_buf[2] = 4;
+     data-&gt;oid_buf[3] = 5;
+     data-&gt;oid_index.len = 4;
+     strcpy(data-&gt;ice_cream_flavor, "vanilla");
+     data-&gt;votes = 30;
+     CONTAINER_INSERT(test, data);
+ 
+     /* create and add our final entry: strawberry */
+     data = SNMP_MALLOC_TYPEDEF(my_data);
+     data-&gt;oid_index.oids = data-&gt;oid_buf;
+     data-&gt;oid_buf[0] = 1;  /* lets pretend .1.2 is standard for strawberry */
+     data-&gt;oid_buf[1] = 2;
+     data-&gt;oid_index.len = 2;
+     strcpy(data-&gt;ice_cream_flavor, "strawberry");
+     data-&gt;votes = 10;
+     CONTAINER_INSERT(test, data);
+ 
+ 
+     /*
+      * now we have a database, organized by OID for flavor/vote pairs
+      */
+ 
+     /* lets find whatever flavor is at .1.3.4.5 */
+     /* we do this by creating a new data structure with the indexes
+        filled in to look for */
+     data = SNMP_MALLOC_TYPEDEF(my_data);
+     index_template.oid_index.oids = index_template.oid_buf;
+     index_template.oid_buf[0] = 1;
+     index_template.oid_buf[1] = 3;
+     index_template.oid_buf[2] = 4;
+     index_template.oid_buf[3] = 5;
+     index_template.oid_index.len = 4;
+ 
+     /* and we call CONTAINER_FIND to search for the real data */
+     data = CONTAINER_FIND(test, &amp;index_template);
+ 
+     fprintf(stderr, "the flavor is&#160;%s and it's votes are&#160;%d\n",
+             data-&gt;ice_cream_flavor,
+             data-&gt;votes);
+ }
+</pre>
+<p>This code obviously doesn't clean up properly at the end nor does it show all the other features/functions of containers (like secondary indexes) but it at least shows how to bootstrap something in a very basic manner.
+</p><p>You can also take a look at the simple test code in <a rel="nofollow" class="external text" href="http://net-snmp.svn.sourceforge.net/viewvc/net-snmp/trunk/net-snmp/snmplib/test_binary_array.c?view=markup">snmplib/test_binary_array.c</a>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20240514175950
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.016 seconds
+Real time usage: 0.017 seconds
+Preprocessor visited node count: 135/1000000
+Preprocessor generated node count: 140/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="http://www.net-snmp.org/wiki/index.php?title=Containers&amp;oldid=5283">http://www.net-snmp.org/wiki/index.php?title=Containers&amp;oldid=5283</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://www.net-snmp.org/wiki/index.php/Containers" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="http://www.net-snmp.org/wiki/index.php?title=Talk:Containers&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="http://www.net-snmp.org/wiki/index.php?title=Containers&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://www.net-snmp.org/wiki/index.php?title=Containers&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=Containers&amp;returntoquery=oldid%3D5283&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="http://www.net-snmp.org/wiki/index.php?title=Special:UserLogin&amp;returnto=Containers&amp;returntoquery=oldid%3D5283" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://www.net-snmp.org/wiki/index.php/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="http://www.net-snmp.org/" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="http://www.net-snmp.org/wiki/index.php/Main_Page">Wiki</a></li>
+											<li id="n-Download"><a href="http://www.net-snmp.org/download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="http://www.net-snmp.org/support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="http://www.net-snmp.org/support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="http://www.net-snmp.org/support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="http://www.net-snmp.org/wiki/index.php/Tutorials">Tutorials</a></li>
+											<li id="n-FAQ"><a href="http://www.net-snmp.org/wiki/index.php/FAQ">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="http://www.net-snmp.org/wiki/index.php/Category:GoodAnswer">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="http://www.net-snmp.org/man" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="http://www.net-snmp.org/wiki/index.php/Category:Tools">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="http://www.net-snmp.org/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="http://www.net-snmp.org/wiki/index.php/Special:WhatLinksHere/Containers" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="http://www.net-snmp.org/wiki/index.php/Special:RecentChangesLinked/Containers" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="http://www.net-snmp.org/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="http://www.net-snmp.org/wiki/index.php?title=Containers&amp;oldid=5283&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="http://www.net-snmp.org/wiki/index.php?title=Containers&amp;oldid=5283" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="http://www.net-snmp.org/wiki/index.php?title=Containers&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://www.net-snmp.org/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 3 August 2011, at 20:58.</li>
+									<li id="privacy"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:Privacy_policy" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:About" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="http://www.net-snmp.org/wiki/index.php/Net-SNMP_Wiki:General_disclaimer" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":164});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Containers&oldid=5283 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:35:20 GMT -->
+</html>

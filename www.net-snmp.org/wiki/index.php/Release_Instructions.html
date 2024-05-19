@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/Release_Instructions by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:34:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Release Instructions - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Release_Instructions","wgTitle":"Release Instructions","wgCurRevisionId":5764,"wgRevisionId":5764,"wgArticleId":2073,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Release_Instructions","wgRelevantArticleId":2073,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="../load34a1.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;skin=monobook" />
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/MonoBook/IE70Fixes.css?303" media="screen" /><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="../load3a95.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<link rel="shortcut icon" href="../../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="../opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="../api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="../apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Release_Instructions skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Release Instructions</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>This page documents varios aspects of creating releases and binary builds suitable for distribution of the project products:
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Releasing_Source_Code"><span class="tocnumber">1</span> <span class="toctext">Releasing Source Code</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#MakeRelease"><span class="tocnumber">1.1</span> <span class="toctext">MakeRelease</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Preliminary_tasks"><span class="tocnumber">1.2</span> <span class="toctext">Preliminary tasks</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Building_a_Source_Release"><span class="tocnumber">1.3</span> <span class="toctext">Building a Source Release</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Notes"><span class="tocnumber">1.4</span> <span class="toctext">Notes</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Publishing_and_Advertising"><span class="tocnumber">1.5</span> <span class="toctext">Publishing and Advertising</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Producing_Binaries"><span class="tocnumber">2</span> <span class="toctext">Producing Binaries</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Linux_RPMs"><span class="tocnumber">2.1</span> <span class="toctext">Linux RPMs</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="#Traditional_Net-SNMP_RPM_structure"><span class="tocnumber">2.1.1</span> <span class="toctext">Traditional Net-SNMP RPM structure</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#RedHat.2FFedora_RPM_structure"><span class="tocnumber">2.1.2</span> <span class="toctext">RedHat/Fedora RPM structure</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#Building_RPMs_using_rpmbuild"><span class="tocnumber">2.1.3</span> <span class="toctext">Building RPMs using rpmbuild</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#Building_Fedora_RPMs"><span class="tocnumber">2.1.4</span> <span class="toctext">Building Fedora RPMs</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-13"><a href="#Linux_DEBs"><span class="tocnumber">2.2</span> <span class="toctext">Linux DEBs</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Solaris"><span class="tocnumber">2.3</span> <span class="toctext">Solaris</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Windows"><span class="tocnumber">2.4</span> <span class="toctext">Windows</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h1><span class="mw-headline" id="Releasing_Source_Code">Releasing Source Code</span></h1>
+<h2><span class="mw-headline" id="MakeRelease">MakeRelease</span></h2>
+<p>The current release procedures are reliant on the <a rel="nofollow" class="external text" href="http://github.com/hardaker/makerelease">MakeRelease</a> system,
+which is designed to automate (and document) as much of the process as possible.
+</p><p>MakeRelease can be installed as follows:
+</p><p><code>
+</p>
+<pre> git clone <a rel="nofollow" class="external free" href="http://github.com/hardaker/makerelease">http://github.com/hardaker/makerelease</a>
+ cd makerelease
+ perl Makefile.PL
+ make
+ sudo make install
+</pre>
+<p></code>
+</p>
+<h2><span class="mw-headline" id="Preliminary_tasks">Preliminary tasks</span></h2>
+<p>Before you start, check that the installed versions of <code>autoconf</code>,
+<code>automake</code> and <code>libtool</code> match the requirements for this branch
+(as listed under <a href="Build_System.html#Tool_Versions" title="Build System">Build_System#Tool_Versions</a>)
+</p><p>If the release is being built from a fresh source checkout,
+then you should run <code>configure</code> by hand
+<b>before</b> running <code>makerelease</code>.
+This is because the release process relies on running various
+<code>make</code> commands before invoking <code>configure</code> itself,
+and expects there to be a suitable <code>Makefile</code> already present.
+</p>
+<h2><span class="mw-headline" id="Building_a_Source_Release">Building a Source Release</span></h2>
+<p>In order to start packaging up a new release,
+change directory to the root of the code tree to be released
+(which should be under revision control), and run the command:
+</p><p><code>
+</p>
+<pre> makerelease -c dist/makerelease.xml
+</pre>
+<p></code>
+</p><p>Most of the process is automated, and will be performed automatically,
+with the script simply stopping at regular intervals to allow you to
+verify what is being done.
+</p><p>There are two main steps where manual intervention is required:
+</p>
+<ul><li> Step 4.4   - trim the file <code>ChangeLog.reallyadd</code> to contain <i>just</i> those changes applied since the last run of <code>makerelease</code>, and then to include these changes into the main <code>ChangeLog</code> file.</li></ul>
+<ul><li> Step 4.8   - merge the contents of <code>CHANGES.new2</code> into <code>CHANGES</code> (and similarly for <code>NEWS</code>)</li></ul>
+<p>Note that it's worth spending some time on this step.
+Although most of the significant changes will hopefully have been tagged when they were commited,
+and should be extracted automatically, the descriptions are sometimes truncated or unclear.
+The release manager is also usually in a good position to judge the relative importance of
+various changes, so should move descriptions between the <code>CHANGES</code> and <code>NEWS</code> files
+</p>
+<h2><span class="mw-headline" id="Notes">Notes</span></h2>
+<p>If a release is built from a 'clean' source tree, where configure has never been run (or not run since a "make distclean"),
+then Step 2.3 ("make docs" and "make mancp"), and Step 3.1 ("make distclean") will fail.
+These failures are not significant, and the process can be allowed to continue.
+</p><p>If a second release is made from the same source tree, make sure that you remove the previous 'net-snmp-{version}' directory first.   Otherwise this will confuse Step 4.2 ("make depend")
+</p><p>There are a few other steps where manual intervention is sometimes needed
+(or may appear to be!)
+</p>
+<ul><li> Step 1.2   - specify the version number for this release</li>
+<li> Step 2.1.1 - the library version numbers will normally only need to be tweaked for the first (.pre1) version of a given release cycle</li>
+<li> Step 2.3   - extracting the in-line documentation will typically generate a <b>large</b> number of warnings.  These can safely be ignored</li>
+<li> Step 2.5   - there may also be a number of "new" function man pages, which are not under revision control  These can also be ignored - there is no need to run <code>git add</code> on them.<br />(In fact, the automatic generation of these man pages should probably be disabled altogether)</li>
+<li> Step 3.4   - the <code>make checks</code> test invariably fails<br />The complaint about non-portable constructs in the top-level <code>Makefile.in</code> file can be ignored - other errors should be taken on their merits<br />It will usually be necessary to explicitly <b>c</b>ontinue at this point</li>
+<li> Step 4.1   - the <code>make depend</code> step will generate a large number of warnings - these can safely be ignored</li></ul>
+<ul><li> Steps 5.8 and 5.10  - If you don't have the Net-SNMP Administration secret key (or can't remember the password!), you'll have to skip these signing steps.   MD5 checksums (or full package signatures) can be generated and uploaded at a later date</li></ul>
+<h2><span class="mw-headline" id="Publishing_and_Advertising">Publishing and Advertising</span></h2>
+<p>From Step 6 onwards, the process relies more on manual intervention, with relatively little being automated.
+The <code>makerelease</code> script will guide you through what is required, but won't actually perform most of these actions.
+</p>
+<ul><li> Step 6.1   - note that the example command uses Wes' SourceForge account details.   Amend <code>hardaker</code> to be your SF login name.</li></ul>
+<ul><li> Step 6.2   - updating the Download web page needs to be done via the git repository</li></ul>
+<ul><li> Steps 6.3, 8.1, 8.4   -  these attempt to open the relevant web pages for editing, but this may well fail - update the relevant pages manually (or ignore them), and <b>c</b>ontinue</li></ul>
+<h1><span class="mw-headline" id="Producing_Binaries">Producing Binaries</span></h1>
+<h2><span class="mw-headline" id="Linux_RPMs">Linux RPMs</span></h2>
+<p>There are two elements to generating a set of RPM binaries - deciding
+on the structure of the RPMs to create (which is controlled by the contents
+of the <code>net-snmp.spec</code> file),  and actually generating these RPMs.
+</p>
+<h3><span class="mw-headline" id="Traditional_Net-SNMP_RPM_structure">Traditional Net-SNMP RPM structure</span></h3>
+<p>Historically, the Net-SNMP project has tended to distribute just three binary RPMs:
+</p>
+<ul><li> net-snmp  (the main RPM, containing both client-utilities and the agent, together with the supporting framework)</li>
+<li> net-snmp-devel (header files and archive libraries, needed for developing new SNMP applications)</li>
+<li> net-snmp-perlmods (the perl modules)</li></ul>
+<p>This structure uses the RPM spec file that is included as part of the source code tree,
+in <code>dist/net-snmp.spec</code>.
+</p><p>The spec file also attempts to include suitable "provide" definitions which should
+allow these RPMs to replace the vendor-supplied Net-SNMP RPMs which come with
+SuSE-based and RedHat-based systems (including RHEL, Fedora and CentOS distributions).
+</p>
+<h3><span class="mw-headline" id="RedHat.2FFedora_RPM_structure">RedHat/Fedora RPM structure</span></h3>
+<p>RedHat-based distributions tend to use a larger number of individual RPMs,
+allowing system administrators to select which elements to install
+(e.g. SNMP clients without the SNMP agent, or vice versa).
+</p>
+<ul><li> net-snmp  (the SNMP agent)</li>
+<li> net-snmp-utils  (the command-line client applications)</li>
+<li> net-snmp-libs  (shared libraries and other supporting framework)</li>
+<li> net-snmp-devel (header files and libraries, needed for developing new SNMP applications)</li>
+<li> net-snmp-perl (the perl modules)</li>
+<li> net-snmp-python (the python modules)</li>
+<li> net-snmp-gui (tkmib)</li></ul>
+<p>This uses the RPM spec file from the Fedora repository,
+which can be retrieved (together with accompanying files)
+using the command<br /><code>git clone <a rel="nofollow" class="external free" href="git://pkgs.fedoraproject.org/net-snmp">git://pkgs.fedoraproject.org/net-snmp</a></code>
+</p><p>Note that this spec file includes RedHat-supplied patches to the code,
+which may not necessarily be relevant to the version you are
+working with.  You may need to comment out some of the <code>PatchN</code>
+definitions, and the corresponding <code>%patchN</code> setup directives.
+It may also be necessary to amend the configure options used, and other
+aspects of the spec file, depending on the versions involved.
+</p>
+<h3><span class="mw-headline" id="Building_RPMs_using_rpmbuild">Building RPMs using rpmbuild</span></h3>
+<p>The traditional approach for generating RPMs uses the command <code>rpmbuild</code>
+(part of the RPM <code>rpm-build</code>)
+</p><p>The procedure is as follows:
+</p>
+<ul><li> Create <code>$HOME/rpmbuild/SPECS</code> and copy the spec file there</li>
+<li> Create <code>$HOME/rpmbuild/SOURCES</code> and copy the tarball there</li>
+<li> If there are any patch files mentioned in the spec file, copy these to <code>$HOME/rpmbuild/SOURCES</code> as well</li>
+<li> Ensure <code>Version</code> in the spec file matches the version of the tarball</li>
+<li> Append a suitable vendor identifier to the <code>Release</code> in the spec file</li>
+<li> Run the command <code>rpmbuild -ba $HOME/rpmbuild/SPECS/net-snmp.spec</code></li></ul>
+<p>This produces the appropriate binary RPM files (under <code>$HOME/rpmbuild/RPMs</code>)
+together with a source RPM file (under <code>$HOME/rpmbuild/SRPMs</code>)
+</p>
+<h3><span class="mw-headline" id="Building_Fedora_RPMs">Building Fedora RPMs</span></h3>
+<p>Fedora-based distributions can also use the command <code>fedpkg</code>
+(part of the RPM <code>fedpkg</code>)
+</p>
+<ul><li> copy the spec file, source tarball and any patch files into a suitable working directory</li>
+<li> Ensure <code>Version</code> in the file <code>net-snmp/net-snmp.spec</code> matches the version of the tarball</li>
+<li> Run the command <code>fedpkg local</code></li></ul>
+<p>(This procedure may also require the RPM <code>chrpath</code> to be installed)
+</p>
+<h2><span class="mw-headline" id="Linux_DEBs">Linux DEBs</span></h2>
+<h2><span class="mw-headline" id="Solaris">Solaris</span></h2>
+<ul><li> SYSV packages
+<ul><li> see dist/net-snmp-solaris-build</li></ul></li>
+<li> tar balls
+<ul><li> to be unpacked beneath /usr/local</li></ul></li></ul>
+<h2><span class="mw-headline" id="Windows">Windows</span></h2>
+
+<!-- 
+NewPP limit report
+Cached time: 20171115231708
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.118 seconds
+Real time usage: 0.121 seconds
+Preprocessor visited node count: 59/1000000
+Preprocessor generated node count: 64/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+
+<!-- Saved in parser cache with key n12694_wikidb:pcache:idhash:2073-0!*!0!!en!*!* and timestamp 20171115231708 and revision id 5764
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="../index83ac.html?title=Release_Instructions&amp;oldid=5764">http://www.net-snmp.org/wiki/index.php?title=Release_Instructions&amp;oldid=5764</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="Release_Instructions.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="Talk_Release_Instructions.html?title=Talk:Release_Instructions&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="../indexcc1a.html?title=Release_Instructions&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="../index03ef.html?title=Release_Instructions&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="../index8946.html?title=Special:UserLogin&amp;returnto=Release+Instructions&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="../index7e70.html?title=Special:UserLogin&amp;returnto=Release+Instructions" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="Special_WhatLinksHere/Release_Instructions.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="Special_RecentChangesLinked/Release_Instructions.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-print"><a href="../index8b4a.html?title=Release_Instructions&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+											<li id="t-permalink"><a href="../index83ac.html?title=Release_Instructions&amp;oldid=5764" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="../index8ff6.html?title=Release_Instructions&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 8 March 2014, at 05:35.</li>
+									<li id="privacy"><a href="Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":850});
+} );</script></body><!-- Cached 20171116074528 -->
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php/Release_Instructions by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:34:38 GMT -->
+</html>

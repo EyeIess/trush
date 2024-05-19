@@ -1,0 +1,163 @@
+Content-type: text/html
+
+<HTML>
+<!-- Mirrored from www.net-snmp.org/docs/man/snmpget.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 17:54:43 GMT -->
+<HEAD><TITLE>Manpage of SNMPGET</TITLE>
+</HEAD><BODY>
+<H1>SNMPGET</H1>
+Section: Net-SNMP (1)<BR>Updated: 08 Feb 2002<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+snmpget - communicates with a network entity using SNMP GET requests
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>snmpget</B>
+
+[COMMON OPTIONS] [-Cf] OID [OID]...
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>snmpget</B>
+
+is an SNMP application that uses the SNMP GET request to query for
+information on a network entity.  One or more object identifiers
+(OIDs) may be given as arguments on the command line.  Each variable
+name is given in the format specified in
+<I><A HREF="variables.html">variables</A>(5)</I>.
+
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<DL COMPACT>
+<DT><B>-Cf</B>
+
+<DD>
+If
+<B>-Cf</B>
+
+is
+<I>not</I>
+
+specified, some applications
+(<B>snmpdelta</B>, <B>snmpget</B>, <B>snmpgetnext</B> and <B>snmpstatus</B>)
+
+will try to fix errors returned by the agent that you were talking to
+and resend the request.  The only time this is really useful is if you
+specified a OID that didn't exist in your request and you're using
+SNMPv1 which requires &quot;all or nothing&quot; kinds of requests.
+</DL>
+<P>
+
+In addition to this option,
+<B>snmpget</B>
+
+REQUIRES options and agent arguments, as described in the 
+<I><A HREF="snmpcmd.html">snmpcmd</A>(1)</I>
+
+manual page.
+<A NAME="lbAF">&nbsp;</A>
+<H2>EXAMPLES</H2>
+
+The command:
+<P>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;snmpget&nbsp;-c&nbsp;public&nbsp;zeus&nbsp;system.sysDescr.0
+<P>
+
+will retrieve the variable system.sysDescr.0 from the host 
+<B>zeus </B>
+
+using the community string 
+<B>public</B>
+
+:
+<P>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;system.sysDescr.0&nbsp;=&nbsp;&quot;SunOS&nbsp;zeus.net.cmu.edu&nbsp;4.1.3_U1&nbsp;1&nbsp;sun4m&quot;
+<P>
+
+If the network entity has an error processing the request packet, an
+error packet will be returned and a message will be shown, helping to
+pinpoint in what way the request was malformed.  If there were other
+variables in the request, the request will be resent without the bad
+variable.
+<P>
+
+Here is another example. The -c and -v options are defined in the 
+<I><A HREF="snmpcmd.html">snmpcmd</A>(1)</I>
+
+manual page. (Note that system.sysUpTime is an incomplete
+OID, as it needs the .0 index appended to it):
+<P>
+
+<PRE>
+    snmpget -v1 -Cf -c public localhost system.sysUpTime system.sysContact.0
+</PRE>
+
+<P>
+
+This example will return the following:
+<P>
+
+<PRE>
+    Error in packet
+    Reason: (noSuchName) There is no such variable name in this MIB.
+    This name doesn't exist: system.sysUpTime
+</PRE>
+
+<P>
+
+Similarly, the command:
+<PRE>
+    snmpget -v1 -c public localhost system.sysUpTime system.sysContact.0
+</PRE>
+
+<P>
+
+Will return:
+<P>
+
+<PRE>
+    Error in packet
+    Reason: (noSuchName) There is no such variable name in this MIB.
+    This name doesn't exist: system.sysUpTime
+
+    system.sysContact.0 = STRING: <A HREF="mailto:root@localhost">root@localhost</A>
+</PRE>
+
+<P>
+
+With the
+<B>-Cf</B>
+
+flag specified the application will not try to fix the PDU for you.
+<A NAME="lbAG">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<A HREF="variables.html">variables</A>(5).
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">EXAMPLES</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 19:05:39 GMT, September 28, 2009
+</BODY>
+
+<!-- Mirrored from www.net-snmp.org/docs/man/snmpget.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 17:54:43 GMT -->
+</HTML>

@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Memory_HAL&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:13:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8" />
+<title>Memory HAL - Net-SNMP Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Memory_HAL","wgTitle":"Memory HAL","wgCurRevisionId":5051,"wgRevisionId":5051,"wgArticleId":1712,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Memory_HAL","wgRelevantArticleId":1712,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits"]);
+} );</script>
+<link rel="stylesheet" href="load531d.css?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.monobook.styles&amp;only=styles&amp;printable=1&amp;skin=monobook" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="loadf198.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook"></script>
+<meta name="generator" content="MediaWiki 1.26.3" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="../favicon.html" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="Net-SNMP Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api251f.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Net-SNMP Wiki Atom feed" href="apidf90.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Memory_HAL skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">Memory HAL</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Net-SNMP Wiki</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>Net-SNMP 5.4 has introduced the memory <a href="index.php/Information_Abstraction.html#HAL" title="Information Abstraction">HAL</a>. Here's an overview how it calculates the values currently:
+</p>
+<pre>
+MEMTOTALSWAP:
+    MEM_SWAP -&gt; size
+        aix:     perfstat_memory_total().pgsp_total
+        darwin:  swapsize()
+        dynix:   getTotalSwap()
+        freeBSD: swapmode().swapTotal
+        hpux:    getswapinfo().total_swap
+        irix:    swapctl(GETSWAPTOT)
+        linux:   /proc/meminfo:SwapTotal
+        netBSD:  sysctl(VM_UVMEXP).swpages
+        solaris: getSwapInfo().swap_pages
+        win:     GlobalMemoryStatus().dwTotalPageFile
+MEMAVAILSWAP:
+    MEM_SWAP -&gt; free
+        aix:     perfstat_memory_total().pgsp_free
+        darwin:  swapsize() - pages_swapped()
+        dynix:   getFreeSwap()
+        freeBSD: swapmode().swapFree
+        hpux:    getswapinfo().free_swap
+        irix:    swapctl(GETFREESWAP)
+        linux:   /proc/meminfo:SwapFree
+        netBSD:  sysctl(VM_UVMEXP).(swpages-swpginuse)
+        solaris: getSwapInfo().swap_free
+        win:     GlobalMemoryStatus().dwAvailPageFile
+MEMTOTALREAL:
+    MEM_PHYSMEM -&gt; size
+        aix:     perfstat_memory_total().real_total
+        darwin:  sysctl(HW_PHYSMEM)
+        dynix:   sysconf(PHYSMEM)
+        freeBSD: sysctl(HW_USERMEM)
+        hpux:    pstat_getstatic().physical_memory
+        irix:    sysmp(MPSA_RMINFO).physmem
+        linux:   /proc/meminfo:MemTotal
+        netBSD:  sysctl(HW_PHYSMEM)
+        solaris: sysconf(_SC_PHYS_PAGES)
+         (or)    kstat("physmem")
+        win:     GlobalMemoryStatus().dwTotalPhys
+MEMAVAILREAL:
+    MEM_PHYSMEM -&gt; free
+        aix:     perfstat_memory_total().real_free
+        darwin:  sysctl(HW_PHYSMEM) - host_stats(VM_INFO).
+                     (active_count+inactive_count+wire_count)
+        dynix:   sysconf(FREEMEM)
+        freeBSD: sysctl(VM_METER).t_free
+        hpux:    pstat_getdynamic().psd_free
+        irix:    sysmp(MPSA_RMINFO).availrmem
+        linux:   /proc/meminfo:MemFree
+        netBSD:  sysctl(VM_METER).t_free
+        solaris: sysconf(_SC_AVPHYS_PAGES)
+         (or)    swapctl(SC_AINFO).(ani_max-ani_resv)
+                      - getSwapInfo().swap_free
+        win:     GlobalMemoryStatus().dwAvailPhys
+MEMTOTALSWAPTXT:
+    MEM_STEXT -&gt; size
+        hpux:    pstat_getdynamic().psd_vmtxt
+MEMAVAILSWAPTXT:
+    MEM_STEXT -&gt; free
+        hpux:    pstat_getdynamic().psd_avmtxt
+MEMTOTALREALTXT:
+    MEM_RTEXT -&gt; size
+        hpux:    pstat_getdynamic().psd_rmtxt
+MEMAVAILREALTXT:
+    MEM_RTEXT -&gt; free
+        hpux:    pstat_getdynamic().psd_armtxt
+MEMTOTALFREE:
+    MEM_VIRTMEM -&gt; free
+        aix:     perfstat_memory_total().(real_free+pgsp_free)
+        freeBSD: sysctl(VM_METER).t_avm
+        irix:    sysmp(MPSA_RMINFO).availsmem
+        linux:   /proc/meminfo:(MemFree+SwapFree)
+        win:     GlobalMemoryStatus().dwAvailVirtual
+MEMSHARED:
+    MEM_SHARED -&gt; size
+        freeBSD: sysctl(VM_METER).t_vmshr
+        linux:   2.4 kernel: /proc/meminfo:MemShared; 2.6 kernel: not avaialable
+MEMBUFFER:
+    MEM_MBUF -&gt; size
+        linux:   /proc/meminfo:Buffers
+MEMCACHED:
+    MEM_CACHED -&gt; size
+        freeBSD: nlist("cnt").v_cache_count
+        linux:   /proc/meminfo:Cached
+ERRORFLAG/ERRORMSG:
+    MEM_SWAP -&gt; free
+</pre>
+<p>There are a few differences to how the previous implementations calculated the values (old vs. new):
+</p>
+<pre>
+MEMAVAILREAL:
+    FreeBSD:  sysctl(VM_METER).t_free  vs  nlist("cnt").v_free_count
+    NetBSD:   sysctl(VM_METER).t_free  vs  sysctl(VM_UVMEXP).free
+
+      t_free:       /* free memory pages    */  (sys/vmmeter.h:vmtotal)
+      v_free_count: /* number of pages free */  (sys/vmmeter.h:vmmeter)
+      free:         /* number of free pages */  (uvm/uvm_extern.h:uvmexp)
+
+MEMAVAILSWAPTEXT:
+    HP-UX:    pstat_getdynamic().psd_avmtxt  vs
+                        pstat_getdynamic().(psd_vmtxt - psd_avmtxt)
+
+MEMAVAILREALTEXT:
+    HP-UX:    pstat_getdynamic().psd_armtxt  vs
+                        pstat_getdynamic().(psd_rmtxt - psd_armtxt)
+
+MEMTOTALFREE:
+    FreeBSD:  sysctl(VM_METER).t_vm    vs  sysctl(VM_METER).t_free
+    HP-UX:    &lt;missing&gt;                vs
+                   pstat_getdynamic().psd_free + getswapinfo().free_swap
+    Dynix:    &lt;missing&gt;                vs  getTotalFree()
+    NetBSD:   &lt;missing&gt;                vs  sysctl(VM_METER).t_free
+    Solaris:  &lt;missing&gt;                vs  getTotalFree()
+
+      t_vm:         /* total virtual memory */   (sys/vmmeter.h:vmtotal)
+      t_free:       /* free memory pages    */   (sys/vmmeter.h:vmtotal)
+
+      AIX,HP-UX,Dynix,Solaris,Linux are all MEMAVAILREAL+MEMAVAILSWAP
+      FreeBSD,NetBSD are just MEMAVAILSWAP
+
+MEMSHARED:
+    FreeBSD:  sysctl(VM_METER).t_vmshr vs
+                    sysctl(VM_METER).(t_vmshr+t_avmshr+t_rmshr+t_armshr)
+
+MEMBUFFER:
+    FreeBSD:   &lt;missing&gt;               vs  nlist("bufspace")
+
+ERRORFLAG/ERRORMSG:
+    5.4 - HAL:                MEMAVAILSWAP
+    AIX,Dynix,HP-UX,Solaris:  MEMTOTALFREE
+    Darwin:                   MEMAVAILSWAP
+                             (MEMTOTALFREE not implemented)
+    FreeBSD,NetBSD:           MEMAVAILSWAP   (swapFree)
+                             (MEMTOTALFREE    sysctl(VM_METER).t_free)
+</pre>
+
+<!-- 
+NewPP limit report
+Cached time: 20240514182914
+Cache expiry: 0
+Dynamic content: true
+CPU time usage: 0.004 seconds
+Real time usage: 0.006 seconds
+Preprocessor visited node count: 7/1000000
+Preprocessor generated node count: 44/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="indexa9e7.html?title=Memory_HAL&amp;oldid=5051">http://www.net-snmp.org/wiki/index.php?title=Memory_HAL&amp;oldid=5051</a>"</div>
+					<div id='catlinks' class='catlinks catlinks-allhidden'></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="index.php/Memory_HAL.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="index.php/Talk_Memory_HAL.html?title=Talk:Memory_HAL&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="indexe7d3.html?title=Memory_HAL&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="index4a81.html?title=Memory_HAL&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-createaccount"><a href="indexacfb.html?title=Special:UserLogin&amp;returnto=Memory+HAL&amp;returntoquery=printable%3Dyes&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li>
+													<li id="pt-login"><a href="indexec35-2.html?title=Special:UserLogin&amp;returnto=Memory+HAL&amp;returntoquery=printable%3Dyes" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="index.php/Main_Page.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-project" role="navigation">
+		<h3>project</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Web-Site"><a href="../index.html" rel="nofollow">Web Site</a></li>
+											<li id="n-Wiki"><a href="index.php/Main_Page.html">Wiki</a></li>
+											<li id="n-Download"><a href="../download.html" rel="nofollow">download</a></li>
+											<li id="n-Mailing-Lists"><a href="../support/mailinglists.html" rel="nofollow">Mailing Lists</a></li>
+											<li id="n-Bug-Reports"><a href="../support/bugreports.html" rel="nofollow">Bug Reports</a></li>
+											<li id="n-Patches"><a href="../support/patches.html" rel="nofollow">Patches</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-documentation" role="navigation">
+		<h3>documentation</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-Tutorials"><a href="index.php/Tutorials.html">Tutorials</a></li>
+											<li id="n-FAQ"><a href="index.php/FAQ.html">FAQ</a></li>
+											<li id="n-Good-Answers"><a href="index.php/Category_GoodAnswer.html">Good Answers</a></li>
+											<li id="n-Manual-Pages"><a href="../man/index.html" rel="nofollow">Manual Pages</a></li>
+											<li id="n-Tools"><a href="index.php/Category_Tools.html">Tools</a></li>
+									</ul>
+					</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-wiki" role="navigation">
+		<h3>wiki</h3>
+		<div class='pBody'>
+							<ul>
+											<li id="n-recentchanges"><a href="index.php/Special_RecentChanges.html" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+											<li id="n-randompage"><a href="index.php/Notes20111219.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+											<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="http://www.net-snmp.org/wiki/index.php" id="searchform">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<input type="search" name="search" placeholder="Search" title="Search Net-SNMP Wiki [f]" accesskey="f" id="searchInput" />
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton" />&#160;
+						<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+				</form>
+
+							</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="index.php/Special_WhatLinksHere/Memory_HAL.html" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="index.php/Special_RecentChangesLinked/Memory_HAL.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+											<li id="t-specialpages"><a href="index.php/Special_SpecialPages.html" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+											<li id="t-permalink"><a href="indexa9e7.html?title=Memory_HAL&amp;oldid=5051" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="index995f.html?title=Memory_HAL&amp;action=info" title="More information about this page">Page information</a></li>
+									</ul>
+							</div>
+		</div>
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 29 June 2011, at 16:55.</li>
+									<li id="privacy"><a href="index.php/Net-SNMP_Wiki_Privacy_policy.html" title="Net-SNMP Wiki:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="index.php/Net-SNMP_Wiki_About.html" title="Net-SNMP Wiki:About">About Net-SNMP Wiki</a></li>
+									<li id="disclaimer"><a href="index.php/Net-SNMP_Wiki_General_disclaimer.html" title="Net-SNMP Wiki:General disclaimer">Disclaimers</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":132});
+} );</script></body>
+<!-- Mirrored from www.net-snmp.org/wiki/index.php?title=Memory_HAL&printable=yes by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 19:13:08 GMT -->
+</html>

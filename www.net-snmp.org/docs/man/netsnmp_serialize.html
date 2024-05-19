@@ -1,0 +1,141 @@
+Content-type: text/html
+
+<HTML>
+<!-- Mirrored from www.net-snmp.org/docs/man/netsnmp_serialize.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:36 GMT -->
+<HEAD><TITLE>Manpage of serialize</TITLE>
+</HEAD><BODY>
+<H1>serialize</H1>
+Section: net-snmp (3)<BR>Updated: 23 Sep 2009<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+serialize - 
+<P>
+
+Calls sub handlers one request at a time.  
+<P>
+<A NAME="lbAC">&nbsp;</A>
+<H3>Functions</H3>
+
+<P>
+
+<BR>
+
+<B>netsnmp_mib_handler</B> * <B>netsnmp_get_serialize_handler</B> (void)
+
+<BR>
+
+<I>returns a serialize handler that can be injected into a given handler chain. </I>
+
+<BR>
+
+int <B>netsnmp_register_serialize</B> (<B>netsnmp_handler_registration</B> *reginfo)
+
+<BR>
+
+<I>functionally the same as calling </I><B>netsnmp_register_handler()</B> but also injects a serialize handler at the same time for you. 
+
+<BR>
+
+int <B>netsnmp_serialize_helper_handler</B> (<B>netsnmp_mib_handler</B> *handler, <B>netsnmp_handler_registration</B> *reginfo, <B>netsnmp_agent_request_info</B> *reqinfo, <B>netsnmp_request_info</B> *requests)
+
+<BR>
+
+<I>Implements the serial handler. </I>
+
+<BR>
+
+void <B>netsnmp_init_serialize</B> (void)
+
+<BR>
+
+<I>initializes the serialize helper which then registers a serialize handler as a run-time injectable handler for configuration file use. </I>
+
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>Detailed Description</H2>
+
+<P>
+
+Calls sub handlers one request at a time. 
+<P>
+This functionally passes in one request at a time into lower handlers rather than a whole bunch of requests at once. This is useful for handlers that don't want to iterate through the request lists themselves. Generally, this is probably less efficient so use with caution. The serialize handler might be useable to dynamically fix handlers with broken looping code, however. 
+<A NAME="lbAE">&nbsp;</A>
+<H2>Function Documentation</H2>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H3><B>netsnmp_mib_handler</B>* netsnmp_get_serialize_handler (void)</H3>
+
+<P>
+
+returns a serialize handler that can be injected into a given handler chain. 
+<P>
+
+Definition at line 25 of file serialize.c.
+<A NAME="lbAG">&nbsp;</A>
+<H3>void netsnmp_init_serialize (void)</H3>
+
+<P>
+
+initializes the serialize helper which then registers a serialize handler as a run-time injectable handler for configuration file use. 
+<P>
+
+Definition at line 87 of file serialize.c.
+<A NAME="lbAH">&nbsp;</A>
+<H3>int netsnmp_register_serialize (<B>netsnmp_handler_registration</B> * reginfo)</H3>
+
+<P>
+
+functionally the same as calling <B>netsnmp_register_handler()</B> but also injects a serialize handler at the same time for you. 
+<P>
+
+Definition at line 34 of file serialize.c.
+<A NAME="lbAI">&nbsp;</A>
+<H3>int netsnmp_serialize_helper_handler (<B>netsnmp_mib_handler</B> * handler, <B>netsnmp_handler_registration</B> * reginfo, <B>netsnmp_agent_request_info</B> * reqinfo, <B>netsnmp_request_info</B> * requests)</H3>
+
+<P>
+
+Implements the serial handler. 
+<P>
+
+Definition at line 42 of file serialize.c.
+<A NAME="lbAJ">&nbsp;</A>
+<H2>Author</H2>
+
+<P>
+
+Generated automatically by Doxygen for net-snmp from the source code.
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DL>
+<DT><A HREF="#lbAC">Functions</A><DD>
+</DL>
+<DT><A HREF="#lbAD">Detailed Description</A><DD>
+<DT><A HREF="#lbAE">Function Documentation</A><DD>
+<DL>
+<DT><A HREF="#lbAF"><B>netsnmp_mib_handler</B>* netsnmp_get_serialize_handler (void)</A><DD>
+<DT><A HREF="#lbAG">void netsnmp_init_serialize (void)</A><DD>
+<DT><A HREF="#lbAH">int netsnmp_register_serialize (<B>netsnmp_handler_registration</B> * reginfo)</A><DD>
+<DT><A HREF="#lbAI">int netsnmp_serialize_helper_handler (<B>netsnmp_mib_handler</B> * handler, <B>netsnmp_handler_registration</B> * reginfo, <B>netsnmp_agent_request_info</B> * reqinfo, <B>netsnmp_request_info</B> * requests)</A><DD>
+</DL>
+<DT><A HREF="#lbAJ">Author</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 19:05:38 GMT, September 28, 2009
+</BODY>
+
+<!-- Mirrored from www.net-snmp.org/docs/man/netsnmp_serialize.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 18:15:36 GMT -->
+</HTML>
